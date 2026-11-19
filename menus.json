@@ -17,6 +17,7 @@
     ],
     "pair_id": "TH-C06",
     "dessert_pair_id": "BEV-001",
+    "image_url": "https://images.unsplash.com/photo-1562565652-a0d8f0c59eb4?auto=format&fit=crop&w=600&q=80",
     "recipe_hint": "ผัดพริกกระเทียมกับหมูสับ ปรุงรสด้วยน้ำปลา ซอสหอยนางรม น้ำตาลนิดหน่อย ใส่ใบกะเพรา โปะไข่ดาวกรอบ"
   },
   {
@@ -37,6 +38,7 @@
     ],
     "pair_id": "TH-C03",
     "dessert_pair_id": "DES-001",
+    "image_url": "https://images.unsplash.com/photo-1548943487-a2e4e43b4853?auto=format&fit=crop&w=600&q=80",
     "recipe_hint": "ต้มข่า ตะไคร้ ใบมะกรูด ใส่น้ำพริกเผา กุ้งสด เห็ดฟาง ปรุงรสด้วยน้ำปลา มะนาว และนมข้นจืด"
   },
   {
@@ -57,6 +59,7 @@
     ],
     "pair_id": "TH-C02",
     "dessert_pair_id": "BEV-004",
+    "image_url": "https://images.unsplash.com/photo-1525351484163-7529414342d8?auto=format&fit=crop&w=600&q=80",
     "recipe_hint": "ตีไข่ไก่กับหมูสับและน้ำปลานิดหน่อย ตั้งน้ำมันให้ร้อนจัดแล้วเทไข่ลงทอดจนฟูเหลืองกรอบ"
   },
   {
@@ -77,6 +80,7 @@
     ],
     "pair_id": "TH-C08",
     "dessert_pair_id": "DES-003",
+    "image_url": "https://images.unsplash.com/photo-1455619452474-d2be8b1e70cd?auto=format&fit=crop&w=600&q=80",
     "recipe_hint": "ผัดพริกแกงเขียวหวานกับหัวกะทิจนแตกมัน ใส่เนื้อไก่ มะเขือเปราะ ยอดมะพร้าว ปรุงรสและโรยใบโหระพา"
   },
   {
@@ -97,6 +101,7 @@
     ],
     "pair_id": "BEV-005",
     "dessert_pair_id": "BEV-005",
+    "image_url": "https://images.unsplash.com/photo-1559314809-0d155014e29e?auto=format&fit=crop&w=600&q=80",
     "recipe_hint": "ผัดเส้นเล็กกับน้ำซอสมะขามเปียก ใส่กุ้งสด เต้าหู้เหลือง ไข่ไก่ ถั่วงอก และใบกุยช่าย เสิร์ฟพร้อมถั่วลิสงคั่ว"
   },
   {
@@ -118,6 +123,7 @@
     ],
     "pair_id": "TH-C01",
     "dessert_pair_id": "DES-002",
+    "image_url": "https://images.unsplash.com/photo-1547592166-23ac45744acd?auto=format&fit=crop&w=600&q=80",
     "recipe_hint": "ต้มน้ำซุปกระดูกหมู ใส่หมูสับปรุงรส เต้าหู้ไข่ ผักกาดขาว และสาหร่ายทะเล โรยขึ้นฉ่ายและพริกไทย"
   },
   {
@@ -137,6 +143,7 @@
     ],
     "pair_id": "TH-C03",
     "dessert_pair_id": "BEV-004",
+    "image_url": "https://images.unsplash.com/photo-1604908176997-125f25cc6f3d?auto=format&fit=crop&w=600&q=80",
     "recipe_hint": "เคี่ยวพริกแกงพะแนงกับหัวกะทิ ใส่สันคอหมูหั่นชิ้น ปรุงรสเค็มหวานมัน โรยพริกชี้ฟ้าและใบมะกรูดซอย"
   },
   {
@@ -157,6 +164,7 @@
     ],
     "pair_id": "TH-C04",
     "dessert_pair_id": "DES-005",
+    "image_url": "https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?auto=format&fit=crop&w=600&q=80",
     "recipe_hint": "โขลกกะปิย่างกับกระเทียม พริกขี้หนู มะเขือพวง ปรุงด้วยมะนาวและน้ำตาลปี๊บ กินคู่ปลาทูทอดและชะอมไข่"
   },
   {
@@ -178,6 +186,7 @@
     ],
     "pair_id": "BEV-001",
     "dessert_pair_id": "BEV-001",
+    "image_url": "https://images.unsplash.com/photo-1617093727343-374698b1b08d?auto=format&fit=crop&w=600&q=80",
     "recipe_hint": "ผัดเส้นใหญ่กับซีอิ๊วดำ ใส่หมูหมักนุ่ม ไข่ไก่ และยอดคะน้า ผัดไฟแรงให้หอมกลิ่นกระทะ"
   },
   {
@@ -197,6 +206,7 @@
     ],
     "pair_id": "BEV-004",
     "dessert_pair_id": "BEV-004",
+    "image_url": "https://images.unsplash.com/photo-1623653387945-2fd25214f8fc?auto=format&fit=crop&w=600&q=80",
     "recipe_hint": "เสิร์ฟหมูแดงย่างหอม หมูกรอบ กุนเชียง และไข่ต้มบนข้าวสวย ราดน้ำซอสหมูแดงข้นๆ"
   },
   {
@@ -217,6 +227,7 @@
     ],
     "pair_id": "TH-S02",
     "dessert_pair_id": "BEV-002",
+    "image_url": "https://images.unsplash.com/photo-1563379926898-05f4575a45d8?auto=format&fit=crop&w=600&q=80",
     "recipe_hint": "เคี่ยวน้ำตาลปี๊บกับสามเกลอจนหอม ใส่หมูสามชั้น ไข่ต้ม เต้าหู้พวง และเครื่องพะโล้ ตุ๋นจนเข้าเนื้อ"
   },
   {
@@ -237,6 +248,7 @@
     ],
     "pair_id": "BEV-004",
     "dessert_pair_id": "DES-002",
+    "image_url": "https://images.unsplash.com/photo-1569718212165-3a8278d5f624?auto=format&fit=crop&w=600&q=80",
     "recipe_hint": "เคี่ยวน่องไก่ในน้ำพริกแกงข้าวซอยและกะทิ เสิร์ฟพร้อมบะหมี่เหลืองลวก หมี่กรอบ ผักกาดดอง และหอมแดง"
   },
   {
@@ -256,6 +268,7 @@
     ],
     "pair_id": "TH-N04",
     "dessert_pair_id": "DES-001",
+    "image_url": "https://images.unsplash.com/photo-1534939561126-855b8675edd7?auto=format&fit=crop&w=600&q=80",
     "recipe_hint": "ผัดพริกแกงเหนือกับหมูสับและมะเขือเทศสีดา ปรุงรสเปรี้ยวเค็มหวาน กินคู่ผักต้มและแคบหมูกรอบ"
   },
   {
@@ -275,6 +288,7 @@
     ],
     "pair_id": "TH-N05",
     "dessert_pair_id": "BEV-005",
+    "image_url": "https://images.unsplash.com/photo-1604908176997-125f25cc6f3d?auto=format&fit=crop&w=600&q=80",
     "recipe_hint": "หมักหมูสามชั้นกับผงฮังเลและพริกแกง เคี่ยวกับขิงซอย กระเทียมดอง ถั่วลิสงคั่ว และน้ำมะขามเปียก"
   },
   {
@@ -295,6 +309,7 @@
     ],
     "pair_id": "TH-N02",
     "dessert_pair_id": "BEV-004",
+    "image_url": "https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=600&q=80",
     "recipe_hint": "คลุกหมูบดกับพริกแกงเหนือ ตะไคร้ ใบมะกรูด และผักชี ยัดไส้แล้วย่างไฟอ่อนจนหอมสมุนไพร"
   },
   {
@@ -315,6 +330,7 @@
     ],
     "pair_id": "TH-N03",
     "dessert_pair_id": "DES-003",
+    "image_url": "https://images.unsplash.com/photo-1534939561126-855b8675edd7?auto=format&fit=crop&w=600&q=80",
     "recipe_hint": "ย่างพริกหนุ่ม หอมแดง และกระเทียมจนสุกหอม ลอกเปลือกแล้วโขลกรวมกัน ปรุงรสด้วยน้ำปลา"
   },
   {
@@ -335,6 +351,7 @@
     ],
     "pair_id": "BEV-005",
     "dessert_pair_id": "DES-005",
+    "image_url": "https://images.unsplash.com/photo-1582878826629-29b7ad1cdc43?auto=format&fit=crop&w=600&q=80",
     "recipe_hint": "ต้มซี่โครงหมูกับพริกแกงน้ำเงี้ยว ดอกงิ้ว มะเขือเทศ และเลือดไก่ ราดบนขนมจีน โรยกระเทียมเจียว"
   },
   {
@@ -354,6 +371,7 @@
     ],
     "pair_id": "TH-C03",
     "dessert_pair_id": "BEV-004",
+    "image_url": "https://images.unsplash.com/photo-1617093727343-374698b1b08d?auto=format&fit=crop&w=600&q=80",
     "recipe_hint": "ผัดพริกแกงกับหมู หน่อไม้ดอง วุ้นเส้น มะเขือพวง และใบมะกรูด ปรุงรสกลมกล่อมหอมเครื่องแกง"
   },
   {
@@ -374,6 +392,7 @@
     ],
     "pair_id": "TH-E02",
     "dessert_pair_id": "DES-004",
+    "image_url": "https://images.unsplash.com/photo-1512058564366-18510be2db19?auto=format&fit=crop&w=600&q=80",
     "recipe_hint": "โขลกพริกกระเทียม ใส่มะละกอสับ ถั่วฝักยาว มะเขือเทศ กุ้งแห้ง ถั่วลิสง ปรุงรสสามรสและคลุกไข่เค็ม"
   },
   {
@@ -394,6 +413,7 @@
     ],
     "pair_id": "TH-E01",
     "dessert_pair_id": "BEV-001",
+    "image_url": "https://images.unsplash.com/photo-1598515214211-89d3c73ae83b?auto=format&fit=crop&w=600&q=80",
     "recipe_hint": "หมักไก่กับรากผักชี กระเทียม พริกไทย ซอสปรุงรส และขมิ้น ย่างไฟอ่อนจนหนังกรอบเนื้อนุ่ม"
   },
   {
@@ -414,6 +434,7 @@
     ],
     "pair_id": "TH-E05",
     "dessert_pair_id": "DES-002",
+    "image_url": "https://images.unsplash.com/photo-1529042410759-befb1204b468?auto=format&fit=crop&w=600&q=80",
     "recipe_hint": "รวนหมูสับให้สุก ปรุงด้วยน้ำปลา มะนาว พริกป่น ข้าวคั่ว หอมแดงซอย ต้นหอม ผักชีฝรั่ง และสะระแหน่"
   },
   {
@@ -434,6 +455,7 @@
     ],
     "pair_id": "TH-E06",
     "dessert_pair_id": "BEV-005",
+    "image_url": "https://images.unsplash.com/photo-1555939594-58d7cb561ad1?auto=format&fit=crop&w=600&q=80",
     "recipe_hint": "หั่นคอหมูย่างเป็นชิ้นพอดีคำ คลุกเคล้ากับน้ำปลา มะนาว พริกป่น ข้าวคั่ว หอมแดง และใบสะระแหน่"
   },
   {
@@ -454,6 +476,7 @@
     ],
     "pair_id": "TH-E02",
     "dessert_pair_id": "DES-003",
+    "image_url": "https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=600&q=80",
     "recipe_hint": "เคี่ยวกระดูกอ่อนจนเปื่อย ใส่ข่า ตะไคร้ ใบมะกรูด ปรุงรสแซ่บด้วยน้ำปลา มะนาว พริกป่น และข้าวคั่ว"
   },
   {
@@ -475,6 +498,7 @@
     ],
     "pair_id": "TH-E02",
     "dessert_pair_id": "BEV-004",
+    "image_url": "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=600&q=80",
     "recipe_hint": "ต้มหน่อไม้ขูดฝอยกับน้ำใบย่านาง ปรุงรสด้วยน้ำปลาร้า น้ำปลา มะนาว พริกป่น ข้าวคั่ว และงาขาวคั่ว"
   },
   {
@@ -495,6 +519,7 @@
     ],
     "pair_id": "TH-C03",
     "dessert_pair_id": "DES-001",
+    "image_url": "https://images.unsplash.com/photo-1547592166-23ac45744acd?auto=format&fit=crop&w=600&q=80",
     "recipe_hint": "คั่วเนื้อไก่กับพริกแกงอ่อม เติมน้ำซุป ใส่มะเขือเปราะ กะหล่ำปลี ใบชะพลู ผักชีลาว และข้าวคั่ว"
   },
   {
@@ -516,6 +541,7 @@
     ],
     "pair_id": "TH-E02",
     "dessert_pair_id": "BEV-001",
+    "image_url": "https://images.unsplash.com/photo-1512058564366-18510be2db19?auto=format&fit=crop&w=600&q=80",
     "recipe_hint": "ตำส้มตำปูปลาร้ารสนัว ใส่ขนมจีนคลุกเคล้าให้เข้ากัน เสิร์ฟพร้อมผักบุ้งไทยและแคบหมู"
   },
   {
@@ -536,6 +562,7 @@
     ],
     "pair_id": "TH-S04",
     "dessert_pair_id": "DES-002",
+    "image_url": "https://images.unsplash.com/photo-1562565652-a0d8f0c59eb4?auto=format&fit=crop&w=600&q=80",
     "recipe_hint": "ผัดพริกแกงคั่วกลิ้งใต้กับหมูสับจนแห้งหอม ใส่กะปินิดหน่อย โรยพริกไทยอ่อนและใบมะกรูดซอย"
   },
   {
@@ -556,6 +583,7 @@
     ],
     "pair_id": "TH-C03",
     "dessert_pair_id": "DES-003",
+    "image_url": "https://images.unsplash.com/photo-1585937421612-70a008356fbe?auto=format&fit=crop&w=600&q=80",
     "recipe_hint": "ต้มพริกแกงส้มใต้กับน้ำซุป ใส่ยอดมะพร้าวอ่อน เนื้อปลากะพง ปรุงรสเปรี้ยวจัดด้วยน้ำมะขามเปียกและมะนาว"
   },
   {
@@ -576,6 +604,7 @@
     ],
     "pair_id": "TH-S04",
     "dessert_pair_id": "BEV-001",
+    "image_url": "https://images.unsplash.com/photo-1565557623262-b51c2513a641?auto=format&fit=crop&w=600&q=80",
     "recipe_hint": "โขลกพริกขี้หนู กระเทียม หอมแดง และกะปิ ผัดให้หอม ใส่กุ้งสดและเม็ดสะตอ ปรุงรสกลมกล่อม"
   },
   {
@@ -597,6 +626,7 @@
     ],
     "pair_id": "TH-S01",
     "dessert_pair_id": "DES-005",
+    "image_url": "https://images.unsplash.com/photo-1547592166-23ac45744acd?auto=format&fit=crop&w=600&q=80",
     "recipe_hint": "ต้มไก่บ้านกับขมิ้นสดทุบ ตะไคร้ หอมแดง ใบมะกรูด ปรุงรสด้วยเกลือและน้ำมะขามเปียก ซดคล่องคอ"
   },
   {
@@ -617,6 +647,7 @@
     ],
     "pair_id": "BEV-005",
     "dessert_pair_id": "DES-001",
+    "image_url": "https://images.unsplash.com/photo-1540420773420-3366772f4999?auto=format&fit=crop&w=600&q=80",
     "recipe_hint": "คลุกข้าวสวยกับน้ำบูดูปรุงรส มะพร้าวคั่ว กุ้งแห้งป่น ถั่วฝักยาว ใบมะกรูดซอย ตะไคร้ และส้มโอ"
   },
   {
@@ -637,6 +668,7 @@
     ],
     "pair_id": "TH-S01",
     "dessert_pair_id": "BEV-004",
+    "image_url": "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=600&q=80",
     "recipe_hint": "ผัดกระเทียมพอหอม ใส่ใบเหลียงเด็ด ตอกไข่ไก่ลงไปผัดให้เคลือบใบผัก ปรุงรสและโรยกุ้งเสียบกรอบ"
   },
   {
@@ -657,6 +689,7 @@
     ],
     "pair_id": "BEV-006",
     "dessert_pair_id": "BEV-006",
+    "image_url": "https://images.unsplash.com/photo-1569718212165-3a8278d5f624?auto=format&fit=crop&w=600&q=80",
     "recipe_hint": "ลวกเส้นราเมนใส่ชามน้ำซุปกระดูกหมูเคี่ยวข้น วางหมูชาชู ไข่ต้มยางมะตูม สาหร่าย และต้นหอมญี่ปุ่น"
   },
   {
@@ -677,6 +710,7 @@
     ],
     "pair_id": "BEV-002",
     "dessert_pair_id": "BEV-002",
+    "image_url": "https://images.unsplash.com/photo-1604908176997-125f25cc6f3d?auto=format&fit=crop&w=600&q=80",
     "recipe_hint": "ทอดหมูสันนอกชุบเกล็ดขนมปังจนกรอบ หั่นวางบนข้าวญี่ปุ่นร้อนๆ แล้วราดซอสแกงกะหรี่เคี่ยวแครอทมันฝรั่ง"
   },
   {
@@ -696,6 +730,7 @@
     ],
     "pair_id": "BEV-006",
     "dessert_pair_id": "BEV-006",
+    "image_url": "https://images.unsplash.com/photo-1553621042-f6e147245754?auto=format&fit=crop&w=600&q=80",
     "recipe_hint": "ต้มเนื้อสไลด์กับหอมใหญ่ในซอสโชยุ มิริน และดาชิ โปะบนข้าวญี่ปุ่น พร้อมไข่ออนเซ็นและขิงดอง"
   },
   {
@@ -715,6 +750,7 @@
     ],
     "pair_id": "INT-06",
     "dessert_pair_id": "BEV-003",
+    "image_url": "https://images.unsplash.com/photo-1553163147-622ab57be1c7?auto=format&fit=crop&w=600&q=80",
     "recipe_hint": "เรียงผักยำเกาหลี เนื้อผัดซอส และไข่ดาวบนข้าวสวย คลุกเคล้ากับซอสโคชูจังและน้ำมันงาหอมๆ"
   },
   {
@@ -735,6 +771,7 @@
     ],
     "pair_id": "INT-06",
     "dessert_pair_id": "BEV-002",
+    "image_url": "https://images.unsplash.com/photo-1626082927389-6cd097cdc6ec?auto=format&fit=crop&w=600&q=80",
     "recipe_hint": "ทอดปีกไก่ชุบแป้งสองรอบให้กรอบนาน แล้วคลุกซอสโชยุกระเทียมน้ำผึ้ง โรยงาขาวคั่ว"
   },
   {
@@ -755,6 +792,7 @@
     ],
     "pair_id": "INT-05",
     "dessert_pair_id": "DES-006",
+    "image_url": "https://images.unsplash.com/photo-1583224964978-2257b960c3d3?auto=format&fit=crop&w=600&q=80",
     "recipe_hint": "ผัดกิมจิเปรี้ยวกับหมูสามชั้น เติมน้ำซุป ใส่เต้าหู้อ่อน ต้นหอมญี่ปุ่น และตอกไข่ไก่ลงไปก่อนเสิร์ฟ"
   },
   {
@@ -775,6 +813,7 @@
     ],
     "pair_id": "BEV-002",
     "dessert_pair_id": "BEV-002",
+    "image_url": "https://images.unsplash.com/photo-1612874742237-6526221588e3?auto=format&fit=crop&w=600&q=80",
     "recipe_hint": "คลุกเส้นสปาเก็ตตี้ต้มสุกกับซอสไข่แดง พาร์เมซานชีส พริกไทยดำ และเบคอนทอดกรอบ"
   },
   {
@@ -795,6 +834,7 @@
     ],
     "pair_id": "BEV-002",
     "dessert_pair_id": "BEV-002",
+    "image_url": "https://images.unsplash.com/photo-1574071318508-1cdbab80d002?auto=format&fit=crop&w=600&q=80",
     "recipe_hint": "ทาซอสมะเขือเทศโฮมเมดบนแป้งพิซซ่า โรยมอสซาเรลล่าชีสสดและใบโหระพาอิตาเลียน อบจนขอบกรอบ"
   },
   {
@@ -815,6 +855,7 @@
     ],
     "pair_id": "BEV-002",
     "dessert_pair_id": "DES-006",
+    "image_url": "https://images.unsplash.com/photo-1600891964092-4316c288032e?auto=format&fit=crop&w=600&q=80",
     "recipe_hint": "หมักสะโพกไก่กับพริกไทยดำบดและกระเทียม ย่างบนกระทะจนหนังเกรียม เสิร์ฟคู่เฟรนช์ฟรายส์และสลัด"
   },
   {
@@ -834,6 +875,7 @@
     ],
     "pair_id": "BEV-001",
     "dessert_pair_id": "BEV-001",
+    "image_url": "https://images.unsplash.com/photo-1563379091339-03b21ab4a4f8?auto=format&fit=crop&w=600&q=80",
     "recipe_hint": "หุงข้าวบาสมาติกับผงกะหรี่ ขมิ้น นมสด และน่องไก่หมักเครื่องเทศ เสิร์ฟพร้อมหอมเจียวและน้ำจิ้มอาจาด"
   },
   {
@@ -855,6 +897,7 @@
     ],
     "pair_id": "BEV-005",
     "dessert_pair_id": "BEV-005",
+    "image_url": "https://images.unsplash.com/photo-1582878826629-29b7ad1cdc43?auto=format&fit=crop&w=600&q=80",
     "recipe_hint": "ลวกเส้นเฝอในน้ำซุปเครื่องเทศหอมอบเชยโป๊ยกั๊ก ใส่เนื้อสไลด์ ลูกชิ้น โหระพา ถั่วงอก และบีบมะนาว"
   },
   {
@@ -875,6 +918,7 @@
     ],
     "pair_id": "BEV-004",
     "dessert_pair_id": "BEV-004",
+    "image_url": "https://images.unsplash.com/photo-1552611052-33e04de081de?auto=format&fit=crop&w=600&q=80",
     "recipe_hint": "ลวกบะหมี่ไข่เส้นเล็ก เสิร์ฟพร้อมเกี๊ยวกุ้งเด้งเต็มคำ หมูแดงย่าง และผักกวางตุ้งลวก"
   },
   {
@@ -895,6 +939,7 @@
     ],
     "pair_id": "BEV-004",
     "dessert_pair_id": "BEV-004",
+    "image_url": "https://images.unsplash.com/photo-1569058242253-92a9c755a0ec?auto=format&fit=crop&w=600&q=80",
     "recipe_hint": "หุงข้าวหอมมะลิด้วยน้ำซุปไก่และกระเทียมเจียว เสิร์ฟคู่ไก่ต้มเนื้อนุ่ม น้ำซุปฟัก และน้ำจิ้มขิงเต้าเจี้ยว"
   },
   {
@@ -914,6 +959,7 @@
     ],
     "pair_id": "BEV-002",
     "dessert_pair_id": "BEV-002",
+    "image_url": "https://images.unsplash.com/photo-1565299585323-38d6b0865b47?auto=format&fit=crop&w=600&q=80",
     "recipe_hint": "วางไก่ย่างเครื่องเทศเม็กซิกันบนแผ่นแป้งตอร์ติญ่า ท็อปด้วยซัลซ่ามะเขือเทศ อะโวคาโด และชีส"
   },
   {
@@ -933,6 +979,7 @@
     ],
     "pair_id": "BEV-003",
     "dessert_pair_id": "BEV-003",
+    "image_url": "https://images.unsplash.com/photo-1590301157890-4810ed352733?auto=format&fit=crop&w=600&q=80",
     "recipe_hint": "ผัดเบคอนกับกิมจิและซอสโคชูจัง ใส่ข้าวสวยลงผัดให้เข้ากัน โรยสาหร่ายและโปะไข่ดาวเยิ้มๆ"
   },
   {
@@ -954,6 +1001,7 @@
     ],
     "pair_id": "BEV-006",
     "dessert_pair_id": "BEV-006",
+    "image_url": "https://images.unsplash.com/photo-1534422298391-e4f8c172dddb?auto=format&fit=crop&w=600&q=80",
     "recipe_hint": "ผัดเส้นยากิโซบะกับหมูสไลด์ กะหล่ำปลี และแครอท ปรุงด้วยซอสยากิโซบะ โรยสาหร่ายป่นและขิงดอง"
   },
   {
@@ -974,6 +1022,7 @@
     ],
     "pair_id": "BEV-004",
     "dessert_pair_id": "BEV-004",
+    "image_url": "https://images.unsplash.com/photo-1563805042-7684c019e1cb?auto=format&fit=crop&w=600&q=80",
     "recipe_hint": "ต้มเม็ดบัวลอยแป้งข้าวเหนียวหลากสีจนลอย ใส่ลงในน้ำกะทิอบควันเทียนหวานมัน พร้อมไข่หวานเยิ้มๆ"
   },
   {
@@ -994,6 +1043,7 @@
     ],
     "pair_id": "TH-E03",
     "dessert_pair_id": "BEV-004",
+    "image_url": "https://images.unsplash.com/photo-1551024709-8f23befc6f87?auto=format&fit=crop&w=600&q=80",
     "recipe_hint": "ตักเฉาก๊วยเนื้อหนึบใส่น้ำแข็งเกล็ด ราดนมสดเย็นจัดและโรยน้ำตาลอ้อยบราวน์ชูการ์หอมหวาน"
   },
   {
@@ -1014,6 +1064,7 @@
     ],
     "pair_id": "TH-C04",
     "dessert_pair_id": "BEV-004",
+    "image_url": "https://images.unsplash.com/photo-1488477181946-6428a0291777?auto=format&fit=crop&w=600&q=80",
     "recipe_hint": "ต้มแห้วคลุกน้ำหวานสีแดงและแป้งมันจนใส เสิร์ฟในน้ำกะทิสดหอมใบเตยและน้ำแข็งป่น"
   },
   {
@@ -1033,6 +1084,7 @@
     ],
     "pair_id": "TH-E01",
     "dessert_pair_id": "BEV-001",
+    "image_url": "https://images.unsplash.com/photo-1596560548464-f010549b84d7?auto=format&fit=crop&w=600&q=80",
     "recipe_hint": "เสิร์ฟข้าวเหนียวมูนกะทิสดคู่กับมะม่วงสุกหวานฉ่ำ ราดหัวกะทิเค็มมันและโรยถั่วทองทอดกรอบ"
   },
   {
@@ -1053,6 +1105,7 @@
     ],
     "pair_id": "TH-S04",
     "dessert_pair_id": "BEV-004",
+    "image_url": "https://images.unsplash.com/photo-1551024506-0bccd828d307?auto=format&fit=crop&w=600&q=80",
     "recipe_hint": "ตักลอดช่องใบเตยหอมและแตงไทยสุก ราดน้ำกะทิเคี่ยวน้ำตาลโตนดหอมหวาน ใส่น้ำแข็งเย็นชื่นใจ"
   },
   {
@@ -1072,6 +1125,7 @@
     ],
     "pair_id": "BEV-002",
     "dessert_pair_id": "BEV-002",
+    "image_url": "https://images.unsplash.com/photo-1484723091739-30a097e8f929?auto=format&fit=crop&w=600&q=80",
     "recipe_hint": "อบขนมปังก้อนหนาทาเนยฉ่ำจนกรอบนอกนุ่มใน ท็อปด้วยไอศกรีมวานิลลาและราดน้ำผึ้งหอมหวาน"
   },
   {
@@ -1092,6 +1146,7 @@
     ],
     "pair_id": "TH-C01",
     "dessert_pair_id": "DES-004",
+    "image_url": "https://images.unsplash.com/photo-1558857563-b371033873b8?auto=format&fit=crop&w=600&q=80",
     "recipe_hint": "ชงใบชาไทยแท้จนเข้มข้น ผสมนมข้นหวานและนมข้นจืด เทใส่น้ำแข็งเต็มแก้วแล้วราดนมสดด้านบน"
   },
   {
@@ -1111,6 +1166,7 @@
     ],
     "pair_id": "INT-07",
     "dessert_pair_id": "DES-006",
+    "image_url": "https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?auto=format&fit=crop&w=600&q=80",
     "recipe_hint": "เทน้ำส้มคั้นสดเย็นจัดลงในแก้วน้ำแข็ง แล้วค่อยๆ เทช็อตเอสเพรสโซคั่วกลางทับด้านบนให้แยกชั้นสวยงาม"
   },
   {
@@ -1131,6 +1187,7 @@
     ],
     "pair_id": "INT-04",
     "dessert_pair_id": "DES-006",
+    "image_url": "https://images.unsplash.com/photo-1558857563-b371033873b8?auto=format&fit=crop&w=600&q=80",
     "recipe_hint": "ตักไข่มุกเคี่ยวน้ำตาลทรายแดงอุ่นๆ ใส่ก้นแก้ว เติมน้ำแข็งและชานมอัสสัมหอมมัน"
   },
   {
@@ -1151,6 +1208,7 @@
     ],
     "pair_id": "TH-C03",
     "dessert_pair_id": "DES-001",
+    "image_url": "https://images.unsplash.com/photo-1556679343-c7306c1976bc?auto=format&fit=crop&w=600&q=80",
     "recipe_hint": "ต้มดอกเก๊กฮวยแห้งกับเม็ดพุดจีนให้ได้สีเหลืองทอง ปรุงหวานน้อย เสิร์ฟเย็นจัดแก้ร้อนใน"
   },
   {
@@ -1171,6 +1229,7 @@
     ],
     "pair_id": "TH-C05",
     "dessert_pair_id": "DES-003",
+    "image_url": "https://images.unsplash.com/photo-1513558161293-cdaf765ed2fd?auto=format&fit=crop&w=600&q=80",
     "recipe_hint": "เคี่ยวดอกกระเจี๊ยบแดงกับพุทราจีนแห้ง ตัดรสด้วยเกลือป่นเล็กน้อย ดื่มเย็นๆ เปรี้ยวหวานชื่นใจ"
   },
   {
@@ -1190,6 +1249,7 @@
     ],
     "pair_id": "INT-01",
     "dessert_pair_id": "DES-006",
+    "image_url": "https://images.unsplash.com/photo-1515823064-d6e0c04616a7?auto=format&fit=crop&w=600&q=80",
     "recipe_hint": "ตีผงมัทฉะแท้กับน้ำอุ่นจนขึ้นฟองเนียน แล้วเทราดบนนมสดเย็นจัดในแก้วน้ำแข็ง"
   }
 ]
