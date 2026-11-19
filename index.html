@@ -20,6 +20,7 @@
       --turmeric-dark: #D97706;
       --herb-green: #24442F;
       --herb-green-soft: #2F573D;
+      --passport-blue: #1D4ED8;
       --text-brown: #3A2B22;
       --text-muted: #786458;
       --shadow-soft: 0 10px 25px -5px rgba(58, 43, 34, 0.08), 0 4px 10px -2px rgba(194, 65, 12, 0.05);
@@ -49,14 +50,13 @@
       font-family: 'Prompt', 'Noto Sans Thai', sans-serif;
     }
 
-    /* Mobile-First App Shell */
     .app-shell {
       width: 100%;
       max-width: 480px;
       background-color: var(--bg-cream);
       min-height: 100vh;
       position: relative;
-      padding-bottom: 108px;
+      padding-bottom: 112px;
       box-shadow: 0 0 40px rgba(58, 43, 34, 0.1);
       overflow-x: hidden;
     }
@@ -66,33 +66,33 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 16px 20px 10px;
-      gap: 8px;
+      padding: 14px 18px 8px;
+      gap: 6px;
     }
 
     .brand-box {
       display: flex;
       align-items: center;
-      gap: 10px;
+      gap: 8px;
     }
 
     .brand-logo {
-      width: 42px;
-      height: 42px;
+      width: 40px;
+      height: 40px;
       border-radius: 12px;
       box-shadow: var(--shadow-soft);
       flex-shrink: 0;
     }
 
     .brand-title {
-      font-size: 20px;
+      font-size: 19px;
       font-weight: 700;
       color: var(--text-brown);
       line-height: 1.1;
     }
 
     .brand-sub {
-      font-size: 12px;
+      font-size: 11px;
       font-weight: 600;
       color: var(--chili-orange);
       letter-spacing: 0.4px;
@@ -101,27 +101,40 @@
     .status-pills {
       display: flex;
       align-items: center;
-      gap: 8px;
+      gap: 6px;
     }
 
     .tactile-pill {
       background: var(--surface-white);
       border-radius: 999px;
-      padding: 6px 12px;
-      font-size: 14px;
+      padding: 6px 11px;
+      font-size: 13px;
       font-weight: 600;
       box-shadow: var(--shadow-soft);
       display: inline-flex;
       align-items: center;
-      gap: 5px;
+      gap: 4px;
       border: 1px solid rgba(255, 255, 255, 0.8);
       cursor: pointer;
     }
 
-    /* Views */
+    .icon-circle-btn {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: var(--surface-white);
+      border: none;
+      box-shadow: var(--shadow-soft);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
     .view-section {
       display: none;
-      padding: 8px 20px 20px;
+      padding: 6px 18px 20px;
       animation: fadeIn 0.25s ease;
     }
 
@@ -134,32 +147,34 @@
       to { opacity: 1; transform: translateY(0); }
     }
 
-    /* Segmented Mode Toggle */
+    /* 3-Mode Segmented Toggle */
     .mode-toggle-wrap {
       background: #EFE6D8;
-      border-radius: 999px;
+      border-radius: 22px;
       padding: 5px;
       display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 6px;
+      grid-template-columns: 1fr 1.1fr 1fr;
+      gap: 4px;
       box-shadow: var(--shadow-inset);
-      margin-bottom: 18px;
+      margin-bottom: 16px;
     }
 
     .mode-btn {
       min-height: 48px;
       border: none;
-      border-radius: 999px;
+      border-radius: 18px;
       background: transparent;
       color: var(--text-muted);
-      font-size: 16px;
+      font-size: 13px;
       font-weight: 600;
       cursor: pointer;
       transition: all 0.25s ease;
       display: flex;
+      flex-direction: column;
       align-items: center;
       justify-content: center;
-      gap: 6px;
+      line-height: 1.2;
+      padding: 4px 2px;
     }
 
     .mode-btn.active {
@@ -168,20 +183,45 @@
       box-shadow: 0 6px 14px rgba(194, 65, 12, 0.28);
     }
 
+    .mode-btn.passport-active {
+      background: linear-gradient(135deg, #2563EB 0%, #1E40AF 100%);
+      color: #FFFFFF;
+      box-shadow: 0 6px 14px rgba(37, 99, 235, 0.3);
+    }
+
+    /* Passport Banner when in Passport Spin mode */
+    .passport-strip {
+      background: linear-gradient(135deg, #EFF6FF 0%, #DBEAFE 100%);
+      border: 1px solid #BFDBFE;
+      color: #1E3A8A;
+      border-radius: 18px;
+      padding: 8px 14px;
+      font-size: 14px;
+      font-weight: 600;
+      display: none;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 12px;
+    }
+
+    .passport-strip.show {
+      display: flex;
+    }
+
     /* Wheel Container */
     .wheel-stage {
       position: relative;
-      width: 300px;
-      height: 300px;
-      margin: 6px auto 18px;
+      width: 296px;
+      height: 296px;
+      margin: 4px auto 16px;
       display: flex;
       align-items: center;
       justify-content: center;
     }
 
     .wheel-outer-ring {
-      width: 300px;
-      height: 300px;
+      width: 296px;
+      height: 296px;
       border-radius: 50%;
       background: var(--surface-white);
       padding: 10px;
@@ -194,7 +234,6 @@
       height: 100%;
       border-radius: 50%;
       display: block;
-      transition: transform 3.8s cubic-bezier(0.15, 0.85, 0.22, 1);
     }
 
     .wheel-pointer {
@@ -209,6 +248,11 @@
       border-top: 28px solid var(--chili-orange);
       filter: drop-shadow(0 4px 6px rgba(58, 43, 34, 0.25));
       z-index: 10;
+      transition: transform 0.08s ease;
+    }
+
+    .wheel-pointer.tick {
+      transform: translateX(-50%) rotate(-14deg);
     }
 
     .wheel-center-hub {
@@ -245,22 +289,26 @@
       transition: transform 0.15s ease;
     }
 
+    .spin-cta.passport-btn {
+      background: linear-gradient(135deg, #2563EB 0%, #1D4ED8 100%);
+      box-shadow: 0 10px 20px -4px rgba(37, 99, 235, 0.38);
+    }
+
     .spin-cta:active {
       transform: scale(0.97);
     }
 
     .spin-cta:disabled {
-      opacity: 0.7;
+      opacity: 0.75;
       cursor: not-allowed;
     }
 
-    /* Yesterday Exclude Toggle */
     .exclude-row {
       display: flex;
       align-items: center;
       justify-content: center;
       gap: 10px;
-      margin: 14px 0;
+      margin: 12px 0;
       font-size: 16px;
       font-weight: 500;
       color: var(--text-brown);
@@ -314,7 +362,7 @@
       border-radius: 26px;
       padding: 18px 20px;
       box-shadow: 0 12px 26px rgba(36, 68, 47, 0.24);
-      margin-top: 8px;
+      margin-top: 6px;
     }
 
     .herb-bento-title {
@@ -337,7 +385,6 @@
       gap: 10px;
     }
 
-    /* Soft White Bento Card */
     .soft-card {
       background: var(--surface-white);
       border-radius: 24px;
@@ -346,17 +393,17 @@
       margin-bottom: 16px;
     }
 
-    /* Result Modal / Card Overlay */
+    /* Result Modal */
     .result-overlay {
       position: fixed;
       inset: 0;
-      background: rgba(58, 43, 34, 0.55);
+      background: rgba(58, 43, 34, 0.6);
       backdrop-filter: blur(4px);
       display: none;
       align-items: flex-end;
       justify-content: center;
       z-index: 100;
-      padding: 16px;
+      padding: 14px;
     }
 
     .result-overlay.open {
@@ -369,9 +416,9 @@
       max-width: 460px;
       background: var(--bg-cream);
       border-radius: 30px;
-      padding: 22px 20px 26px;
-      box-shadow: 0 -10px 40px rgba(0, 0, 0, 0.2);
-      max-height: 90vh;
+      padding: 20px 18px 24px;
+      box-shadow: 0 -10px 40px rgba(0, 0, 0, 0.22);
+      max-height: 92vh;
       overflow-y: auto;
     }
 
@@ -379,7 +426,7 @@
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 10px;
-      margin-top: 14px;
+      margin-top: 12px;
     }
 
     .btn-action {
@@ -406,6 +453,14 @@
       background: var(--turmeric-yellow);
       color: var(--text-brown);
       box-shadow: 0 8px 16px rgba(217, 119, 6, 0.22);
+    }
+
+    .btn-line {
+      width: 100%;
+      margin-top: 10px;
+      background: #06C755;
+      color: #FFFFFF;
+      box-shadow: 0 8px 18px rgba(6, 199, 85, 0.28);
     }
 
     /* Explorer Grid */
@@ -438,11 +493,6 @@
       flex-direction: column;
       justify-content: space-between;
       cursor: pointer;
-      transition: transform 0.15s ease;
-    }
-
-    .menu-card:active {
-      transform: scale(0.98);
     }
 
     .menu-badge {
@@ -457,11 +507,11 @@
       align-self: flex-start;
     }
 
-    /* Avatar Selector Grid */
+    /* Avatar & Passport Stamps */
     .avatar-grid {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
-      gap: 10px;
+      gap: 8px;
       margin-top: 10px;
     }
 
@@ -469,7 +519,7 @@
       background: var(--bg-cream);
       border: 2px solid transparent;
       border-radius: 18px;
-      padding: 10px 4px;
+      padding: 8px 4px;
       text-align: center;
       cursor: pointer;
       font-size: 12px;
@@ -481,7 +531,31 @@
       background: #FFF1E6;
     }
 
-    /* Streak Row */
+    .stamp-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 8px;
+      margin-top: 10px;
+    }
+
+    .stamp-item {
+      border-radius: 16px;
+      padding: 8px 4px;
+      text-align: center;
+      font-size: 12px;
+      font-weight: 700;
+      background: #F3ECE1;
+      color: var(--text-muted);
+      opacity: 0.55;
+    }
+
+    .stamp-item.unlocked {
+      background: #EFF6FF;
+      border: 1.5px solid #3B82F6;
+      color: #1E3A8A;
+      opacity: 1;
+    }
+
     .streak-days {
       display: grid;
       grid-template-columns: repeat(7, 1fr);
@@ -494,7 +568,7 @@
       border-radius: 14px;
       padding: 8px 2px;
       text-align: center;
-      font-size: 13px;
+      font-size: 12px;
       font-weight: 700;
       color: var(--text-muted);
     }
@@ -505,7 +579,7 @@
       box-shadow: 0 4px 10px rgba(245, 158, 11, 0.3);
     }
 
-    /* Floating 5-Button Bottom Navigation Bar */
+    /* Floating 5-Button Bottom Nav */
     .bottom-nav {
       position: fixed;
       bottom: 12px;
@@ -573,9 +647,10 @@
       border-radius: 999px;
       font-size: 15px;
       font-weight: 600;
-      box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.22);
       z-index: 200;
       display: none;
+      white-space: nowrap;
     }
   </style>
 </head>
@@ -597,25 +672,41 @@
           <span id="headerAvatar">🍲</span>
           <span id="headerRank">มือใหม่หัดหิว</span>
         </button>
-        <button class="tactile-pill" onclick="dailyCheckIn()" id="streakPill">
-          🔥 <span id="headerStreak">1</span> วัน
+        <button class="tactile-pill" onclick="dailyCheckIn()">
+          🔥 <span id="headerStreak">1</span>
+        </button>
+        <button class="icon-circle-btn" id="soundToggleBtn" onclick="toggleSound()" title="เปิด/ปิดเสียงเอฟเฟกต์">
+          🔊
         </button>
       </div>
     </header>
 
     <!-- TAB 1: HOME & SPIN WHEEL -->
     <main id="tab-home" class="view-section active">
+      <!-- 3-Mode Toggle -->
       <div class="mode-toggle-wrap">
         <button class="mode-btn active" id="btnModeMain" onclick="setWheelMode('main')">
-          🍚 มื้ออาหารหลัก
+          <span>🍚</span>
+          <span>มื้ออาหารหลัก</span>
+        </button>
+        <button class="mode-btn" id="btnModePassport" onclick="setWheelMode('passport')">
+          <span>✈️</span>
+          <span>ตั๋วเครื่องบินทิพย์</span>
         </button>
         <button class="mode-btn" id="btnModeSweet" onclick="setWheelMode('sweet')">
-          🧋 ของหวาน & น้ำ
+          <span>🧋</span>
+          <span>ของหวาน & น้ำ</span>
         </button>
       </div>
 
+      <!-- Passport Mode Info Strip -->
+      <div id="passportStrip" class="passport-strip">
+        <span>🛂 โหมดบินลัดฟ้าชิมอาหารนานาชาติ 8 ประเทศ</span>
+        <span id="passportProgressBadge">0/8 ดวง</span>
+      </div>
+
       <div class="wheel-stage">
-        <div class="wheel-pointer"></div>
+        <div id="wheelPointer" class="wheel-pointer"></div>
         <div class="wheel-outer-ring">
           <canvas id="wheelCanvas" width="560" height="560"></canvas>
         </div>
@@ -648,9 +739,7 @@
           <span>🥢 สำรับจับคู่แนะนำวันนี้</span>
           <span style="font-size: 13px; background: rgba(255,255,255,0.15); padding: 2px 10px; border-radius: 999px;">ไม่ซ้ำโปรตีน</span>
         </div>
-        <div class="pair-preview-box" id="dailySamrubBox">
-          <!-- Populated by JS -->
-        </div>
+        <div class="pair-preview-box" id="dailySamrubBox"></div>
       </div>
     </main>
 
@@ -661,11 +750,11 @@
           🍲 คลังเมนูทั้งหมด 60 รายการ
         </div>
         <div style="font-size: 14px; opacity: 0.9;">
-          ครบอาหารไทย 4 ภาค • นานาชาติ • ของหวาน & เครื่องดื่ม
+          ครบอาหารไทย 4 ภาค • นานาชาติ 8 ประเทศ • ของหวาน & น้ำ
         </div>
       </div>
 
-      <input type="text" id="searchInput" class="search-input" placeholder="🔍 ค้นหาชื่อเมนู วัตถุดิบ หรือภาค..." oninput="renderExplorer()" />
+      <input type="text" id="searchInput" class="search-input" placeholder="🔍 ค้นหาชื่อเมนู ประเทศ วัตถุดิบ..." oninput="renderExplorer()" />
 
       <div class="filter-scroll" id="exploreCategories">
         <button class="chip-btn active" onclick="setExploreCat('all', this)">ทั้งหมด (60)</button>
@@ -694,7 +783,7 @@
       </div>
     </section>
 
-    <!-- TAB 4: QUESTS, XP, AVATARS & VIP -->
+    <!-- TAB 4: QUESTS, PASSPORT STAMPS, AVATARS & VIP -->
     <section id="tab-quests" class="view-section">
       <div class="soft-card">
         <div style="display: flex; align-items: center; gap: 14px;">
@@ -710,6 +799,16 @@
 
         <div style="margin-top: 16px; font-size: 15px; font-weight: 700;">เลือกอวตารการ์ตูนสายกิน:</div>
         <div class="avatar-grid" id="avatarGrid"></div>
+      </div>
+
+      <!-- Passport Stamps Collection -->
+      <div class="soft-card">
+        <div style="display: flex; justify-content: space-between; align-items: center;">
+          <span style="font-weight: 700;">🛂 สมุดพาสปอร์ตนักชิม (8 ประเทศ)</span>
+          <span style="color: var(--passport-blue); font-weight: 700;" id="stampCountText">0 / 8 ดวง</span>
+        </div>
+        <div style="font-size: 13px; color: var(--text-muted); margin-top: 2px;">หมุนโหมด "ตั๋วเครื่องบินทิพย์" เพื่อสะสมตราประทับประเทศ</div>
+        <div class="stamp-grid" id="passportStampsGrid"></div>
       </div>
 
       <!-- Daily Pinto Streak -->
@@ -744,34 +843,34 @@
     <!-- Result Bottom Sheet Modal -->
     <div id="resultModal" class="result-overlay" onclick="closeModal(event)">
       <div class="result-sheet" onclick="event.stopPropagation()">
-        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
           <span class="menu-badge" id="resCategory" style="font-size: 14px;">อาหารไทย 4 ภาค • ภาคกลาง</span>
           <button onclick="closeResultModal()" style="border:none; background:#EFE6D8; width:36px; height:36px; border-radius:50%; font-size:18px; cursor:pointer;">✕</button>
         </div>
 
-        <h2 id="resName" style="margin: 4px 0 8px; font-size: 26px; color: var(--text-brown);">ข้าวกะเพราหมูสับไข่ดาว</h2>
+        <h2 id="resName" style="margin: 2px 0 8px; font-size: 25px; color: var(--text-brown);">ข้าวกะเพราหมูสับไข่ดาว</h2>
 
-        <div style="display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 14px;">
+        <div style="display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 12px;">
           <span class="tactile-pill">💰 งบ ~<strong id="resBudget">55</strong>฿</span>
           <span class="tactile-pill">⏱️ <strong id="resTime">10</strong> นาที</span>
           <button class="tactile-pill" onclick="toggleFavoriteCurrent()" id="resFavBtn">🤍 บันทึกโปรด</button>
         </div>
 
         <!-- Food Pairing Box -->
-        <div class="herb-bento-card" style="margin-bottom: 14px;">
+        <div class="herb-bento-card" style="margin-bottom: 12px;">
           <div class="herb-bento-title">
             <span>🥢 จับคู่สำรับแนะนำ (Food Pairing)</span>
           </div>
-          <div style="font-size: 16px; margin-bottom: 6px;">
+          <div style="font-size: 15px; margin-bottom: 5px;">
             🍽️ คู่กับข้าว: <strong id="resPairMain" style="color: #FFFFFF;">ต้มจืดเต้าหู้หมูสับสาหร่าย</strong>
           </div>
-          <div style="font-size: 16px;">
+          <div style="font-size: 15px;">
             🧋 ตบท้ายมื้อ: <strong id="resPairSweet" style="color: var(--turmeric-yellow);">ชาไทยเย็นโบราณ</strong>
           </div>
         </div>
 
         <!-- Recipe Hint -->
-        <div class="soft-card" style="background: #FFF6EB; margin-bottom: 14px; padding: 14px;">
+        <div class="soft-card" style="background: #FFF6EB; margin-bottom: 12px; padding: 13px;">
           <div style="font-weight: 700; font-size: 15px; color: var(--chili-orange); margin-bottom: 4px;">👩‍🍳 เคล็ดลับทำกินเองแบบย่อ:</div>
           <div id="resRecipe" style="font-size: 15px; color: var(--text-brown);"></div>
         </div>
@@ -784,8 +883,16 @@
             📍 หาร้านใกล้ฉัน
           </a>
         </div>
+
+        <!-- Share Card to LINE / Social -->
+        <button class="btn-action btn-line" onclick="shareSamrubCard()">
+          📤 แชร์การ์ดสำรับอวดเพื่อน (LINE / บันทึกรูป)
+        </button>
       </div>
     </div>
+
+    <!-- Hidden Canvas for Generating Shareable Image Card -->
+    <canvas id="shareCanvas" width="720" height="900" style="display:none;"></canvas>
 
     <!-- 5-Button Floating Bottom Navigation Bar -->
     <nav class="bottom-nav">
@@ -812,10 +919,8 @@
   </div>
 
   <script>
-    // Embedded 60-item Database (Fallback & Instant Offline Ready)
     let MENUS = [{"id": "TH-C01", "name": "ข้าวกะเพราหมูสับไข่ดาว", "mode": "main", "category": "อาหารไทย 4 ภาค", "region": "ภาคกลาง", "protein": "หมู", "budget": 55, "budget_tier": "ปานกลาง", "prep_time": 10, "is_spicy": true, "tags": ["จานเดียว", "ยอดฮิต", "เผ็ด"], "pair_id": "TH-C06", "dessert_pair_id": "BEV-001", "recipe_hint": "ผัดพริกกระเทียมกับหมูสับ ปรุงรสด้วยน้ำปลา ซอสหอยนางรม น้ำตาลนิดหน่อย ใส่ใบกะเพรา โปะไข่ดาวกรอบ"}, {"id": "TH-C02", "name": "ต้มยำกุ้งน้ำข้น", "mode": "main", "category": "อาหารไทย 4 ภาค", "region": "ภาคกลาง", "protein": "ทะเล", "budget": 95, "budget_tier": "พรีเมียม", "prep_time": 20, "is_spicy": true, "tags": ["กับข้าว", "ต้ม", "เผ็ด"], "pair_id": "TH-C03", "dessert_pair_id": "DES-001", "recipe_hint": "ต้มข่า ตะไคร้ ใบมะกรูด ใส่น้ำพริกเผา กุ้งสด เห็ดฟาง ปรุงรสด้วยน้ำปลา มะนาว และนมข้นจืด"}, {"id": "TH-C03", "name": "ไข่เจียวหมูสับฟูกรอบ", "mode": "main", "category": "อาหารไทย 4 ภาค", "region": "ภาคกลาง", "protein": "ไข่", "budget": 40, "budget_tier": "ประหยัด", "prep_time": 10, "is_spicy": false, "tags": ["กับข้าว", "ทอด", "ประหยัด"], "pair_id": "TH-C02", "dessert_pair_id": "BEV-004", "recipe_hint": "ตีไข่ไก่กับหมูสับและน้ำปลานิดหน่อย ตั้งน้ำมันให้ร้อนจัดแล้วเทไข่ลงทอดจนฟูเหลืองกรอบ"}, {"id": "TH-C04", "name": "แกงเขียวหวานไก่ยอดมะพร้าว", "mode": "main", "category": "อาหารไทย 4 ภาค", "region": "ภาคกลาง", "protein": "ไก่", "budget": 75, "budget_tier": "ปานกลาง", "prep_time": 25, "is_spicy": true, "tags": ["กับข้าว", "แกงกะทิ", "เผ็ด"], "pair_id": "TH-C08", "dessert_pair_id": "DES-003", "recipe_hint": "ผัดพริกแกงเขียวหวานกับหัวกะทิจนแตกมัน ใส่เนื้อไก่ มะเขือเปราะ ยอดมะพร้าว ปรุงรสและโรยใบโหระพา"}, {"id": "TH-C05", "name": "ผัดไทยกุ้งสด", "mode": "main", "category": "อาหารไทย 4 ภาค", "region": "ภาคกลาง", "protein": "ทะเล", "budget": 65, "budget_tier": "ปานกลาง", "prep_time": 15, "is_spicy": false, "tags": ["จานเดียว", "เส้น", "ไม่เผ็ด"], "pair_id": "BEV-005", "dessert_pair_id": "BEV-005", "recipe_hint": "ผัดเส้นเล็กกับน้ำซอสมะขามเปียก ใส่กุ้งสด เต้าหู้เหลือง ไข่ไก่ ถั่วงอก และใบกุยช่าย เสิร์ฟพร้อมถั่วลิสงคั่ว"}, {"id": "TH-C06", "name": "ต้มจืดเต้าหู้หมูสับสาหร่าย", "mode": "main", "category": "อาหารไทย 4 ภาค", "region": "ภาคกลาง", "protein": "หมู", "budget": 50, "budget_tier": "ประหยัด", "prep_time": 15, "is_spicy": false, "tags": ["กับข้าว", "ต้ม", "ไม่เผ็ด", "ประหยัด"], "pair_id": "TH-C01", "dessert_pair_id": "DES-002", "recipe_hint": "ต้มน้ำซุปกระดูกหมู ใส่หมูสับปรุงรส เต้าหู้ไข่ ผักกาดขาว และสาหร่ายทะเล โรยขึ้นฉ่ายและพริกไทย"}, {"id": "TH-C07", "name": "พะแนงหมูใบมะกรูด", "mode": "main", "category": "อาหารไทย 4 ภาค", "region": "ภาคกลาง", "protein": "หมู", "budget": 70, "budget_tier": "ปานกลาง", "prep_time": 20, "is_spicy": true, "tags": ["กับข้าว", "แกงกะทิ"], "pair_id": "TH-C03", "dessert_pair_id": "BEV-004", "recipe_hint": "เคี่ยวพริกแกงพะแนงกับหัวกะทิ ใส่สันคอหมูหั่นชิ้น ปรุงรสเค็มหวานมัน โรยพริกชี้ฟ้าและใบมะกรูดซอย"}, {"id": "TH-C08", "name": "ปลาทูทอดน้ำพริกกะปิผักสด", "mode": "main", "category": "อาหารไทย 4 ภาค", "region": "ภาคกลาง", "protein": "ปลา", "budget": 65, "budget_tier": "ปานกลาง", "prep_time": 20, "is_spicy": true, "tags": ["กับข้าว", "สุขภาพ", "เผ็ด"], "pair_id": "TH-C04", "dessert_pair_id": "DES-005", "recipe_hint": "โขลกกะปิย่างกับกระเทียม พริกขี้หนู มะเขือพวง ปรุงด้วยมะนาวและน้ำตาลปี๊บ กินคู่ปลาทูทอดและชะอมไข่"}, {"id": "TH-C09", "name": "ผัดซีอิ๊วหมูเส้นใหญ่", "mode": "main", "category": "อาหารไทย 4 ภาค", "region": "ภาคกลาง", "protein": "หมู", "budget": 50, "budget_tier": "ประหยัด", "prep_time": 10, "is_spicy": false, "tags": ["จานเดียว", "เส้น", "ไม่เผ็ด", "ประหยัด"], "pair_id": "BEV-001", "dessert_pair_id": "BEV-001", "recipe_hint": "ผัดเส้นใหญ่กับซีอิ๊วดำ ใส่หมูหมักนุ่ม ไข่ไก่ และยอดคะน้า ผัดไฟแรงให้หอมกลิ่นกระทะ"}, {"id": "TH-C10", "name": "ข้าวหมูแดงหมูกรอบ", "mode": "main", "category": "อาหารไทย 4 ภาค", "region": "ภาคกลาง", "protein": "หมู", "budget": 60, "budget_tier": "ปานกลาง", "prep_time": 10, "is_spicy": false, "tags": ["จานเดียว", "ไม่เผ็ด"], "pair_id": "BEV-004", "dessert_pair_id": "BEV-004", "recipe_hint": "เสิร์ฟหมูแดงย่างหอม หมูกรอบ กุนเชียง และไข่ต้มบนข้าวสวย ราดน้ำซอสหมูแดงข้นๆ"}, {"id": "TH-C11", "name": "ไข่พะโล้หมูสามชั้นเต้าหู้", "mode": "main", "category": "อาหารไทย 4 ภาค", "region": "ภาคกลาง", "protein": "ไข่", "budget": 65, "budget_tier": "ปานกลาง", "prep_time": 35, "is_spicy": false, "tags": ["กับข้าว", "ต้ม", "ไม่เผ็ด"], "pair_id": "TH-S02", "dessert_pair_id": "BEV-002", "recipe_hint": "เคี่ยวน้ำตาลปี๊บกับสามเกลอจนหอม ใส่หมูสามชั้น ไข่ต้ม เต้าหู้พวง และเครื่องพะโล้ ตุ๋นจนเข้าเนื้อ"}, {"id": "TH-N01", "name": "ข้าวซอยไก่น่องโต", "mode": "main", "category": "อาหารไทย 4 ภาค", "region": "ภาคเหนือ", "protein": "ไก่", "budget": 65, "budget_tier": "ปานกลาง", "prep_time": 25, "is_spicy": true, "tags": ["จานเดียว", "เส้น", "แกงกะทิ"], "pair_id": "BEV-004", "dessert_pair_id": "DES-002", "recipe_hint": "เคี่ยวน่องไก่ในน้ำพริกแกงข้าวซอยและกะทิ เสิร์ฟพร้อมบะหมี่เหลืองลวก หมี่กรอบ ผักกาดดอง และหอมแดง"}, {"id": "TH-N02", "name": "น้ำพริกอ่องผักลวกแคบหมู", "mode": "main", "category": "อาหารไทย 4 ภาค", "region": "ภาคเหนือ", "protein": "หมู", "budget": 55, "budget_tier": "ปานกลาง", "prep_time": 20, "is_spicy": true, "tags": ["กับข้าว", "สุขภาพ"], "pair_id": "TH-N04", "dessert_pair_id": "DES-001", "recipe_hint": "ผัดพริกแกงเหนือกับหมูสับและมะเขือเทศสีดา ปรุงรสเปรี้ยวเค็มหวาน กินคู่ผักต้มและแคบหมูกรอบ"}, {"id": "TH-N03", "name": "แกงฮังเลหมูสามชั้น", "mode": "main", "category": "อาหารไทย 4 ภาค", "region": "ภาคเหนือ", "protein": "หมู", "budget": 85, "budget_tier": "ปานกลาง", "prep_time": 40, "is_spicy": false, "tags": ["กับข้าว", "แกง"], "pair_id": "TH-N05", "dessert_pair_id": "BEV-005", "recipe_hint": "หมักหมูสามชั้นกับผงฮังเลและพริกแกง เคี่ยวกับขิงซอย กระเทียมดอง ถั่วลิสงคั่ว และน้ำมะขามเปียก"}, {"id": "TH-N04", "name": "ไส้อั่วสมุนไพรย่างเตาถ่าน", "mode": "main", "category": "อาหารไทย 4 ภาค", "region": "ภาคเหนือ", "protein": "หมู", "budget": 75, "budget_tier": "ปานกลาง", "prep_time": 25, "is_spicy": true, "tags": ["กับข้าว", "ย่าง", "เผ็ด"], "pair_id": "TH-N02", "dessert_pair_id": "BEV-004", "recipe_hint": "คลุกหมูบดกับพริกแกงเหนือ ตะไคร้ ใบมะกรูด และผักชี ยัดไส้แล้วย่างไฟอ่อนจนหอมสมุนไพร"}, {"id": "TH-N05", "name": "น้ำพริกหนุ่มไข่ต้มยางมะตูม", "mode": "main", "category": "อาหารไทย 4 ภาค", "region": "ภาคเหนือ", "protein": "ไข่", "budget": 50, "budget_tier": "ประหยัด", "prep_time": 15, "is_spicy": true, "tags": ["กับข้าว", "สุขภาพ", "ประหยัด"], "pair_id": "TH-N03", "dessert_pair_id": "DES-003", "recipe_hint": "ย่างพริกหนุ่ม หอมแดง และกระเทียมจนสุกหอม ลอกเปลือกแล้วโขลกรวมกัน ปรุงรสด้วยน้ำปลา"}, {"id": "TH-N06", "name": "ขนมจีนน้ำเงี้ยวซี่โครงหมู", "mode": "main", "category": "อาหารไทย 4 ภาค", "region": "ภาคเหนือ", "protein": "หมู", "budget": 50, "budget_tier": "ประหยัด", "prep_time": 30, "is_spicy": true, "tags": ["จานเดียว", "เส้น", "ประหยัด"], "pair_id": "BEV-005", "dessert_pair_id": "DES-005", "recipe_hint": "ต้มซี่โครงหมูกับพริกแกงน้ำเงี้ยว ดอกงิ้ว มะเขือเทศ และเลือดไก่ ราดบนขนมจีน โรยกระเทียมเจียว"}, {"id": "TH-N07", "name": "แกงโฮะวุ้นเส้นผักรวม", "mode": "main", "category": "อาหารไทย 4 ภาค", "region": "ภาคเหนือ", "protein": "หมู", "budget": 55, "budget_tier": "ปานกลาง", "prep_time": 20, "is_spicy": true, "tags": ["กับข้าว", "ผัด"], "pair_id": "TH-C03", "dessert_pair_id": "BEV-004", "recipe_hint": "ผัดพริกแกงกับหมู หน่อไม้ดอง วุ้นเส้น มะเขือพวง และใบมะกรูด ปรุงรสกลมกล่อมหอมเครื่องแกง"}, {"id": "TH-E01", "name": "ส้มตำไทยไข่เค็ม", "mode": "main", "category": "อาหารไทย 4 ภาค", "region": "ภาคอีสาน", "protein": "ไข่", "budget": 55, "budget_tier": "ปานกลาง", "prep_time": 10, "is_spicy": true, "tags": ["กับข้าว", "ยำ/ตำ", "เผ็ด"], "pair_id": "TH-E02", "dessert_pair_id": "DES-004", "recipe_hint": "โขลกพริกกระเทียม ใส่มะละกอสับ ถั่วฝักยาว มะเขือเทศ กุ้งแห้ง ถั่วลิสง ปรุงรสสามรสและคลุกไข่เค็ม"}, {"id": "TH-E02", "name": "ไก่ย่างวิเชียรบุรีหนังกรอบ", "mode": "main", "category": "อาหารไทย 4 ภาค", "region": "ภาคอีสาน", "protein": "ไก่", "budget": 80, "budget_tier": "ปานกลาง", "prep_time": 35, "is_spicy": false, "tags": ["กับข้าว", "ย่าง", "ไม่เผ็ด"], "pair_id": "TH-E01", "dessert_pair_id": "BEV-001", "recipe_hint": "หมักไก่กับรากผักชี กระเทียม พริกไทย ซอสปรุงรส และขมิ้น ย่างไฟอ่อนจนหนังกรอบเนื้อนุ่ม"}, {"id": "TH-E03", "name": "ลาบหมูสับข้าวคั่วหอม", "mode": "main", "category": "อาหารไทย 4 ภาค", "region": "ภาคอีสาน", "protein": "หมู", "budget": 60, "budget_tier": "ปานกลาง", "prep_time": 15, "is_spicy": true, "tags": ["กับข้าว", "ยำ/ตำ", "เผ็ด"], "pair_id": "TH-E05", "dessert_pair_id": "DES-002", "recipe_hint": "รวนหมูสับให้สุก ปรุงด้วยน้ำปลา มะนาว พริกป่น ข้าวคั่ว หอมแดงซอย ต้นหอม ผักชีฝรั่ง และสะระแหน่"}, {"id": "TH-E04", "name": "น้ำตกคอหมูย่าง", "mode": "main", "category": "อาหารไทย 4 ภาค", "region": "ภาคอีสาน", "protein": "หมู", "budget": 75, "budget_tier": "ปานกลาง", "prep_time": 20, "is_spicy": true, "tags": ["กับข้าว", "ยำ/ตำ", "เผ็ด"], "pair_id": "TH-E06", "dessert_pair_id": "BEV-005", "recipe_hint": "หั่นคอหมูย่างเป็นชิ้นพอดีคำ คลุกเคล้ากับน้ำปลา มะนาว พริกป่น ข้าวคั่ว หอมแดง และใบสะระแหน่"}, {"id": "TH-E05", "name": "ต้มแซ่บกระดูกหมูอ่อน", "mode": "main", "category": "อาหารไทย 4 ภาค", "region": "ภาคอีสาน", "protein": "หมู", "budget": 75, "budget_tier": "ปานกลาง", "prep_time": 30, "is_spicy": true, "tags": ["กับข้าว", "ต้ม", "เผ็ด"], "pair_id": "TH-E02", "dessert_pair_id": "DES-003", "recipe_hint": "เคี่ยวกระดูกอ่อนจนเปื่อย ใส่ข่า ตะไคร้ ใบมะกรูด ปรุงรสแซ่บด้วยน้ำปลา มะนาว พริกป่น และข้าวคั่ว"}, {"id": "TH-E06", "name": "ซุปหน่อไม้งาคั่ว", "mode": "main", "category": "อาหารไทย 4 ภาค", "region": "ภาคอีสาน", "protein": "มังสวิรัติ", "budget": 45, "budget_tier": "ประหยัด", "prep_time": 15, "is_spicy": true, "tags": ["กับข้าว", "สุขภาพ", "ประหยัด", "มังสวิรัติ"], "pair_id": "TH-E02", "dessert_pair_id": "BEV-004", "recipe_hint": "ต้มหน่อไม้ขูดฝอยกับน้ำใบย่านาง ปรุงรสด้วยน้ำปลาร้า น้ำปลา มะนาว พริกป่น ข้าวคั่ว และงาขาวคั่ว"}, {"id": "TH-E07", "name": "แกงอ่อมไก่ผักชีลาว", "mode": "main", "category": "อาหารไทย 4 ภาค", "region": "ภาคอีสาน", "protein": "ไก่", "budget": 60, "budget_tier": "ปานกลาง", "prep_time": 20, "is_spicy": true, "tags": ["กับข้าว", "ต้ม", "สุขภาพ"], "pair_id": "TH-C03", "dessert_pair_id": "DES-001", "recipe_hint": "คั่วเนื้อไก่กับพริกแกงอ่อม เติมน้ำซุป ใส่มะเขือเปราะ กะหล่ำปลี ใบชะพลู ผักชีลาว และข้าวคั่ว"}, {"id": "TH-E08", "name": "ตำซั่วปูปลาร้าแคบหมู", "mode": "main", "category": "อาหารไทย 4 ภาค", "region": "ภาคอีสาน", "protein": "อื่นๆ", "budget": 50, "budget_tier": "ประหยัด", "prep_time": 10, "is_spicy": true, "tags": ["จานเดียว", "ยำ/ตำ", "เผ็ด", "ประหยัด"], "pair_id": "TH-E02", "dessert_pair_id": "BEV-001", "recipe_hint": "ตำส้มตำปูปลาร้ารสนัว ใส่ขนมจีนคลุกเคล้าให้เข้ากัน เสิร์ฟพร้อมผักบุ้งไทยและแคบหมู"}, {"id": "TH-S01", "name": "คั่วกลิ้งหมูสับใบมะกรูด", "mode": "main", "category": "อาหารไทย 4 ภาค", "region": "ภาคใต้", "protein": "หมู", "budget": 60, "budget_tier": "ปานกลาง", "prep_time": 15, "is_spicy": true, "tags": ["กับข้าว", "ผัด", "เผ็ด"], "pair_id": "TH-S04", "dessert_pair_id": "DES-002", "recipe_hint": "ผัดพริกแกงคั่วกลิ้งใต้กับหมูสับจนแห้งหอม ใส่กะปินิดหน่อย โรยพริกไทยอ่อนและใบมะกรูดซอย"}, {"id": "TH-S02", "name": "แกงเหลืองปลากะพงยอดมะพร้าว", "mode": "main", "category": "อาหารไทย 4 ภาค", "region": "ภาคใต้", "protein": "ปลา", "budget": 95, "budget_tier": "พรีเมียม", "prep_time": 25, "is_spicy": true, "tags": ["กับข้าว", "แกง", "เผ็ด"], "pair_id": "TH-C03", "dessert_pair_id": "DES-003", "recipe_hint": "ต้มพริกแกงส้มใต้กับน้ำซุป ใส่ยอดมะพร้าวอ่อน เนื้อปลากะพง ปรุงรสเปรี้ยวจัดด้วยน้ำมะขามเปียกและมะนาว"}, {"id": "TH-S03", "name": "ผัดสะตอกะปิกุ้งสด", "mode": "main", "category": "อาหารไทย 4 ภาค", "region": "ภาคใต้", "protein": "ทะเล", "budget": 90, "budget_tier": "ปานกลาง", "prep_time": 15, "is_spicy": true, "tags": ["กับข้าว", "ผัด", "เผ็ด"], "pair_id": "TH-S04", "dessert_pair_id": "BEV-001", "recipe_hint": "โขลกพริกขี้หนู กระเทียม หอมแดง และกะปิ ผัดให้หอม ใส่กุ้งสดและเม็ดสะตอ ปรุงรสกลมกล่อม"}, {"id": "TH-S04", "name": "ไก่ต้มขมิ้นหอมสมุนไพร", "mode": "main", "category": "อาหารไทย 4 ภาค", "region": "ภาคใต้", "protein": "ไก่", "budget": 70, "budget_tier": "ปานกลาง", "prep_time": 25, "is_spicy": false, "tags": ["กับข้าว", "ต้ม", "ไม่เผ็ด", "สุขภาพ"], "pair_id": "TH-S01", "dessert_pair_id": "DES-005", "recipe_hint": "ต้มไก่บ้านกับขมิ้นสดทุบ ตะไคร้ หอมแดง ใบมะกรูด ปรุงรสด้วยเกลือและน้ำมะขามเปียก ซดคล่องคอ"}, {"id": "TH-S05", "name": "ข้าวยำปักษ์ใต้น้ำบูดูทรงเครื่อง", "mode": "main", "category": "อาหารไทย 4 ภาค", "region": "ภาคใต้", "protein": "ปลา", "budget": 60, "budget_tier": "ปานกลาง", "prep_time": 15, "is_spicy": false, "tags": ["จานเดียว", "สุขภาพ", "ไม่เผ็ด"], "pair_id": "BEV-005", "dessert_pair_id": "DES-001", "recipe_hint": "คลุกข้าวสวยกับน้ำบูดูปรุงรส มะพร้าวคั่ว กุ้งแห้งป่น ถั่วฝักยาว ใบมะกรูดซอย ตะไคร้ และส้มโอ"}, {"id": "TH-S06", "name": "ใบเหลียงผัดไข่กุ้งเสียบ", "mode": "main", "category": "อาหารไทย 4 ภาค", "region": "ภาคใต้", "protein": "ไข่", "budget": 65, "budget_tier": "ปานกลาง", "prep_time": 10, "is_spicy": false, "tags": ["กับข้าว", "ผัด", "ไม่เผ็ด"], "pair_id": "TH-S01", "dessert_pair_id": "BEV-004", "recipe_hint": "ผัดกระเทียมพอหอม ใส่ใบเหลียงเด็ด ตอกไข่ไก่ลงไปผัดให้เคลือบใบผัก ปรุงรสและโรยกุ้งเสียบกรอบ"}, {"id": "INT-01", "name": "ราเมนทงคัตสึหมูชาชู", "mode": "main", "category": "อาหารนานาชาติ", "region": "ญี่ปุ่น", "protein": "หมู", "budget": 110, "budget_tier": "พรีเมียม", "prep_time": 20, "is_spicy": false, "tags": ["จานเดียว", "เส้น", "ไม่เผ็ด"], "pair_id": "BEV-006", "dessert_pair_id": "BEV-006", "recipe_hint": "ลวกเส้นราเมนใส่ชามน้ำซุปกระดูกหมูเคี่ยวข้น วางหมูชาชู ไข่ต้มยางมะตูม สาหร่าย และต้นหอมญี่ปุ่น"}, {"id": "INT-02", "name": "ข้าวแกงกะหรี่ญี่ปุ่นหมูทอด", "mode": "main", "category": "อาหารนานาชาติ", "region": "ญี่ปุ่น", "protein": "หมู", "budget": 105, "budget_tier": "พรีเมียม", "prep_time": 25, "is_spicy": false, "tags": ["จานเดียว", "แกง", "ไม่เผ็ด"], "pair_id": "BEV-002", "dessert_pair_id": "BEV-002", "recipe_hint": "ทอดหมูสันนอกชุบเกล็ดขนมปังจนกรอบ หั่นวางบนข้าวญี่ปุ่นร้อนๆ แล้วราดซอสแกงกะหรี่เคี่ยวแครอทมันฝรั่ง"}, {"id": "INT-03", "name": "ข้าวหน้าเนื้อญี่ปุ่น (กิวด้ง)", "mode": "main", "category": "อาหารนานาชาติ", "region": "ญี่ปุ่น", "protein": "เนื้อ", "budget": 95, "budget_tier": "พรีเมียม", "prep_time": 15, "is_spicy": false, "tags": ["จานเดียว", "ไม่เผ็ด"], "pair_id": "BEV-006", "dessert_pair_id": "BEV-006", "recipe_hint": "ต้มเนื้อสไลด์กับหอมใหญ่ในซอสโชยุ มิริน และดาชิ โปะบนข้าวญี่ปุ่น พร้อมไข่ออนเซ็นและขิงดอง"}, {"id": "INT-04", "name": "ข้าวยำเกาหลีบิบิมบับ", "mode": "main", "category": "อาหารนานาชาติ", "region": "เกาหลี", "protein": "เนื้อ", "budget": 95, "budget_tier": "พรีเมียม", "prep_time": 20, "is_spicy": true, "tags": ["จานเดียว", "สุขภาพ"], "pair_id": "INT-06", "dessert_pair_id": "BEV-003", "recipe_hint": "เรียงผักยำเกาหลี เนื้อผัดซอส และไข่ดาวบนข้าวสวย คลุกเคล้ากับซอสโคชูจังและน้ำมันงาหอมๆ"}, {"id": "INT-05", "name": "ไก่ทอดเกาหลีซอสการ์ลิค", "mode": "main", "category": "อาหารนานาชาติ", "region": "เกาหลี", "protein": "ไก่", "budget": 90, "budget_tier": "ปานกลาง", "prep_time": 25, "is_spicy": false, "tags": ["กับข้าว", "ทอด", "ไม่เผ็ด"], "pair_id": "INT-06", "dessert_pair_id": "BEV-002", "recipe_hint": "ทอดปีกไก่ชุบแป้งสองรอบให้กรอบนาน แล้วคลุกซอสโชยุกระเทียมน้ำผึ้ง โรยงาขาวคั่ว"}, {"id": "INT-06", "name": "ซุปกิมจิเต้าหู้อ่อนหมูสามชั้น", "mode": "main", "category": "อาหารนานาชาติ", "region": "เกาหลี", "protein": "หมู", "budget": 85, "budget_tier": "ปานกลาง", "prep_time": 20, "is_spicy": true, "tags": ["กับข้าว", "ต้ม", "เผ็ด"], "pair_id": "INT-05", "dessert_pair_id": "DES-006", "recipe_hint": "ผัดกิมจิเปรี้ยวกับหมูสามชั้น เติมน้ำซุป ใส่เต้าหู้อ่อน ต้นหอมญี่ปุ่น และตอกไข่ไก่ลงไปก่อนเสิร์ฟ"}, {"id": "INT-07", "name": "สปาเก็ตตี้คาโบนาร่าเบคอนกรอบ", "mode": "main", "category": "อาหารนานาชาติ", "region": "อิตาลี", "protein": "หมู", "budget": 95, "budget_tier": "พรีเมียม", "prep_time": 15, "is_spicy": false, "tags": ["จานเดียว", "เส้น", "ไม่เผ็ด"], "pair_id": "BEV-002", "dessert_pair_id": "BEV-002", "recipe_hint": "คลุกเส้นสปาเก็ตตี้ต้มสุกกับซอสไข่แดง พาร์เมซานชีส พริกไทยดำ และเบคอนทอดกรอบ"}, {"id": "INT-08", "name": "พิซซ่ามาร์เกอริต้าชีสยืด", "mode": "main", "category": "อาหารนานาชาติ", "region": "อิตาลี", "protein": "มังสวิรัติ", "budget": 120, "budget_tier": "พรีเมียม", "prep_time": 20, "is_spicy": false, "tags": ["กับข้าว", "ไม่เผ็ด", "มังสวิรัติ"], "pair_id": "BEV-002", "dessert_pair_id": "BEV-002", "recipe_hint": "ทาซอสมะเขือเทศโฮมเมดบนแป้งพิซซ่า โรยมอสซาเรลล่าชีสสดและใบโหระพาอิตาเลียน อบจนขอบกรอบ"}, {"id": "INT-09", "name": "สเต๊กไก่พริกไทยดำสลัดผัก", "mode": "main", "category": "อาหารนานาชาติ", "region": "อเมริกัน", "protein": "ไก่", "budget": 89, "budget_tier": "ปานกลาง", "prep_time": 20, "is_spicy": false, "tags": ["จานเดียว", "ย่าง", "ไม่เผ็ด"], "pair_id": "BEV-002", "dessert_pair_id": "DES-006", "recipe_hint": "หมักสะโพกไก่กับพริกไทยดำบดและกระเทียม ย่างบนกระทะจนหนังเกรียม เสิร์ฟคู่เฟรนช์ฟรายส์และสลัด"}, {"id": "INT-10", "name": "ข้าวหมกไก่อาหรับอาจาด", "mode": "main", "category": "อาหารนานาชาติ", "region": "อินเดีย", "protein": "ไก่", "budget": 65, "budget_tier": "ปานกลาง", "prep_time": 30, "is_spicy": false, "tags": ["จานเดียว", "ไม่เผ็ด"], "pair_id": "BEV-001", "dessert_pair_id": "BEV-001", "recipe_hint": "หุงข้าวบาสมาติกับผงกะหรี่ ขมิ้น นมสด และน่องไก่หมักเครื่องเทศ เสิร์ฟพร้อมหอมเจียวและน้ำจิ้มอาจาด"}, {"id": "INT-11", "name": "เฝอเนื้อสดลูกชิ้นเวียดนาม", "mode": "main", "category": "อาหารนานาชาติ", "region": "เวียดนาม", "protein": "เนื้อ", "budget": 75, "budget_tier": "ปานกลาง", "prep_time": 15, "is_spicy": false, "tags": ["จานเดียว", "เส้น", "ต้ม", "สุขภาพ"], "pair_id": "BEV-005", "dessert_pair_id": "BEV-005", "recipe_hint": "ลวกเส้นเฝอในน้ำซุปเครื่องเทศหอมอบเชยโป๊ยกั๊ก ใส่เนื้อสไลด์ ลูกชิ้น โหระพา ถั่วงอก และบีบมะนาว"}, {"id": "INT-12", "name": "บะหมี่เกี๊ยวกุ้งหมูแดงฮ่องกง", "mode": "main", "category": "อาหารนานาชาติ", "region": "จีน", "protein": "ทะเล", "budget": 65, "budget_tier": "ปานกลาง", "prep_time": 10, "is_spicy": false, "tags": ["จานเดียว", "เส้น", "ไม่เผ็ด"], "pair_id": "BEV-004", "dessert_pair_id": "BEV-004", "recipe_hint": "ลวกบะหมี่ไข่เส้นเล็ก เสิร์ฟพร้อมเกี๊ยวกุ้งเด้งเต็มคำ หมูแดงย่าง และผักกวางตุ้งลวก"}, {"id": "INT-13", "name": "ข้าวมันไก่ไหหลำน้ำจิ้มเต้าเจี้ยว", "mode": "main", "category": "อาหารนานาชาติ", "region": "จีน", "protein": "ไก่", "budget": 50, "budget_tier": "ประหยัด", "prep_time": 10, "is_spicy": false, "tags": ["จานเดียว", "ไม่เผ็ด", "ประหยัด"], "pair_id": "BEV-004", "dessert_pair_id": "BEV-004", "recipe_hint": "หุงข้าวหอมมะลิด้วยน้ำซุปไก่และกระเทียมเจียว เสิร์ฟคู่ไก่ต้มเนื้อนุ่ม น้ำซุปฟัก และน้ำจิ้มขิงเต้าเจี้ยว"}, {"id": "INT-14", "name": "ทาโก้ไก่ย่างซัลซ่ามะเขือเทศ", "mode": "main", "category": "อาหารนานาชาติ", "region": "เม็กซิกัน", "protein": "ไก่", "budget": 85, "budget_tier": "ปานกลาง", "prep_time": 15, "is_spicy": true, "tags": ["จานเดียว", "ย่าง"], "pair_id": "BEV-002", "dessert_pair_id": "BEV-002", "recipe_hint": "วางไก่ย่างเครื่องเทศเม็กซิกันบนแผ่นแป้งตอร์ติญ่า ท็อปด้วยซัลซ่ามะเขือเทศ อะโวคาโด และชีส"}, {"id": "INT-15", "name": "ข้าวผัดกิมจิเบคอนไข่ดาว", "mode": "main", "category": "อาหารนานาชาติ", "region": "เกาหลี", "protein": "หมู", "budget": 70, "budget_tier": "ปานกลาง", "prep_time": 12, "is_spicy": true, "tags": ["จานเดียว", "ผัด"], "pair_id": "BEV-003", "dessert_pair_id": "BEV-003", "recipe_hint": "ผัดเบคอนกับกิมจิและซอสโคชูจัง ใส่ข้าวสวยลงผัดให้เข้ากัน โรยสาหร่ายและโปะไข่ดาวเยิ้มๆ"}, {"id": "INT-16", "name": "ยากิโซบะหมูผัดซอสญี่ปุ่น", "mode": "main", "category": "อาหารนานาชาติ", "region": "ญี่ปุ่น", "protein": "หมู", "budget": 65, "budget_tier": "ปานกลาง", "prep_time": 12, "is_spicy": false, "tags": ["จานเดียว", "เส้น", "ผัด", "ไม่เผ็ด"], "pair_id": "BEV-006", "dessert_pair_id": "BEV-006", "recipe_hint": "ผัดเส้นยากิโซบะกับหมูสไลด์ กะหล่ำปลี และแครอท ปรุงด้วยซอสยากิโซบะ โรยสาหร่ายป่นและขิงดอง"}, {"id": "DES-001", "name": "บัวลอยไข่หวานทรงเครื่อง", "mode": "sweet", "category": "ของหวาน", "region": "ขนมไทย", "protein": "ไข่", "budget": 35, "budget_tier": "ประหยัด", "prep_time": 15, "is_spicy": false, "tags": ["หวานฮีลใจ", "ขนมไทย", "ประหยัด"], "pair_id": "BEV-004", "dessert_pair_id": "BEV-004", "recipe_hint": "ต้มเม็ดบัวลอยแป้งข้าวเหนียวหลากสีจนลอย ใส่ลงในน้ำกะทิอบควันเทียนหวานมัน พร้อมไข่หวานเยิ้มๆ"}, {"id": "DES-002", "name": "เฉาก๊วยนมสดคาราเมล", "mode": "sweet", "category": "ของหวาน", "region": "ขนมไทย", "protein": "อื่นๆ", "budget": 35, "budget_tier": "ประหยัด", "prep_time": 5, "is_spicy": false, "tags": ["สดชื่นดับร้อน", "หวานฮีลใจ", "ประหยัด"], "pair_id": "TH-E03", "dessert_pair_id": "BEV-004", "recipe_hint": "ตักเฉาก๊วยเนื้อหนึบใส่น้ำแข็งเกล็ด ราดนมสดเย็นจัดและโรยน้ำตาลอ้อยบราวน์ชูการ์หอมหวาน"}, {"id": "DES-003", "name": "ทับทิมกรอบกะทิสด", "mode": "sweet", "category": "ของหวาน", "region": "ขนมไทย", "protein": "มังสวิรัติ", "budget": 40, "budget_tier": "ประหยัด", "prep_time": 15, "is_spicy": false, "tags": ["สดชื่นดับร้อน", "ขนมไทย", "ประหยัด"], "pair_id": "TH-C04", "dessert_pair_id": "BEV-004", "recipe_hint": "ต้มแห้วคลุกน้ำหวานสีแดงและแป้งมันจนใส เสิร์ฟในน้ำกะทิสดหอมใบเตยและน้ำแข็งป่น"}, {"id": "DES-004", "name": "ข้าวเหนียวมะม่วงอกร่องทอง", "mode": "sweet", "category": "ของหวาน", "region": "ขนมไทย", "protein": "มังสวิรัติ", "budget": 65, "budget_tier": "ปานกลาง", "prep_time": 10, "is_spicy": false, "tags": ["หวานฮีลใจ", "ขนมไทย"], "pair_id": "TH-E01", "dessert_pair_id": "BEV-001", "recipe_hint": "เสิร์ฟข้าวเหนียวมูนกะทิสดคู่กับมะม่วงสุกหวานฉ่ำ ราดหัวกะทิเค็มมันและโรยถั่วทองทอดกรอบ"}, {"id": "DES-005", "name": "ลอดช่องน้ำกะทิแตงไทย", "mode": "sweet", "category": "ของหวาน", "region": "ขนมไทย", "protein": "มังสวิรัติ", "budget": 35, "budget_tier": "ประหยัด", "prep_time": 5, "is_spicy": false, "tags": ["สดชื่นดับร้อน", "ขนมไทย", "ประหยัด"], "pair_id": "TH-S04", "dessert_pair_id": "BEV-004", "recipe_hint": "ตักลอดช่องใบเตยหอมและแตงไทยสุก ราดน้ำกะทิเคี่ยวน้ำตาลโตนดหอมหวาน ใส่น้ำแข็งเย็นชื่นใจ"}, {"id": "DES-006", "name": "โทสต์เนยนมน้ำผึ้งไอศกรีม", "mode": "sweet", "category": "ของหวาน", "region": "คาเฟ่", "protein": "อื่นๆ", "budget": 85, "budget_tier": "ปานกลาง", "prep_time": 12, "is_spicy": false, "tags": ["หวานฮีลใจ", "คาเฟ่"], "pair_id": "BEV-002", "dessert_pair_id": "BEV-002", "recipe_hint": "อบขนมปังก้อนหนาทาเนยฉ่ำจนกรอบนอกนุ่มใน ท็อปด้วยไอศกรีมวานิลลาและราดน้ำผึ้งหอมหวาน"}, {"id": "BEV-001", "name": "ชาไทยเย็นโบราณสูตรเข้มข้น", "mode": "sweet", "category": "เครื่องดื่ม", "region": "คาเฟ่", "protein": "อื่นๆ", "budget": 40, "budget_tier": "ประหยัด", "prep_time": 5, "is_spicy": false, "tags": ["แก้ง่วงคาเฟอีน", "หวานฮีลใจ", "ประหยัด"], "pair_id": "TH-C01", "dessert_pair_id": "DES-004", "recipe_hint": "ชงใบชาไทยแท้จนเข้มข้น ผสมนมข้นหวานและนมข้นจืด เทใส่น้ำแข็งเต็มแก้วแล้วราดนมสดด้านบน"}, {"id": "BEV-002", "name": "อเมริกาโน่น้ำส้มคั้นสด", "mode": "sweet", "category": "เครื่องดื่ม", "region": "คาเฟ่", "protein": "มังสวิรัติ", "budget": 55, "budget_tier": "ปานกลาง", "prep_time": 5, "is_spicy": false, "tags": ["แก้ง่วงคาเฟอีน", "สดชื่นดับร้อน"], "pair_id": "INT-07", "dessert_pair_id": "DES-006", "recipe_hint": "เทน้ำส้มคั้นสดเย็นจัดลงในแก้วน้ำแข็ง แล้วค่อยๆ เทช็อตเอสเพรสโซคั่วกลางทับด้านบนให้แยกชั้นสวยงาม"}, {"id": "BEV-003", "name": "ชานมไข่มุกบราวน์ชูการ์", "mode": "sweet", "category": "เครื่องดื่ม", "region": "ไต้หวัน", "protein": "อื่นๆ", "budget": 50, "budget_tier": "ประหยัด", "prep_time": 5, "is_spicy": false, "tags": ["หวานฮีลใจ", "แก้ง่วงคาเฟอีน", "ประหยัด"], "pair_id": "INT-04", "dessert_pair_id": "DES-006", "recipe_hint": "ตักไข่มุกเคี่ยวน้ำตาลทรายแดงอุ่นๆ ใส่ก้นแก้ว เติมน้ำแข็งและชานมอัสสัมหอมมัน"}, {"id": "BEV-004", "name": "น้ำเก๊กฮวยเย็นสมุนไพร", "mode": "sweet", "category": "เครื่องดื่ม", "region": "สมุนไพร", "protein": "มังสวิรัติ", "budget": 25, "budget_tier": "ประหยัด", "prep_time": 5, "is_spicy": false, "tags": ["สดชื่นดับร้อน", "สุขภาพ", "ประหยัด"], "pair_id": "TH-C03", "dessert_pair_id": "DES-001", "recipe_hint": "ต้มดอกเก๊กฮวยแห้งกับเม็ดพุดจีนให้ได้สีเหลืองทอง ปรุงหวานน้อย เสิร์ฟเย็นจัดแก้ร้อนใน"}, {"id": "BEV-005", "name": "น้ำกระเจี๊ยบพุทราจีนเย็น", "mode": "sweet", "category": "เครื่องดื่ม", "region": "สมุนไพร", "protein": "มังสวิรัติ", "budget": 25, "budget_tier": "ประหยัด", "prep_time": 5, "is_spicy": false, "tags": ["สดชื่นดับร้อน", "สุขภาพ", "ประหยัด"], "pair_id": "TH-C05", "dessert_pair_id": "DES-003", "recipe_hint": "เคี่ยวดอกกระเจี๊ยบแดงกับพุทราจีนแห้ง ตัดรสด้วยเกลือป่นเล็กน้อย ดื่มเย็นๆ เปรี้ยวหวานชื่นใจ"}, {"id": "BEV-006", "name": "มัทฉะลาเต้เย็นพรีเมียม", "mode": "sweet", "category": "เครื่องดื่ม", "region": "ญี่ปุ่น", "protein": "อื่นๆ", "budget": 65, "budget_tier": "ปานกลาง", "prep_time": 5, "is_spicy": false, "tags": ["แก้ง่วงคาเฟอีน", "คาเฟ่"], "pair_id": "INT-01", "dessert_pair_id": "DES-006", "recipe_hint": "ตีผงมัทฉะแท้กับน้ำอุ่นจนขึ้นฟองเนียน แล้วเทราดบนนมสดเย็นจัดในแก้วน้ำแข็ง"}];
 
-    // Try loading external menus.json if hosted on server
     fetch('menus.json')
       .then(res => res.ok ? res.json() : MENUS)
       .then(data => {
@@ -837,6 +942,17 @@
       { id: 'passport', icon: '✈️', name: 'กัปตันพาสปอร์ต' }
     ];
 
+    const COUNTRIES = [
+      { name: 'ญี่ปุ่น', flag: '🇯🇵' },
+      { name: 'เกาหลี', flag: '🇰🇷' },
+      { name: 'อิตาลี', flag: '🇮🇹' },
+      { name: 'อเมริกัน', flag: '🇺🇸' },
+      { name: 'อินเดีย', flag: '🇮🇳' },
+      { name: 'เวียดนาม', flag: '🇻🇳' },
+      { name: 'จีน', flag: '🇨🇳' },
+      { name: 'เม็กซิกัน', flag: '🇲🇽' }
+    ];
+
     const RANKS = [
       { minXp: 0, title: 'มือใหม่หัดหิว' },
       { minXp: 100, title: 'นักชิมประจำซอย' },
@@ -845,24 +961,88 @@
       { minXp: 1000, title: 'เชฟกระทะทองคำ' }
     ];
 
-    // App State (Persisted in localStorage - Zero Server Cost)
     let state = JSON.parse(localStorage.getItem('tookmue_state') || 'null') || {
       xp: 40,
       streak: 1,
       lastCheckIn: '',
       avatar: '🍲',
       isVip: false,
+      soundOn: true,
       favorites: [],
-      history: []
+      history: [],
+      stamps: []
     };
+    if (state.soundOn === undefined) state.soundOn = true;
+    if (!Array.isArray(state.stamps)) state.stamps = [];
 
-    let currentMode = 'main';
+    let currentMode = 'main'; // 'main' | 'passport' | 'sweet'
     let quickFilter = 'all';
     let exploreCat = 'all';
     let currentRotation = 0;
     let isSpinning = false;
     let activeWheelMenus = [];
     let selectedMenu = null;
+
+    // --- Web Audio API Synthesizer (Zero External Audio Files Needed) ---
+    let audioCtx = null;
+    function getAudioCtx() {
+      if (!audioCtx) {
+        const AudioContext = window.AudioContext || window.webkitAudioContext;
+        if (AudioContext) audioCtx = new AudioContext();
+      }
+      if (audioCtx && audioCtx.state === 'suspended') {
+        audioCtx.resume();
+      }
+      return audioCtx;
+    }
+
+    function playTickSound() {
+      if (!state.soundOn) return;
+      try {
+        const ctx = getAudioCtx();
+        if (!ctx) return;
+        const osc = ctx.createOscillator();
+        const gain = ctx.createGain();
+        osc.type = 'triangle';
+        osc.frequency.setValueAtTime(620, ctx.currentTime);
+        osc.frequency.exponentialRampToValueAtTime(180, ctx.currentTime + 0.045);
+        gain.gain.setValueAtTime(0.18, ctx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.045);
+        osc.connect(gain);
+        gain.connect(ctx.destination);
+        osc.start();
+        osc.stop(ctx.currentTime + 0.05);
+      } catch (e) {}
+    }
+
+    function playWinChime() {
+      if (!state.soundOn) return;
+      try {
+        const ctx = getAudioCtx();
+        if (!ctx) return;
+        const notes = [523.25, 659.25, 783.99, 1046.50]; // C5, E5, G5, C6
+        notes.forEach((freq, idx) => {
+          const osc = ctx.createOscillator();
+          const gain = ctx.createGain();
+          osc.type = 'sine';
+          const start = ctx.currentTime + idx * 0.09;
+          osc.frequency.setValueAtTime(freq, start);
+          gain.gain.setValueAtTime(0.2, start);
+          gain.gain.exponentialRampToValueAtTime(0.001, start + 0.35);
+          osc.connect(gain);
+          gain.connect(ctx.destination);
+          osc.start(start);
+          osc.stop(start + 0.36);
+        });
+      } catch (e) {}
+    }
+
+    function toggleSound() {
+      state.soundOn = !state.soundOn;
+      saveState();
+      if (state.soundOn) playTickSound();
+      showToast(state.soundOn ? 'เปิดเสียงเอฟเฟกต์แล้ว 🔊' : 'ปิดเสียงเอฟเฟกต์แล้ว 🔇');
+    }
 
     function saveState() {
       localStorage.setItem('tookmue_state', JSON.stringify(state));
@@ -891,8 +1071,25 @@
 
     function setWheelMode(mode) {
       currentMode = mode;
-      document.getElementById('btnModeMain').classList.toggle('active', mode === 'main');
-      document.getElementById('btnModeSweet').classList.toggle('active', mode === 'sweet');
+      const btnMain = document.getElementById('btnModeMain');
+      const btnPass = document.getElementById('btnModePassport');
+      const btnSweet = document.getElementById('btnModeSweet');
+      const spinBtn = document.getElementById('spinBtn');
+      const passStrip = document.getElementById('passportStrip');
+
+      btnMain.className = 'mode-btn' + (mode === 'main' ? ' active' : '');
+      btnSweet.className = 'mode-btn' + (mode === 'sweet' ? ' active' : '');
+      btnPass.className = 'mode-btn' + (mode === 'passport' ? ' passport-active' : '');
+
+      if (mode === 'passport') {
+        spinBtn.className = 'spin-cta passport-btn';
+        spinBtn.textContent = '✈️ บินสุ่มอาหารนานาชาติ!';
+        passStrip.classList.add('show');
+      } else {
+        spinBtn.className = 'spin-cta';
+        spinBtn.textContent = '🎯 หมุนสุ่มมื้อนี้!';
+        passStrip.classList.remove('show');
+      }
       prepareWheelSlices();
     }
 
@@ -903,9 +1100,16 @@
       prepareWheelSlices();
     }
 
+    function getBaseModePool() {
+      if (currentMode === 'passport') {
+        return MENUS.filter(m => m.category === 'อาหารนานาชาติ');
+      }
+      return MENUS.filter(m => m.mode === currentMode);
+    }
+
     function getFilteredPool() {
       const excludeYest = document.getElementById('excludeYesterday').checked;
-      let pool = MENUS.filter(m => m.mode === currentMode);
+      let pool = getBaseModePool();
 
       if (quickFilter === 'budget50') pool = pool.filter(m => m.budget <= 50);
       if (quickFilter === 'fast15') pool = pool.filter(m => m.prep_time <= 15);
@@ -916,12 +1120,11 @@
         const filtered = pool.filter(m => !state.history.includes(m.id));
         if (filtered.length >= 2) pool = filtered;
       }
-      return pool.length > 0 ? pool : MENUS.filter(m => m.mode === currentMode);
+      return pool.length > 0 ? pool : getBaseModePool();
     }
 
     function prepareWheelSlices() {
       const pool = getFilteredPool();
-      // Pick up to 8 balanced items for visual clarity on the wheel
       const shuffled = [...pool].sort(() => 0.5 - Math.random());
       activeWheelMenus = shuffled.slice(0, Math.min(8, shuffled.length));
       drawWheel();
@@ -935,7 +1138,10 @@
       const radius = cx - 6;
       const count = activeWheelMenus.length;
       const arc = (2 * Math.PI) / count;
-      const colors = ['#C2410C', '#FFC53D', '#24442F', '#EA580C', '#F59E0B', '#2F573D', '#D97706', '#9A3412'];
+
+      const paletteMain = ['#C2410C', '#FFC53D', '#24442F', '#EA580C', '#F59E0B', '#2F573D', '#D97706', '#9A3412'];
+      const palettePassport = ['#1D4ED8', '#FFC53D', '#0F766E', '#2563EB', '#EA580C', '#1E40AF', '#047857', '#D97706'];
+      const colors = currentMode === 'passport' ? palettePassport : paletteMain;
 
       ctx.clearRect(0, 0, canvas.width, canvas.height);
 
@@ -953,53 +1159,95 @@
         ctx.strokeStyle = '#FFFAF3';
         ctx.stroke();
 
-        // Draw Label
         ctx.save();
         ctx.translate(cx, cy);
         ctx.rotate(startAngle + arc / 2);
         ctx.textAlign = 'right';
         ctx.fillStyle = (colors[i % colors.length] === '#FFC53D') ? '#3A2B22' : '#FFFFFF';
-        ctx.font = 'bold 21px "Prompt", sans-serif';
-        const label = item.name.length > 13 ? item.name.slice(0, 12) + '…' : item.name;
-        ctx.fillText(label, radius - 26, 8);
+        ctx.font = 'bold 20px "Prompt", sans-serif';
+        const countryObj = COUNTRIES.find(c => c.name === item.region);
+        const prefix = (currentMode === 'passport' && countryObj) ? countryObj.flag + ' ' : '';
+        const rawText = prefix + item.name;
+        const label = rawText.length > 13 ? rawText.slice(0, 12) + '…' : rawText;
+        ctx.fillText(label, radius - 24, 8);
         ctx.restore();
       });
     }
 
+    // Smooth JavaScript Wheel Animation with Real-time Tick Sound & Pointer Bounce
     function spinWheel() {
       if (isSpinning) return;
+      getAudioCtx();
       prepareWheelSlices();
       isSpinning = true;
+
       const spinBtn = document.getElementById('spinBtn');
+      const pointer = document.getElementById('wheelPointer');
+      const canvas = document.getElementById('wheelCanvas');
       spinBtn.disabled = true;
-      spinBtn.textContent = '🎲 กำลังสุ่มความอร่อย...';
+      spinBtn.textContent = currentMode === 'passport' ? '✈️ กำลังบินข้ามประเทศ...' : '🎲 กำลังสุ่มความอร่อย...';
+
+      if (navigator.vibrate) navigator.vibrate(40);
 
       const count = activeWheelMenus.length;
       const winIndex = Math.floor(Math.random() * count);
       const sliceDeg = 360 / count;
-      // Align winning slice center with top pointer (0 deg)
       const targetAngle = 360 - (winIndex * sliceDeg + sliceDeg / 2);
-      const extraSpins = 360 * 5;
-      currentRotation += extraSpins + ((targetAngle - (currentRotation % 360) + 360) % 360);
+      const extraSpins = 360 * 6;
+      const startRot = currentRotation;
+      const endRot = currentRotation + extraSpins + ((targetAngle - (currentRotation % 360) + 360) % 360);
 
-      const canvas = document.getElementById('wheelCanvas');
-      canvas.style.transform = `rotate(${currentRotation}deg)`;
+      const duration = 3800;
+      const startTime = performance.now();
+      let lastSlicePassed = Math.floor(startRot / sliceDeg);
 
-      setTimeout(() => {
-        isSpinning = false;
-        spinBtn.disabled = false;
-        spinBtn.textContent = '🎯 หมุนสุ่มมื้อนี้!';
-        addXp(15);
-        openMenuResult(activeWheelMenus[winIndex]);
-      }, 3900);
+      function animateSpin(now) {
+        const elapsed = now - startTime;
+        const t = Math.min(1, elapsed / duration);
+        // Quintic ease-out
+        const ease = 1 - Math.pow(1 - t, 4);
+        currentRotation = startRot + (endRot - startRot) * ease;
+        canvas.style.transform = `rotate(${currentRotation}deg)`;
+
+        const currentSlice = Math.floor(currentRotation / sliceDeg);
+        if (currentSlice !== lastSlicePassed) {
+          lastSlicePassed = currentSlice;
+          playTickSound();
+          pointer.classList.add('tick');
+          setTimeout(() => pointer.classList.remove('tick'), 55);
+        }
+
+        if (t < 1) {
+          requestAnimationFrame(animateSpin);
+        } else {
+          isSpinning = false;
+          spinBtn.disabled = false;
+          spinBtn.textContent = currentMode === 'passport' ? '✈️ บินสุ่มอาหารนานาชาติ!' : '🎯 หมุนสุ่มมื้อนี้!';
+          playWinChime();
+          if (navigator.vibrate) navigator.vibrate([60, 40, 100]);
+
+          const wonMenu = activeWheelMenus[winIndex];
+          // Unlock Country Stamp if international
+          if (wonMenu.category === 'อาหารนานาชาติ' && !state.stamps.includes(wonMenu.region)) {
+            state.stamps.push(wonMenu.region);
+            showToast(`🛂 ปลดล็อกตราประทับประเทศ "${wonMenu.region}"!`);
+          }
+          addXp(15);
+          openMenuResult(wonMenu);
+        }
+      }
+
+      requestAnimationFrame(animateSpin);
     }
 
     function openMenuResult(menu) {
       selectedMenu = menu;
       const pairMain = MENUS.find(m => m.id === menu.pair_id) || MENUS[2];
       const pairSweet = MENUS.find(m => m.id === menu.dessert_pair_id) || MENUS[48];
+      const countryObj = COUNTRIES.find(c => c.name === menu.region);
+      const regionLabel = countryObj ? `${countryObj.flag} ${menu.region}` : menu.region;
 
-      document.getElementById('resCategory').textContent = `${menu.category} • ${menu.region}`;
+      document.getElementById('resCategory').textContent = `${menu.category} • ${regionLabel}`;
       document.getElementById('resName').textContent = menu.name;
       document.getElementById('resBudget').textContent = menu.budget;
       document.getElementById('resTime').textContent = menu.prep_time;
@@ -1049,6 +1297,128 @@
       saveState();
     }
 
+    // --- Shareable Bento Card Image Generator (Canvas -> Web Share / LINE / Download) ---
+    function roundRect(ctx, x, y, w, h, r) {
+      ctx.beginPath();
+      ctx.moveTo(x + r, y);
+      ctx.arcTo(x + w, y, x + w, y + h, r);
+      ctx.arcTo(x + w, y + h, x, y + h, r);
+      ctx.arcTo(x, y + h, x, y, r);
+      ctx.arcTo(x, y, x + w, y, r);
+      ctx.closePath();
+    }
+
+    function wrapCanvasText(ctx, text, x, y, maxWidth, lineHeight) {
+      const words = text.split('');
+      let line = '';
+      let curY = y;
+      for (let i = 0; i < words.length; i++) {
+        const testLine = line + words[i];
+        if (ctx.measureText(testLine).width > maxWidth && i > 0) {
+          ctx.fillText(line, x, curY);
+          line = words[i];
+          curY += lineHeight;
+        } else {
+          line = testLine;
+        }
+      }
+      ctx.fillText(line, x, curY);
+      return curY;
+    }
+
+    async function shareSamrubCard() {
+      if (!selectedMenu) return;
+      const pairMain = MENUS.find(m => m.id === selectedMenu.pair_id) || MENUS[2];
+      const pairSweet = MENUS.find(m => m.id === selectedMenu.dessert_pair_id) || MENUS[48];
+      const rankTitle = getCurrentRankTitle();
+
+      const canvas = document.getElementById('shareCanvas');
+      const ctx = canvas.getContext('2d');
+
+      // 1. Cream Background
+      ctx.fillStyle = '#FFFAF3';
+      ctx.fillRect(0, 0, 720, 900);
+
+      // 2. Top Brand Header
+      ctx.fillStyle = '#C2410C';
+      ctx.font = 'bold 38px "Prompt", sans-serif';
+      ctx.textAlign = 'left';
+      ctx.fillText('ทุกมื้อ TooKMUE', 54, 86);
+
+      ctx.fillStyle = '#786458';
+      ctx.font = '600 24px "Prompt", sans-serif';
+      ctx.fillText(`${state.avatar} ${rankTitle}`, 54, 126);
+
+      // 3. Main Menu White Bento Card
+      ctx.fillStyle = '#FFFFFF';
+      roundRect(ctx, 48, 160, 624, 310, 36);
+      ctx.fill();
+      ctx.strokeStyle = '#F3E5D5';
+      ctx.lineWidth = 3;
+      ctx.stroke();
+
+      ctx.fillStyle = '#EA580C';
+      ctx.font = 'bold 24px "Prompt", sans-serif';
+      ctx.fillText(`🎯 ผลการสุ่มมื้อนี้ • ${selectedMenu.region}`, 84, 216);
+
+      ctx.fillStyle = '#3A2B22';
+      ctx.font = 'bold 44px "Prompt", sans-serif';
+      wrapCanvasText(ctx, selectedMenu.name, 84, 286, 550, 56);
+
+      ctx.fillStyle = '#786458';
+      ctx.font = '600 26px "Noto Sans Thai", sans-serif';
+      ctx.fillText(`💰 งบประมาณ ~${selectedMenu.budget} บาท   |   ⏱️ เวลาปรุง ${selectedMenu.prep_time} นาที`, 84, 426);
+
+      // 4. Deep Herb Green Pairing Bento Card
+      ctx.fillStyle = '#24442F';
+      roundRect(ctx, 48, 500, 624, 260, 36);
+      ctx.fill();
+
+      ctx.fillStyle = '#FFC53D';
+      ctx.font = 'bold 28px "Prompt", sans-serif';
+      ctx.fillText('🥢 สำรับจับคู่แนะนำ (Food Pairing)', 84, 558);
+
+      ctx.fillStyle = '#FFFFFF';
+      ctx.font = '600 28px "Noto Sans Thai", sans-serif';
+      ctx.fillText(`🍽️ คู่กับข้าว: ${pairMain.name}`, 84, 622);
+
+      ctx.fillStyle = '#FDE68A';
+      ctx.fillText(`🧋 ตบท้ายมื้อ: ${pairSweet.name}`, 84, 686);
+
+      // 5. Footer URL
+      ctx.fillStyle = '#3A2B22';
+      ctx.font = 'bold 24px "Prompt", sans-serif';
+      ctx.textAlign = 'center';
+      ctx.fillText('คิดไม่ออกว่าจะกินอะไร? มาสุ่มฟรีที่ tookmue.pages.dev', 360, 832);
+
+      const shareText = `มื้อนี้ "ทุกมื้อ (TooKMUE)" เลือกให้: ${selectedMenu.name} 🍽️ จับคู่กับ ${pairMain.name} และตบท้ายด้วย ${pairSweet.name}! ลองสุ่มมื้อของคุณได้ที่ https://tookmue.pages.dev/`;
+
+      canvas.toBlob(async (blob) => {
+        const file = new File([blob], 'tookmue-meal.png', { type: 'image/png' });
+        if (navigator.canShare && navigator.canShare({ files: [file] })) {
+          try {
+            await navigator.share({
+              title: 'ทุกมื้อ (TooKMUE) - ผลการสุ่มมื้อนี้',
+              text: shareText,
+              files: [file]
+            });
+            addXp(10);
+            return;
+          } catch (err) {}
+        }
+        // Fallback: Download image + copy text for LINE
+        const link = document.createElement('a');
+        link.download = `TooKMUE_${selectedMenu.id}.png`;
+        link.href = canvas.toDataURL('image/png');
+        link.click();
+        if (navigator.clipboard) {
+          navigator.clipboard.writeText(shareText).catch(() => {});
+        }
+        addXp(10);
+        showToast('บันทึกรูปการ์ด & คัดลอกข้อความส่งเข้า LINE แล้ว! (+10 XP)');
+      }, 'image/png');
+    }
+
     function renderDailySamrub() {
       const mainSample = MENUS.find(m => m.id === 'TH-C02') || MENUS[1];
       const pairSample = MENUS.find(m => m.id === mainSample.pair_id) || MENUS[2];
@@ -1084,17 +1454,20 @@
       }
 
       const grid = document.getElementById('exploreGrid');
-      grid.innerHTML = list.map(m => `
+      grid.innerHTML = list.map(m => {
+        const cObj = COUNTRIES.find(c => c.name === m.region);
+        const badge = cObj ? `${cObj.flag} ${m.region}` : m.region;
+        return `
         <div class="menu-card" onclick="openMenuById('${m.id}')">
           <div>
-            <span class="menu-badge">${m.region}</span>
+            <span class="menu-badge">${badge}</span>
             <div style="font-size: 17px; font-weight: 700; line-height: 1.3; margin-bottom: 6px;">${m.name}</div>
           </div>
           <div style="font-size: 14px; color: var(--text-muted); font-weight: 600;">
             💰 ${m.budget}฿ • ⏱️ ${m.prep_time} น.
           </div>
-        </div>
-      `).join('');
+        </div>`;
+      }).join('');
     }
 
     function openMenuById(id) {
@@ -1149,6 +1522,7 @@
       state.streak = (state.streak % 7) + 1;
       addXp(10);
       saveState();
+      playWinChime();
       showToast('เช็กอินสำเร็จ! รับ +10 XP 🍱');
     }
 
@@ -1164,6 +1538,14 @@
       showToast(state.isVip ? 'เปิดโหมดฉายาติดดาว ⭐ แล้ว!' : 'กลับสู่โหมดสมาชิกทั่วไป');
     }
 
+    function getCurrentRankTitle() {
+      let rank = RANKS[0].title;
+      for (let i = 0; i < RANKS.length; i++) {
+        if (state.xp >= RANKS[i].minXp) rank = RANKS[i].title;
+      }
+      return state.isVip ? `⭐ ${rank}` : rank;
+    }
+
     function updateProfileUI() {
       let rank = RANKS[0].title;
       let nextXp = 100;
@@ -1177,26 +1559,35 @@
       document.getElementById('headerAvatar').textContent = state.avatar;
       document.getElementById('headerRank').textContent = displayRank;
       document.getElementById('headerStreak').textContent = state.streak;
+      document.getElementById('soundToggleBtn').textContent = state.soundOn ? '🔊' : '🔇';
       document.getElementById('yesterdayCount').textContent = state.history.length;
+      document.getElementById('passportProgressBadge').textContent = `${state.stamps.length}/8 ดวง`;
 
       document.getElementById('profileAvatarBig').textContent = state.avatar;
       document.getElementById('profileRankTitle').textContent = displayRank;
       document.getElementById('xpText').textContent = `${state.xp} / ${nextXp} XP`;
       document.getElementById('xpBar').style.width = `${Math.min(100, (state.xp / nextXp) * 100)}%`;
       document.getElementById('streakText').textContent = `${state.streak} วันต่อเนื่อง`;
+      document.getElementById('stampCountText').textContent = `${state.stamps.length} / 8 ดวง`;
 
       const vipBtn = document.getElementById('vipToggleBtn');
       vipBtn.textContent = state.isVip ? '✅ เปิดใช้งานฉายาติดดาวอยู่ (แตะเพื่อสลับ)' : '✨ ทดลองเปิดโหมดฉายาติดดาว (Demo)';
 
-      // Render Avatars
       document.getElementById('avatarGrid').innerHTML = AVATARS.map(a => `
         <div class="avatar-option ${state.avatar === a.icon ? 'selected' : ''}" onclick="selectAvatar('${a.icon}')">
-          <div style="font-size: 28px;">${a.icon}</div>
+          <div style="font-size: 26px;">${a.icon}</div>
           <div style="margin-top: 2px;">${a.name}</div>
         </div>
       `).join('');
 
-      // Render 7-day Pinto Streak
+      document.getElementById('passportStampsGrid').innerHTML = COUNTRIES.map(c => {
+        const unlocked = state.stamps.includes(c.name);
+        return `<div class="stamp-item ${unlocked ? 'unlocked' : ''}">
+          <div style="font-size: 24px;">${c.flag}</div>
+          <div>${c.name}</div>
+        </div>`;
+      }).join('');
+
       let daysHtml = '';
       for (let d = 1; d <= 7; d++) {
         const done = d <= state.streak;

@@ -1,4 +1,4 @@
-const CACHE_NAME = 'tookmue-v1';
+const CACHE_NAME = 'tookmue-v2';
 const ASSETS = [
   './',
   './index.html',
