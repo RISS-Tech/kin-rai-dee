@@ -849,6 +849,36 @@
 
     <!-- TAB 4: QUESTS, PASSPORT STAMPS, AVATARS & VIP -->
     <section id="tab-quests" class="view-section">
+      <!-- Google Account & Cloud Sync Card -->
+      <div class="soft-card" id="authCard" style="border: 2px solid #F3E5D5;">
+        <div id="loggedOutView">
+          <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 12px;">
+            <div style="font-size: 32px; background: #EFF6FF; width: 54px; height: 54px; border-radius: 16px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">☁️</div>
+            <div>
+              <div style="font-size: 17px; font-weight: 700; color: var(--text-brown);">ซิงก์ข้อมูลขึ้นคลาวด์</div>
+              <div style="font-size: 13px; color: var(--text-muted);">ล็อกอินด้วย Gmail เพื่อเก็บแต้ม XP ฉายา และเมนูโปรดข้ามเครื่อง</div>
+            </div>
+          </div>
+          <button onclick="loginWithGoogle()" style="width: 100%; min-height: 48px; border-radius: 999px; border: 1.5px solid #D1D5DB; background: #FFFFFF; color: #374151; font-size: 16px; font-weight: 700; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.05);">
+            <svg width="20" height="20" viewBox="0 0 48 48"><path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/><path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/><path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/><path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/></svg>
+            <span>เข้าสู่ระบบด้วย Google (Gmail)</span>
+          </button>
+        </div>
+
+        <div id="loggedInView" style="display: none;">
+          <div style="display: flex; align-items: center; justify-content: space-between; gap: 10px;">
+            <div style="display: flex; align-items: center; gap: 10px; min-width: 0;">
+              <img id="userGooglePhoto" src="" alt="Profile" style="width: 46px; height: 46px; border-radius: 50%; object-fit: cover; border: 2px solid var(--chili-orange); flex-shrink: 0;" />
+              <div style="min-width: 0;">
+                <div id="userGoogleName" style="font-size: 16px; font-weight: 700; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">ชื่อผู้ใช้</div>
+                <div style="font-size: 12px; color: #16A34A; font-weight: 600;">🟢 ซิงก์ข้อมูลคลาวด์อัตโนมัติ</div>
+              </div>
+            </div>
+            <button onclick="logoutGoogle()" style="border: none; background: #FEE2E2; color: #DC2626; border-radius: 999px; padding: 6px 12px; font-size: 13px; font-weight: 600; cursor: pointer; flex-shrink: 0;">ออก</button>
+          </div>
+        </div>
+      </div>
+
       <div class="soft-card">
         <div style="display: flex; align-items: center; gap: 14px;">
           <div id="profileAvatarBig" style="font-size: 46px; background: #FFF1E6; width: 72px; height: 72px; border-radius: 22px; display: flex; align-items: center; justify-content: center;">🍲</div>
@@ -1173,6 +1203,7 @@
     function saveState() {
       localStorage.setItem('tookmue_state', JSON.stringify(state));
       updateProfileUI();
+      if (typeof window.syncStateToCloud === 'function') window.syncStateToCloud();
     }
 
     function showToast(msg) {
@@ -1762,5 +1793,159 @@
 
     initApp();
   </script>
+
+  <!-- Firebase Authentication (Google Sign-In) & Cloud Firestore Sync -->
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/13.4.0/firebase-app.js";
+    import {
+      getAuth,
+      GoogleAuthProvider,
+      signInWithPopup,
+      signInWithRedirect,
+      getRedirectResult,
+      onAuthStateChanged,
+      signOut
+    } from "https://www.gstatic.com/firebasejs/13.4.0/firebase-auth.js";
+    import {
+      getFirestore,
+      doc,
+      getDoc,
+      setDoc,
+      serverTimestamp
+    } from "https://www.gstatic.com/firebasejs/13.4.0/firebase-firestore.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyAEqxJ7mtPc6w0DIbmrIE6-k9UHDzDPzQE",
+      authDomain: "tookmue-fdfdf.firebaseapp.com",
+      projectId: "tookmue-fdfdf",
+      storageBucket: "tookmue-fdfdf.firebasestorage.app",
+      messagingSenderId: "955739387616",
+      appId: "1:955739387616:web:64182e205c109ad19dc285",
+      measurementId: "G-XYWBM8JRFX"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+    const db = getFirestore(app);
+    const provider = new GoogleAuthProvider();
+
+    let currentUser = null;
+    let isMergingCloud = false;
+
+    getRedirectResult(auth).catch((err) => {
+      console.warn("Redirect auth check:", err?.code);
+    });
+
+    onAuthStateChanged(auth, async (user) => {
+      currentUser = user;
+      const loggedOutEl = document.getElementById('loggedOutView');
+      const loggedInEl = document.getElementById('loggedInView');
+
+      if (user) {
+        loggedOutEl.style.display = 'none';
+        loggedInEl.style.display = 'block';
+        document.getElementById('userGoogleName').textContent = user.displayName || user.email || 'สมาชิก TooKMUE';
+        const photoEl = document.getElementById('userGooglePhoto');
+        photoEl.src = user.photoURL || 'icon.svg';
+
+        await loadAndMergeCloudState(user);
+      } else {
+        loggedOutEl.style.display = 'block';
+        loggedInEl.style.display = 'none';
+      }
+    });
+
+    async function loadAndMergeCloudState(user) {
+      if (isMergingCloud) return;
+      isMergingCloud = true;
+      try {
+        const userRef = doc(db, "users", user.uid);
+        const snap = await getDoc(userRef);
+
+        if (snap.exists()) {
+          const cloud = snap.data();
+          state.xp = Math.max(state.xp || 0, cloud.xp || 0);
+          state.streak = Math.max(state.streak || 1, cloud.streak || 1);
+          if (cloud.lastCheckIn && (!state.lastCheckIn || cloud.lastCheckIn > state.lastCheckIn)) {
+            state.lastCheckIn = cloud.lastCheckIn;
+          }
+          if (cloud.avatar) state.avatar = cloud.avatar;
+          if (cloud.isVip) state.isVip = true;
+          state.favorites = Array.from(new Set([...(cloud.favorites || []), ...(state.favorites || [])]));
+          state.history = Array.from(new Set([...(cloud.history || []), ...(state.history || [])])).slice(0, 15);
+          state.stamps = Array.from(new Set([...(cloud.stamps || []), ...(state.stamps || [])]));
+
+          localStorage.setItem('tookmue_state', JSON.stringify(state));
+          updateProfileUI();
+          prepareWheelSlices();
+        }
+
+        await setDoc(userRef, {
+          uid: user.uid,
+          email: user.email || '',
+          displayName: user.displayName || '',
+          photoURL: user.photoURL || '',
+          xp: state.xp,
+          streak: state.streak,
+          lastCheckIn: state.lastCheckIn || '',
+          avatar: state.avatar,
+          isVip: Boolean(state.isVip),
+          favorites: state.favorites,
+          history: state.history,
+          stamps: state.stamps,
+          updatedAt: serverTimestamp()
+        }, { merge: true });
+
+        showToast(`ซิงก์ข้อมูลของ ${user.displayName || 'คุณ'} เรียบร้อย ☁️`);
+      } catch (err) {
+        console.error("Firestore sync error:", err);
+        showToast("เชื่อมต่อคลาวด์ไม่สำเร็จ (โปรดเช็ก Firestore Rules)");
+      } finally {
+        isMergingCloud = false;
+      }
+    }
+
+    window.syncStateToCloud = async function () {
+      if (!currentUser || isMergingCloud) return;
+      try {
+        const userRef = doc(db, "users", currentUser.uid);
+        await setDoc(userRef, {
+          xp: state.xp,
+          streak: state.streak,
+          lastCheckIn: state.lastCheckIn || '',
+          avatar: state.avatar,
+          isVip: Boolean(state.isVip),
+          favorites: state.favorites,
+          history: state.history,
+          stamps: state.stamps,
+          updatedAt: serverTimestamp()
+        }, { merge: true });
+      } catch (err) {
+        console.warn("Background cloud sync skipped:", err?.code);
+      }
+    };
+
+    window.loginWithGoogle = async function () {
+      try {
+        await signInWithPopup(auth, provider);
+      } catch (err) {
+        if (err?.code === 'auth/popup-blocked' || err?.code === 'auth/operation-not-supported-in-this-environment') {
+          await signInWithRedirect(auth, provider);
+        } else if (err?.code === 'auth/unauthorized-domain') {
+          alert('กรุณาเพิ่มโดเมน tookmue.pages.dev ใน Firebase Console -> Authentication -> Settings -> Authorized domains ก่อนครับ');
+        } else if (err?.code !== 'auth/popup-closed-by-user') {
+          showToast('เข้าสู่ระบบไม่สำเร็จ: ' + (err?.message || 'ลองใหม่อีกครั้ง'));
+        }
+      }
+    };
+
+    window.logoutGoogle = async function () {
+      try {
+        await signOut(auth);
+        showToast('ออกจากระบบเรียบร้อยแล้ว');
+      } catch (err) {}
+    };
+  </script>
 </body>
+
 </html>
