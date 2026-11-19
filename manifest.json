@@ -1,8 +1,10 @@
 {
+  "id": "/",
   "name": "ทุกมื้อ (TooKMUE) - สุ่มเมนูและจับคู่สำรับ",
   "short_name": "ทุกมื้อ TooKMUE",
-  "description": "แอปสุ่มเมนูอาหารไทย 4 ภาค นานาชาติ ของหวานและเครื่องดื่ม พร้อมรูปภาพอาหารจริงและระบบจัดสำรับคู่กัน",
-  "start_url": "./index.html",
+  "description": "แอปสุ่มเมนูอาหารไทย 4 ภาค นานาชาติ ของหวานและเครื่องดื่ม พร้อมโหมดเมนู-ตู้เย็นและระบบจับคู่สำรับ",
+  "start_url": "./",
+  "scope": "./",
   "display": "standalone",
   "background_color": "#FFFAF3",
   "theme_color": "#C2410C",
@@ -10,10 +12,22 @@
   "lang": "th",
   "icons": [
     {
+      "src": "icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
       "src": "icon.svg",
       "sizes": "any",
       "type": "image/svg+xml",
-      "purpose": "any maskable"
+      "purpose": "any"
     }
   ]
 }

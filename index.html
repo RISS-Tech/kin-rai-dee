@@ -6,7 +6,8 @@
   <meta name="theme-color" content="#C2410C" />
   <title>ทุกมื้อ (TooKMUE) — สุ่มเมนูและจับคู่สำรับ</title>
   <link rel="manifest" href="manifest.json" />
-  <link rel="icon" type="image/svg+xml" href="icon.svg" />
+  <link rel="icon" type="image/png" href="icon-192.png" />
+  <link rel="apple-touch-icon" href="icon-512.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@400;500;600;700&family=Prompt:wght@500;600;700&display=swap" rel="stylesheet" />
@@ -790,6 +791,87 @@
       display: none;
       white-space: nowrap;
     }
+
+    /* --- v9 Smooth Scroll Animations, Subtle Parallax & Interactive Elements --- */
+    .reveal-card {
+      opacity: 0;
+      transform: translateY(18px) scale(0.98);
+      transition: opacity 0.36s cubic-bezier(0.22, 1, 0.36, 1), transform 0.36s cubic-bezier(0.22, 1, 0.36, 1);
+      will-change: opacity, transform;
+    }
+
+    .reveal-card.is-visible {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+
+    .menu-card, .soft-card, .herb-bento-card, .fridge-result-item {
+      transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.2s ease;
+    }
+
+    .menu-card:active, .tactile-pill:active, .chip-btn:active, .ing-tag-chip:active, .avatar-option:active {
+      transform: scale(0.94);
+    }
+
+    .food-hero-wrap {
+      perspective: 800px;
+      transform-style: preserve-3d;
+    }
+
+    .food-hero-img {
+      transition: transform 0.18s ease-out;
+      will-change: transform;
+    }
+
+    #wheelCanvas {
+      cursor: grab;
+      touch-action: none;
+    }
+
+    #wheelCanvas:active {
+      cursor: grabbing;
+    }
+
+    .mood-bar {
+      display: flex;
+      gap: 6px;
+      overflow-x: auto;
+      padding: 2px 2px 10px;
+      scrollbar-width: none;
+    }
+
+    .mood-bar::-webkit-scrollbar {
+      display: none;
+    }
+
+    .mood-pill {
+      border: 1.5px solid #F3E5D5;
+      background: #FFFFFF;
+      color: var(--text-brown);
+      border-radius: 999px;
+      padding: 6px 12px;
+      font-size: 13px;
+      font-weight: 600;
+      white-space: nowrap;
+      cursor: pointer;
+      transition: all 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+      box-shadow: 0 3px 8px rgba(58, 43, 34, 0.05);
+    }
+
+    .mood-pill.active {
+      background: linear-gradient(135deg, #FEF3C7, #FDE68A);
+      border-color: #F59E0B;
+      color: #92400E;
+      transform: translateY(-1px);
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .reveal-card {
+        opacity: 1 !important;
+        transform: none !important;
+        transition: none !important;
+      }
+    }
   </style>
 </head>
 <body>
@@ -843,6 +925,15 @@
       <div id="passportStrip" class="passport-strip">
         <span>🛂 โหมดบินลัดฟ้าชิมอาหารนานาชาติ 8 ประเทศ</span>
         <span id="passportProgressBadge">0/8 ดวง</span>
+      </div>
+
+      <!-- Interactive Quick Mood Selector -->
+      <div class="mood-bar" id="moodBar">
+        <button class="mood-pill active" onclick="applyMoodFilter('all', this)">✨ ตามใจดวง</button>
+        <button class="mood-pill" onclick="applyMoodFilter('soup', this)">🍲 อยากซดน้ำร้อนๆ</button>
+        <button class="mood-pill" onclick="applyMoodFilter('crispy', this)">🍗 ของทอดกรอบฟิน</button>
+        <button class="mood-pill" onclick="applyMoodFilter('healthy', this)">🥗 สายคลีนสุขภาพ</button>
+        <button class="mood-pill" onclick="applyMoodFilter('noodle', this)">🍜 เส้นเหนียวนุ่ม</button>
       </div>
 
       <div id="wheelModeArea">
@@ -906,7 +997,7 @@
       </div>
 
       <!-- Featured Samrub Bento Card -->
-      <div class="herb-bento-card">
+      <div class="herb-bento-card reveal-card">
         <div class="herb-bento-title">
           <span>🥢 สำรับจับคู่แนะนำวันนี้</span>
           <span style="font-size: 13px; background: rgba(255,255,255,0.15); padding: 2px 10px; border-radius: 999px;">ไม่ซ้ำโปรตีน</span>
@@ -942,11 +1033,11 @@
     <!-- TAB 3: SAVED & HISTORY -->
     <section id="tab-saved" class="view-section">
       <h2 style="margin: 4px 0 12px; font-size: 22px;">🔖 เมนูโปรด & ประวัติมื้ออาหาร</h2>
-      <div class="soft-card">
+      <div class="soft-card reveal-card">
         <div style="font-weight: 700; margin-bottom: 8px;">❤️ รายการโปรดของคุณ (<span id="favCount">0</span>)</div>
         <div id="favList" style="font-size: 16px; color: var(--text-muted);">ยังไม่มีเมนูโปรด กดรูปหัวใจที่เมนูที่ชอบได้เลยครับ</div>
       </div>
-      <div class="soft-card">
+      <div class="soft-card reveal-card">
         <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
           <span style="font-weight: 700;">🕒 กินไปล่าสุด (ใช้ตัดรอบสุ่ม)</span>
           <button onclick="clearHistory()" style="border:none; background:#FFF1E6; color:var(--chili-orange); border-radius:999px; padding:4px 12px; font-size:13px; font-weight:600; cursor:pointer;">ล้างประวัติ</button>
@@ -987,7 +1078,7 @@
         </div>
       </div>
 
-      <div class="soft-card">
+      <div class="soft-card reveal-card">
         <div style="display: flex; align-items: center; gap: 14px;">
           <div id="profileAvatarBig" style="font-size: 46px; background: #FFF1E6; width: 72px; height: 72px; border-radius: 22px; display: flex; align-items: center; justify-content: center;">🍲</div>
           <div style="flex: 1;">
@@ -1004,7 +1095,7 @@
       </div>
 
       <!-- Passport Stamps Collection -->
-      <div class="soft-card">
+      <div class="soft-card reveal-card">
         <div style="display: flex; justify-content: space-between; align-items: center;">
           <span style="font-weight: 700;">🛂 สมุดพาสปอร์ตนักชิม (8 ประเทศ)</span>
           <span style="color: var(--passport-blue); font-weight: 700;" id="stampCountText">0 / 8 ดวง</span>
@@ -1014,7 +1105,7 @@
       </div>
 
       <!-- Daily Pinto Streak -->
-      <div class="soft-card">
+      <div class="soft-card reveal-card">
         <div style="display: flex; justify-content: space-between; align-items: center;">
           <span style="font-weight: 700;">🍱 ปิ่นโตสะสมวัน (Daily Streak)</span>
           <span style="color: var(--chili-orange); font-weight: 700;" id="streakText">1 วัน</span>
@@ -1026,7 +1117,7 @@
       </div>
 
       <!-- VIP 20 THB Card -->
-      <div class="herb-bento-card">
+      <div class="herb-bento-card reveal-card">
         <div class="herb-bento-title">
           <span>⭐ TooKMUE VIP Club</span>
           <span style="background: var(--turmeric-yellow); color: var(--text-brown); padding: 2px 10px; border-radius: 999px; font-size: 14px;">20฿ / เดือน</span>
@@ -1039,6 +1130,12 @@
         <button id="vipToggleBtn" class="btn-action btn-yellow" style="width: 100%;" onclick="toggleVipDemo()">
           ✨ ทดลองเปิดโหมดฉายาติดดาว (Demo)
         </button>
+      </div>
+
+      <div style="text-align: center; margin: 14px 0 6px;">
+        <a href="privacy.html" style="font-size: 13px; color: var(--text-muted); text-decoration: underline;">
+          🔒 นโยบายความเป็นส่วนตัว (Privacy Policy)
+        </a>
       </div>
     </section>
 
@@ -1503,6 +1600,11 @@
       if (quickFilter === 'spicy') pool = pool.filter(m => m.is_spicy);
       if (quickFilter === 'nonspicy') pool = pool.filter(m => !m.is_spicy);
 
+      if (moodFilter === 'soup') pool = pool.filter(m => m.tags && m.tags.includes('ต้ม'));
+      if (moodFilter === 'crispy') pool = pool.filter(m => m.tags && (m.tags.includes('ทอด') || m.name.includes('กรอบ')));
+      if (moodFilter === 'healthy') pool = pool.filter(m => m.tags && m.tags.includes('สุขภาพ'));
+      if (moodFilter === 'noodle') pool = pool.filter(m => m.tags && m.tags.includes('เส้น'));
+
       if (excludeYest && state.history.length > 0) {
         const filtered = pool.filter(m => !state.history.includes(m.id));
         if (filtered.length >= 2) pool = filtered;
@@ -1863,11 +1965,11 @@
       }
 
       const grid = document.getElementById('exploreGrid');
-      grid.innerHTML = list.map(m => {
+      grid.innerHTML = list.map((m, idx) => {
         const cObj = COUNTRIES.find(c => c.name === m.region);
         const badge = cObj ? `${cObj.flag} ${m.region}` : m.region;
         return `
-        <div class="menu-card" onclick="openMenuById('${m.id}')">
+        <div class="menu-card reveal-card" style="transition-delay: ${(idx % 6) * 35}ms;" onclick="openMenuById('${m.id}')">
           <img src="${m.image_url}" alt="${m.name}" loading="lazy" class="menu-card-img" onerror="resolveWikiImage(this, '${m.id}')" />
           <div class="menu-card-body">
             <div>
@@ -1880,6 +1982,7 @@
           </div>
         </div>`;
       }).join('');
+      observeRevealCards();
     }
 
     function openMenuById(id) {
@@ -2034,7 +2137,121 @@
       navigator.serviceWorker.register('sw.js').catch(() => {});
     }
 
+
+    // --- v9 Interactive Mood Filter ---
+    let moodFilter = 'all';
+    function applyMoodFilter(mood, btn) {
+      moodFilter = mood;
+      document.querySelectorAll('#moodBar .mood-pill').forEach(p => p.classList.remove('active'));
+      if (btn) btn.classList.add('active');
+      if (navigator.vibrate) navigator.vibrate(15);
+      playTickSound();
+      if (currentMode === 'fridge') setWheelMode('main');
+      prepareWheelSlices();
+    }
+
+    // --- v9 Smooth Scroll Animation (IntersectionObserver) ---
+    let cardObserver = null;
+    function observeRevealCards() {
+      if (!('IntersectionObserver' in window)) {
+        document.querySelectorAll('.reveal-card').forEach(el => el.classList.add('is-visible'));
+        return;
+      }
+      if (!cardObserver) {
+        cardObserver = new IntersectionObserver((entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('is-visible');
+              cardObserver.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.08, rootMargin: '0px 0px -20px 0px' });
+      }
+      document.querySelectorAll('.reveal-card:not(.is-visible)').forEach(el => cardObserver.observe(el));
+    }
+
+    // --- v9 Subtle Parallax Effect (Scroll & Interactive Card Tilt) ---
+    window.addEventListener('scroll', () => {
+      const y = window.scrollY || 0;
+      const wheelRing = document.querySelector('.wheel-outer-ring');
+      if (wheelRing && !isSpinning) {
+        wheelRing.style.transform = `translateY(${Math.min(18, y * 0.08)}px)`;
+      }
+    }, { passive: true });
+
+    const resultSheetEl = document.querySelector('.result-sheet');
+    if (resultSheetEl) {
+      resultSheetEl.addEventListener('scroll', () => {
+        const sTop = resultSheetEl.scrollTop || 0;
+        const heroImg = document.getElementById('resImage');
+        if (heroImg) {
+          heroImg.style.transform = `translateY(${sTop * 0.22}px) scale(${1 + Math.min(0.06, sTop * 0.0004)})`;
+        }
+      }, { passive: true });
+    }
+
+    // Interactive 3D tilt on Hero Food Photo
+    const heroWrapEl = document.querySelector('.food-hero-wrap');
+    if (heroWrapEl) {
+      heroWrapEl.addEventListener('pointermove', (e) => {
+        const rect = heroWrapEl.getBoundingClientRect();
+        const nx = (e.clientX - rect.left) / rect.width - 0.5;
+        const ny = (e.clientY - rect.top) / rect.height - 0.5;
+        const heroImg = document.getElementById('resImage');
+        if (heroImg) {
+          heroImg.style.transform = `scale(1.04) translate(${nx * -10}px, ${ny * -10}px)`;
+        }
+      });
+      heroWrapEl.addEventListener('pointerleave', () => {
+        const heroImg = document.getElementById('resImage');
+        if (heroImg) heroImg.style.transform = 'scale(1) translate(0, 0)';
+      });
+    }
+
+    // --- v9 Interactive Touch Drag / Flick to Spin Wheel ---
+    (function setupWheelDrag() {
+      const wheelEl = document.getElementById('wheelCanvas');
+      if (!wheelEl) return;
+      let dragging = false;
+      let startAngle = 0;
+      let startRot = 0;
+      let movedDeg = 0;
+
+      function getPointerAngle(e) {
+        const rect = wheelEl.getBoundingClientRect();
+        const cx = rect.left + rect.width / 2;
+        const cy = rect.top + rect.height / 2;
+        return Math.atan2(e.clientY - cy, e.clientX - cx) * (180 / Math.PI);
+      }
+
+      wheelEl.addEventListener('pointerdown', (e) => {
+        if (isSpinning) return;
+        dragging = true;
+        movedDeg = 0;
+        startAngle = getPointerAngle(e);
+        startRot = currentRotation;
+      });
+
+      window.addEventListener('pointermove', (e) => {
+        if (!dragging || isSpinning) return;
+        const curAngle = getPointerAngle(e);
+        const delta = curAngle - startAngle;
+        movedDeg = Math.abs(delta);
+        currentRotation = startRot + delta;
+        wheelEl.style.transform = `rotate(${currentRotation}deg)`;
+      });
+
+      window.addEventListener('pointerup', () => {
+        if (!dragging) return;
+        dragging = false;
+        if (movedDeg > 18 && !isSpinning) {
+          spinWheel();
+        }
+      });
+    })();
+
     initApp();
+    observeRevealCards();
   </script>
 
   <!-- Firebase Authentication (Google Sign-In) & Cloud Firestore Sync -->
