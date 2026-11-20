@@ -872,6 +872,111 @@
         transition: none !important;
       }
     }
+
+    /* --- v10 Full-System: 7-Day Planner, Grocery List, Food Budget Wallet & Custom Menu --- */
+    .sub-pill-tabs {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 6px;
+      background: #EFE6D8;
+      padding: 5px;
+      border-radius: 20px;
+      margin-bottom: 14px;
+      box-shadow: var(--shadow-inset);
+    }
+
+    .sub-pill-btn {
+      border: none;
+      border-radius: 15px;
+      padding: 9px 6px;
+      font-size: 13px;
+      font-weight: 700;
+      background: transparent;
+      color: var(--text-muted);
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .sub-pill-btn.active {
+      background: #FFFFFF;
+      color: var(--chili-orange);
+      box-shadow: 0 4px 10px rgba(58, 43, 34, 0.08);
+    }
+
+    .plan-day-card {
+      background: #FFFFFF;
+      border-radius: 20px;
+      padding: 13px 15px;
+      margin-bottom: 10px;
+      box-shadow: var(--shadow-soft);
+      border-left: 5px solid var(--turmeric-yellow);
+    }
+
+    .plan-meal-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 6px 0;
+      font-size: 15px;
+      border-bottom: 1px dashed #F3ECE1;
+      gap: 8px;
+    }
+
+    .plan-meal-row:last-child {
+      border-bottom: none;
+    }
+
+    .grocery-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 12px;
+      background: #FFFFFF;
+      border-radius: 16px;
+      margin-bottom: 8px;
+      box-shadow: 0 3px 10px rgba(58, 43, 34, 0.05);
+      cursor: pointer;
+    }
+
+    .grocery-item.checked {
+      opacity: 0.55;
+      text-decoration: line-through;
+      background: #F7F3EC;
+    }
+
+    .budget-bar-wrap {
+      background: #EFE6D8;
+      height: 12px;
+      border-radius: 999px;
+      overflow: hidden;
+      margin: 8px 0;
+    }
+
+    .budget-bar-fill {
+      height: 100%;
+      background: linear-gradient(90deg, #16A34A, #65A30D);
+      transition: width 0.3s ease;
+    }
+
+    .budget-bar-fill.warn {
+      background: linear-gradient(90deg, #F59E0B, #EA580C);
+    }
+
+    .budget-bar-fill.over {
+      background: linear-gradient(90deg, #DC2626, #991B1B);
+    }
+
+    .v10-input {
+      width: 100%;
+      min-height: 46px;
+      border-radius: 16px;
+      border: 1.5px solid #E5D5C3;
+      background: #FFFAF3;
+      padding: 0 14px;
+      font-size: 16px;
+      font-family: 'Noto Sans Thai', sans-serif;
+      color: var(--text-brown);
+    }
   </style>
 </head>
 <body>
@@ -1017,7 +1122,10 @@
         </div>
       </div>
 
-      <input type="text" id="searchInput" class="search-input" placeholder="🔍 ค้นหาชื่อเมนู ประเทศ วัตถุดิบ..." oninput="renderExplorer()" />
+      <div style="display:flex; gap:8px; margin-bottom:12px;">
+        <input type="text" id="searchInput" class="search-input" style="margin-bottom:0; flex:1;" placeholder="🔍 ค้นหาชื่อเมนู ประเทศ วัตถุดิบ..." oninput="renderExplorer()" />
+        <button type="button" onclick="openCustomMenuModal()" style="border:none; background:var(--chili-orange); color:#FFFFFF; border-radius:999px; padding:0 16px; font-size:14px; font-weight:700; white-space:nowrap; box-shadow:var(--shadow-orange); cursor:pointer;">+ เมนูฉัน</button>
+      </div>
 
       <div class="filter-scroll" id="exploreCategories">
         <button class="chip-btn active" id="catBtnAll" onclick="setExploreCat('all', this)">ทั้งหมด (200)</button>
@@ -1028,21 +1136,107 @@
       </div>
 
       <div class="menu-grid" id="exploreGrid"></div>
+
+      <!-- Non-intrusive Ad Slot (AdSense / AdMob Ready) -->
+      <div id="adBannerSlot" style="margin-top: 18px; padding: 12px; border-radius: 18px; background: #F7F1E7; border: 1px dashed #DFCBB2; text-align: center; font-size: 12px; color: var(--text-muted);">
+        พื้นที่โฆษณาสนับสนุนแอป (Ad Slot • ไม่รบกวนการสุ่ม)
+      </div>
     </section>
 
-    <!-- TAB 3: SAVED & HISTORY -->
+    <!-- TAB 3: FULL SYSTEM — SAVED, 7-DAY MEAL PLANNER, GROCERY LIST & FOOD WALLET -->
     <section id="tab-saved" class="view-section">
-      <h2 style="margin: 4px 0 12px; font-size: 22px;">🔖 เมนูโปรด & ประวัติมื้ออาหาร</h2>
-      <div class="soft-card reveal-card">
-        <div style="font-weight: 700; margin-bottom: 8px;">❤️ รายการโปรดของคุณ (<span id="favCount">0</span>)</div>
-        <div id="favList" style="font-size: 16px; color: var(--text-muted);">ยังไม่มีเมนูโปรด กดรูปหัวใจที่เมนูที่ชอบได้เลยครับ</div>
+      <div class="sub-pill-tabs">
+        <button class="sub-pill-btn active" id="subTabSavedBtn" onclick="switchSavedSubTab('saved')">❤️ โปรด & ประวัติ</button>
+        <button class="sub-pill-btn" id="subTabPlanBtn" onclick="switchSavedSubTab('plan')">📅 ตาราง 7 วัน</button>
+        <button class="sub-pill-btn" id="subTabWalletBtn" onclick="switchSavedSubTab('wallet')">💰 คุมงบค่ากิน</button>
       </div>
-      <div class="soft-card reveal-card">
-        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
-          <span style="font-weight: 700;">🕒 กินไปล่าสุด (ใช้ตัดรอบสุ่ม)</span>
-          <button onclick="clearHistory()" style="border:none; background:#FFF1E6; color:var(--chili-orange); border-radius:999px; padding:4px 12px; font-size:13px; font-weight:600; cursor:pointer;">ล้างประวัติ</button>
+
+      <!-- SUB-TAB A: FAVORITES & HISTORY -->
+      <div id="subView-saved">
+        <div class="soft-card reveal-card">
+          <div style="font-weight: 700; margin-bottom: 8px;">❤️ รายการโปรดของคุณ (<span id="favCount">0</span>)</div>
+          <div id="favList" style="font-size: 16px; color: var(--text-muted);">ยังไม่มีเมนูโปรด กดรูปหัวใจที่เมนูที่ชอบได้เลยครับ</div>
         </div>
-        <div id="historyList" style="font-size: 16px; color: var(--text-muted);">ยังไม่มีประวัติการสุ่ม</div>
+        <div class="soft-card reveal-card">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+            <span style="font-weight: 700;">🕒 กินไปล่าสุด (ใช้ตัดรอบสุ่ม)</span>
+            <button onclick="clearHistory()" style="border:none; background:#FFF1E6; color:var(--chili-orange); border-radius:999px; padding:4px 12px; font-size:13px; font-weight:600; cursor:pointer;">ล้างประวัติ</button>
+          </div>
+          <div id="historyList" style="font-size: 16px; color: var(--text-muted);">ยังไม่มีประวัติการสุ่ม</div>
+        </div>
+      </div>
+
+      <!-- SUB-TAB B: 7-DAY MEAL PLANNER & GROCERY SHOPPING LIST -->
+      <div id="subView-plan" style="display:none;">
+        <div class="herb-bento-card" style="margin-bottom: 14px;">
+          <div class="herb-bento-title">
+            <span>📅 จัดตารางมื้อล่วงหน้า 7 วัน</span>
+            <span id="planTotalEstBadge" style="background: var(--turmeric-yellow); color: var(--text-brown); padding: 2px 10px; border-radius: 999px; font-size: 13px;">~0฿</span>
+          </div>
+          <div style="font-size: 13px; opacity: 0.92; margin-bottom: 10px;">
+            สุ่มจัดมื้อกลางวัน + มื้อเย็น ครบ 7 วันอัตโนมัติ พร้อมสรุปรายการจ่ายตลาด
+          </div>
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px;">
+            <button type="button" onclick="generateWeeklyPlan('all')" class="btn-action btn-yellow" style="min-height:42px; font-size:14px;">✨ จัดตาราง 7 วัน</button>
+            <button type="button" onclick="generateWeeklyPlan('budget')" class="btn-action" style="min-height:42px; font-size:14px; background:rgba(255,255,255,0.16); color:#FFFFFF;">💰 โหมดประหยัดงบ</button>
+          </div>
+        </div>
+
+        <div id="weeklyPlanContainer"></div>
+
+        <div class="soft-card" style="margin-top: 14px;">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+            <span style="font-weight:700; font-size:17px;">🛒 รายการจ่ายตลาดอัตโนมัติ</span>
+            <button type="button" onclick="clearCheckedGroceries()" style="border:none; background:#EFE6D8; color:var(--text-brown); border-radius:999px; padding:4px 10px; font-size:12px; font-weight:600; cursor:pointer;">ล้างที่ติ๊กแล้ว</button>
+          </div>
+          <div style="display:flex; gap:6px; margin-bottom:10px;">
+            <input type="text" id="customGroceryInput" class="v10-input" style="min-height:42px; font-size:15px;" placeholder="เพิ่มของที่ต้องซื้อเอง เช่น ไข่ไก่, น้ำปลา..." onkeydown="if(event.key==='Enter') addCustomGrocery()" />
+            <button type="button" onclick="addCustomGrocery()" style="border:none; background:var(--herb-green); color:#FFFFFF; border-radius:14px; padding:0 14px; font-weight:700; cursor:pointer;">เพิ่ม</button>
+          </div>
+          <div id="groceryListContainer" style="font-size:15px; color:var(--text-muted);">กดจัดตาราง 7 วันด้านบนเพื่อสร้างรายการวัตถุดิบอัตโนมัติครับ</div>
+        </div>
+      </div>
+
+      <!-- SUB-TAB C: FOOD BUDGET WALLET (กระเป๋าคุมงบค่ากินรายสัปดาห์/รายเดือน) -->
+      <div id="subView-wallet" style="display:none;">
+        <div class="soft-card">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:6px;">
+            <span style="font-weight:700; font-size:18px;">💰 กระเป๋าคุมงบค่ากิน</span>
+            <button type="button" onclick="promptSetWeeklyBudget()" style="border:1px solid #E5D5C3; background:#FFF7ED; color:var(--chili-orange); border-radius:999px; padding:4px 12px; font-size:13px; font-weight:700; cursor:pointer;">ตั้งงบ/สัปดาห์</button>
+          </div>
+          <div style="display:flex; justify-content:space-between; font-size:15px; margin-top:6px;">
+            <span>สัปดาห์นี้ใช้ไป: <strong id="walletWeekSpent" style="color:var(--chili-orange);">0฿</strong></span>
+            <span>เป้าสัปดาห์ละ: <strong id="walletWeekGoal">1,000฿</strong></span>
+          </div>
+          <div class="budget-bar-wrap">
+            <div id="walletBudgetBar" class="budget-bar-fill" style="width: 0%;"></div>
+          </div>
+          <div style="display:flex; justify-content:space-between; font-size:13px; color:var(--text-muted); margin-top:4px;">
+            <span>คงเหลือสัปดาห์นี้: <strong id="walletWeekRemain" style="color:#16A34A;">1,000฿</strong></span>
+            <span>ยอดรวมเดือนนี้: <strong id="walletMonthSpent">0฿</strong></span>
+          </div>
+        </div>
+
+        <!-- Quick Expense Entry -->
+        <div class="soft-card">
+          <div style="font-weight:700; font-size:16px; margin-bottom:8px;">✍️ บันทึกรายจ่ายค่าอาหารด่วน</div>
+          <div style="display:grid; grid-template-columns: 1.5fr 1fr; gap:8px; margin-bottom:8px;">
+            <input type="text" id="expDishInput" class="v10-input" placeholder="ชื่อเมนู / ค่าอาหาร" />
+            <input type="number" id="expPriceInput" class="v10-input" placeholder="ราคา (บาท)" inputmode="numeric" />
+          </div>
+          <button type="button" onclick="addManualExpense()" class="btn-action btn-orange" style="width:100%; min-height:46px; font-size:16px;">
+            + บันทึกรายจ่ายค่ากิน
+          </button>
+        </div>
+
+        <!-- Expense Log List -->
+        <div class="soft-card">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+            <span style="font-weight:700; font-size:16px;">🧾 ประวัติรายจ่ายค่ากินล่าสุด</span>
+            <button type="button" onclick="clearExpenses()" style="border:none; background:#FEE2E2; color:#DC2626; border-radius:999px; padding:4px 10px; font-size:12px; font-weight:600; cursor:pointer;">ล้างยอด</button>
+          </div>
+          <div id="expenseLogList" style="font-size:15px; color:var(--text-muted);">ยังไม่มีรายการบันทึก กด "✅ กินเมนูนี้" หลังสุ่มเพื่อบันทึกอัตโนมัติได้เลยครับ</div>
+        </div>
       </div>
     </section>
 
@@ -1116,20 +1310,17 @@
         </button>
       </div>
 
-      <!-- VIP 20 THB Card -->
-      <div class="herb-bento-card reveal-card">
-        <div class="herb-bento-title">
-          <span>⭐ TooKMUE VIP Club</span>
-          <span style="background: var(--turmeric-yellow); color: var(--text-brown); padding: 2px 10px; border-radius: 999px; font-size: 14px;">20฿ / เดือน</span>
+      <!-- Support Developer Card (Free All Features + Optional Tip Jar) -->
+      <div class="soft-card reveal-card" style="background: #FFFDF9; border: 1.5px solid #F3E5D5;">
+        <div style="display: flex; align-items: center; justify-content: space-between; gap: 10px;">
+          <div>
+            <div style="font-size: 16px; font-weight: 700; color: var(--text-brown);">ใช้งานฟรีทุกฟีเจอร์</div>
+            <div style="font-size: 13px; color: var(--text-muted);">ไม่มีล็อกฟีเจอร์บังคับ</div>
+          </div>
+          <button type="button" onclick="openQrModal()" style="border: 1.5px solid #E5D5C3; background: #FFF7ED; color: var(--chili-orange); border-radius: 999px; padding: 9px 15px; font-size: 14px; font-weight: 700; cursor: pointer; flex-shrink: 0;">
+            เลี้ยงกาแฟผู้พัฒนา ☕
+          </button>
         </div>
-        <ul style="margin: 8px 0 14px; padding-left: 20px; font-size: 15px; line-height: 1.6;">
-          <li>ปลดล็อก <strong>ฉายาติดดาว ⭐</strong> และกรอบทอง</li>
-          <li>ใช้งานลื่นไหล <strong>ไร้โฆษณา 100%</strong></li>
-          <li>วางแผนมื้ออาหารรายสัปดาห์ & รายการจ่ายตลาด</li>
-        </ul>
-        <button id="vipToggleBtn" class="btn-action btn-yellow" style="width: 100%;" onclick="toggleVipDemo()">
-          ✨ ทดลองเปิดโหมดฉายาติดดาว (Demo)
-        </button>
       </div>
 
       <div style="text-align: center; margin: 14px 0 6px;">
@@ -1195,6 +1386,9 @@
             📍 หาร้านใกล้ฉัน
           </a>
         </div>
+        <button type="button" onclick="openQrModal()" style="width:100%; margin-top:8px; min-height:40px; border-radius:999px; border:1px solid #E5D5C3; background:#FFFFFF; color:var(--text-brown); font-size:13px; font-weight:600; cursor:pointer;">
+          เลี้ยงข้าวผู้พัฒนา
+        </button>
 
         <!-- Share Card to LINE / Social -->
         <button class="btn-action btn-line" onclick="shareSamrubCard()">
@@ -1210,6 +1404,46 @@
           <a id="directLineShareLink" href="#" target="_blank" rel="noopener" class="btn-action btn-line" style="margin-top: 8px; font-size: 15px;">
             💬 ส่งข้อความเข้าแชต LINE ทันที
           </a>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- PromptPay QR Support Modal -->
+    <div id="qrModal" class="result-overlay" onclick="closeQrModal(event)" style="z-index: 150;">
+      <div class="result-sheet" onclick="event.stopPropagation()" style="text-align: center; max-width: 400px;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+          <span style="font-weight: 700; font-size: 16px; color: var(--text-brown);">เลี้ยงกาแฟผู้พัฒนา ☕</span>
+          <button onclick="closeQrModal()" style="border:none; background:#EFE6D8; width:34px; height:34px; border-radius:50%; font-size:17px; cursor:pointer;">✕</button>
+        </div>
+        <img src="promptpay-qr.png" alt="PromptPay QR Code" style="width: 100%; max-width: 290px; border-radius: 18px; box-shadow: 0 8px 20px rgba(58,43,34,0.12); display: inline-block;" />
+        <div style="margin-top: 10px; font-size: 13px; color: var(--text-muted);">
+          พร้อมเพย์เบอร์มือถือ • แล้วแต่ศรัทธา
+        </div>
+      </div>
+    </div>
+
+
+    <!-- Custom User Menu Modal ("เพิ่มเมนูส่วนตัวของฉัน") -->
+    <div id="customMenuModal" class="result-overlay" onclick="closeCustomMenuModal(event)" style="z-index: 150;">
+      <div class="result-sheet" onclick="event.stopPropagation()" style="max-width: 420px;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+          <span style="font-weight: 700; font-size: 18px; color: var(--text-brown);">➕ เพิ่มเมนูส่วนตัวลงวงล้อ</span>
+          <button onclick="closeCustomMenuModal()" style="border:none; background:#EFE6D8; width:34px; height:34px; border-radius:50%; font-size:17px; cursor:pointer;">✕</button>
+        </div>
+        <div style="display:flex; flex-direction:column; gap:10px;">
+          <input type="text" id="customMenuName" class="v10-input" placeholder="ชื่อเมนู เช่น ข้าวมันไก่หน้าปากซอย" />
+          <div style="display:grid; grid-template-columns: 1fr 1fr; gap:8px;">
+            <select id="customMenuMode" class="v10-input">
+              <option value="main">🍚 มื้อหลัก</option>
+              <option value="sweet">🧋 ของหวาน & น้ำ</option>
+            </select>
+            <input type="number" id="customMenuBudget" class="v10-input" placeholder="ราคาโดยประมาณ (฿)" value="50" inputmode="numeric" />
+          </div>
+          <input type="text" id="customMenuIngredients" class="v10-input" placeholder="วัตถุดิบหลัก (คั่นด้วยเว้นวรรค) เช่น ไก่ ข้าว" />
+          <button type="button" onclick="saveCustomMenu()" class="btn-action btn-orange" style="width:100%; margin-top:4px;">
+            ✅ บันทึกลงคลัง & วงล้อสุ่ม
+          </button>
         </div>
       </div>
     </div>
@@ -1231,7 +1465,7 @@
       </button>
       <button class="nav-item" id="nav-saved" onclick="switchTab('saved')">
         <span style="font-size: 20px;">🔖</span>
-        <span>บันทึก</span>
+        <span>ตาราง/งบ</span>
       </button>
       <button class="nav-item" id="nav-quests" onclick="switchTab('quests')">
         <span style="font-size: 20px;">🏆</span>
@@ -1292,10 +1526,31 @@
       soundOn: true,
       favorites: [],
       history: [],
-      stamps: []
+      stamps: [],
+      weeklyBudget: 1000,
+      expenses: [],
+      weeklyPlan: [],
+      groceryChecked: [],
+      customGroceries: [],
+      customMenus: []
     };
     if (state.soundOn === undefined) state.soundOn = true;
     if (!Array.isArray(state.stamps)) state.stamps = [];
+    if (!state.weeklyBudget) state.weeklyBudget = 1000;
+    if (!Array.isArray(state.expenses)) state.expenses = [];
+    if (!Array.isArray(state.weeklyPlan)) state.weeklyPlan = [];
+    if (!Array.isArray(state.groceryChecked)) state.groceryChecked = [];
+    if (!Array.isArray(state.customGroceries)) state.customGroceries = [];
+    if (!Array.isArray(state.customMenus)) state.customMenus = [];
+
+    function mergeCustomMenusIntoCatalog() {
+      if (!Array.isArray(state.customMenus)) return;
+      state.customMenus.forEach(cm => {
+        if (!MENUS.some(m => m.id === cm.id)) {
+          MENUS.unshift(cm);
+        }
+      });
+    }
 
     let currentMode = 'main';
     let quickFilter = 'all';
@@ -1429,7 +1684,7 @@
       if (navBtn) navBtn.classList.add('active');
 
       if (tabName === 'explore') renderExplorer();
-      if (tabName === 'saved') renderSaved();
+      if (tabName === 'saved') { renderSaved(); renderWeeklyPlan(); renderFoodWallet(); }
       if (tabName === 'quests') updateProfileUI();
     }
 
@@ -1543,6 +1798,9 @@
           </div>
           <button onclick="claimFridgeBonus('${creativeTitle.replace(/'/g, '')}')" class="btn-action btn-orange" style="width:100%; min-height:46px; font-size:15px;">
             ✅ ทำเมนูนี้เคลียร์ตู้เย็น! (+35 XP)
+          </button>
+          <button type="button" onclick="openQrModal()" style="width:100%; margin-top:8px; min-height:40px; border-radius:999px; border:1px solid #E5D5C3; background:#FFFFFF; color:var(--text-brown); font-size:13px; font-weight:600; cursor:pointer;">
+            เลี้ยงข้าวผู้พัฒนา
           </button>
         </div>
       `;
@@ -1775,10 +2033,18 @@
         state.history.unshift(selectedMenu.id);
         if (state.history.length > 15) state.history.pop();
       }
+      state.expenses.unshift({
+        id: 'EXP-' + Date.now(),
+        name: selectedMenu.name,
+        amount: Number(selectedMenu.budget) || 50,
+        date: new Date().toISOString()
+      });
+      if (state.expenses.length > 120) state.expenses.pop();
+
       addXp(25);
       saveState();
       closeResultModal();
-      showToast(`บันทึก "${selectedMenu.name}" แล้ว (+25 XP)`);
+      showToast(`บันทึก "${selectedMenu.name}" (~${selectedMenu.budget}฿) +25 XP`);
       prepareWheelSlices();
     }
 
@@ -2085,8 +2351,7 @@
       document.getElementById('streakText').textContent = `${state.streak} วันต่อเนื่อง`;
       document.getElementById('stampCountText').textContent = `${state.stamps.length} / 8 ดวง`;
 
-      const vipBtn = document.getElementById('vipToggleBtn');
-      vipBtn.textContent = state.isVip ? '✅ เปิดใช้งานฉายาติดดาวอยู่ (แตะเพื่อสลับ)' : '✨ ทดลองเปิดโหมดฉายาติดดาว (Demo)';
+
 
       document.getElementById('avatarGrid').innerHTML = AVATARS.map(a => `
         <div class="avatar-option ${state.avatar === a.icon ? 'selected' : ''}" onclick="selectAvatar('${a.icon}')">
@@ -2112,6 +2377,7 @@
     }
 
     function initApp() {
+      mergeCustomMenusIntoCatalog();
       const totalEl = document.getElementById('totalMenuTitleCount');
       if (totalEl) totalEl.textContent = MENUS.length;
       const cAll = document.getElementById('catBtnAll');
@@ -2250,6 +2516,326 @@
       });
     })();
 
+
+    function openQrModal() {
+      const m = document.getElementById('qrModal');
+      if (m) m.classList.add('open');
+    }
+    function closeQrModal(e) {
+      if (!e || e.target.id === 'qrModal') {
+        const m = document.getElementById('qrModal');
+        if (m) m.classList.remove('open');
+      }
+    }
+
+
+    // --- v10 FULL SYSTEM: SUB-TABS, 7-DAY PLANNER, GROCERY LIST, FOOD WALLET & CUSTOM MENUS ---
+    function switchSavedSubTab(sub) {
+      ['saved', 'plan', 'wallet'].forEach(k => {
+        const viewEl = document.getElementById('subView-' + k);
+        const btnEl = document.getElementById('subTab' + k.charAt(0).toUpperCase() + k.slice(1) + 'Btn');
+        if (viewEl) viewEl.style.display = (k === sub) ? 'block' : 'none';
+        if (btnEl) btnEl.classList.toggle('active', k === sub);
+      });
+      if (sub === 'saved') renderSaved();
+      if (sub === 'plan') renderWeeklyPlan();
+      if (sub === 'wallet') renderFoodWallet();
+    }
+
+    const DAY_NAMES = ['วันจันทร์', 'วันอังคาร', 'วันพุธ', 'วันพฤหัสบดี', 'วันศุกร์', 'วันเสาร์', 'วันอาทิตย์'];
+
+    function generateWeeklyPlan(style) {
+      let pool = MENUS.filter(m => m.mode === 'main');
+      if (style === 'budget') {
+        const cheap = pool.filter(m => m.budget <= 65);
+        if (cheap.length >= 14) pool = cheap;
+      }
+      const shuffled = [...pool].sort(() => 0.5 - Math.random());
+      const plan = [];
+      for (let d = 0; d < 7; d++) {
+        const lunch = shuffled[(d * 2) % shuffled.length];
+        const dinner = shuffled[(d * 2 + 1) % shuffled.length];
+        plan.push({
+          day: DAY_NAMES[d],
+          lunchId: lunch.id,
+          dinnerId: dinner.id
+        });
+      }
+      state.weeklyPlan = plan;
+      state.groceryChecked = [];
+      saveState();
+      playWinChime();
+      renderWeeklyPlan();
+      showToast(style === 'budget' ? 'จัดตาราง 7 วันโหมดประหยัดงบแล้ว! 💰' : 'จัดตารางมื้ออาหาร 7 วันเรียบร้อย! 📅');
+    }
+
+    function renderWeeklyPlan() {
+      const box = document.getElementById('weeklyPlanContainer');
+      const badge = document.getElementById('planTotalEstBadge');
+      if (!box) return;
+
+      if (!state.weeklyPlan || state.weeklyPlan.length === 0) {
+        box.innerHTML = '<div class="soft-card" style="text-align:center; color:var(--text-muted); font-size:15px;">ยังไม่มีตารางมื้ออาหาร กดปุ่ม <strong>"✨ จัดตาราง 7 วัน"</strong> ด้านบนได้เลยครับ</div>';
+        if (badge) badge.textContent = '~0฿';
+        renderGroceryList([]);
+        return;
+      }
+
+      let totalWeek = 0;
+      const allIngs = [];
+
+      box.innerHTML = state.weeklyPlan.map((row, idx) => {
+        const lunch = MENUS.find(m => m.id === row.lunchId) || MENUS[0];
+        const dinner = MENUS.find(m => m.id === row.dinnerId) || MENUS[1];
+        const daySum = (lunch.budget || 0) + (dinner.budget || 0);
+        totalWeek += daySum;
+        (lunch.ingredients || []).forEach(i => allIngs.push(i));
+        (dinner.ingredients || []).forEach(i => allIngs.push(i));
+
+        return `
+          <div class="plan-day-card">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:6px;">
+              <strong style="color:var(--chili-orange); font-size:16px;">${row.day}</strong>
+              <span style="font-size:13px; font-weight:700; color:var(--text-muted);">รวม ~${daySum}฿</span>
+            </div>
+            <div class="plan-meal-row">
+              <span onclick="openMenuById('${lunch.id}')" style="cursor:pointer; flex:1;">☀️ กลางวัน: <strong>${lunch.name}</strong> (${lunch.budget}฿)</span>
+              <button type="button" onclick="swapPlanMeal(${idx}, 'lunch')" style="border:none; background:#FFF1E6; color:var(--chili-orange); border-radius:999px; padding:3px 10px; font-size:12px; font-weight:700; cursor:pointer;">สลับ</button>
+            </div>
+            <div class="plan-meal-row">
+              <span onclick="openMenuById('${dinner.id}')" style="cursor:pointer; flex:1;">🌙 เย็น: <strong>${dinner.name}</strong> (${dinner.budget}฿)</span>
+              <button type="button" onclick="swapPlanMeal(${idx}, 'dinner')" style="border:none; background:#FFF1E6; color:var(--chili-orange); border-radius:999px; padding:3px 10px; font-size:12px; font-weight:700; cursor:pointer;">สลับ</button>
+            </div>
+          </div>
+        `;
+      }).join('');
+
+      if (badge) badge.textContent = `รวม ~${totalWeek.toLocaleString()}฿`;
+      renderGroceryList(allIngs);
+    }
+
+    function swapPlanMeal(dayIdx, slot) {
+      const mains = MENUS.filter(m => m.mode === 'main');
+      const pick = mains[Math.floor(Math.random() * mains.length)];
+      if (!pick || !state.weeklyPlan[dayIdx]) return;
+      if (slot === 'lunch') state.weeklyPlan[dayIdx].lunchId = pick.id;
+      else state.weeklyPlan[dayIdx].dinnerId = pick.id;
+      playTickSound();
+      saveState();
+      renderWeeklyPlan();
+    }
+
+    function renderGroceryList(planIngredients) {
+      const gBox = document.getElementById('groceryListContainer');
+      if (!gBox) return;
+
+      const counts = {};
+      (planIngredients || []).forEach(ing => {
+        if (!ing || ing === 'อื่นๆ' || ing === 'มังสวิรัติ') return;
+        counts[ing] = (counts[ing] || 0) + 1;
+      });
+      (state.customGroceries || []).forEach(ing => {
+        counts[ing] = (counts[ing] || 0) + 1;
+      });
+
+      const items = Object.entries(counts).sort((a, b) => b[1] - a[1]);
+      if (items.length === 0) {
+        gBox.innerHTML = 'ยังไม่มีรายการวัตถุดิบ กดจัดตาราง 7 วัน หรือพิมพ์เพิ่มด้านบนได้เลยครับ';
+        return;
+      }
+
+      gBox.innerHTML = items.map(([name, cnt]) => {
+        const isDone = state.groceryChecked.includes(name);
+        return `
+          <div class="grocery-item ${isDone ? 'checked' : ''}" onclick="toggleGroceryItem('${name.replace(/'/g, '')}')">
+            <span style="font-weight:600;">${isDone ? '☑️' : '⬜'} ${name}</span>
+            <span style="font-size:12px; color:var(--text-muted); font-weight:600;">ใช้ ${cnt} มื้อ</span>
+          </div>
+        `;
+      }).join('');
+    }
+
+    function toggleGroceryItem(name) {
+      const idx = state.groceryChecked.indexOf(name);
+      if (idx >= 0) state.groceryChecked.splice(idx, 1);
+      else state.groceryChecked.push(name);
+      saveState();
+      renderWeeklyPlan();
+    }
+
+    function addCustomGrocery() {
+      const inp = document.getElementById('customGroceryInput');
+      const val = inp.value.trim();
+      if (!val) return;
+      if (!state.customGroceries.includes(val)) {
+        state.customGroceries.push(val);
+      }
+      inp.value = '';
+      saveState();
+      renderWeeklyPlan();
+      showToast(`เพิ่ม "${val}" ในรายการจ่ายตลาดแล้ว`);
+    }
+
+    function clearCheckedGroceries() {
+      state.customGroceries = state.customGroceries.filter(g => !state.groceryChecked.includes(g));
+      state.groceryChecked = [];
+      saveState();
+      renderWeeklyPlan();
+    }
+
+    // --- FOOD BUDGET WALLET ---
+    function promptSetWeeklyBudget() {
+      const ans = prompt('ตั้งเป้าหมายงบค่าอาหารต่อสัปดาห์ (บาท):', state.weeklyBudget || 1000);
+      if (ans === null) return;
+      const num = parseInt(ans, 10);
+      if (!isNaN(num) && num >= 100) {
+        state.weeklyBudget = num;
+        saveState();
+        renderFoodWallet();
+        showToast(`ตั้งงบค่ากินสัปดาห์ละ ${num.toLocaleString()}฿ แล้ว`);
+      }
+    }
+
+    function addManualExpense() {
+      const nameEl = document.getElementById('expDishInput');
+      const priceEl = document.getElementById('expPriceInput');
+      const name = nameEl.value.trim() || 'ค่าอาหารมื้อพิเศษ';
+      const amount = parseFloat(priceEl.value);
+      if (isNaN(amount) || amount <= 0) {
+        showToast('กรุณากรอกราคาอาหารเป็นตัวเลขครับ');
+        return;
+      }
+      state.expenses.unshift({
+        id: 'EXP-' + Date.now(),
+        name,
+        amount,
+        date: new Date().toISOString()
+      });
+      nameEl.value = '';
+      priceEl.value = '';
+      addXp(10);
+      saveState();
+      renderFoodWallet();
+      showToast(`บันทึกรายจ่าย "${name}" ${amount}฿ แล้ว (+10 XP)`);
+    }
+
+    function clearExpenses() {
+      if (!confirm('ต้องการล้างประวัติรายจ่ายค่าอาหารทั้งหมดใช่ไหมครับ?')) return;
+      state.expenses = [];
+      saveState();
+      renderFoodWallet();
+    }
+
+    function renderFoodWallet() {
+      const now = new Date();
+      const startOfWeek = new Date(now);
+      const day = startOfWeek.getDay();
+      const diff = startOfWeek.getDate() - day + (day === 0 ? -6 : 1);
+      startOfWeek.setDate(diff);
+      startOfWeek.setHours(0, 0, 0, 0);
+
+      const curMonth = now.getMonth();
+      const curYear = now.getFullYear();
+
+      let weekSpent = 0;
+      let monthSpent = 0;
+
+      (state.expenses || []).forEach(e => {
+        const d = new Date(e.date);
+        const amt = Number(e.amount) || 0;
+        if (d >= startOfWeek) weekSpent += amt;
+        if (d.getMonth() === curMonth && d.getFullYear() === curYear) monthSpent += amt;
+      });
+
+      const goal = state.weeklyBudget || 1000;
+      const remain = goal - weekSpent;
+      const pct = Math.min(100, Math.round((weekSpent / goal) * 100));
+
+      document.getElementById('walletWeekSpent').textContent = `${weekSpent.toLocaleString()}฿`;
+      document.getElementById('walletWeekGoal').textContent = `${goal.toLocaleString()}฿`;
+      document.getElementById('walletMonthSpent').textContent = `${monthSpent.toLocaleString()}฿`;
+
+      const remEl = document.getElementById('walletWeekRemain');
+      remEl.textContent = remain >= 0 ? `${remain.toLocaleString()}฿` : `เกินงบ ${Math.abs(remain).toLocaleString()}฿`;
+      remEl.style.color = remain >= 0 ? '#16A34A' : '#DC2626';
+
+      const bar = document.getElementById('walletBudgetBar');
+      bar.style.width = `${pct}%`;
+      bar.className = 'budget-bar-fill' + (pct >= 100 ? ' over' : (pct >= 80 ? ' warn' : ''));
+
+      const logEl = document.getElementById('expenseLogList');
+      if (!state.expenses || state.expenses.length === 0) {
+        logEl.innerHTML = 'ยังไม่มีรายการบันทึก กด "✅ กินเมนูนี้" หลังสุ่มหรือกรอกด้านบนได้เลยครับ';
+      } else {
+        logEl.innerHTML = state.expenses.slice(0, 25).map(e => {
+          const d = new Date(e.date);
+          const dateLabel = `${d.getDate()}/${d.getMonth() + 1} ${String(d.getHours()).padStart(2, '0')}:${String(d.getMinutes()).padStart(2, '0')}`;
+          return `
+            <div style="display:flex; justify-content:space-between; align-items:center; padding:8px 0; border-bottom:1px solid #F3ECE1;">
+              <div>
+                <div style="font-weight:600; color:var(--text-brown);">${e.name}</div>
+                <div style="font-size:12px; color:var(--text-muted);">${dateLabel}</div>
+              </div>
+              <strong style="color:var(--chili-orange);">-${Number(e.amount).toLocaleString()}฿</strong>
+            </div>
+          `;
+        }).join('');
+      }
+    }
+
+    // --- CUSTOM USER MENU ---
+    function openCustomMenuModal() {
+      document.getElementById('customMenuModal').classList.add('open');
+    }
+    function closeCustomMenuModal(e) {
+      if (!e || e.target.id === 'customMenuModal') {
+        document.getElementById('customMenuModal').classList.remove('open');
+      }
+    }
+    function saveCustomMenu() {
+      const name = document.getElementById('customMenuName').value.trim();
+      const mode = document.getElementById('customMenuMode').value;
+      const budget = parseInt(document.getElementById('customMenuBudget').value, 10) || 50;
+      const rawIng = document.getElementById('customMenuIngredients').value.trim();
+
+      if (!name) {
+        showToast('กรุณาพิมพ์ชื่อเมนูส่วนตัวก่อนครับ');
+        return;
+      }
+
+      const ings = rawIng ? rawIng.split(/[-,\s/]+/).filter(Boolean) : [name];
+      const newMenu = {
+        id: 'USR-' + Date.now(),
+        name,
+        mode,
+        category: mode === 'sweet' ? 'ของหวาน' : 'อาหารไทย 4 ภาค',
+        region: 'เมนูส่วนตัว',
+        protein: 'อื่นๆ',
+        budget,
+        budget_tier: budget <= 50 ? 'ประหยัด' : (budget <= 90 ? 'ปานกลาง' : 'พรีเมียม'),
+        prep_time: 15,
+        is_spicy: false,
+        tags: ['เมนูส่วนตัว'],
+        pair_id: 'TH-C06',
+        dessert_pair_id: 'BEV-001',
+        image_url: 'icon-512.png',
+        wiki_query: name,
+        recipe_hint: 'เมนูส่วนตัวที่เพิ่มโดยคุณเอง',
+        ingredients: ings
+      };
+
+      state.customMenus.unshift(newMenu);
+      MENUS.unshift(newMenu);
+      addXp(20);
+      saveState();
+
+      document.getElementById('customMenuName').value = '';
+      document.getElementById('customMenuIngredients').value = '';
+      closeCustomMenuModal();
+      initApp();
+      showToast(`เพิ่มเมนู "${name}" ลงคลังและวงล้อแล้ว! (+20 XP)`);
+    }
+
     initApp();
     observeRevealCards();
   </script>
@@ -2334,6 +2920,15 @@
           state.favorites = Array.from(new Set([...(cloud.favorites || []), ...(state.favorites || [])]));
           state.history = Array.from(new Set([...(cloud.history || []), ...(state.history || [])])).slice(0, 15);
           state.stamps = Array.from(new Set([...(cloud.stamps || []), ...(state.stamps || [])]));
+          if (cloud.weeklyBudget) state.weeklyBudget = cloud.weeklyBudget;
+          if (Array.isArray(cloud.expenses) && cloud.expenses.length > state.expenses.length) state.expenses = cloud.expenses;
+          if (Array.isArray(cloud.weeklyPlan) && cloud.weeklyPlan.length > 0 && state.weeklyPlan.length === 0) state.weeklyPlan = cloud.weeklyPlan;
+          if (Array.isArray(cloud.customMenus) && cloud.customMenus.length > 0) {
+            cloud.customMenus.forEach(cm => {
+              if (!state.customMenus.some(x => x.id === cm.id)) state.customMenus.push(cm);
+            });
+            mergeCustomMenusIntoCatalog();
+          }
 
           localStorage.setItem('tookmue_state', JSON.stringify(state));
           updateProfileUI();
@@ -2353,6 +2948,10 @@
           favorites: state.favorites,
           history: state.history,
           stamps: state.stamps,
+          weeklyBudget: state.weeklyBudget,
+          expenses: state.expenses.slice(0, 60),
+          weeklyPlan: state.weeklyPlan,
+          customMenus: state.customMenus,
           updatedAt: serverTimestamp()
         }, { merge: true });
 
@@ -2378,6 +2977,10 @@
           favorites: state.favorites,
           history: state.history,
           stamps: state.stamps,
+          weeklyBudget: state.weeklyBudget,
+          expenses: state.expenses.slice(0, 60),
+          weeklyPlan: state.weeklyPlan,
+          customMenus: state.customMenus,
           updatedAt: serverTimestamp()
         }, { merge: true });
       } catch (err) {

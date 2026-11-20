@@ -1,10 +1,11 @@
-const CACHE_NAME = 'tookmue-v9';
+const CACHE_NAME = 'tookmue-v10';
 const APP_SHELL = [
   './',
   './index.html',
   './menus.json',
   './manifest.json',
   './privacy.html',
+  './promptpay-qr.png',
   './icon-192.png',
   './icon-512.png',
   './icon.svg'
@@ -29,12 +30,10 @@ self.addEventListener('fetch', (event) => {
   if (event.request.method !== 'GET') return;
 
   const url = new URL(event.request.url);
-  // Let external requests (Firebase Auth, Firestore, Google Fonts, Wikimedia) go directly to network
   if (url.origin !== self.location.origin) {
     return;
   }
 
-  // Navigation requests (opening app icon / standalone / TWA): Network-first with guaranteed cached shell fallback
   if (event.request.mode === 'navigate') {
     event.respondWith(
       fetch(event.request)
@@ -51,7 +50,6 @@ self.addEventListener('fetch', (event) => {
     return;
   }
 
-  // Same-origin static assets: Stale-while-revalidate
   event.respondWith(
     caches.match(event.request).then((cached) => {
       const fetchPromise = fetch(event.request)
