@@ -1351,7 +1351,10 @@
                 <div style="font-size: 12px; color: #16A34A; font-weight: 600;">🟢 ซิงก์ข้อมูลคลาวด์อัตโนมัติ</div>
               </div>
             </div>
-            <button onclick="logoutGoogle()" style="border: none; background: #FEE2E2; color: #DC2626; border-radius: 999px; padding: 6px 12px; font-size: 13px; font-weight: 600; cursor: pointer; flex-shrink: 0;">ออก</button>
+            <div style="display:flex; gap:6px; flex-shrink:0;">
+              <a id="adminDashBtn" href="admin.html" style="display:none; text-decoration:none; background:#1E3A8A; color:#FFFFFF; border-radius:999px; padding:6px 12px; font-size:13px; font-weight:700;">👑 แอดมิน</a>
+              <button onclick="logoutGoogle()" style="border: none; background: #FEE2E2; color: #DC2626; border-radius: 999px; padding: 6px 12px; font-size: 13px; font-weight: 600; cursor: pointer;">ออก</button>
+            </div>
           </div>
         </div>
       </div>
@@ -1426,7 +1429,31 @@
         <div class="supporter-avatar-grid" id="supporterAvatarGrid"></div>
       </div>
 
-            <!-- Support Developer Card (Free All Features + Optional Tip Jar) -->
+      <!-- v12 User Feedback & Feature Request Card (With Auto Profanity & Spam Filter) -->
+      <div class="soft-card reveal-card" style="border: 1.5px solid #E5D5C3;">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+          <span style="font-weight:700; font-size:17px; color:var(--text-brown);">💡 เสนอไอเดีย / ขอเมนูเพิ่ม</span>
+          <span style="font-size:12px; font-weight:700; color:var(--chili-orange); background:#FFF1E6; padding:2px 10px; border-radius:999px;">+15 XP</span>
+        </div>
+        <div style="font-size:13px; color:var(--text-muted); margin-bottom:10px;">
+          อยากให้เพิ่มเมนูไหนหรือมีฟีเจอร์อะไรในใจ พิมพ์บอกผู้พัฒนาได้เลยครับ
+        </div>
+        <div style="display:flex; flex-wrap:wrap; gap:6px; margin-bottom:10px;" id="fbCatGroup">
+          <button type="button" class="mood-pill active" onclick="selectFbCat('ขอเมนูเพิ่ม', this)">🍲 ขอเมนูเพิ่ม</button>
+          <button type="button" class="mood-pill" onclick="selectFbCat('เสนอฟีเจอร์ใหม่', this)">💡 เสนอฟีเจอร์</button>
+          <button type="button" class="mood-pill" onclick="selectFbCat('แจ้งปัญหา/รูปไม่ตรง', this)">🐞 แจ้งปัญหา</button>
+          <button type="button" class="mood-pill" onclick="selectFbCat('ชมเชย/ทั่วไป', this)">💬 ทั่วไป</button>
+        </div>
+        <textarea id="fbTextInput" maxlength="180" rows="2" placeholder="พิมพ์ข้อความสั้นๆ สุภาพ (ไม่เกิน 180 ตัวอักษร)..." style="width:100%; border-radius:16px; border:1.5px solid #E5D5C3; background:#FFFAF3; padding:10px 14px; font-size:15px; font-family:'Noto Sans Thai', sans-serif; color:var(--text-brown); resize:none;"></textarea>
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-top:8px; gap:8px;">
+          <span id="fbQuotaText" style="font-size:12px; color:var(--text-muted);">ส่งได้สูงสุด 3 ครั้ง/วัน</span>
+          <button type="button" onclick="submitUserFeedback()" class="btn-action btn-orange" style="min-height:42px; padding:0 20px; font-size:14px;">
+            ส่งข้อเสนอแนะ
+          </button>
+        </div>
+      </div>
+
+                  <!-- Support Developer Card (Free All Features + Optional Tip Jar) -->
       <div class="soft-card reveal-card" style="background: #FFFDF9; border: 1.5px solid #F3E5D5;">
         <div style="display: flex; align-items: center; justify-content: space-between; gap: 10px;">
           <div>
@@ -3068,6 +3095,77 @@
       }
     }
 
+
+    // --- v12 User Feedback & Auto Profanity / Spam Filter ---
+    let selectedFbCategory = 'ขอเมนูเพิ่ม';
+    const PROFANITY_LIST = [
+      'ควย', 'เหี้ย', 'สัตว์', 'สัส', 'เย็ด', 'หี', 'แตด', 'มึง', 'กู', 'ดอกทอง',
+      'ระยำ', 'จัญไร', 'สถุล', 'ส้นตีน', 'ตอแหล', 'อีดอก', 'ไอ้เวร', 'ชิบหาย',
+      'fuck', 'shit', 'bitch', 'asshole', 'bastard', 'dick', 'pussy', 'slut'
+    ];
+
+    function selectFbCat(cat, btn) {
+      selectedFbCategory = cat;
+      document.querySelectorAll('#fbCatGroup .mood-pill').forEach(b => b.classList.remove('active'));
+      if (btn) btn.classList.add('active');
+    }
+
+    function checkProfanityOrSpam(text) {
+      const lower = text.toLowerCase();
+      const hasUrl = /(https?:\/\/|www\.|\.com|\.net|\.bet|line\.me\/ti)/i.test(lower);
+      if (hasUrl) return { blocked: true, reason: 'ไม่อนุญาตให้ใส่ลิงก์ในกล่องข้อเสนอแนะครับ' };
+      const hasBadWord = PROFANITY_LIST.some(w => lower.includes(w));
+      if (hasBadWord) return { blocked: true, reason: 'กรุณาใช้ถ้อยคำสุภาพในการส่งข้อเสนอแนะนะครับ 🙏' };
+      return { blocked: false };
+    }
+
+    async function submitUserFeedback() {
+      const inp = document.getElementById('fbTextInput');
+      const raw = (inp.value || '').trim();
+      if (raw.length < 3) {
+        showToast('กรุณาพิมพ์ข้อความอย่างน้อย 3 ตัวอักษรครับ');
+        return;
+      }
+
+      const today = new Date().toISOString().slice(0, 10);
+      const fbLog = JSON.parse(localStorage.getItem('tookmue_fb_log') || '{"date":"","count":0,"rewarded":false}');
+      if (fbLog.date !== today) {
+        fbLog.date = today;
+        fbLog.count = 0;
+      }
+      if (fbLog.count >= 3) {
+        showToast('วันนี้คุณส่งข้อเสนอแนะครบ 3 ครั้งแล้ว ขอบคุณมากครับ 🙏');
+        return;
+      }
+
+      const check = checkProfanityOrSpam(raw);
+      if (check.blocked) {
+        showToast(check.reason);
+        return;
+      }
+
+      fbLog.count += 1;
+      localStorage.setItem('tookmue_fb_log', JSON.stringify(fbLog));
+      inp.value = '';
+
+      if (typeof window.saveFeedbackToCloud === 'function') {
+        await window.saveFeedbackToCloud({
+          category: selectedFbCategory,
+          text: raw,
+          flagged: false
+        });
+      }
+
+      if (!fbLog.rewarded) {
+        fbLog.rewarded = true;
+        localStorage.setItem('tookmue_fb_log', JSON.stringify(fbLog));
+        addXp(15);
+        showToast('ขอบคุณสำหรับไอเดียครับ! รับโบนัส +15 XP 🎉');
+      } else {
+        showToast('ส่งข้อเสนอแนะถึงผู้พัฒนาเรียบร้อยแล้วครับ 🙏');
+      }
+    }
+
     initApp();
     observeRevealCards();
   </script>
@@ -3089,6 +3187,8 @@
       doc,
       getDoc,
       setDoc,
+      addDoc,
+      collection,
       serverTimestamp
     } from "https://www.gstatic.com/firebasejs/13.4.0/firebase-firestore.js";
 
@@ -3125,6 +3225,10 @@
         document.getElementById('userGoogleName').textContent = user.displayName || user.email || 'สมาชิก TooKMUE';
         const photoEl = document.getElementById('userGooglePhoto');
         photoEl.src = user.photoURL || 'icon.svg';
+        const adminBtn = document.getElementById('adminDashBtn');
+        if (adminBtn) {
+          adminBtn.style.display = (user.email && user.email.toLowerCase() === 'farid.hajisalah@gmail.com') ? 'inline-block' : 'none';
+        }
 
         await loadAndMergeCloudState(user);
       } else {
@@ -3177,6 +3281,8 @@
           lastCheckIn: state.lastCheckIn || '',
           avatar: state.avatar,
           isVip: Boolean(state.isVip),
+          isSupporter: Boolean(state.isSupporter),
+          totalScore: computeUserFeatureScore(),
           favorites: state.favorites,
           history: state.history,
           stamps: state.stamps,
@@ -3196,6 +3302,27 @@
       }
     }
 
+
+    window.saveFeedbackToCloud = async function (payload) {
+      try {
+        await addDoc(collection(db, "feedbacks"), {
+          category: payload.category,
+          text: payload.text,
+          flagged: Boolean(payload.flagged),
+          status: 'new',
+          uid: currentUser ? currentUser.uid : 'guest',
+          userName: currentUser ? (currentUser.displayName || currentUser.email || 'สมาชิก') : 'ผู้เยี่ยมชม (Guest)',
+          userEmail: currentUser ? (currentUser.email || '') : '',
+          appVersion: 'v12',
+          createdAt: serverTimestamp()
+        });
+        return true;
+      } catch (err) {
+        console.warn("Feedback cloud write error:", err?.code);
+        return false;
+      }
+    };
+
     window.syncStateToCloud = async function () {
       if (!currentUser || isMergingCloud) return;
       try {
@@ -3206,6 +3333,8 @@
           lastCheckIn: state.lastCheckIn || '',
           avatar: state.avatar,
           isVip: Boolean(state.isVip),
+          isSupporter: Boolean(state.isSupporter),
+          totalScore: computeUserFeatureScore(),
           favorites: state.favorites,
           history: state.history,
           stamps: state.stamps,

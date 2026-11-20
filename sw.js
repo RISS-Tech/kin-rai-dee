@@ -1,7 +1,8 @@
-const CACHE_NAME = 'tookmue-v11';
+const CACHE_NAME = 'tookmue-v12';
 const APP_SHELL = [
   './',
   './index.html',
+  './admin.html',
   './menus.json',
   './manifest.json',
   './privacy.html',
@@ -40,12 +41,12 @@ self.addEventListener('fetch', (event) => {
         .then((response) => {
           if (response && response.ok) {
             const copy = response.clone();
-            caches.open(CACHE_NAME).then((cache) => cache.put('./index.html', copy));
+            caches.open(CACHE_NAME).then((cache) => cache.put(event.request, copy));
             return response;
           }
-          return caches.match('./index.html') || caches.match('./');
+          return caches.match(event.request) || caches.match('./index.html') || caches.match('./');
         })
-        .catch(() => caches.match('./index.html').then((r) => r || caches.match('./')))
+        .catch(() => caches.match(event.request).then((r) => r || caches.match('./index.html') || caches.match('./')))
     );
     return;
   }

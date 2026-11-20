@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>แดชบอร์ดผู้พัฒนา — ทุกมื้อ (TooKMUE Admin)</title>
+  <link rel="icon" type="image/png" href="icon-192.png" />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@400;600;700&family=Prompt:wght@600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg-cream: #FFFAF3;
+      --chili-orange: #C2410C;
+      --turmeric-yellow: #FFC53D;
+      --herb-green: #24442F;
+      --text-brown: #3A2B22;
+      --text-muted: #786458;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      padding: 20px 14px 60px;
+      background: #F3ECE1;
+      color: var(--text-brown);
+      font-family: 'Noto Sans Thai', sans-serif;
+      display: flex;
+      justify-content: center;
+    }
+    h1, h2, h3, button { font-family: 'Prompt', 'Noto Sans Thai', sans-serif; }
+    .wrap {
+      width: 100%;
+      max-width: 860px;
+    }
+    .card {
+      background: #FFFFFF;
+      border-radius: 22px;
+      padding: 18px;
+      margin-bottom: 16px;
+      box-shadow: 0 10px 25px rgba(58, 43, 34, 0.08);
+    }
+    .kpi-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(175px, 1fr));
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+    .kpi-box {
+      background: #FFFFFF;
+      border-radius: 20px;
+      padding: 16px;
+      box-shadow: 0 8px 20px rgba(58, 43, 34, 0.06);
+      border-top: 4px solid var(--chili-orange);
+    }
+    .kpi-num {
+      font-size: 26px;
+      font-weight: 700;
+      color: var(--chili-orange);
+      font-family: 'Prompt', sans-serif;
+    }
+    .btn {
+      border: none;
+      border-radius: 999px;
+      padding: 9px 16px;
+      font-size: 14px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+    .btn-orange { background: var(--chili-orange); color: #FFF; }
+    .btn-blue { background: #0284C7; color: #FFF; }
+    .btn-soft { background: #EFE6D8; color: var(--text-brown); }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 14px;
+    }
+    th {
+      background: #FFF1E6;
+      color: var(--chili-orange);
+      text-align: left;
+      padding: 10px 8px;
+      border-bottom: 1.5px solid #F3E5D5;
+    }
+    td {
+      padding: 10px 8px;
+      border-bottom: 1px dashed #EFE6D8;
+      vertical-align: middle;
+    }
+    .pill {
+      display: inline-block;
+      padding: 2px 9px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 700;
+    }
+    .pill-pay { background: #DBEAFE; color: #1D4ED8; }
+    .pill-cat { background: #FFF1E6; color: var(--chili-orange); }
+    .kw-chip {
+      display: inline-block;
+      background: #FEF3C7;
+      color: #92400E;
+      border-radius: 999px;
+      padding: 4px 12px;
+      font-size: 13px;
+      font-weight: 700;
+      margin: 3px;
+    }
+    input {
+      min-height: 42px;
+      border-radius: 14px;
+      border: 1.5px solid #E5D5C3;
+      padding: 0 12px;
+      font-size: 15px;
+      font-family: 'Noto Sans Thai', sans-serif;
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="card" style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px;">
+      <div>
+        <h1 style="margin:0; font-size:22px; color:var(--chili-orange);">👑 แดชบอร์ดผู้พัฒนา — ทุกมื้อ (TooKMUE)</h1>
+        <div style="font-size:13px; color:var(--text-muted);">เฉพาะบัญชีผู้ดูแลระบบ: <strong>farid.hajisalah@gmail.com</strong></div>
+      </div>
+      <div style="display:flex; gap:8px;">
+        <a href="./" class="btn btn-soft" style="text-decoration:none;">← กลับหน้าแอป</a>
+        <button id="loginAdminBtn" class="btn btn-orange" onclick="adminLogin()">เข้าสู่ระบบแอดมิน</button>
+        <button id="logoutAdminBtn" class="btn btn-soft" style="display:none;" onclick="adminLogout()">ออกจากระบบ</button>
+      </div>
+    </div>
+
+    <div id="lockedPanel" class="card" style="text-align:center; padding:36px 20px;">
+      <div style="font-size:44px;">🔒</div>
+      <h2 style="margin:8px 0;">กรุณาล็อกอินด้วยบัญชีผู้พัฒนา</h2>
+      <p style="color:var(--text-muted); font-size:15px;">ระบบสงวนสิทธิ์การดูข้อมูลผู้ใช้และข้อเสนอแนะเฉพาะ <code>farid.hajisalah@gmail.com</code> เท่านั้น</p>
+      <button class="btn btn-orange" onclick="adminLogin()">เข้าสู่ระบบด้วย Google</button>
+    </div>
+
+    <div id="adminContent" style="display:none;">
+      <div class="kpi-grid">
+        <div class="kpi-box">
+          <div style="font-size:13px; color:var(--text-muted);">สมาชิกที่ล็อกอินทั้งหมด</div>
+          <div class="kpi-num" id="kpiTotalUsers">0</div>
+        </div>
+        <div class="kpi-box" style="border-top-color:#16A34A;">
+          <div style="font-size:13px; color:var(--text-muted);">เข้าใช้งานใน 7 วันล่าสุด</div>
+          <div class="kpi-num" id="kpiActive7d" style="color:#16A34A;">0</div>
+        </div>
+        <div class="kpi-box" style="border-top-color:#0284C7;">
+          <div style="font-size:13px; color:var(--text-muted);">ตำแหน่ง "สายเปย์"</div>
+          <div class="kpi-num" id="kpiSupporters" style="color:#0284C7;">0</div>
+        </div>
+        <div class="kpi-box" style="border-top-color:#D97706;">
+          <div style="font-size:13px; color:var(--text-muted);">ยอดบันทึกเลี้ยงกาแฟ (บาท)</div>
+          <div class="kpi-num" id="kpiTipsTotal" style="color:#D97706;">0฿</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3 style="margin:0 0 8px; font-size:17px;">📈 สรุปการใช้งานฟีเจอร์ในระบบ</h3>
+        <div id="featureStatsRow" style="display:flex; flex-wrap:wrap; gap:10px; font-size:14px;"></div>
+      </div>
+
+      <div class="card">
+        <h3 style="margin:0 0 6px; font-size:17px;">☕ บันทึกยอดเลี้ยงกาแฟ (ตรวจสอบจากแอปธนาคารกรุงเทพ)</h3>
+        <div style="font-size:13px; color:var(--text-muted); margin-bottom:10px;">
+          จดยอดเงินโอน PromptPay จริงที่เข้าบัญชีธนาคารกรุงเทพเพื่อเก็บสถิติรวมในหน้านี้
+        </div>
+        <div style="display:grid; grid-template-columns: 1.4fr 1fr auto; gap:8px; margin-bottom:10px;">
+          <input type="text" id="tipNoteInput" placeholder="ชื่อผู้โอน / หมายเหตุ เช่น คุณเอ เลี้ยงกาแฟ" />
+          <input type="number" id="tipAmountInput" placeholder="ยอดเงิน (บาท)" />
+          <button class="btn btn-blue" onclick="addTipRecord()">+ บันทึกยอด</button>
+        </div>
+        <div id="tipRecordsList" style="font-size:14px; color:var(--text-muted);"></div>
+      </div>
+
+      <div class="card">
+        <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px; margin-bottom:8px;">
+          <h3 style="margin:0; font-size:17px;">💡 ข้อเสนอแนะและคำขอเมนูจากผู้ใช้ (<span id="fbTotalCount">0</span>)</h3>
+          <button class="btn btn-soft" onclick="reloadAllAdminData()">🔄 รีเฟรชข้อมูล</button>
+        </div>
+        <div style="margin-bottom:10px;">
+          <span style="font-size:13px; font-weight:700; color:var(--text-muted);">คำที่ถูกขอถึงบ่อย:</span>
+          <div id="fbKeywordsBox" style="margin-top:4px;"></div>
+        </div>
+        <div style="overflow-x:auto;">
+          <table>
+            <thead>
+              <tr>
+                <th>หมวดหมู่</th>
+                <th>ข้อความจากผู้ใช้</th>
+                <th>ผู้ส่ง</th>
+                <th>จัดการ</th>
+              </tr>
+            </thead>
+            <tbody id="fbTableBody"></tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3 style="margin:0 0 10px; font-size:17px;">👥 รายชื่อสมาชิกและคะแนนรวมทั้งหมด</h3>
+        <div style="overflow-x:auto;">
+          <table>
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>ชื่อ / อีเมล</th>
+                <th>XP / สกอร์รวม</th>
+                <th>ตำแหน่งสายเปย์</th>
+              </tr>
+            </thead>
+            <tbody id="adminUsersBody"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/13.4.0/firebase-app.js";
+    import { getAuth, GoogleAuthProvider, signInWithPopup, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/13.4.0/firebase-auth.js";
+    import {
+      getFirestore, collection, getDocs, doc, updateDoc, deleteDoc, addDoc, serverTimestamp
+    } from "https://www.gstatic.com/firebasejs/13.4.0/firebase-firestore.js";
+
+    const ADMIN_EMAIL = "farid.hajisalah@gmail.com";
+    const firebaseConfig = {
+      apiKey: "AIzaSyAEqxJ7mtPc6w0DIbmrIE6-k9UHDzDPzQE",
+      authDomain: "tookmue-fdfdf.firebaseapp.com",
+      projectId: "tookmue-fdfdf",
+      storageBucket: "tookmue-fdfdf.firebasestorage.app",
+      messagingSenderId: "955739387616",
+      appId: "1:955739387616:web:64182e205c109ad19dc285",
+      measurementId: "G-XYWBM8JRFX"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+    const db = getFirestore(app);
+    const provider = new GoogleAuthProvider();
+
+    window.adminLogin = () => signInWithPopup(auth, provider);
+    window.adminLogout = () => signOut(auth);
+
+    onAuthStateChanged(auth, async (user) => {
+      const isAdmin = user && user.email && user.email.toLowerCase() === ADMIN_EMAIL;
+      document.getElementById('lockedPanel').style.display = isAdmin ? 'none' : 'block';
+      document.getElementById('adminContent').style.display = isAdmin ? 'block' : 'none';
+      document.getElementById('loginAdminBtn').style.display = user ? 'none' : 'inline-block';
+      document.getElementById('logoutAdminBtn').style.display = user ? 'inline-block' : 'none';
+
+      if (user && !isAdmin) {
+        alert("บัญชี " + user.email + " ไม่มีสิทธิ์เข้าถึงหน้าผู้ดูแลระบบ");
+      }
+      if (isAdmin) {
+        await window.reloadAllAdminData();
+      }
+    });
+
+    window.reloadAllAdminData = async function () {
+      await Promise.all([loadUsers(), loadFeedbacks(), loadTips()]);
+    };
+
+    async function loadUsers() {
+      const snap = await getDocs(collection(db, "users"));
+      const users = [];
+      const sevenDaysAgo = Date.now() - 7 * 24 * 60 * 60 * 1000;
+      let active7d = 0;
+      let supporters = 0;
+      let planUsers = 0;
+      let totalExpenseLogs = 0;
+      let totalCustomMenus = 0;
+
+      snap.forEach(d => {
+        const u = { id: d.id, ...d.data() };
+        users.push(u);
+        const upd = u.updatedAt?.toMillis ? u.updatedAt.toMillis() : 0;
+        if (upd >= sevenDaysAgo) active7d++;
+        if (u.isSupporter) supporters++;
+        if (Array.isArray(u.weeklyPlan) && u.weeklyPlan.length > 0) planUsers++;
+        if (Array.isArray(u.expenses)) totalExpenseLogs += u.expenses.length;
+        if (Array.isArray(u.customMenus)) totalCustomMenus += u.customMenus.length;
+      });
+
+      users.sort((a, b) => (b.totalScore || b.xp || 0) - (a.totalScore || a.xp || 0));
+
+      document.getElementById('kpiTotalUsers').textContent = users.length;
+      document.getElementById('kpiActive7d').textContent = active7d;
+      document.getElementById('kpiSupporters').textContent = supporters;
+
+      document.getElementById('featureStatsRow').innerHTML = `
+        <span class="pill" style="background:#FEF3C7; color:#92400E;">📅 จัดตาราง 7 วัน: ${planUsers} คน</span>
+        <span class="pill" style="background:#DCFCE7; color:#166534;">💰 บันทึกค่ากินสะสม: ${totalExpenseLogs} รายการ</span>
+        <span class="pill" style="background:#FFEDD5; color:#9A3412;">➕ เมนูส่วนตัวที่ผู้ใช้เพิ่ม: ${totalCustomMenus} เมนู</span>
+      `;
+
+      document.getElementById('adminUsersBody').innerHTML = users.map((u, idx) => `
+        <tr>
+          <td><strong>${idx + 1}</strong></td>
+          <td>
+            <div><strong>${u.avatar || '🍲'} ${u.displayName || 'ไม่ระบุชื่อ'}</strong></div>
+            <div style="font-size:12px; color:var(--text-muted);">${u.email || u.id}</div>
+          </td>
+          <td><strong>${u.xp || 0} XP</strong> / รวม ${(u.totalScore || u.xp || 0)}</td>
+          <td>
+            <button class="btn ${u.isSupporter ? 'btn-blue' : 'btn-soft'}" style="padding:5px 12px; font-size:12px;" onclick="toggleUserSupporter('${u.id}', ${!u.isSupporter})">
+              ${u.isSupporter ? '💎 สายเปย์ (คลิกปลด)' : '+ มอบสายเปย์'}
+            </button>
+          </td>
+        </tr>
+      `).join('');
+    }
+
+    window.toggleUserSupporter = async function (uid, nextVal) {
+      await updateDoc(doc(db, "users", uid), { isSupporter: nextVal });
+      await loadUsers();
+    };
+
+    async function loadFeedbacks() {
+      const snap = await getDocs(collection(db, "feedbacks"));
+      const items = [];
+      const wordCounts = {};
+      snap.forEach(d => {
+        const data = { id: d.id, ...d.data() };
+        items.push(data);
+        (data.text || '').split(/[\s,.-]+/).forEach(w => {
+          if (w.length >= 2) wordCounts[w] = (wordCounts[w] || 0) + 1;
+        });
+      });
+
+      items.sort((a, b) => (b.createdAt?.toMillis?.() || 0) - (a.createdAt?.toMillis?.() || 0));
+      document.getElementById('fbTotalCount').textContent = items.length;
+
+      const topWords = Object.entries(wordCounts).sort((a, b) => b[1] - a[1]).slice(0, 10);
+      document.getElementById('fbKeywordsBox').innerHTML = topWords.length
+        ? topWords.map(([w, c]) => `<span class="kw-chip">${w} (${c})</span>`).join('')
+        : '<span style="font-size:13px; color:var(--text-muted);">ยังไม่มีข้อมูลคำค้น</span>';
+
+      document.getElementById('fbTableBody').innerHTML = items.length ? items.map(f => `
+        <tr>
+          <td><span class="pill pill-cat">${f.category || 'ทั่วไป'}</span></td>
+          <td>${f.text || ''}</td>
+          <td style="font-size:12px; color:var(--text-muted);">${f.userName || 'Guest'}</td>
+          <td>
+            <button class="btn btn-soft" style="padding:4px 10px; font-size:12px;" onclick="deleteFeedback('${f.id}')">ลบ</button>
+          </td>
+        </tr>
+      `).join('') : '<tr><td colspan="4" style="text-align:center; color:var(--text-muted);">ยังไม่มีข้อเสนอแนะเข้ามา</td></tr>';
+    }
+
+    window.deleteFeedback = async function (id) {
+      await deleteDoc(doc(db, "feedbacks", id));
+      await loadFeedbacks();
+    };
+
+    async function loadTips() {
+      const snap = await getDocs(collection(db, "tip_logs"));
+      let sum = 0;
+      const list = [];
+      snap.forEach(d => {
+        const t = { id: d.id, ...d.data() };
+        sum += Number(t.amount) || 0;
+        list.push(t);
+      });
+      list.sort((a, b) => (b.createdAt?.toMillis?.() || 0) - (a.createdAt?.toMillis?.() || 0));
+      document.getElementById('kpiTipsTotal').textContent = `${sum.toLocaleString()}฿`;
+      document.getElementById('tipRecordsList').innerHTML = list.length ? list.map(t => `
+        <div style="display:flex; justify-content:space-between; padding:6px 0; border-bottom:1px solid #F3ECE1;">
+          <span>☕ ${t.note || 'ผู้สนับสนุน'}</span>
+          <div>
+            <strong style="color:#0284C7; margin-right:8px;">+${Number(t.amount).toLocaleString()}฿</strong>
+            <button class="btn btn-soft" style="padding:2px 8px; font-size:11px;" onclick="deleteTip('${t.id}')">ลบ</button>
+          </div>
+        </div>
+      `).join('') : 'ยังไม่มีรายการบันทึกยอดเลี้ยงกาแฟ';
+    }
+
+    window.addTipRecord = async function () {
+      const note = document.getElementById('tipNoteInput').value.trim() || 'ผู้สนับสนุนผ่าน PromptPay';
+      const amount = parseFloat(document.getElementById('tipAmountInput').value);
+      if (isNaN(amount) || amount <= 0) {
+        alert('กรุณากรอกจำนวนเงินให้ถูกต้อง');
+        return;
+      }
+      await addDoc(collection(db, "tip_logs"), {
+        note,
+        amount,
+        createdAt: serverTimestamp()
+      });
+      document.getElementById('tipNoteInput').value = '';
+      document.getElementById('tipAmountInput').value = '';
+      await loadTips();
+    };
+
+    window.deleteTip = async function (id) {
+      await deleteDoc(doc(db, "tip_logs", id));
+      await loadTips();
+    };
+  </script>
+</body>
+</html>
