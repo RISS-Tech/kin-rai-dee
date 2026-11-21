@@ -1,4 +1,4 @@
-const CACHE_NAME = 'tookmue-v12';
+const CACHE_NAME = 'tookmue-v12-1-r1';
 const APP_SHELL = [
   './',
   './index.html',

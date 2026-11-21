@@ -2,7 +2,7 @@
 <html lang="th">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="theme-color" content="#C2410C" />
   <title>ทุกมื้อ (TooKMUE) — สุ่มเมนูและจับคู่สำรับ</title>
   <link rel="manifest" href="manifest.json" />
@@ -1221,9 +1221,8 @@
 
       <div class="menu-grid" id="exploreGrid"></div>
 
-      <!-- Non-intrusive Ad Slot (AdSense / AdMob Ready) -->
-      <div id="adBannerSlot" style="margin-top: 18px; padding: 12px; border-radius: 18px; background: #F7F1E7; border: 1px dashed #DFCBB2; text-align: center; font-size: 12px; color: var(--text-muted);">
-        พื้นที่โฆษณาสนับสนุนแอป (Ad Slot • ไม่รบกวนการสุ่ม)
+      <!-- Non-intrusive Ad Slot (Hidden until real ad unit is configured) -->
+      <div id="adBannerSlot" style="display:none; margin-top: 18px; padding: 12px; border-radius: 18px; background: #F7F1E7; border: 1px dashed #DFCBB2; text-align: center; font-size: 12px; color: var(--text-muted);">
       </div>
     </section>
 
@@ -1352,7 +1351,7 @@
               </div>
             </div>
             <div style="display:flex; gap:6px; flex-shrink:0;">
-              <a id="adminDashBtn" href="admin.html" style="display:none; text-decoration:none; background:#1E3A8A; color:#FFFFFF; border-radius:999px; padding:6px 12px; font-size:13px; font-weight:700;">👑 แอดมิน</a>
+              <!-- Admin link hidden from general UI; access admin.html directly with authorized admin account -->
               <button onclick="logoutGoogle()" style="border: none; background: #FEE2E2; color: #DC2626; border-radius: 999px; padding: 6px 12px; font-size: 13px; font-weight: 600; cursor: pointer;">ออก</button>
             </div>
           </div>
@@ -1420,10 +1419,13 @@
           </table>
         </div>
 
-        <div style="margin-top:12px; display:flex; justify-content:space-between; align-items:center;">
-          <span style="font-size:13px; font-weight:700; color:#0369A1;">✨ ไอคอนพิเศษตำแหน่ง "สายเปย์"</span>
-          <button type="button" onclick="claimSupporterBadgeDemo()" style="border:1px solid #7DD3FC; background:#E0F2FE; color:#0369A1; border-radius:999px; padding:3px 10px; font-size:11px; font-weight:700; cursor:pointer;">
-            สวมป้ายสายเปย์
+        <div style="margin-top:12px; display:flex; justify-content:space-between; align-items:center; gap:8px;">
+          <div>
+            <span style="font-size:13px; font-weight:700; color:#0369A1;">✨ ไอคอนสายชิม / ผู้สนับสนุน</span>
+            <div style="font-size:11px; color:var(--text-muted);">เลือกใช้ได้ฟรี เพื่อความน่ารักในตาราง ไม่ใช่การซื้อฟีเจอร์</div>
+          </div>
+          <button type="button" onclick="claimSupporterBadgeDemo()" style="border:1px solid #7DD3FC; background:#E0F2FE; color:#0369A1; border-radius:999px; padding:4px 10px; font-size:11px; font-weight:700; cursor:pointer; flex-shrink:0;">
+            สลับป้ายผู้สนับสนุน
           </button>
         </div>
         <div class="supporter-avatar-grid" id="supporterAvatarGrid"></div>
@@ -1457,8 +1459,8 @@
       <div class="soft-card reveal-card" style="background: #FFFDF9; border: 1.5px solid #F3E5D5;">
         <div style="display: flex; align-items: center; justify-content: space-between; gap: 10px;">
           <div>
-            <div style="font-size: 16px; font-weight: 700; color: var(--text-brown);">ใช้งานฟรีทุกฟีเจอร์</div>
-            <div style="font-size: 13px; color: var(--text-muted);">ไม่มีล็อกฟีเจอร์บังคับ</div>
+            <div style="font-size: 16px; font-weight: 700; color: var(--text-brown);">เล่นฟรีทุกฟีเจอร์</div>
+            <div style="font-size: 13px; color: var(--text-muted);">พัฒนาโดยทีม TooKMUE • สนับสนุนค่าดูแลเว็บตามสมัครใจ ไม่ผูกกับสิทธิ์ใช้งาน</div>
           </div>
           <button type="button" onclick="openQrModal()" style="border: 1.5px solid #E5D5C3; background: #FFF7ED; color: var(--chili-orange); border-radius: 999px; padding: 9px 15px; font-size: 14px; font-weight: 700; cursor: pointer; flex-shrink: 0;">
             เลี้ยงกาแฟผู้พัฒนา ☕
@@ -1525,7 +1527,7 @@
           <button class="btn-action btn-orange" onclick="confirmAteMeal()">
             ✅ กินเมนูนี้ (+25 XP)
           </button>
-          <a id="mapsLink" href="#" target="_blank" rel="noopener" class="btn-action btn-yellow">
+          <a id="mapsLink" href="https://www.google.com/maps/search/?api=1&query=%E0%B8%A3%E0%B9%89%E0%B8%B2%E0%B8%99%E0%B8%AD%E0%B8%B2%E0%B8%AB%E0%B8%B2%E0%B8%A3%E0%B9%83%E0%B8%81%E0%B8%A5%E0%B9%89%E0%B8%89%E0%B8%B1%E0%B8%99" target="_blank" rel="noopener" class="btn-action btn-yellow">
             📍 หาร้านใกล้ฉัน
           </a>
         </div>
@@ -1545,7 +1547,7 @@
             📸 แตะค้างที่รูปการ์ดด้านล่างเพื่อบันทึกส่งเข้า LINE ได้เลย!
           </div>
           <img id="sharePreviewImg" src="" alt="การ์ดสำรับ TooKMUE" style="width: 100%; max-width: 260px; border-radius: 16px; box-shadow: 0 6px 16px rgba(0,0,0,0.12);" />
-          <a id="directLineShareLink" href="#" target="_blank" rel="noopener" class="btn-action btn-line" style="margin-top: 8px; font-size: 15px;">
+          <a id="directLineShareLink" href="https://line.me/R/share?text=https%3A%2F%2Ftookmue.pages.dev%2F" target="_blank" rel="noopener" class="btn-action btn-line" style="margin-top: 8px; font-size: 15px;">
             💬 ส่งข้อความเข้าแชต LINE ทันที
           </a>
         </div>
@@ -1562,7 +1564,8 @@
         </div>
         <img src="promptpay-qr.png" alt="PromptPay QR Code" style="width: 100%; max-width: 290px; border-radius: 18px; box-shadow: 0 8px 20px rgba(58,43,34,0.12); display: inline-block;" />
         <div style="margin-top: 10px; font-size: 13px; color: var(--text-muted);">
-          พร้อมเพย์เบอร์มือถือ • แล้วแต่ศรัทธา
+          พร้อมเพย์สำหรับสนับสนุนผู้พัฒนาแอป <strong>ทุกมื้อ (TooKMUE)</strong><br />
+          ใช้งานฟรีทุกฟีเจอร์ตามปกติ ไม่จำเป็นต้องโอนครับ
         </div>
       </div>
     </div>
@@ -3009,26 +3012,26 @@
 
     // --- v11 Cute User Leaderboard + "สายเปย์" Title & Exclusive Supporter Icons ---
     const SUPPORTER_ICONS = [
-      { id: 'pay_coffee', icon: '☕', name: 'สายเปย์คาเฟอีน' },
-      { id: 'pay_diamond', icon: '💎', name: 'สายเปย์เพชร' },
-      { id: 'pay_crown', icon: '👑', name: 'ยอดนักเปย์' },
-      { id: 'pay_pinto', icon: '🍱', name: 'ปิ่นโตทองคำ' }
+      { id: 'sup_coffee', icon: '☕', name: 'สายกาแฟ' },
+      { id: 'sup_star', icon: '🌟', name: 'สายชิมดาวเด่น' },
+      { id: 'sup_heart', icon: '💚', name: 'ผู้สนับสนุน' },
+      { id: 'sup_pinto', icon: '🍱', name: 'ปิ่นโตทองคำ' }
     ];
 
     const SAMPLE_PLAYERS = [
-      { name: 'สายเปย์ใจป้ำ', avatar: '👑', rank: 'ยอดนักเปย์อันดับ 1', score: 940, isPayTop: true },
-      { name: 'น้องกะเพรา', avatar: '☕', rank: 'สายเปย์ • เซียนกะเพรา', score: 680, isPayTop: false },
-      { name: 'คนอยู่หอสายคลีน', avatar: '🧊', rank: 'กูรูสำรับไทย', score: 520, isPayTop: false },
-      { name: 'นักชิมตั๋วทิพย์', avatar: '✈️', rank: 'นักชิมประจำซอย', score: 340, isPayTop: false }
+      { name: 'พี่ปิ่นโตสายชิม', avatar: '🍱', rank: 'ผู้สนับสนุน • เชฟกระทะทองคำ', score: 940, isPayTop: true },
+      { name: 'น้องกะเพรา', avatar: '☕', rank: 'ผู้สนับสนุน • เซียนกะเพรา', score: 680, isPayTop: false },
+      { name: 'คนอยู่หอสายคลีน', avatar: '🧊', rank: 'เล่นฟรี • กูรูสำรับไทย', score: 520, isPayTop: false },
+      { name: 'นักชิมตั๋วทิพย์', avatar: '✈️', rank: 'เล่นฟรี • นักชิมประจำซอย', score: 340, isPayTop: false }
     ];
 
     function claimSupporterBadgeDemo() {
       state.isSupporter = !state.isSupporter;
       if (state.isSupporter && !SUPPORTER_ICONS.some(s => s.icon === state.avatar)) {
-        state.avatar = '💎';
+        state.avatar = '💚';
       }
       saveState();
-      showToast(state.isSupporter ? 'สวมตำแหน่ง "สายเปย์" และไอคอนพิเศษแล้ว! 💎' : 'ถอดป้ายสายเปย์ออกแล้วครับ');
+      showToast(state.isSupporter ? 'เปิดป้าย "ผู้สนับสนุน" แล้ว (เล่นฟรีทุกฟีเจอร์เช่นเดิม) 💚' : 'ปิดป้ายผู้สนับสนุนแล้วครับ');
     }
 
     function selectSupporterAvatar(icon) {
@@ -3053,7 +3056,7 @@
       if (!tbody) return;
 
       const myScore = computeUserFeatureScore();
-      const myTitle = (state.isSupporter ? '💎 สายเปย์ • ' : '') + getCurrentRankTitle().replace(/^⭐\s*/, '');
+      const myTitle = (state.isSupporter ? '💚 ผู้สนับสนุน • ' : 'เล่นฟรี • ') + getCurrentRankTitle().replace(/^⭐\s*/, '');
       const rows = [
         ...SAMPLE_PLAYERS,
         {
@@ -3069,7 +3072,7 @@
       tbody.innerHTML = rows.map((r, idx) => {
         const medal = idx === 0 ? '🥇' : (idx === 1 ? '🥈' : (idx === 2 ? '🥉' : (idx + 1)));
         const trClass = r.isMe ? 'is-me' : (r.isPayTop ? 'is-top-pay' : '');
-        const payTag = r.isPayTop ? ' <span class="pay-pill">สายเปย์</span>' : '';
+        const payTag = r.isPayTop ? ' <span class="pay-pill">ผู้สนับสนุน</span>' : '';
         return `
           <tr class="${trClass}">
             <td style="font-weight:700;">${medal}</td>
@@ -3225,10 +3228,7 @@
         document.getElementById('userGoogleName').textContent = user.displayName || user.email || 'สมาชิก TooKMUE';
         const photoEl = document.getElementById('userGooglePhoto');
         photoEl.src = user.photoURL || 'icon.svg';
-        const adminBtn = document.getElementById('adminDashBtn');
-        if (adminBtn) {
-          adminBtn.style.display = (user.email && user.email.toLowerCase() === 'farid.hajisalah@gmail.com') ? 'inline-block' : 'none';
-        }
+
 
         await loadAndMergeCloudState(user);
       } else {
