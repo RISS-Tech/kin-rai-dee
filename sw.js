@@ -1,4 +1,4 @@
-const CACHE_NAME = 'tookmue-v12-1-r1';
+const CACHE_NAME = 'tookmue-v12-2-r2';
 const APP_SHELL = [
   './',
   './index.html',
@@ -9,7 +9,41 @@ const APP_SHELL = [
   './promptpay-qr.png',
   './icon-192.png',
   './icon-512.png',
-  './icon.svg'
+  './icon.svg',
+  './images/Fried_basil_pork_with_egg_c63d8ff2.jpg',
+  './images/Khanom_Chin_Nam_Ngiew_noodles_b08b7eed.jpg',
+  './images/Nam_Prik_Noom_with_egg_6f1ba251.jpg',
+  './images/Nam_Prik_Ong_chili_dip_6b213df6.jpg',
+  './images/Photographing_chicken_khao_soi_21455315.jpg',
+  './images/Pork_belly_curry_cooking_921b9d55.jpg',
+  './images/Sai_Oua_on_charcoal_grill_8298a6a0.jpg',
+  './images/กระเพราเนื้อสับไข่ดาว_1420900b.jpg',
+  './images/ก๋วยเตี๋ยวเรือหมูน้ำตก_cccb704f.jpg',
+  './images/ขนมจีนน้ำยากะทิลูกชิ้นปลา_90fea462.jpg',
+  './images/ข้าวต้มหมูสับทรงเครื่อง_78f405eb.jpg',
+  './images/ข้าวผัดอเมริกันไก่ทอดไข่ดาว_94e0ec7b.jpg',
+  './images/ข้าวหมูแดงหมูกรอบ_5a0247b2.jpg',
+  './images/ข้าวอบสับปะรดกุ้งสดโรยหมูหยอง_c8767677.jpg',
+  './images/ข้าวเนื้ออบซอสพริกไทยดำ_a7e99805.jpg',
+  './images/ต้มจืดเต้าหู้หมูสับสาหร่าย_33ecadf6.jpg',
+  './images/ต้มยำกุ้งน้ำข้น_8e29e0a6.jpg',
+  './images/ปลาทูทอดน้ำพริกกะปิผักสด_88a7fc1a.jpg',
+  './images/ผัดซีอิ้วหมูเส้นใหญ่_d0cb51b1.jpg',
+  './images/ผัดผักรวมมิตรใส่กุ้งสด_95e3dcae.jpg',
+  './images/ผัดไทยกุ้งสด_a337965d.jpg',
+  './images/พะแนงหมูใบมะกรูด_539be35b.jpg',
+  './images/มะระผัดไข่ใส่กระเทียม_6ae4f4c8.jpg',
+  './images/มัสมั่นไก่น่องโตมันฝรั่ง_1cef08da.jpg',
+  './images/มาม่าผัดขี้เมาทะเลเครื่องแน่น_b7612fae.jpg',
+  './images/ยำวุ้นเส้นโบราณหมูสับกุ้งแห้ง_3547fa3b.jpg',
+  './images/สุกี้ยากี้น้ำหมูวุ้นเส้น_7004529f.jpg',
+  './images/ห่อหมกปลาช่อนใบยอ_0329efc7.jpg',
+  './images/เย็นตาโฟทะเลเครื่องแน่น_fe17990d.jpg',
+  './images/แกงเขียวหวานไก่ยอดมะพร้าว_79f2a8eb.jpg',
+  './images/แกงเทโพหมูสามชั้นผักบุ้งไทย_b16f5b31.jpg',
+  './images/แกงเลียงกุ้งสดผักรวม_4f0d7fb1.jpg',
+  './images/ไข่พะโล้หมูสามชั้นเต้าหู้_7e9ebf63.jpg',
+  './images/ไข่เจียวหมูสับฟูกรอบ_aeaef79d.jpg'
 ];
 
 self.addEventListener('install', (event) => {

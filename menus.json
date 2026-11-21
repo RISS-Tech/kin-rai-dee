@@ -17,7 +17,7 @@
     ],
     "pair_id": "TH-C06",
     "dessert_pair_id": "BEV-001",
-    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Phat_kaphrao_mu_sap_-_001.jpg?width=600",
+    "image_url": "images/Fried_basil_pork_with_egg_c63d8ff2.jpg",
     "recipe_hint": "ผัดพริกกระเทียมกับหมูสับ ปรุงรสด้วยน้ำปลา ซอสหอยนางรม น้ำตาลนิดหน่อย ใส่ใบกะเพรา โปะไข่ดาวกรอบ",
     "wiki_query": "Pad krapow moo sap fried egg rice",
     "ingredients": [
@@ -47,7 +47,7 @@
     ],
     "pair_id": "TH-C03",
     "dessert_pair_id": "DES-001",
-    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Tom_yam_kung_maenam.jpg?width=600",
+    "image_url": "images/ต้มยำกุ้งน้ำข้น_8e29e0a6.jpg",
     "recipe_hint": "ต้มข่า ตะไคร้ ใบมะกรูด ใส่น้ำพริกเผา กุ้งสด เห็ดฟาง ปรุงรสด้วยน้ำปลา มะนาว และนมข้นจืด",
     "wiki_query": "Tom yum kung",
     "ingredients": [
@@ -73,7 +73,7 @@
     ],
     "pair_id": "TH-C02",
     "dessert_pair_id": "BEV-004",
-    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Khai_chiao_mu_sap.jpg?width=600",
+    "image_url": "images/ไข่เจียวหมูสับฟูกรอบ_aeaef79d.jpg",
     "recipe_hint": "ตีไข่ไก่กับหมูสับและน้ำปลานิดหน่อย ตั้งน้ำมันให้ร้อนจัดแล้วเทไข่ลงทอดจนฟูเหลืองกรอบ",
     "wiki_query": "Khai chiao",
     "ingredients": [
@@ -100,7 +100,7 @@
     ],
     "pair_id": "TH-C08",
     "dessert_pair_id": "DES-003",
-    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Kaeng_khiao_wan_kai.jpg?width=600",
+    "image_url": "images/แกงเขียวหวานไก่ยอดมะพร้าว_79f2a8eb.jpg",
     "recipe_hint": "ผัดพริกแกงเขียวหวานกับหัวกะทิจนแตกมัน ใส่เนื้อไก่ มะเขือเปราะ ยอดมะพร้าว ปรุงรสและโรยใบโหระพา",
     "wiki_query": "Kaeng khiao wan",
     "ingredients": [
@@ -127,7 +127,7 @@
     ],
     "pair_id": "BEV-005",
     "dessert_pair_id": "BEV-005",
-    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Pad_Thai.JPG?width=600",
+    "image_url": "images/ผัดไทยกุ้งสด_a337965d.jpg",
     "recipe_hint": "ผัดเส้นเล็กกับน้ำซอสมะขามเปียก ใส่กุ้งสด เต้าหู้เหลือง ไข่ไก่ ถั่วงอก และใบกุยช่าย เสิร์ฟพร้อมถั่วลิสงคั่ว",
     "wiki_query": "Pad Thai",
     "ingredients": [
@@ -154,7 +154,7 @@
     ],
     "pair_id": "TH-C01",
     "dessert_pair_id": "DES-002",
-    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Kaeng_chuet_taohu_mu_sap.jpg?width=600",
+    "image_url": "images/ต้มจืดเต้าหู้หมูสับสาหร่าย_33ecadf6.jpg",
     "recipe_hint": "ต้มน้ำซุปกระดูกหมู ใส่หมูสับปรุงรส เต้าหู้ไข่ ผักกาดขาว และสาหร่ายทะเล โรยขึ้นฉ่ายและพริกไทย",
     "wiki_query": "Kaeng chuet",
     "ingredients": [
@@ -180,7 +180,7 @@
     ],
     "pair_id": "TH-C03",
     "dessert_pair_id": "BEV-004",
-    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Phanaeng_mu.jpg?width=600",
+    "image_url": "images/พะแนงหมูใบมะกรูด_539be35b.jpg",
     "recipe_hint": "เคี่ยวพริกแกงพะแนงกับหัวกะทิ ใส่สันคอหมูหั่นชิ้น ปรุงรสเค็มหวานมัน โรยพริกชี้ฟ้าและใบมะกรูดซอย",
     "wiki_query": "Phanaeng",
     "ingredients": [
@@ -205,7 +205,7 @@
     ],
     "pair_id": "TH-C04",
     "dessert_pair_id": "DES-005",
-    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Nam_phrik_kapi.JPG?width=600",
+    "image_url": "images/ปลาทูทอดน้ำพริกกะปิผักสด_88a7fc1a.jpg",
     "recipe_hint": "โขลกกะปิย่างกับกระเทียม พริกขี้หนู มะเขือพวง ปรุงด้วยมะนาวและน้ำตาลปี๊บ กินคู่ปลาทูทอดและชะอมไข่",
     "wiki_query": "Nam phrik kapi",
     "ingredients": [
@@ -234,7 +234,7 @@
     ],
     "pair_id": "BEV-001",
     "dessert_pair_id": "BEV-001",
-    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Phat_si-io.jpg?width=600",
+    "image_url": "images/ผัดซีอิ้วหมูเส้นใหญ่_d0cb51b1.jpg",
     "recipe_hint": "ผัดเส้นใหญ่กับซีอิ๊วดำ ใส่หมูหมักนุ่ม ไข่ไก่ และยอดคะน้า ผัดไฟแรงให้หอมกลิ่นกระทะ",
     "wiki_query": "Phat si-io",
     "ingredients": [
@@ -260,7 +260,7 @@
     ],
     "pair_id": "BEV-004",
     "dessert_pair_id": "BEV-004",
-    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Khao_mu_daeng.JPG?width=600",
+    "image_url": "images/ข้าวหมูแดงหมูกรอบ_5a0247b2.jpg",
     "recipe_hint": "เสิร์ฟหมูแดงย่างหอม หมูกรอบ กุนเชียง และไข่ต้มบนข้าวสวย ราดน้ำซอสหมูแดงข้นๆ",
     "wiki_query": "Khao mu daeng",
     "ingredients": [
@@ -288,7 +288,7 @@
     ],
     "pair_id": "TH-S02",
     "dessert_pair_id": "BEV-002",
-    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Khai_phalo.JPG?width=600",
+    "image_url": "images/ไข่พะโล้หมูสามชั้นเต้าหู้_7e9ebf63.jpg",
     "recipe_hint": "เคี่ยวน้ำตาลปี๊บกับสามเกลอจนหอม ใส่หมูสามชั้น ไข่ต้ม เต้าหู้พวง และเครื่องพะโล้ ตุ๋นจนเข้าเนื้อ",
     "wiki_query": "Khai phalo",
     "ingredients": [
@@ -316,7 +316,7 @@
     ],
     "pair_id": "BEV-004",
     "dessert_pair_id": "DES-002",
-    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Khao_soi_kai_Chiang_Mai.jpg?width=600",
+    "image_url": "images/Photographing_chicken_khao_soi_21455315.jpg",
     "recipe_hint": "เคี่ยวน่องไก่ในน้ำพริกแกงข้าวซอยและกะทิ เสิร์ฟพร้อมบะหมี่เหลืองลวก หมี่กรอบ ผักกาดดอง และหอมแดง",
     "wiki_query": "Khao soi chicken noodle soup Thailand",
     "ingredients": [
@@ -341,7 +341,7 @@
     ],
     "pair_id": "TH-N04",
     "dessert_pair_id": "DES-001",
-    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Nam_phrik_ong_01.jpg?width=600",
+    "image_url": "images/Nam_Prik_Ong_chili_dip_6b213df6.jpg",
     "recipe_hint": "ผัดพริกแกงเหนือกับหมูสับและมะเขือเทศสีดา ปรุงรสเปรี้ยวเค็มหวาน กินคู่ผักต้มและแคบหมูกรอบ",
     "wiki_query": "Nam phrik ong",
     "ingredients": [
@@ -366,7 +366,7 @@
     ],
     "pair_id": "TH-N05",
     "dessert_pair_id": "BEV-005",
-    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Kaeng_hang_le.JPG?width=600",
+    "image_url": "images/Pork_belly_curry_cooking_921b9d55.jpg",
     "recipe_hint": "หมักหมูสามชั้นกับผงฮังเลและพริกแกง เคี่ยวกับขิงซอย กระเทียมดอง ถั่วลิสงคั่ว และน้ำมะขามเปียก",
     "wiki_query": "Kaeng hang le",
     "ingredients": [
@@ -393,7 +393,7 @@
     ],
     "pair_id": "TH-N02",
     "dessert_pair_id": "BEV-004",
-    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Sai_ua.JPG?width=600",
+    "image_url": "images/Sai_Oua_on_charcoal_grill_8298a6a0.jpg",
     "recipe_hint": "คลุกหมูบดกับพริกแกงเหนือ ตะไคร้ ใบมะกรูด และผักชี ยัดไส้แล้วย่างไฟอ่อนจนหอมสมุนไพร",
     "wiki_query": "Sai ua",
     "ingredients": [
@@ -418,7 +418,7 @@
     ],
     "pair_id": "TH-N03",
     "dessert_pair_id": "DES-003",
-    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Nam_phrik_num.JPG?width=600",
+    "image_url": "images/Nam_Prik_Noom_with_egg_6f1ba251.jpg",
     "recipe_hint": "ย่างพริกหนุ่ม หอมแดง และกระเทียมจนสุกหอม ลอกเปลือกแล้วโขลกรวมกัน ปรุงรสด้วยน้ำปลา",
     "wiki_query": "Nam phrik num",
     "ingredients": [
@@ -445,7 +445,7 @@
     ],
     "pair_id": "BEV-005",
     "dessert_pair_id": "DES-005",
-    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Khanom_chin_nam_ngiao.JPG?width=600",
+    "image_url": "images/Khanom_Chin_Nam_Ngiew_noodles_b08b7eed.jpg",
     "recipe_hint": "ต้มซี่โครงหมูกับพริกแกงน้ำเงี้ยว ดอกงิ้ว มะเขือเทศ และเลือดไก่ ราดบนขนมจีน โรยกระเทียมเจียว",
     "wiki_query": "Khanom chin nam ngiao",
     "ingredients": [
@@ -1592,7 +1592,7 @@
     ],
     "pair_id": "TH-C02",
     "dessert_pair_id": "BEV-004",
-    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Bitter_melon_with_egg.jpg?width=600",
+    "image_url": "images/มะระผัดไข่ใส่กระเทียม_6ae4f4c8.jpg",
     "wiki_query": "Bitter melon egg",
     "recipe_hint": "หั่นมะระบางๆ ขยำเกลือลดขม ล้างน้ำแล้วผัดกับกระเทียมและไข่ไก่ ปรุงรสด้วยซอสปรุงรสและน้ำตาลนิดหน่อย",
     "ingredients": [
@@ -1619,7 +1619,7 @@
     ],
     "pair_id": "TH-C03",
     "dessert_pair_id": "BEV-005",
-    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Phat_phak_ruam.JPG?width=600",
+    "image_url": "images/ผัดผักรวมมิตรใส่กุ้งสด_95e3dcae.jpg",
     "wiki_query": "Phat phak ruam",
     "recipe_hint": "ผัดกระเทียมพอหอม ใส่กุ้งสด แครอท บรอกโคลี ข้าวโพดอ่อน และเห็ดหอม ปรุงรสด้วยซอสหอยนางรม",
     "ingredients": [
@@ -1646,7 +1646,7 @@
     ],
     "pair_id": "TH-C03",
     "dessert_pair_id": "DES-003",
-    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Kaeng_thepho.JPG?width=600",
+    "image_url": "images/แกงเทโพหมูสามชั้นผักบุ้งไทย_b16f5b31.jpg",
     "wiki_query": "Thai coconut curry pork morning glory",
     "recipe_hint": "เคี่ยวพริกแกงคั่วกับกะทิ ใส่หมูสามชั้นและผักบุ้งไทยหั่นท่อน ปรุงรสเปรี้ยวเค็มหวานด้วยน้ำมะขามเปียกและลูกมะกรูด",
     "ingredients": [
@@ -1674,7 +1674,7 @@
     ],
     "pair_id": "TH-C08",
     "dessert_pair_id": "BEV-004",
-    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Massaman_curry.jpg?width=600",
+    "image_url": "images/มัสมั่นไก่น่องโตมันฝรั่ง_1cef08da.jpg",
     "wiki_query": "Massaman curry",
     "recipe_hint": "เคี่ยวน่องไก่ในพริกแกงมัสมั่นและกะทิ ใส่มันฝรั่ง หอมใหญ่ ถั่วลิสงคั่ว ปรุงรสด้วยน้ำมะขามเปียกและน้ำตาลปี๊บ",
     "ingredients": [
@@ -1702,7 +1702,7 @@
     ],
     "pair_id": "TH-C03",
     "dessert_pair_id": "DES-001",
-    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Kaeng_liang.JPG?width=600",
+    "image_url": "images/แกงเลียงกุ้งสดผักรวม_4f0d7fb1.jpg",
     "wiki_query": "Thai vegetable soup shrimp kaeng liang",
     "recipe_hint": "โขลกพริกไทยเม็ด หอมแดง กะปิ และกุ้งแห้ง ละลายในน้ำซุป ใส่ฟักทอง บวบ ข้าวโพดอ่อน กุ้งสด และใบแมงลัก",
     "ingredients": [
@@ -1729,7 +1729,7 @@
     ],
     "pair_id": "TH-C06",
     "dessert_pair_id": "DES-005",
-    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Ho_mok_pla.JPG?width=600",
+    "image_url": "images/ห่อหมกปลาช่อนใบยอ_0329efc7.jpg",
     "wiki_query": "Ho mok pla",
     "recipe_hint": "กวนเนื้อปลาช่อนกับพริกแกงแดง หัวกะทิ และไข่ไก่จนเหนียว วางบนใบยอแล้วนึ่งสุก ราดหัวกะทิและพริกชี้ฟ้า",
     "ingredients": [
@@ -1757,7 +1757,7 @@
     ],
     "pair_id": "TH-C03",
     "dessert_pair_id": "BEV-005",
-    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Yam_wun_sen.JPG?width=600",
+    "image_url": "images/ยำวุ้นเส้นโบราณหมูสับกุ้งแห้ง_3547fa3b.jpg",
     "wiki_query": "Yam wun sen",
     "recipe_hint": "ลวกวุ้นเส้นและหมูสับ คลุกเคล้ากับน้ำยำพริกขี้หนูมะนาว ใส่กุ้งแห้งทอด ถั่วลิสงคั่ว หอมแดง และขึ้นฉ่าย",
     "ingredients": [
@@ -1786,7 +1786,7 @@
     ],
     "pair_id": "BEV-004",
     "dessert_pair_id": "BEV-004",
-    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Khao_tom_mu.JPG?width=600",
+    "image_url": "images/ข้าวต้มหมูสับทรงเครื่อง_78f405eb.jpg",
     "wiki_query": "Khao tom mu",
     "recipe_hint": "ต้มข้าวสวยในน้ำซุปกระดูกหมู ใส่หมูสับปั้นก้อน ตั้งฉ่าย กระเทียมเจียว ต้นหอมผักชี และพริกไทยป่น",
     "ingredients": [
@@ -1812,7 +1812,7 @@
     ],
     "pair_id": "TH-C06",
     "dessert_pair_id": "BEV-002",
-    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Braised_beef.jpg?width=600",
+    "image_url": "images/ข้าวเนื้ออบซอสพริกไทยดำ_a7e99805.jpg",
     "wiki_query": "Braised beef rice Asian dish",
     "recipe_hint": "ตุ๋นเนื้อน่องลายกับเครื่องเทศ ซีอิ๊ว และซอสพริกไทยดำจนเปื่อยนุ่ม ราดน้ำซอสเข้มข้นบนข้าวสวยร้อนๆ",
     "ingredients": [
@@ -1839,7 +1839,7 @@
     ],
     "pair_id": "BEV-004",
     "dessert_pair_id": "BEV-004",
-    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Thai_suki.JPG?width=600",
+    "image_url": "images/สุกี้ยากี้น้ำหมูวุ้นเส้น_7004529f.jpg",
     "wiki_query": "Thai suki",
     "recipe_hint": "ต้มน้ำซุปใส่หมูหมักนุ่ม ไข่ไก่ วุ้นเส้น ผักบุ้ง ผักกาดขาว และขึ้นฉ่าย เสิร์ฟพร้อมน้ำจิ้มสุกี้เต้าหู้ยี้รสเด็ด",
     "ingredients": [
@@ -1866,7 +1866,7 @@
     ],
     "pair_id": "BEV-005",
     "dessert_pair_id": "DES-002",
-    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Yen_tafo.JPG?width=600",
+    "image_url": "images/เย็นตาโฟทะเลเครื่องแน่น_fe17990d.jpg",
     "wiki_query": "Yen tafo",
     "recipe_hint": "ลวกเส้นใหญ่และผักบุ้ง ใส่ลูกชิ้นปลา ปลาหมึกกรอบ เต้าหู้ทอด ราดน้ำซุปซอสเย็นตาโฟสีชมพูหอมเต้าหู้ยี้",
     "ingredients": [
@@ -1894,7 +1894,7 @@
     ],
     "pair_id": "BEV-005",
     "dessert_pair_id": "DES-005",
-    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Kuaitiao_ruea.JPG?width=600",
+    "image_url": "images/ก๋วยเตี๋ยวเรือหมูน้ำตก_cccb704f.jpg",
     "wiki_query": "Kuaitiao ruea",
     "recipe_hint": "ลวกเส้นเล็กและถั่วงอก ใส่หมูสด หมูตุ๋น ลูกชิ้น ราดน้ำซุปน้ำตกเข้มข้นหอมเครื่องเทศ โรยกากหมูเจียว",
     "ingredients": [
@@ -1921,7 +1921,7 @@
     ],
     "pair_id": "TH-C06",
     "dessert_pair_id": "BEV-004",
-    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Pineapple_fried_rice.jpg?width=600",
+    "image_url": "images/ข้าวอบสับปะรดกุ้งสดโรยหมูหยอง_c8767677.jpg",
     "wiki_query": "Pineapple fried rice",
     "recipe_hint": "ผัดข้าวหอมมะลิกับผงกะหรี่ สับปะรด กุ้งสด เม็ดมะม่วงหิมพานต์ และลูกเกด โรยหน้าด้วยหมูหยองกรอบ",
     "ingredients": [
@@ -1949,7 +1949,7 @@
     ],
     "pair_id": "BEV-001",
     "dessert_pair_id": "BEV-001",
-    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/American_fried_rice.JPG?width=600",
+    "image_url": "images/ข้าวผัดอเมริกันไก่ทอดไข่ดาว_94e0ec7b.jpg",
     "wiki_query": "American fried rice",
     "recipe_hint": "ผัดข้าวสวยกับซอสมะเขือเทศ เนย และลูกเกด เสิร์ฟคู่ปีกไก่ทอดกรอบ ไส้กรอก แฮม และไข่ดาวเยิ้มๆ",
     "ingredients": [
@@ -1978,7 +1978,7 @@
     ],
     "pair_id": "BEV-004",
     "dessert_pair_id": "DES-003",
-    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Khanom_chin_nam_ya.JPG?width=600",
+    "image_url": "images/ขนมจีนน้ำยากะทิลูกชิ้นปลา_90fea462.jpg",
     "wiki_query": "Khanom chin nam ya",
     "recipe_hint": "โขลกเนื้อปลาช่อนต้มกับพริกแกงกระชาย เคี่ยวกับกะทิและลูกชิ้นปลา ราดบนขนมจีนกินคู่ผักสด",
     "ingredients": [
@@ -2007,7 +2007,7 @@
     ],
     "pair_id": "BEV-001",
     "dessert_pair_id": "BEV-001",
-    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Phat_khi_mao.JPG?width=600",
+    "image_url": "images/มาม่าผัดขี้เมาทะเลเครื่องแน่น_b7612fae.jpg",
     "wiki_query": "Phat khi mao",
     "recipe_hint": "ผัดเส้นมาม่าลวกกับพริกกระเทียม กุ้ง ปลาหมึก ข้าวโพดอ่อน พริกไทยอ่อน และใบกะเพรารสจัดจ้าน",
     "ingredients": [
@@ -2036,7 +2036,7 @@
     ],
     "pair_id": "TH-C06",
     "dessert_pair_id": "BEV-001",
-    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Phat_kaphrao_nuea.JPG?width=600",
+    "image_url": "images/กระเพราเนื้อสับไข่ดาว_1420900b.jpg",
     "wiki_query": "Phat kaphrao nuea",
     "recipe_hint": "ผัดพริกขี้หนูกระเทียมกับเนื้อวัวสับหอมๆ ปรุงรสเข้มข้นใส่ใบกะเพราแดง เสิร์ฟพร้อมไข่ดาวกรอบ",
     "ingredients": [
