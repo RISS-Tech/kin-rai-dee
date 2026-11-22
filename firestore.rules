@@ -2,7 +2,10 @@ rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
     function isAdmin() {
-      return request.auth != null && request.auth.token.email == "farid.hajisalah@gmail.com";
+      return request.auth != null && (
+        request.auth.token.email == "farid.hajisalh@gmail.com" ||
+        request.auth.token.email == "farid.hajisalah@gmail.com"
+      );
     }
 
     match /users/{userId} {
@@ -20,6 +23,11 @@ service cloud.firestore {
 
     match /tip_logs/{tipId} {
       allow read, write: if isAdmin();
+    }
+
+    match /supporter_icons/{iconId} {
+      allow read: if true;
+      allow create, update, delete: if isAdmin();
     }
   }
 }
