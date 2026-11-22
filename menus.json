@@ -900,7 +900,7 @@
     ],
     "pair_id": "BEV-002",
     "dessert_pair_id": "BEV-002",
-    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Katsu_curry.jpg?width=600",
+    "image_url": "images/INT-02.webp",
     "recipe_hint": "ทอดหมูสันนอกชุบเกล็ดขนมปังจนกรอบ หั่นวางบนข้าวญี่ปุ่นร้อนๆ แล้วราดซอสแกงกะหรี่เคี่ยวแครอทมันฝรั่ง",
     "wiki_query": "Katsu curry",
     "ingredients": [
@@ -926,7 +926,7 @@
     ],
     "pair_id": "BEV-006",
     "dessert_pair_id": "BEV-006",
-    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Gyudon_by_jetalone_in_Tokyo.jpg?width=600",
+    "image_url": "images/INT-03.webp",
     "recipe_hint": "ต้มเนื้อสไลด์กับหอมใหญ่ในซอสโชยุ มิริน และดาชิ โปะบนข้าวญี่ปุ่น พร้อมไข่ออนเซ็นและขิงดอง",
     "wiki_query": "Gyudon",
     "ingredients": [
@@ -977,7 +977,7 @@
     ],
     "pair_id": "INT-06",
     "dessert_pair_id": "BEV-002",
-    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Korean_fried_chicken_2.jpg?width=600",
+    "image_url": "images/INT-05.webp",
     "recipe_hint": "ทอดปีกไก่ชุบแป้งสองรอบให้กรอบนาน แล้วคลุกซอสโชยุกระเทียมน้ำผึ้ง โรยงาขาวคั่ว",
     "wiki_query": "Korean fried chicken",
     "ingredients": [
@@ -1003,7 +1003,7 @@
     ],
     "pair_id": "INT-05",
     "dessert_pair_id": "DES-006",
-    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Kimchi_jjigae.jpg?width=600",
+    "image_url": "images/INT-06.webp",
     "recipe_hint": "ผัดกิมจิเปรี้ยวกับหมูสามชั้น เติมน้ำซุป ใส่เต้าหู้อ่อน ต้นหอมญี่ปุ่น และตอกไข่ไก่ลงไปก่อนเสิร์ฟ",
     "wiki_query": "Kimchi jjigae",
     "ingredients": [
@@ -1083,7 +1083,7 @@
     ],
     "pair_id": "BEV-002",
     "dessert_pair_id": "DES-006",
-    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Chicken_steak.jpg?width=600",
+    "image_url": "images/INT-09.webp",
     "recipe_hint": "หมักสะโพกไก่กับพริกไทยดำบดและกระเทียม ย่างบนกระทะจนหนังเกรียม เสิร์ฟคู่เฟรนช์ฟรายส์และสลัด",
     "wiki_query": "Chicken steak",
     "ingredients": [
@@ -1108,7 +1108,7 @@
     ],
     "pair_id": "BEV-001",
     "dessert_pair_id": "BEV-001",
-    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Chicken_Biryani.jpg?width=600",
+    "image_url": "images/INT-10.webp",
     "recipe_hint": "หุงข้าวบาสมาติกับผงกะหรี่ ขมิ้น นมสด และน่องไก่หมักเครื่องเทศ เสิร์ฟพร้อมหอมเจียวและน้ำจิ้มอาจาด",
     "wiki_query": "Chicken Biryani",
     "ingredients": [
@@ -1188,7 +1188,7 @@
     ],
     "pair_id": "BEV-004",
     "dessert_pair_id": "BEV-004",
-    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Hainanese_Chicken_Rice.jpg?width=600",
+    "image_url": "images/INT-13.webp",
     "recipe_hint": "หุงข้าวหอมมะลิด้วยน้ำซุปไก่และกระเทียมเจียว เสิร์ฟคู่ไก่ต้มเนื้อนุ่ม น้ำซุปฟัก และน้ำจิ้มขิงเต้าเจี้ยว",
     "wiki_query": "Hainanese Chicken Rice",
     "ingredients": [
@@ -1213,7 +1213,7 @@
     ],
     "pair_id": "BEV-002",
     "dessert_pair_id": "BEV-002",
-    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Tacos_de_carnitas,_San_Francisco.jpg?width=600",
+    "image_url": "images/INT-14.webp",
     "recipe_hint": "วางไก่ย่างเครื่องเทศเม็กซิกันบนแผ่นแป้งตอร์ติญ่า ท็อปด้วยซัลซ่ามะเขือเทศ อะโวคาโด และชีส",
     "wiki_query": "Tacos",
     "ingredients": [
@@ -1238,7 +1238,7 @@
     ],
     "pair_id": "BEV-003",
     "dessert_pair_id": "BEV-003",
-    "image_url": "images/Yang_Zhou_Fried_Rice_plated_0a66c72a.jpg",
+    "image_url": "images/INT-15.webp",
     "recipe_hint": "ผัดเบคอนกับกิมจิและซอสโคชูจัง ใส่ข้าวสวยลงผัดให้เข้ากัน โรยสาหร่ายและโปะไข่ดาวเยิ้มๆ",
     "wiki_query": "Kimchi bokkeumbap",
     "ingredients": [
@@ -3468,7 +3468,7 @@
     ],
     "pair_id": "BEV-006",
     "dessert_pair_id": "BEV-006",
-    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Katsudon_001.jpg?width=600",
+    "image_url": "images/INT-18.webp",
     "wiki_query": "Katsudon",
     "recipe_hint": "ต้มหมูทอดทงคัตสึกับหอมใหญ่และซอสโชยุหวาน ราดไข่ไก่นุ่มๆ บนข้าวญี่ปุ่นร้อนๆ",
     "ingredients": [
@@ -3495,7 +3495,7 @@
     ],
     "pair_id": "BEV-006",
     "dessert_pair_id": "BEV-006",
-    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Unadon.jpg?width=600",
+    "image_url": "images/INT-19.webp",
     "wiki_query": "Unadon",
     "recipe_hint": "ปลาไหลญี่ปุ่นย่างซอสคาบายากิหอมหวาน วางบนข้าวญี่ปุ่นโรยงาขาว",
     "ingredients": [
@@ -3574,7 +3574,7 @@
     ],
     "pair_id": "BEV-006",
     "dessert_pair_id": "BEV-006",
-    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Tendon_by_avlxyz.jpg?width=600",
+    "image_url": "images/INT-22.webp",
     "wiki_query": "Tendon tempura",
     "recipe_hint": "กุ้งและผักชุบแป้งเทมปุระทอดกรอบ วางบนข้าวญี่ปุ่นราดซอสเทนสึยุกลมกล่อม",
     "ingredients": [
@@ -3600,7 +3600,7 @@
     ],
     "pair_id": "INT-05",
     "dessert_pair_id": "BEV-003",
-    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Tteokbokki_2.jpg?width=600",
+    "image_url": "images/INT-23.webp",
     "wiki_query": "Tteokbokki",
     "recipe_hint": "เคี่ยวแป้งต๊อกหนึบหนับกับซอสโคชูจัง ออมุก และไข่ต้ม ท็อปด้วยมอสซาเรลล่าชีส",
     "ingredients": [
@@ -3627,7 +3627,7 @@
     ],
     "pair_id": "INT-06",
     "dessert_pair_id": "BEV-003",
-    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Samgyeopsal-gui.jpg?width=600",
+    "image_url": "images/INT-24.webp",
     "wiki_query": "Samgyeopsal grilled pork belly Korean",
     "recipe_hint": "ย่างหมูสามชั้นจนเกรียมหอม ห่อผักกาดหอมพร้อมกิมจิ กระเทียม และซอสซัมจัง",
     "ingredients": [
@@ -3654,7 +3654,7 @@
     ],
     "pair_id": "INT-05",
     "dessert_pair_id": "BEV-002",
-    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Jajangmyeon_by_stu_spivack.jpg?width=600",
+    "image_url": "images/INT-25.webp",
     "wiki_query": "Jajangmyeon",
     "recipe_hint": "ราดซอสถั่วดำเกาหลีผัดหมูสับและหอมใหญ่ลงบนเส้นบะหมี่เหนียวนุ่ม โรยแตงกวาซอย",
     "ingredients": [
@@ -3681,7 +3681,7 @@
     ],
     "pair_id": "BEV-003",
     "dessert_pair_id": "BEV-003",
-    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Korean_ramyeon.jpg?width=600",
+    "image_url": "images/INT-26.webp",
     "wiki_query": "Ramyeon",
     "recipe_hint": "ต้มเส้นรามยอนเกาหลีในซุปเผ็ดร้อน ใส่ไข่ไก่ ไส้กรอก ชีสแผ่น และต้นหอมญี่ปุ่น",
     "ingredients": [
@@ -3708,7 +3708,7 @@
     ],
     "pair_id": "INT-06",
     "dessert_pair_id": "BEV-003",
-    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Gimbap_(2).jpg?width=600",
+    "image_url": "images/INT-27.webp",
     "wiki_query": "Gimbap",
     "recipe_hint": "ม้วนข้าวคลุกน้ำมันงากับสาหร่าย แครอท ผักโขม ไข่หวาน และเนื้อผัดซอส",
     "ingredients": [
@@ -3790,7 +3790,7 @@
     ],
     "pair_id": "BEV-002",
     "dessert_pair_id": "DES-006",
-    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Lasagna_with_salad.jpg?width=600",
+    "image_url": "images/INT-30.webp",
     "wiki_query": "Lasagna",
     "recipe_hint": "เรียงแผ่นพาสต้าสลับซอสเนื้อหมูโบโลเนสและไวท์ซอส โปะชีสแน่นๆ อบจนเกรียมหอม",
     "ingredients": [
@@ -3870,7 +3870,7 @@
     ],
     "pair_id": "BEV-002",
     "dessert_pair_id": "DES-006",
-    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Bacon_cheeseburger.jpg?width=600",
+    "image_url": "images/INT-33.webp",
     "wiki_query": "Bacon cheeseburger",
     "recipe_hint": "เบอร์เกอร์ขนมปังบริยอชประกบเนื้อบดย่างฉ่ำ เชดดาร์ชีส เบคอนกรอบ และซอสสูตรพิเศษ",
     "ingredients": [
@@ -3897,7 +3897,7 @@
     ],
     "pair_id": "BEV-002",
     "dessert_pair_id": "DES-006",
-    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Fried_chicken_01.jpg?width=600",
+    "image_url": "images/INT-34.webp",
     "wiki_query": "Fried chicken",
     "recipe_hint": "ไก่ทอดคลุกแป้งเครื่องเทศสูตรลับทอดจนหนังกรอบสีทอง เสิร์ฟคู่เฟรนช์ฟรายส์",
     "ingredients": [
@@ -3922,7 +3922,7 @@
     ],
     "pair_id": "BEV-002",
     "dessert_pair_id": "DES-006",
-    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Fish_and_chips_blackpool.jpg?width=600",
+    "image_url": "images/INT-35.webp",
     "wiki_query": "Fish and chips",
     "recipe_hint": "เนื้อปลาดอร์รี่ชุบแป้งเบียร์ทอดกรอบ เสิร์ฟคู่มันฝรั่งทอดและซอสทาร์ทาร์",
     "ingredients": [
@@ -3947,7 +3947,7 @@
     ],
     "pair_id": "BEV-002",
     "dessert_pair_id": "BEV-002",
-    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Caesar_salad_(1).jpg?width=600",
+    "image_url": "images/INT-36.webp",
     "wiki_query": "Caesar salad",
     "recipe_hint": "ผักคอสกรอบคลุกน้ำสลัดซีซาร์ อกไก่ย่างพริกไทยดำ เบคอนกรอบ และพาร์เมซานชีส",
     "ingredients": [
@@ -4107,7 +4107,7 @@
     ],
     "pair_id": "BEV-004",
     "dessert_pair_id": "BEV-004",
-    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Cantonese_roast_duck.jpg?width=600",
+    "image_url": "images/INT-42.webp",
     "wiki_query": "Roast duck",
     "recipe_hint": "เป็ดย่างหมักเครื่องเทศจนหนังกรอบเนื้อนุ่ม ราดน้ำซอสเป็ดย่างกลมกล่อม",
     "ingredients": [
@@ -4211,7 +4211,7 @@
     ],
     "pair_id": "BEV-001",
     "dessert_pair_id": "BEV-001",
-    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Chicken_makhani.jpg?width=600",
+    "image_url": "images/INT-46.webp",
     "wiki_query": "Butter chicken",
     "recipe_hint": "เคี่ยวไก่ย่างทิกก้าในซอสมะเขือเทศ เนย และครีมเครื่องเทศหอมนุ่ม กินคู่แป้งนาน",
     "ingredients": [
@@ -4236,7 +4236,7 @@
     ],
     "pair_id": "BEV-001",
     "dessert_pair_id": "BEV-001",
-    "image_url": "images/Paneer_butter_masala_with_naan_20f31f8b.jpg",
+    "image_url": "images/INT-47.webp",
     "wiki_query": "Garlic naan",
     "recipe_hint": "แป้งนานอบร้อนทาเนยกระเทียมสอดไส้ชีส กินคู่แกงถั่วเลนทิลหอมเครื่องเทศ",
     "ingredients": [
@@ -4287,7 +4287,7 @@
     ],
     "pair_id": "BEV-002",
     "dessert_pair_id": "BEV-002",
-    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Burrito.JPG?width=600",
+    "image_url": "images/INT-49.webp",
     "wiki_query": "Burrito",
     "recipe_hint": "แป้งตอร์ติญ่าห่อข้าวปรุงรส ไก่ย่าง ถั่วดำ ซัลซ่า ซาวร์ครีม และชีส",
     "ingredients": [
@@ -5947,6 +5947,869 @@
     "wiki_query": "ไส้กรอกหมูย่างเวียดนาม",
     "ingredients": [
       "หมู",
+      "กระเทียม"
+    ]
+  },
+  {
+    "id": "INT-77",
+    "name": "อาเรปาสไส้ไก่ฉีกเวเนซุเอลา",
+    "mode": "main",
+    "category": "อาหารนานาชาติ",
+    "region": "เวเนซุเอลา",
+    "protein": "ไก่",
+    "budget": 85,
+    "budget_tier": "ปานกลาง",
+    "prep_time": 20,
+    "is_spicy": false,
+    "tags": [
+      "จานเดียว",
+      "ไม่เผ็ด"
+    ],
+    "pair_id": "BEV-004",
+    "dessert_pair_id": "BEV-005",
+    "image_url": "images/INT-77.webp",
+    "recipe_hint": "แป้งข้าวโพดย่างกรอบนอกนุ่มใน สอดไส้ไก่ฉีกคลุกซอสอะโวคาโดหอมมัน",
+    "wiki_query": "อาเรปาสไส้ไก่ฉีกเวเนซุเอลา",
+    "ingredients": [
+      "ไก่",
+      "แป้ง"
+    ]
+  },
+  {
+    "id": "INT-78",
+    "name": "อาซาโดบาร์บีคิวเนื้อย่างอาร์เจนตินา",
+    "mode": "main",
+    "category": "อาหารนานาชาติ",
+    "region": "อาร์เจนตินา",
+    "protein": "เนื้อ",
+    "budget": 180,
+    "budget_tier": "พรีเมียม",
+    "prep_time": 35,
+    "is_spicy": false,
+    "tags": [
+      "กับข้าว",
+      "ย่าง",
+      "พรีเมียม"
+    ],
+    "pair_id": "BEV-004",
+    "dessert_pair_id": "BEV-005",
+    "image_url": "images/INT-78.webp",
+    "recipe_hint": "เนื้อวัวย่างเตาถ่านสไตล์อาร์เจนตินา เสิร์ฟคู่ซอสชิมิชูร์รีสมุนไพร",
+    "wiki_query": "อาซาโดบาร์บีคิวเนื้อย่างอาร์เจนตินา",
+    "ingredients": [
+      "เนื้อ",
+      "กระเทียม"
+    ]
+  },
+  {
+    "id": "INT-79",
+    "name": "ไข่ข้าวบาลุตฟิลิปปินส์",
+    "mode": "main",
+    "category": "อาหารนานาชาติ",
+    "region": "ฟิลิปปินส์",
+    "protein": "ไข่",
+    "budget": 40,
+    "budget_tier": "ประหยัด",
+    "prep_time": 10,
+    "is_spicy": false,
+    "tags": [
+      "จานเดียว",
+      "ประหยัด"
+    ],
+    "pair_id": "BEV-004",
+    "dessert_pair_id": "BEV-005",
+    "image_url": "images/INT-79.webp",
+    "recipe_hint": "ไข่ข้าวต้มสุกร้อนๆ กินคู่เกลือพริกไทยและน้ำส้มสายชูพริกกระเทียม",
+    "wiki_query": "ไข่ข้าวบาลุตฟิลิปปินส์",
+    "ingredients": [
+      "ไข่",
+      "พริก"
+    ]
+  },
+  {
+    "id": "INT-80",
+    "name": "เรินดังเนื้อตุ๋นเครื่องเทศอินโดนีเซีย",
+    "mode": "main",
+    "category": "อาหารนานาชาติ",
+    "region": "อินโดนีเซีย",
+    "protein": "เนื้อ",
+    "budget": 110,
+    "budget_tier": "พรีเมียม",
+    "prep_time": 45,
+    "is_spicy": true,
+    "tags": [
+      "กับข้าว",
+      "แกงกะทิ",
+      "เผ็ด"
+    ],
+    "pair_id": "BEV-004",
+    "dessert_pair_id": "BEV-005",
+    "image_url": "images/INT-80.webp",
+    "recipe_hint": "เคี่ยวเนื้อวัวในกะทิและเครื่องเทศเข้มข้นจนงวดหอม กินคู่ข้าวสวยร้อนๆ",
+    "wiki_query": "เรินดังเนื้อตุ๋นเครื่องเทศอินโดนีเซีย",
+    "ingredients": [
+      "เนื้อ",
+      "กะทิ",
+      "พริก"
+    ]
+  },
+  {
+    "id": "INT-81",
+    "name": "บีฟบูร์กิญงสตูว์เนื้อไวน์แดงฝรั่งเศส",
+    "mode": "main",
+    "category": "อาหารนานาชาติ",
+    "region": "ฝรั่งเศส",
+    "protein": "เนื้อ",
+    "budget": 165,
+    "budget_tier": "พรีเมียม",
+    "prep_time": 45,
+    "is_spicy": false,
+    "tags": [
+      "กับข้าว",
+      "ต้ม",
+      "พรีเมียม"
+    ],
+    "pair_id": "BEV-004",
+    "dessert_pair_id": "BEV-005",
+    "image_url": "images/INT-81.webp",
+    "recipe_hint": "ตุ๋นเนื้อวัวกับไวน์แดง แครอท เห็ด และเบคอนจนเปื่อยนุ่มละลายในปาก",
+    "wiki_query": "บีฟบูร์กิญงสตูว์เนื้อไวน์แดงฝรั่งเศส",
+    "ingredients": [
+      "เนื้อ",
+      "แครอท",
+      "เห็ด"
+    ]
+  },
+  {
+    "id": "INT-82",
+    "name": "วาเตอร์ซูยสตูว์ไก่ครีมเบลเยียม",
+    "mode": "main",
+    "category": "อาหารนานาชาติ",
+    "region": "เบลเยียม",
+    "protein": "ไก่",
+    "budget": 130,
+    "budget_tier": "พรีเมียม",
+    "prep_time": 30,
+    "is_spicy": false,
+    "tags": [
+      "กับข้าว",
+      "ต้ม",
+      "ไม่เผ็ด"
+    ],
+    "pair_id": "BEV-004",
+    "dessert_pair_id": "BEV-005",
+    "image_url": "images/INT-82.webp",
+    "recipe_hint": "สตูว์ไก่ต้มในน้ำซุปครีมเข้มข้นใส่ผักรากและมันฝรั่ง หอมเนยและสมุนไพร",
+    "wiki_query": "วาเตอร์ซูยสตูว์ไก่ครีมเบลเยียม",
+    "ingredients": [
+      "ไก่",
+      "มันฝรั่ง",
+      "แครอท"
+    ]
+  },
+  {
+    "id": "INT-83",
+    "name": "โบโบตีเนื้ออบเครื่องเทศแอฟริกาใต้",
+    "mode": "main",
+    "category": "อาหารนานาชาติ",
+    "region": "แอฟริกาใต้",
+    "protein": "เนื้อ",
+    "budget": 120,
+    "budget_tier": "พรีเมียม",
+    "prep_time": 35,
+    "is_spicy": false,
+    "tags": [
+      "จานเดียว",
+      "ไม่เผ็ด"
+    ],
+    "pair_id": "BEV-004",
+    "dessert_pair_id": "BEV-005",
+    "image_url": "images/INT-83.webp",
+    "recipe_hint": "เนื้อสับผัดผงกะหรี่และผลไม้อบแห้ง ราดหน้าด้วยคัสตาร์ดไข่อบจนเหลืองหอม",
+    "wiki_query": "โบโบตีเนื้ออบเครื่องเทศแอฟริกาใต้",
+    "ingredients": [
+      "เนื้อ",
+      "ไข่",
+      "ข้าว"
+    ]
+  },
+  {
+    "id": "INT-84",
+    "name": "บันนี่เชาขนมปังแกงกะหรี่แอฟริกาใต้",
+    "mode": "main",
+    "category": "อาหารนานาชาติ",
+    "region": "แอฟริกาใต้",
+    "protein": "ไก่",
+    "budget": 95,
+    "budget_tier": "ปานกลาง",
+    "prep_time": 25,
+    "is_spicy": true,
+    "tags": [
+      "จานเดียว",
+      "แกง",
+      "เผ็ด"
+    ],
+    "pair_id": "BEV-004",
+    "dessert_pair_id": "BEV-005",
+    "image_url": "images/INT-84.webp",
+    "recipe_hint": "ขนมปังก้อนคว้านไส้ราดแกงกะหรี่รสเข้มข้น กินคู่เนื้อขนมปังนุ่มๆ",
+    "wiki_query": "บันนี่เชาขนมปังแกงกะหรี่แอฟริกาใต้",
+    "ingredients": [
+      "ไก่",
+      "พริก"
+    ]
+  },
+  {
+    "id": "INT-85",
+    "name": "โมฮิงก่าขนมจีนน้ำยาปลาพม่า",
+    "mode": "main",
+    "category": "อาหารนานาชาติ",
+    "region": "เมียนมา",
+    "protein": "ปลา",
+    "budget": 60,
+    "budget_tier": "ปานกลาง",
+    "prep_time": 20,
+    "is_spicy": false,
+    "tags": [
+      "จานเดียว",
+      "เส้น",
+      "ไม่เผ็ด"
+    ],
+    "pair_id": "BEV-004",
+    "dessert_pair_id": "BEV-005",
+    "image_url": "images/INT-85.webp",
+    "recipe_hint": "ขนมจีนราดน้ำซุปปลาหอมตะไคร้ ขิง และหยวกกล้วย โรยถั่วทอดกรอบและไข่ต้ม",
+    "wiki_query": "โมฮิงก่าขนมจีนน้ำยาปลาพม่า",
+    "ingredients": [
+      "ขนมจีน",
+      "ปลา",
+      "ไข่"
+    ]
+  },
+  {
+    "id": "INT-86",
+    "name": "ยำใบชาหมักพม่า (ละเพ็ตโต๊ก)",
+    "mode": "main",
+    "category": "อาหารนานาชาติ",
+    "region": "เมียนมา",
+    "protein": "มังสวิรัติ",
+    "budget": 65,
+    "budget_tier": "ปานกลาง",
+    "prep_time": 10,
+    "is_spicy": false,
+    "tags": [
+      "กับข้าว",
+      "ยำ/ตำ",
+      "สุขภาพ"
+    ],
+    "pair_id": "BEV-004",
+    "dessert_pair_id": "BEV-005",
+    "image_url": "images/INT-86.webp",
+    "recipe_hint": "ใบชาหมักคลุกเคล้ากับถั่วทอดกรอบ งาคั่ว กะหล่ำปลีซอย มะเขือเทศ และน้ำมะนาว",
+    "wiki_query": "ยำใบชาหมักพม่า (ละเพ็ตโต๊ก)",
+    "ingredients": [
+      "ผักรวม",
+      "มะนาว"
+    ]
+  },
+  {
+    "id": "INT-87",
+    "name": "ชาร์ก๋วยเตี๋ยวผัดซีอิ๊วปีนัง",
+    "mode": "main",
+    "category": "อาหารนานาชาติ",
+    "region": "มาเลเซีย",
+    "protein": "ทะเล",
+    "budget": 75,
+    "budget_tier": "ปานกลาง",
+    "prep_time": 12,
+    "is_spicy": true,
+    "tags": [
+      "จานเดียว",
+      "เส้น",
+      "ผัด"
+    ],
+    "pair_id": "BEV-004",
+    "dessert_pair_id": "BEV-005",
+    "image_url": "images/INT-87.webp",
+    "recipe_hint": "ผัดเส้นใหญ่ไฟแรงกับกุ้งสด หอยแครง กุนเชียง ถั่วงอก และซอสซีอิ๊วดำหอมกลิ่นกระทะ",
+    "wiki_query": "ชาร์ก๋วยเตี๋ยวผัดซีอิ๊วปีนัง",
+    "ingredients": [
+      "เส้นใหญ่",
+      "กุ้ง",
+      "ไข่"
+    ]
+  },
+  {
+    "id": "INT-88",
+    "name": "ไก่ผัดกะหรี่คาราฮีปากีสถาน",
+    "mode": "main",
+    "category": "อาหารนานาชาติ",
+    "region": "ปากีสถาน",
+    "protein": "ไก่",
+    "budget": 105,
+    "budget_tier": "พรีเมียม",
+    "prep_time": 25,
+    "is_spicy": true,
+    "tags": [
+      "กับข้าว",
+      "แกง",
+      "เผ็ด"
+    ],
+    "pair_id": "BEV-004",
+    "dessert_pair_id": "BEV-005",
+    "image_url": "images/INT-88.webp",
+    "recipe_hint": "ผัดไก่ในกระทะก้นลึกกับมะเขือเทศ ขิง พริกเขียว และเครื่องเทศ กินคู่แป้งนานร้อนๆ",
+    "wiki_query": "ไก่ผัดกะหรี่คาราฮีปากีสถาน",
+    "ingredients": [
+      "ไก่",
+      "ขิง",
+      "พริก"
+    ]
+  },
+  {
+    "id": "INT-89",
+    "name": "เอ็มปานาดาพายเนื้ออบชิลี",
+    "mode": "main",
+    "category": "อาหารนานาชาติ",
+    "region": "ชิลี",
+    "protein": "เนื้อ",
+    "budget": 75,
+    "budget_tier": "ปานกลาง",
+    "prep_time": 25,
+    "is_spicy": false,
+    "tags": [
+      "จานเดียว",
+      "ไม่เผ็ด"
+    ],
+    "pair_id": "BEV-004",
+    "dessert_pair_id": "BEV-005",
+    "image_url": "images/INT-89.webp",
+    "recipe_hint": "แป้งพายอบกรอบสอดไส้เนื้อสับผัดหอมใหญ่ มะกอก ไข่ต้ม และลูกเกด",
+    "wiki_query": "เอ็มปานาดาพายเนื้ออบชิลี",
+    "ingredients": [
+      "เนื้อ",
+      "ไข่"
+    ]
+  },
+  {
+    "id": "INT-90",
+    "name": "โจ๊กฮ่องกงเนื้อเนียนคู่ปาท่องโก๋",
+    "mode": "main",
+    "category": "อาหารนานาชาติ",
+    "region": "จีน",
+    "protein": "หมู",
+    "budget": 55,
+    "budget_tier": "ปานกลาง",
+    "prep_time": 15,
+    "is_spicy": false,
+    "tags": [
+      "จานเดียว",
+      "ต้ม",
+      "ไม่เผ็ด"
+    ],
+    "pair_id": "BEV-004",
+    "dessert_pair_id": "BEV-005",
+    "image_url": "images/INT-90.webp",
+    "recipe_hint": "โจ๊กข้าวหอมเคี่ยวจนเนียนละเอียด ใส่หมูสับ ไข่ลวก ขิงซอย กินคู่ปาท่องโก๋กรอบ",
+    "wiki_query": "โจ๊กฮ่องกงเนื้อเนียนคู่ปาท่องโก๋",
+    "ingredients": [
+      "ข้าว",
+      "หมูสับ",
+      "ไข่"
+    ]
+  },
+  {
+    "id": "INT-91",
+    "name": "ก็อกโอแว็งไก่ตุ๋นไวน์แดงฝรั่งเศส",
+    "mode": "main",
+    "category": "อาหารนานาชาติ",
+    "region": "ฝรั่งเศส",
+    "protein": "ไก่",
+    "budget": 145,
+    "budget_tier": "พรีเมียม",
+    "prep_time": 40,
+    "is_spicy": false,
+    "tags": [
+      "กับข้าว",
+      "ต้ม",
+      "พรีเมียม"
+    ],
+    "pair_id": "BEV-004",
+    "dessert_pair_id": "BEV-005",
+    "image_url": "images/INT-91.webp",
+    "recipe_hint": "ตุ๋นเนื้อไก่กับไวน์แดง เห็ดแชมปิญอง เบคอน และหอมมุกจนซอสเข้มข้น",
+    "wiki_query": "ก็อกโอแว็งไก่ตุ๋นไวน์แดงฝรั่งเศส",
+    "ingredients": [
+      "ไก่",
+      "เห็ด",
+      "เบคอน"
+    ]
+  },
+  {
+    "id": "INT-92",
+    "name": "ซุปเอกูซีเมล็ดแตงโมไนจีเรีย",
+    "mode": "main",
+    "category": "อาหารนานาชาติ",
+    "region": "ไนจีเรีย",
+    "protein": "เนื้อ",
+    "budget": 110,
+    "budget_tier": "พรีเมียม",
+    "prep_time": 30,
+    "is_spicy": true,
+    "tags": [
+      "กับข้าว",
+      "ต้ม",
+      "เผ็ด"
+    ],
+    "pair_id": "BEV-004",
+    "dessert_pair_id": "BEV-005",
+    "image_url": "images/INT-92.webp",
+    "recipe_hint": "ซุปเข้มข้นจากเมล็ดแตงโมบด เคี่ยวกับเนื้อและผักใบเขียว กินคู่แป้งมันเทศบด",
+    "wiki_query": "ซุปเอกูซีเมล็ดแตงโมไนจีเรีย",
+    "ingredients": [
+      "เนื้อ",
+      "ผักรวม",
+      "พริก"
+    ]
+  },
+  {
+    "id": "INT-93",
+    "name": "โคชารีข้าวถั่วพาสต้าอียิปต์",
+    "mode": "main",
+    "category": "อาหารนานาชาติ",
+    "region": "อียิปต์",
+    "protein": "มังสวิรัติ",
+    "budget": 70,
+    "budget_tier": "ปานกลาง",
+    "prep_time": 20,
+    "is_spicy": false,
+    "tags": [
+      "จานเดียว",
+      "มังสวิรัติ",
+      "ไม่เผ็ด"
+    ],
+    "pair_id": "BEV-004",
+    "dessert_pair_id": "BEV-005",
+    "image_url": "images/INT-93.webp",
+    "recipe_hint": "ข้าวสวย ถั่วเลนทิล มักกะโรนี และถั่วลูกไก่ ราดซอสมะเขือเทศกระเทียมและหอมเจียวกรอบ",
+    "wiki_query": "โคชารีข้าวถั่วพาสต้าอียิปต์",
+    "ingredients": [
+      "ข้าว",
+      "กระเทียม"
+    ]
+  },
+  {
+    "id": "INT-94",
+    "name": "มาห์ชีผักยัดไส้ข้าวอียิปต์",
+    "mode": "main",
+    "category": "อาหารนานาชาติ",
+    "region": "อียิปต์",
+    "protein": "มังสวิรัติ",
+    "budget": 85,
+    "budget_tier": "ปานกลาง",
+    "prep_time": 35,
+    "is_spicy": false,
+    "tags": [
+      "กับข้าว",
+      "สุขภาพ",
+      "ไม่เผ็ด"
+    ],
+    "pair_id": "BEV-004",
+    "dessert_pair_id": "BEV-005",
+    "image_url": "images/INT-94.webp",
+    "recipe_hint": "ซูกินี มะเขือ และใบองุ่นยัดไส้ข้าวปรุงรสสมุนไพร ตุ๋นในซอสมะเขือเทศหอมกรุ่น",
+    "wiki_query": "มาห์ชีผักยัดไส้ข้าวอียิปต์",
+    "ingredients": [
+      "ข้าว",
+      "ผักรวม"
+    ]
+  },
+  {
+    "id": "INT-95",
+    "name": "ฮาคาร์ลปลาฉลามหมักไอซ์แลนด์",
+    "mode": "main",
+    "category": "อาหารนานาชาติ",
+    "region": "ไอซ์แลนด์",
+    "protein": "ปลา",
+    "budget": 150,
+    "budget_tier": "พรีเมียม",
+    "prep_time": 10,
+    "is_spicy": false,
+    "tags": [
+      "กับข้าว",
+      "พรีเมียม"
+    ],
+    "pair_id": "BEV-004",
+    "dessert_pair_id": "BEV-005",
+    "image_url": "images/INT-95.webp",
+    "recipe_hint": "อาหารพื้นเมืองไอซ์แลนด์หั่นเต๋าพอดีคำ รสชาติและกลิ่นเป็นเอกลักษณ์",
+    "wiki_query": "ฮาคาร์ลปลาฉลามหมักไอซ์แลนด์",
+    "ingredients": [
+      "ปลา"
+    ]
+  },
+  {
+    "id": "INT-96",
+    "name": "ฟูฟูแป้งมันสำปะหลังจิ้มซุปแอฟริกา",
+    "mode": "main",
+    "category": "อาหารนานาชาติ",
+    "region": "กานา",
+    "protein": "เนื้อ",
+    "budget": 105,
+    "budget_tier": "พรีเมียม",
+    "prep_time": 25,
+    "is_spicy": true,
+    "tags": [
+      "จานเดียว",
+      "เผ็ด"
+    ],
+    "pair_id": "BEV-004",
+    "dessert_pair_id": "BEV-005",
+    "image_url": "images/INT-96.webp",
+    "recipe_hint": "แป้งฟูฟูเนื้อเนียนนุ่มปั้นคำ จิ้มซุปเครื่องเทศเข้มข้นสไตล์แอฟริกาตะวันตก",
+    "wiki_query": "ฟูฟูแป้งมันสำปะหลังจิ้มซุปแอฟริกา",
+    "ingredients": [
+      "เนื้อ",
+      "พริก"
+    ]
+  },
+  {
+    "id": "INT-97",
+    "name": "รูลาเดนเนื้อวัวม้วนตุ๋นเยอรมัน",
+    "mode": "main",
+    "category": "อาหารนานาชาติ",
+    "region": "เยอรมนี",
+    "protein": "เนื้อ",
+    "budget": 155,
+    "budget_tier": "พรีเมียม",
+    "prep_time": 40,
+    "is_spicy": false,
+    "tags": [
+      "กับข้าว",
+      "พรีเมียม",
+      "ไม่เผ็ด"
+    ],
+    "pair_id": "BEV-004",
+    "dessert_pair_id": "BEV-005",
+    "image_url": "images/INT-97.webp",
+    "recipe_hint": "เนื้อวัวแผ่นบางม้วนไส้เบคอน หอมใหญ่ และแตงกวาดอง ตุ๋นซอสเกรวี่เสิร์ฟคู่มันฝรั่งปั้น",
+    "wiki_query": "รูลาเดนเนื้อวัวม้วนตุ๋นเยอรมัน",
+    "ingredients": [
+      "เนื้อ",
+      "เบคอน",
+      "มันฝรั่ง"
+    ]
+  },
+  {
+    "id": "INT-98",
+    "name": "ชนิทเซลหมูชุบเกล็ดขนมปังทอดเยอรมัน",
+    "mode": "main",
+    "category": "อาหารนานาชาติ",
+    "region": "เยอรมนี",
+    "protein": "หมู",
+    "budget": 125,
+    "budget_tier": "พรีเมียม",
+    "prep_time": 20,
+    "is_spicy": false,
+    "tags": [
+      "จานเดียว",
+      "ทอด",
+      "ไม่เผ็ด"
+    ],
+    "pair_id": "BEV-004",
+    "dessert_pair_id": "BEV-005",
+    "image_url": "images/INT-98.webp",
+    "recipe_hint": "หมูทุบแผ่นบางชุบเกล็ดขนมปังทอดจนเหลืองกรอบ เสิร์ฟคู่มะนาวฝานและสลัดมันฝรั่ง",
+    "wiki_query": "ชนิทเซลหมูชุบเกล็ดขนมปังทอดเยอรมัน",
+    "ingredients": [
+      "หมู",
+      "มันฝรั่ง"
+    ]
+  },
+  {
+    "id": "INT-99",
+    "name": "มูซาก้ามะเขือม่วงอบชีสกรีก",
+    "mode": "main",
+    "category": "อาหารนานาชาติ",
+    "region": "กรีซ",
+    "protein": "เนื้อ",
+    "budget": 130,
+    "budget_tier": "พรีเมียม",
+    "prep_time": 35,
+    "is_spicy": false,
+    "tags": [
+      "จานเดียว",
+      "พรีเมียม",
+      "ไม่เผ็ด"
+    ],
+    "pair_id": "BEV-004",
+    "dessert_pair_id": "BEV-005",
+    "image_url": "images/INT-99.webp",
+    "recipe_hint": "มะเขือม่วงสไลด์เรียงชั้นสลับซอสเนื้อสับและซอสเบชาเมลครีมมี่ อบจนหน้าเกรียมหอม",
+    "wiki_query": "มูซาก้ามะเขือม่วงอบชีสกรีก",
+    "ingredients": [
+      "เนื้อ",
+      "ชีส",
+      "มะเขือ"
+    ]
+  },
+  {
+    "id": "INT-100",
+    "name": "มุกตุกสไตล์กรีนแลนด์",
+    "mode": "main",
+    "category": "อาหารนานาชาติ",
+    "region": "กรีนแลนด์",
+    "protein": "ปลา",
+    "budget": 160,
+    "budget_tier": "พรีเมียม",
+    "prep_time": 10,
+    "is_spicy": false,
+    "tags": [
+      "กับข้าว",
+      "พรีเมียม"
+    ],
+    "pair_id": "BEV-004",
+    "dessert_pair_id": "BEV-005",
+    "image_url": "images/INT-100.webp",
+    "recipe_hint": "อาหารดั้งเดิมแถบอาร์กติกหั่นชิ้นพอดีคำ เสิร์ฟเย็นพร้อมเกลือทะเล",
+    "wiki_query": "มุกตุกสไตล์กรีนแลนด์",
+    "ingredients": [
+      "ปลา"
+    ]
+  },
+  {
+    "id": "INT-101",
+    "name": "ไส้กรอกบราทเวิร์สย่างเยอรมัน",
+    "mode": "main",
+    "category": "อาหารนานาชาติ",
+    "region": "เยอรมนี",
+    "protein": "หมู",
+    "budget": 115,
+    "budget_tier": "พรีเมียม",
+    "prep_time": 15,
+    "is_spicy": false,
+    "tags": [
+      "กับข้าว",
+      "ย่าง",
+      "ไม่เผ็ด"
+    ],
+    "pair_id": "BEV-004",
+    "dessert_pair_id": "BEV-005",
+    "image_url": "images/INT-101.webp",
+    "recipe_hint": "ไส้กรอกหมูเยอรมันย่างจนหนังตึงกรอบ เสิร์ฟคู่มัสตาร์ดและกะหล่ำปลีดอง",
+    "wiki_query": "ไส้กรอกบราทเวิร์สย่างเยอรมัน",
+    "ingredients": [
+      "หมู",
+      "ไส้กรอก"
+    ]
+  },
+  {
+    "id": "INT-102",
+    "name": "กูลาชสตูว์เนื้อปาปริก้าฮังการี",
+    "mode": "main",
+    "category": "อาหารนานาชาติ",
+    "region": "ฮังการี",
+    "protein": "เนื้อ",
+    "budget": 135,
+    "budget_tier": "พรีเมียม",
+    "prep_time": 40,
+    "is_spicy": false,
+    "tags": [
+      "กับข้าว",
+      "ต้ม",
+      "ไม่เผ็ด"
+    ],
+    "pair_id": "BEV-004",
+    "dessert_pair_id": "BEV-005",
+    "image_url": "images/INT-102.webp",
+    "recipe_hint": "สตูว์เนื้อวัวเคี่ยวกับผงพริกปาปริก้าฮังการี หอมใหญ่ และมันฝรั่งจนเปื่อยนุ่ม",
+    "wiki_query": "กูลาชสตูว์เนื้อปาปริก้าฮังการี",
+    "ingredients": [
+      "เนื้อ",
+      "มันฝรั่ง"
+    ]
+  },
+  {
+    "id": "INT-103",
+    "name": "ชุดทาลีอาหารอินเดียรวมมิตร",
+    "mode": "main",
+    "category": "อาหารนานาชาติ",
+    "region": "อินเดีย",
+    "protein": "มังสวิรัติ",
+    "budget": 120,
+    "budget_tier": "พรีเมียม",
+    "prep_time": 20,
+    "is_spicy": true,
+    "tags": [
+      "จานเดียว",
+      "ครบเครื่อง"
+    ],
+    "pair_id": "BEV-004",
+    "dessert_pair_id": "BEV-005",
+    "image_url": "images/INT-103.webp",
+    "recipe_hint": "ถาดรวมแกงอินเดียหลายชนิด เสิร์ฟพร้อมข้าวบาสมาติ แป้งนาน โยเกิร์ต และผักดอง",
+    "wiki_query": "ชุดทาลีอาหารอินเดียรวมมิตร",
+    "ingredients": [
+      "ข้าว",
+      "พริก"
+    ]
+  },
+  {
+    "id": "INT-104",
+    "name": "มัสกูฟปลาย่างไฟอิรัก",
+    "mode": "main",
+    "category": "อาหารนานาชาติ",
+    "region": "อิรัก",
+    "protein": "ปลา",
+    "budget": 145,
+    "budget_tier": "พรีเมียม",
+    "prep_time": 35,
+    "is_spicy": false,
+    "tags": [
+      "กับข้าว",
+      "ย่าง",
+      "พรีเมียม"
+    ],
+    "pair_id": "BEV-004",
+    "dessert_pair_id": "BEV-005",
+    "image_url": "images/INT-104.webp",
+    "recipe_hint": "ปลาทั้งตัวผ่าหลังหมักเครื่องเทศและมะขาม ย่างไฟอ่อนจนหอม เสิร์ฟพร้อมมะนาวและผักสด",
+    "wiki_query": "มัสกูฟปลาย่างไฟอิรัก",
+    "ingredients": [
+      "ปลา",
+      "มะนาว"
+    ]
+  },
+  {
+    "id": "INT-105",
+    "name": "ข้าวผัดจอลลอฟไก่ย่างแอฟริกาตะวันตก",
+    "mode": "main",
+    "category": "อาหารนานาชาติ",
+    "region": "ไนจีเรีย",
+    "protein": "ไก่",
+    "budget": 95,
+    "budget_tier": "ปานกลาง",
+    "prep_time": 25,
+    "is_spicy": true,
+    "tags": [
+      "จานเดียว",
+      "เผ็ด"
+    ],
+    "pair_id": "BEV-004",
+    "dessert_pair_id": "BEV-005",
+    "image_url": "images/INT-105.webp",
+    "recipe_hint": "ข้าวหุงในซอสมะเขือเทศและพริกหอมเครื่องเทศ เสิร์ฟคู่ไก่ย่างและกล้วยทอด",
+    "wiki_query": "ข้าวผัดจอลลอฟไก่ย่างแอฟริกาตะวันตก",
+    "ingredients": [
+      "ข้าว",
+      "ไก่",
+      "พริก"
+    ]
+  },
+  {
+    "id": "INT-106",
+    "name": "ข้าวหมกคาบูลีปูเลาอัฟกานิสถาน",
+    "mode": "main",
+    "category": "อาหารนานาชาติ",
+    "region": "อัฟกานิสถาน",
+    "protein": "เนื้อ",
+    "budget": 125,
+    "budget_tier": "พรีเมียม",
+    "prep_time": 35,
+    "is_spicy": false,
+    "tags": [
+      "จานเดียว",
+      "พรีเมียม",
+      "ไม่เผ็ด"
+    ],
+    "pair_id": "BEV-004",
+    "dessert_pair_id": "BEV-005",
+    "image_url": "images/INT-106.webp",
+    "recipe_hint": "ข้าวบาสมาติหุงเครื่องเทศหอมกรุ่นพร้อมเนื้อตุ๋น ท็อปด้วยแครอทเส้นผัดเนยและลูกเกด",
+    "wiki_query": "ข้าวหมกคาบูลีปูเลาอัฟกานิสถาน",
+    "ingredients": [
+      "ข้าว",
+      "เนื้อ",
+      "แครอท"
+    ]
+  },
+  {
+    "id": "INT-107",
+    "name": "เคบับเนื้อย่างกระทะร้อน",
+    "mode": "main",
+    "category": "อาหารนานาชาติ",
+    "region": "ตุรกี",
+    "protein": "เนื้อ",
+    "budget": 120,
+    "budget_tier": "พรีเมียม",
+    "prep_time": 20,
+    "is_spicy": false,
+    "tags": [
+      "กับข้าว",
+      "ย่าง",
+      "ไม่เผ็ด"
+    ],
+    "pair_id": "BEV-004",
+    "dessert_pair_id": "BEV-005",
+    "image_url": "images/INT-107.webp",
+    "recipe_hint": "เนื้อหมักเครื่องเทศปั้นเสียบไม้ย่างหอมกรุ่น เสิร์ฟบนกระทะร้อนคู่ผักย่างและซอสโยเกิร์ต",
+    "wiki_query": "เคบับเนื้อย่างกระทะร้อน",
+    "ingredients": [
+      "เนื้อ",
+      "กระเทียม"
+    ]
+  },
+  {
+    "id": "INT-108",
+    "name": "ตำหมากหุ่งส้มตำลาวปลาร้านัว",
+    "mode": "main",
+    "category": "อาหารนานาชาติ",
+    "region": "ลาว",
+    "protein": "อื่นๆ",
+    "budget": 50,
+    "budget_tier": "ประหยัด",
+    "prep_time": 10,
+    "is_spicy": true,
+    "tags": [
+      "กับข้าว",
+      "ยำ/ตำ",
+      "เผ็ด",
+      "ประหยัด"
+    ],
+    "pair_id": "BEV-004",
+    "dessert_pair_id": "BEV-005",
+    "image_url": "images/INT-108.webp",
+    "recipe_hint": "มะละกอสับตำกับพริกสด กระเทียม มะเขือเทศ และน้ำปลาร้าลาวรสจัดจ้าน เสิร์ฟพร้อมผักสด",
+    "wiki_query": "ตำหมากหุ่งส้มตำลาวปลาร้านัว",
+    "ingredients": [
+      "พริก",
+      "กระเทียม",
+      "มะนาว"
+    ]
+  },
+  {
+    "id": "INT-109",
+    "name": "ล็อบสเตอร์โรลเนยกระเทียม",
+    "mode": "main",
+    "category": "อาหารนานาชาติ",
+    "region": "อเมริกัน",
+    "protein": "ทะเล",
+    "budget": 190,
+    "budget_tier": "พรีเมียม",
+    "prep_time": 15,
+    "is_spicy": false,
+    "tags": [
+      "จานเดียว",
+      "พรีเมียม",
+      "ไม่เผ็ด"
+    ],
+    "pair_id": "BEV-004",
+    "dessert_pair_id": "BEV-005",
+    "image_url": "images/INT-109.webp",
+    "recipe_hint": "ขนมปังบริยอชปิ้งเนยหอม สอดไส้เนื้อกุ้งล็อบสเตอร์คลุกซอสมายองเนส เสิร์ฟคู่เฟรนช์ฟรายส์",
+    "wiki_query": "ล็อบสเตอร์โรลเนยกระเทียม",
+    "ingredients": [
+      "กุ้ง",
       "กระเทียม"
     ]
   }
