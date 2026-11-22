@@ -1295,7 +1295,7 @@
     ],
     "pair_id": "BEV-004",
     "dessert_pair_id": "BEV-004",
-    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Bua_loi_khai_wan.JPG?width=600",
+    "image_url": "images/DES-001.webp",
     "recipe_hint": "ต้มเม็ดบัวลอยแป้งข้าวเหนียวหลากสีจนลอย ใส่ลงในน้ำกะทิอบควันเทียนหวานมัน พร้อมไข่หวานเยิ้มๆ",
     "wiki_query": "Bua loi",
     "ingredients": [
@@ -1320,7 +1320,7 @@
     ],
     "pair_id": "TH-E03",
     "dessert_pair_id": "BEV-004",
-    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Grass_jelly_dessert.jpg?width=600",
+    "image_url": "images/DES-002.webp",
     "recipe_hint": "ตักเฉาก๊วยเนื้อหนึบใส่น้ำแข็งเกล็ด ราดนมสดเย็นจัดและโรยน้ำตาลอ้อยบราวน์ชูการ์หอมหวาน",
     "wiki_query": "Grass jelly",
     "ingredients": [
@@ -1345,7 +1345,7 @@
     ],
     "pair_id": "TH-C04",
     "dessert_pair_id": "BEV-004",
-    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Thapthim_krop.JPG?width=600",
+    "image_url": "images/DES-003.webp",
     "recipe_hint": "ต้มแห้วคลุกน้ำหวานสีแดงและแป้งมันจนใส เสิร์ฟในน้ำกะทิสดหอมใบเตยและน้ำแข็งป่น",
     "wiki_query": "Thapthim krop",
     "ingredients": [
@@ -1369,7 +1369,7 @@
     ],
     "pair_id": "TH-E01",
     "dessert_pair_id": "BEV-001",
-    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Mango_sticky_rice.JPG?width=600",
+    "image_url": "images/DES-004.webp",
     "recipe_hint": "เสิร์ฟข้าวเหนียวมูนกะทิสดคู่กับมะม่วงสุกหวานฉ่ำ ราดหัวกะทิเค็มมันและโรยถั่วทองทอดกรอบ",
     "wiki_query": "Mango sticky rice",
     "ingredients": [
@@ -1395,7 +1395,7 @@
     ],
     "pair_id": "TH-S04",
     "dessert_pair_id": "BEV-004",
-    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Lot_chong_-_Bangkok_-_2017-08-07.jpg?width=600",
+    "image_url": "images/DES-005.webp",
     "recipe_hint": "ตักลอดช่องใบเตยหอมและแตงไทยสุก ราดน้ำกะทิเคี่ยวน้ำตาลโตนดหอมหวาน ใส่น้ำแข็งเย็นชื่นใจ",
     "wiki_query": "Lot chong",
     "ingredients": [
@@ -1419,7 +1419,7 @@
     ],
     "pair_id": "BEV-002",
     "dessert_pair_id": "BEV-002",
-    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Shibuya_honey_toast.jpg?width=600",
+    "image_url": "images/DES-006.webp",
     "recipe_hint": "อบขนมปังก้อนหนาทาเนยฉ่ำจนกรอบนอกนุ่มใน ท็อปด้วยไอศกรีมวานิลลาและราดน้ำผึ้งหอมหวาน",
     "wiki_query": "Honey toast",
     "ingredients": [
@@ -4339,7 +4339,7 @@
     ],
     "pair_id": "TH-C01",
     "dessert_pair_id": "BEV-004",
-    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Itim_kathi.JPG?width=600",
+    "image_url": "images/DES-007.webp",
     "wiki_query": "Coconut ice cream Thai dessert",
     "recipe_hint": "ไอศกรีมกะทิสดหอมมัน ท็อปด้วยข้าวเหนียวมูน ลูกชิด ถั่วลิสงคั่ว และนมข้นจืด",
     "ingredients": [
@@ -4365,7 +4365,7 @@
     ],
     "pair_id": "TH-C04",
     "dessert_pair_id": "BEV-004",
-    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Kluai_buat_chi.JPG?width=600",
+    "image_url": "images/DES-008.webp",
     "wiki_query": "Kluai buat chi",
     "recipe_hint": "ต้มกล้วยน้ำว้าห่ามในน้ำกะทิสด ปรุงรสหวานมันเค็มปะแล่ม ซดอุ่นๆ",
     "ingredients": [
@@ -4390,7 +4390,7 @@
     ],
     "pair_id": "TH-E01",
     "dessert_pair_id": "BEV-004",
-    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Khao_niao_thurian.JPG?width=600",
+    "image_url": "images/DES-009.webp",
     "wiki_query": "Sticky rice durian dessert",
     "recipe_hint": "ข้าวเหนียวมูนกะทิสดราดน้ำกะทิทุเรียนหมอนทองสุกหอมหวานมัน",
     "ingredients": [
@@ -4416,7 +4416,7 @@
     ],
     "pair_id": "BEV-001",
     "dessert_pair_id": "BEV-001",
-    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Khanom_khrok.JPG?width=600",
+    "image_url": "images/DES-010.webp",
     "wiki_query": "Khanom khrok",
     "recipe_hint": "ขนมครกแป้งกรอบหน้ากะทิแตกมัน โรยต้นหอม ข้าวโพด และเผือกหอม",
     "ingredients": [
@@ -4442,7 +4442,7 @@
     ],
     "pair_id": "BEV-001",
     "dessert_pair_id": "BEV-001",
-    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Roti_sai_mai.JPG?width=600",
+    "image_url": "images/DES-011.webp",
     "wiki_query": "Roti sai mai",
     "recipe_hint": "แผ่นแป้งโรตีใบเตยหอมนุ่ม ม้วนห่อสายไหมน้ำตาลเส้นละเอียดหวานละมุน",
     "ingredients": [
@@ -4467,7 +4467,7 @@
     ],
     "pair_id": "TH-C23",
     "dessert_pair_id": "BEV-004",
-    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Khanom_thuai.JPG?width=600",
+    "image_url": "images/DES-012.webp",
     "wiki_query": "Khanom thuai",
     "recipe_hint": "ขนมถ้วยใบเตยหอมนึ่งสุก ราดหน้าหัวกะทิเค็มมันตัดหวานลงตัว",
     "ingredients": [
@@ -4493,7 +4493,7 @@
     ],
     "pair_id": "BEV-004",
     "dessert_pair_id": "BEV-004",
-    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Sankhaya_fak_thong.JPG?width=600",
+    "image_url": "images/DES-013.webp",
     "wiki_query": "Pumpkin custard Thai dessert",
     "recipe_hint": "นึ่งสังขยาไข่กะทิน้ำตาลปี๊บใบเตยในลูกฟักทองเนื้อเนียนหวานมัน",
     "ingredients": [
@@ -4520,7 +4520,7 @@
     ],
     "pair_id": "TH-E01",
     "dessert_pair_id": "BEV-004",
-    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Chao_kuai.JPG?width=600",
+    "image_url": "images/DES-014.webp",
     "wiki_query": "Grass jelly dessert",
     "recipe_hint": "เฉาก๊วยเนื้อหนึบในน้ำเชื่อมน้ำแข็งไส ใส่ลูกชิด แปะก๊วย และพุทราเชื่อม",
     "ingredients": [
@@ -4545,7 +4545,7 @@
     ],
     "pair_id": "TH-C04",
     "dessert_pair_id": "BEV-004",
-    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Sarim.JPG?width=600",
+    "image_url": "images/DES-015.webp",
     "wiki_query": "Thai dessert coconut milk",
     "recipe_hint": "เส้นซาหริ่มหลากสีและทับทิมกรอบในน้ำเชื่อมกะทิอบควันเทียนหอมเย็น",
     "ingredients": [
@@ -4570,7 +4570,7 @@
     ],
     "pair_id": "BEV-002",
     "dessert_pair_id": "BEV-002",
-    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Khao_tom_mat.JPG?width=600",
+    "image_url": "images/DES-016.webp",
     "wiki_query": "Khao tom mat",
     "recipe_hint": "ข้าวเหนียวผัดกะทิห่อกล้วยน้ำว้าและถั่วดำ นึ่งใบตองจนหอมนุ่ม",
     "ingredients": [
@@ -4597,7 +4597,7 @@
     ],
     "pair_id": "TH-C01",
     "dessert_pair_id": "BEV-004",
-    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Nam_khaeng_sai.JPG?width=600",
+    "image_url": "images/DES-017.webp",
     "wiki_query": "Nam khaeng sai",
     "recipe_hint": "ขนมปังหั่นเต๋าใต้เกล็ดน้ำแข็งไส ราดซอสโกโก้เข้มข้น นมข้น และผงไมโล",
     "ingredients": [
@@ -4623,7 +4623,7 @@
     ],
     "pair_id": "INT-05",
     "dessert_pair_id": "BEV-002",
-    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Patbingsu.jpg?width=600",
+    "image_url": "images/DES-018.webp",
     "wiki_query": "Mango bingsu",
     "recipe_hint": "เกล็ดน้ำแข็งนมสดเนื้อนุ่มฟู ท็อปด้วยมะม่วงสุกหวานฉ่ำและชีสเค้ก",
     "ingredients": [
@@ -4649,7 +4649,7 @@
     ],
     "pair_id": "BEV-002",
     "dessert_pair_id": "BEV-002",
-    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Croffle.jpg?width=600",
+    "image_url": "images/DES-019.webp",
     "wiki_query": "Croffle",
     "recipe_hint": "แป้งครัวซองต์อบในเตาวาฟเฟิลจนกรอบนอกนุ่มใน ราดซอสคาราเมลหอมเนย",
     "ingredients": [
@@ -4673,7 +4673,7 @@
     ],
     "pair_id": "BEV-001",
     "dessert_pair_id": "BEV-001",
-    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Foi_thong.JPG?width=600",
+    "image_url": "images/DES-020.webp",
     "wiki_query": "Foi thong",
     "recipe_hint": "แป้งเครปนุ่มห่อวิปครีมสดและฝอยทองหวานฉ่ำ แช่เย็นชื่นใจ",
     "ingredients": [
@@ -4697,7 +4697,7 @@
     ],
     "pair_id": "BEV-001",
     "dessert_pair_id": "BEV-001",
-    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Roti_gluay.JPG?width=600",
+    "image_url": "images/DES-021.webp",
     "wiki_query": "Thai roti",
     "recipe_hint": "ทอดแป้งโรตีกับเนยจนกรอบฟู ราดนมข้นหวานฉ่ำๆ กินคู่ชาชัก",
     "ingredients": [
@@ -4721,7 +4721,7 @@
     ],
     "pair_id": "BEV-002",
     "dessert_pair_id": "BEV-002",
-    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Chocolate_brownie.jpg?width=600",
+    "image_url": "images/DES-022.webp",
     "wiki_query": "Chocolate brownie",
     "recipe_hint": "บราวนี่ดาร์กช็อกโกแลตเนื้อหนึบเข้มข้น อุ่นร้อนกินคู่กาแฟดำ",
     "ingredients": [
@@ -4746,7 +4746,7 @@
     ],
     "pair_id": "BEV-002",
     "dessert_pair_id": "BEV-002",
-    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Cheesecake.jpg?width=600",
+    "image_url": "images/DES-023.webp",
     "wiki_query": "Cheesecake",
     "recipe_hint": "ชีสเค้กอบจนผิวด้านบนเกรียมหอม เนื้อด้านในนุ่มละมุนลิ้น",
     "ingredients": [
@@ -4772,7 +4772,7 @@
     ],
     "pair_id": "TH-C01",
     "dessert_pair_id": "BEV-004",
-    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Coconut_pudding.jpg?width=600",
+    "image_url": "images/DES-024.webp",
     "wiki_query": "Coconut pudding",
     "recipe_hint": "พุดดิ้งน้ำมะพร้าวอ่อนเนื้อเด้งดึ๋ง ราดนมสดและเนื้อมะพร้าวอ่อน",
     "ingredients": [
@@ -4796,7 +4796,7 @@
     ],
     "pair_id": "BEV-006",
     "dessert_pair_id": "BEV-006",
-    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Ichigo_daifuku.jpg?width=600",
+    "image_url": "images/DES-025.webp",
     "wiki_query": "Ichigo daifuku",
     "recipe_hint": "แป้งโมจิญี่ปุ่นเหนียวนุ่มสอดไส้ถั่วแดงกวนและสตรอว์เบอร์รีสดลูกโต",
     "ingredients": [
