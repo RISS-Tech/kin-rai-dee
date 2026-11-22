@@ -118,7 +118,7 @@
     <div class="card" style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px;">
       <div>
         <h1 style="margin:0; font-size:22px; color:var(--chili-orange);">👑 แดชบอร์ดผู้พัฒนา — ทุกมื้อ (TooKMUE)</h1>
-        <div style="font-size:13px; color:var(--text-muted);">เฉพาะบัญชีผู้ดูแลระบบ: <strong>farid.hajisalh@gmail.com</strong></div>
+        <div style="font-size:13px; color:var(--text-muted);">เฉพาะบัญชีผู้ดูแลระบบ: <strong>farid.hajisalah@gmail.com</strong></div>
       </div>
       <div style="display:flex; gap:8px;">
         <a href="./" class="btn btn-soft" style="text-decoration:none;">← กลับหน้าแอป</a>
@@ -130,7 +130,7 @@
     <div id="lockedPanel" class="card" style="text-align:center; padding:36px 20px;">
       <div style="font-size:44px;">🔒</div>
       <h2 style="margin:8px 0;">กรุณาล็อกอินด้วยบัญชีผู้พัฒนา</h2>
-      <p style="color:var(--text-muted); font-size:15px;">ระบบสงวนสิทธิ์การดูข้อมูลผู้ใช้และข้อเสนอแนะเฉพาะบัญชีผู้ดูแลระบบที่ได้รับอนุญาตเท่านั้น</p>
+      <p style="color:var(--text-muted); font-size:15px;">ระบบสงวนสิทธิ์การดูข้อมูลผู้ใช้และข้อเสนอแนะเฉพาะ <code>farid.hajisalah@gmail.com</code> เท่านั้น</p>
       <button class="btn btn-orange" onclick="adminLogin()">เข้าสู่ระบบด้วย Google</button>
     </div>
 
@@ -222,7 +222,7 @@
       getFirestore, collection, getDocs, doc, updateDoc, deleteDoc, addDoc, serverTimestamp
     } from "https://www.gstatic.com/firebasejs/13.4.0/firebase-firestore.js";
 
-    const ADMIN_EMAILS = ["farid.hajisalh@gmail.com", "farid.hajisalah@gmail.com"];
+    const ADMIN_EMAIL = "farid.hajisalah@gmail.com";
     const firebaseConfig = {
       apiKey: "AIzaSyAEqxJ7mtPc6w0DIbmrIE6-k9UHDzDPzQE",
       authDomain: "tookmue-fdfdf.firebaseapp.com",
@@ -242,7 +242,7 @@
     window.adminLogout = () => signOut(auth);
 
     onAuthStateChanged(auth, async (user) => {
-      const isAdmin = user && user.email && ADMIN_EMAILS.includes(user.email.toLowerCase());
+      const isAdmin = user && user.email && user.email.toLowerCase() === ADMIN_EMAIL;
       document.getElementById('lockedPanel').style.display = isAdmin ? 'none' : 'block';
       document.getElementById('adminContent').style.display = isAdmin ? 'block' : 'none';
       document.getElementById('loginAdminBtn').style.display = user ? 'none' : 'inline-block';
