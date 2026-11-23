@@ -1,9 +1,11 @@
-const CACHE_NAME = 'tookmue-v14-runtime-cache';
+const CACHE_NAME = 'tookmue-v15-modular';
 const IMAGE_CACHE_NAME = 'tookmue-images-v1';
 
 const APP_SHELL = [
   './',
   './index.html',
+  './styles.css',
+  './app.js',
   './admin.html',
   './menus.json',
   './manifest.json',
