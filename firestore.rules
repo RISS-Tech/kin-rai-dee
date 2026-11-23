@@ -2,25 +2,44 @@ rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
     function isAdmin() {
-      return request.auth != null && request.auth.token.email == "farid.hajisalah@gmail.com";
+      return request.auth != null
+             && request.auth.token.email == "farid.hajisalah@gmail.com"
+             && request.auth.token.email_verified == true;
     }
 
-    // Users collection: Each user reads/writes own profile; Admin reads/updates all
+    // Users collection: อ่าน/เขียนโปรไฟล์ตัวเองได้ ยกเว้นฟิลด์ isSupporter ที่แก้ได้เฉพาะแอดมิน
     match /users/{userId} {
       allow read: if (request.auth != null && request.auth.uid == userId) || isAdmin();
-      allow create, update: if (request.auth != null && request.auth.uid == userId) || isAdmin();
+
+      allow create: if (request.auth != null
+                        && request.auth.uid == userId
+                        && !('isSupporter' in request.resource.data && request.resource.data.isSupporter == true))
+                    || isAdmin();
+
+      allow update: if (request.auth != null
+                        && request.auth.uid == userId
+                        && !request.resource.data.diff(resource.data).affectedKeys().hasAny(['isSupporter']))
+                    || isAdmin();
+
       allow delete: if isAdmin();
     }
 
-    // Feedbacks collection: Anyone can submit short clean text; only Admin can read/manage
+    // Feedbacks collection: ส่งข้อเสนอแนะได้เฉพาะฟิลด์ที่กำหนด; อ่านและจัดการได้เฉพาะแอดมิน
     match /feedbacks/{feedbackId} {
-      allow create: if request.resource.data.text is string
+      allow create: if request.resource.data.keys().hasOnly([
+                         'category', 'text', 'flagged', 'status',
+                         'uid', 'userName', 'userEmail', 'appVersion', 'createdAt'
+                       ])
+                    && request.resource.data.text is string
                     && request.resource.data.text.size() >= 3
-                    && request.resource.data.text.size() <= 200;
+                    && request.resource.data.text.size() <= 200
+                    && request.resource.data.category is string
+                    && request.resource.data.category.size() <= 40
+                    && request.resource.data.status == 'new';
       allow read, update, delete: if isAdmin();
     }
 
-    // Tip logs collection: Only Admin can read/write
+    // Tip logs collection: อ่านและเขียนได้เฉพาะแอดมิน
     match /tip_logs/{tipId} {
       allow read, write: if isAdmin();
     }
