@@ -284,6 +284,7 @@ let MENUS = [];
       avatar: '🍲',
       isVip: false,
       halalMode: false,
+      homePickerStyle: 'card',
       soundOn: true,
       favorites: [],
       history: [],
@@ -297,6 +298,7 @@ let MENUS = [];
     };
     if (state.soundOn === undefined) state.soundOn = true;
     if (typeof state.halalMode !== 'boolean') state.halalMode = false;
+    if (state.homePickerStyle !== 'card' && state.homePickerStyle !== 'wheel') state.homePickerStyle = 'card';
     if (!Array.isArray(state.stamps)) state.stamps = [];
     if (!state.weeklyBudget) state.weeklyBudget = 1000;
     if (!Array.isArray(state.expenses)) state.expenses = [];
@@ -323,6 +325,8 @@ let MENUS = [];
     let isSpinning = false;
     let activeWheelMenus = [];
     let selectedMenu = null;
+    let currentPreviewMenu = null;
+    let currentSamrubMainId = null;
 
 
     // Smart Wikimedia Commons Live API Fallback (Resolves exact dish photo automatically)
@@ -477,6 +481,179 @@ let MENUS = [];
       if (tabName === 'quests') updateProfileUI();
     }
 
+    function getWeeklyBudgetSummary() {
+      const now = new Date();
+      const startOfWeek = new Date(now);
+      const day = startOfWeek.getDay();
+      const diff = startOfWeek.getDate() - day + (day === 0 ? -6 : 1);
+      startOfWeek.setDate(diff);
+      startOfWeek.setHours(0, 0, 0, 0);
+
+      const curMonth = now.getMonth();
+      const curYear = now.getFullYear();
+
+      let weekSpent = 0;
+      let monthSpent = 0;
+
+      (state.expenses || []).forEach(e => {
+        const d = new Date(e.date);
+        const amt = Number(e.amount) || 0;
+        if (d >= startOfWeek) weekSpent += amt;
+        if (d.getMonth() === curMonth && d.getFullYear() === curYear) monthSpent += amt;
+      });
+
+      const goal = state.weeklyBudget || 1000;
+      const remain = goal - weekSpent;
+      const pct = Math.min(100, Math.round((weekSpent / goal) * 100));
+      return { weekSpent, monthSpent, goal, remain, pct };
+    }
+
+    function getMealContextGreeting() {
+      const h = new Date().getHours();
+      if (h >= 5 && h < 11) return '🌅 มื้อเช้านี้กินอะไรดี?';
+      if (h >= 11 && h < 15) return '☀️ มื้อเที่ยงนี้จัดอะไรดี?';
+      if (h >= 15 && h < 17) return '🧋 บ่ายนี้หาอะไรรองท้องดี?';
+      if (h >= 17 && h < 21) return '🌙 มื้อเย็นจัดสำรับอะไรดี?';
+      return '🦉 มื้อดึกเบาๆ อะไรดี?';
+    }
+
+    function renderHomeContextStrip() {
+      const greetEl = document.getElementById('homeMealGreeting');
+      const pillEl = document.getElementById('homeBudgetPill');
+      if (greetEl) greetEl.textContent = getMealContextGreeting();
+      if (!pillEl) return;
+
+      const { remain, pct } = getWeeklyBudgetSummary();
+      pillEl.classList.remove('warn', 'over');
+      if (remain < 0) {
+        pillEl.classList.add('over');
+        pillEl.textContent = `🚨 เกินงบ ${Math.abs(remain).toLocaleString()}฿`;
+      } else if (pct >= 80) {
+        pillEl.classList.add('warn');
+        pillEl.textContent = `⚠️ เหลือ ${remain.toLocaleString()}฿`;
+      } else {
+        pillEl.textContent = `💰 งบเหลือ ${remain.toLocaleString()}฿`;
+      }
+    }
+
+    function getSpinCtaLabel() {
+      if (currentMode === 'passport') return '✈️ บินสุ่มอาหารนานาชาติ!';
+      if (state.homePickerStyle === 'card') {
+        return currentMode === 'sweet' ? '🧋 สุ่มของหวาน & เครื่องดื่ม!' : '✨ สุ่มเมนูภาพจริง!';
+      }
+      return '🎯 หมุนสุ่มมื้อนี้!';
+    }
+
+    function setHomePickerStyle(style) {
+      if (isSpinning) return;
+      state.homePickerStyle = (style === 'wheel') ? 'wheel' : 'card';
+      saveState();
+      syncHomePickerVisibility();
+      const spinBtn = document.getElementById('spinBtn');
+      if (spinBtn && !isSpinning) spinBtn.textContent = getSpinCtaLabel();
+      if (state.homePickerStyle === 'wheel') {
+        drawWheel();
+      } else {
+        renderPhotoDeckPreview(currentPreviewMenu || activeWheelMenus[0] || null);
+        renderPhotoDeckStrip();
+      }
+    }
+
+    function syncHomePickerVisibility() {
+      const isCard = state.homePickerStyle !== 'wheel';
+      const btnCard = document.getElementById('btnPickerCard');
+      const btnWheel = document.getElementById('btnPickerWheel');
+      const cardStage = document.getElementById('photoDeckStage');
+      const wheelStage = document.getElementById('classicWheelStage');
+      const emptyBox = document.getElementById('wheelEmptyState');
+      const hasZero = emptyBox && emptyBox.style.display === 'block';
+
+      if (btnCard) btnCard.classList.toggle('active', isCard);
+      if (btnWheel) btnWheel.classList.toggle('active', !isCard);
+
+      if (hasZero) {
+        if (cardStage) cardStage.style.display = 'none';
+        if (wheelStage) wheelStage.style.display = 'none';
+      } else {
+        if (cardStage) cardStage.style.display = isCard ? 'block' : 'none';
+        if (wheelStage) wheelStage.style.display = isCard ? 'none' : 'flex';
+      }
+    }
+
+    function renderPhotoDeckPreview(menu) {
+      const skel = document.getElementById('deckSkeleton');
+      const img = document.getElementById('deckHeroImg');
+      const regBadge = document.getElementById('deckRegionBadge');
+      const halalBadge = document.getElementById('deckHalalBadge');
+      const nameEl = document.getElementById('deckDishName');
+      const budgetEl = document.getElementById('deckDishBudget');
+      const timeEl = document.getElementById('deckDishTime');
+      const spicyEl = document.getElementById('deckDishSpicy');
+      if (!nameEl || !img) return;
+
+      if (!menu) {
+        currentPreviewMenu = null;
+        if (skel) skel.style.display = 'block';
+        img.style.display = 'none';
+        nameEl.textContent = isMenusLoading ? 'กำลังโหลดเมนูอร่อย...' : 'ไม่พบเมนูที่ตรงเงื่อนไข';
+        if (budgetEl) budgetEl.textContent = '💰 --฿';
+        if (timeEl) timeEl.textContent = '⏱️ -- นาที';
+        if (spicyEl) spicyEl.textContent = '';
+        if (halalBadge) halalBadge.style.display = 'none';
+        return;
+      }
+
+      currentPreviewMenu = menu;
+      if (skel) skel.style.display = 'none';
+      img.style.display = 'block';
+      img.dataset.triedWiki = '0';
+      img.dataset.mid = menu.id;
+      img.alt = menu.name;
+      img.src = menu.image_url || '';
+
+      const cObj = COUNTRIES.find(c => c.name === menu.region);
+      const regPrefix = cObj ? cObj.flag : (menu.category === 'เครื่องดื่ม' ? '🥤' : (menu.category === 'ของหวาน' ? '🍨' : '🇹🇭'));
+      if (regBadge) regBadge.textContent = `${regPrefix} ${menu.region || menu.category}`;
+      if (halalBadge) halalBadge.style.display = (state.halalMode && isMenuHalal(menu)) ? 'inline-flex' : 'none';
+
+      nameEl.textContent = menu.name;
+      if (budgetEl) budgetEl.textContent = `💰 ~${menu.budget}฿`;
+      if (timeEl) timeEl.textContent = `⏱️ ${menu.prep_time} นาที`;
+      if (spicyEl) spicyEl.textContent = menu.mode === 'sweet' ? '' : (menu.is_spicy ? '• 🌶️ รสจัด' : '• 🌿 ไม่เผ็ด');
+    }
+
+    function renderPhotoDeckStrip() {
+      const strip = document.getElementById('photoDeckStrip');
+      if (!strip) return;
+      if (!activeWheelMenus || activeWheelMenus.length === 0) {
+        strip.innerHTML = '';
+        return;
+      }
+      const peekList = activeWheelMenus.slice(0, 5);
+      strip.innerHTML = peekList.map((m, idx) => {
+        const isActive = currentPreviewMenu && currentPreviewMenu.id === m.id;
+        return `
+          <button type="button" class="deck-thumb-btn ${isActive ? 'active' : ''}" onclick="previewDeckMenuByIndex(${idx})" title="${escapeHtml(m.name)}">
+            <img src="${m.image_url}" alt="${escapeHtml(m.name)}" loading="lazy" onerror="resolveWikiImage(this, '${m.id}')" />
+          </button>
+        `;
+      }).join('');
+    }
+
+    function previewDeckMenuByIndex(idx) {
+      if (isSpinning) return;
+      const m = activeWheelMenus[idx];
+      if (!m) return;
+      playTickSound();
+      renderPhotoDeckPreview(m);
+      renderPhotoDeckStrip();
+    }
+
+    function openCurrentPreviewMenu() {
+      if (isSpinning || !currentPreviewMenu) return;
+      openMenuResult(currentPreviewMenu);
+    }
+
     function setWheelMode(mode) {
       currentMode = mode;
       const btnMain = document.getElementById('btnModeMain');
@@ -512,13 +689,12 @@ let MENUS = [];
 
       if (mode === 'passport') {
         spinBtn.className = 'spin-cta passport-btn';
-        spinBtn.textContent = '✈️ บินสุ่มอาหารนานาชาติ!';
         passStrip.classList.add('show');
       } else {
         spinBtn.className = 'spin-cta';
-        spinBtn.textContent = '🎯 หมุนสุ่มมื้อนี้!';
         passStrip.classList.remove('show');
       }
+      spinBtn.textContent = getSpinCtaLabel();
       prepareWheelSlices();
     }
 
@@ -910,16 +1086,33 @@ let MENUS = [];
       const pool = getFilteredPool();
       updateHomeFilterBarUI(pool.length);
 
+      const quickPoolEl = document.getElementById('homeQuickPoolLabel');
+      if (quickPoolEl) {
+        quickPoolEl.textContent = isMenusLoading && MENUS.length === 0
+          ? 'กำลังโหลดคลังเมนู...'
+          : `พร้อมสุ่ม ${pool.length} เมนู${state.halalMode ? ' (ฮาลาล ☪️)' : ''}`;
+      }
+
       const emptyBox = document.getElementById('wheelEmptyState');
       const spinBtn = document.getElementById('spinBtn');
       const hasZeroMatches = !isMenusLoading && MENUS.length > 0 && pool.length === 0;
 
       if (emptyBox) emptyBox.style.display = hasZeroMatches ? 'block' : 'none';
-      if (spinBtn && !isSpinning) spinBtn.disabled = hasZeroMatches;
+      if (spinBtn && !isSpinning) {
+        spinBtn.disabled = hasZeroMatches;
+        spinBtn.textContent = getSpinCtaLabel();
+      }
+      syncHomePickerVisibility();
 
       const shuffled = [...pool].sort(() => 0.5 - Math.random());
       activeWheelMenus = shuffled.slice(0, Math.min(8, shuffled.length));
+
+      const cardStage = document.getElementById('photoDeckCard');
+      if (cardStage) cardStage.classList.remove('winner', 'shuffling');
+
       drawWheel();
+      renderPhotoDeckPreview(activeWheelMenus[0] || null);
+      renderPhotoDeckStrip();
     }
 
     function drawWheel() {
@@ -986,24 +1179,105 @@ let MENUS = [];
       });
     }
 
+    function finishSpinWithWinner(wonMenu) {
+      const spinBtn = document.getElementById('spinBtn');
+      isSpinning = false;
+      if (spinBtn) {
+        spinBtn.disabled = false;
+        spinBtn.textContent = getSpinCtaLabel();
+      }
+      playWinChime();
+      if (navigator.vibrate) navigator.vibrate([60, 40, 100]);
+
+      if (wonMenu.category === 'อาหารนานาชาติ' && !state.stamps.includes(wonMenu.region)) {
+        state.stamps.push(wonMenu.region);
+        showToast(`🛂 ปลดล็อกตราประทับประเทศ "${wonMenu.region}"!`);
+      }
+      addXp(15);
+      openMenuResult(wonMenu);
+    }
+
+    function runPhotoCardShuffle(pool) {
+      const spinBtn = document.getElementById('spinBtn');
+      const cardEl = document.getElementById('photoDeckCard');
+      const winMenu = pool[Math.floor(Math.random() * pool.length)];
+
+      // Build decelerating shuffle sequence ending on winMenu
+      const steps = Math.min(15, Math.max(9, pool.length + 5));
+      const seq = [];
+      for (let i = 0; i < steps - 1; i++) {
+        seq.push(pool[Math.floor(Math.random() * pool.length)]);
+      }
+      seq.push(winMenu);
+
+      if (cardEl) {
+        cardEl.classList.remove('winner');
+        cardEl.classList.add('shuffling');
+      }
+
+      let idx = 0;
+      function nextTick() {
+        const item = seq[idx];
+        renderPhotoDeckPreview(item);
+        playTickSound();
+        if (cardEl) {
+          cardEl.classList.remove('pop');
+          void cardEl.offsetWidth;
+          cardEl.classList.add('pop');
+        }
+        idx++;
+        if (idx < seq.length) {
+          const progress = idx / seq.length;
+          const delay = Math.round(65 + Math.pow(progress, 2.3) * 230);
+          setTimeout(nextTick, delay);
+        } else {
+          if (cardEl) {
+            cardEl.classList.remove('shuffling', 'pop');
+            cardEl.classList.add('winner');
+          }
+          if (!activeWheelMenus.slice(0, 5).some(m => m.id === winMenu.id)) {
+            activeWheelMenus = [winMenu, ...activeWheelMenus.filter(m => m.id !== winMenu.id)].slice(0, 8);
+          }
+          renderPhotoDeckStrip();
+          setTimeout(() => {
+            finishSpinWithWinner(winMenu);
+          }, 420);
+        }
+      }
+      nextTick();
+    }
+
     function spinWheel() {
       if (isSpinning) return;
-      prepareWheelSlices();
-      if (activeWheelMenus.length === 0) {
-        showToast(isMenusLoading ? 'กำลังโหลดรายการเมนู กรุณารอสักครู่...' : 'ไม่พบเมนูในหมวดนี้ ลองกดลองใหม่ด้านบนครับ');
+      const pool = getFilteredPool();
+      if (pool.length === 0) {
+        prepareWheelSlices();
+        showToast(isMenusLoading ? 'กำลังโหลดรายการเมนู กรุณารอสักครู่...' : 'ไม่พบเมนูในหมวดนี้ ลองล้างตัวกรองก่อนครับ');
         return;
       }
+
       getAudioCtx();
       isSpinning = true;
 
       const spinBtn = document.getElementById('spinBtn');
-      const pointer = document.getElementById('wheelPointer');
-      const canvas = document.getElementById('wheelCanvas');
-      spinBtn.disabled = true;
-      spinBtn.textContent = currentMode === 'passport' ? '✈️ กำลังบินข้ามประเทศ...' : '🎲 กำลังสุ่มความอร่อย...';
-
+      if (spinBtn) {
+        spinBtn.disabled = true;
+        spinBtn.textContent = currentMode === 'passport' ? '✈️ กำลังบินข้ามประเทศ...' : '🎲 กำลังสุ่มความอร่อย...';
+      }
       if (navigator.vibrate) navigator.vibrate(40);
 
+      // Photo-First Card Deck mode
+      if (state.homePickerStyle !== 'wheel') {
+        const shuffled = [...pool].sort(() => 0.5 - Math.random());
+        activeWheelMenus = shuffled.slice(0, Math.min(8, shuffled.length));
+        runPhotoCardShuffle(pool);
+        return;
+      }
+
+      // Classic Wheel mode
+      prepareWheelSlices();
+      const pointer = document.getElementById('wheelPointer');
+      const canvas = document.getElementById('wheelCanvas');
       const count = activeWheelMenus.length;
       const winIndex = Math.floor(Math.random() * count);
       const sliceDeg = 360 / count;
@@ -1027,26 +1301,17 @@ let MENUS = [];
         if (currentSlice !== lastSlicePassed) {
           lastSlicePassed = currentSlice;
           playTickSound();
-          pointer.classList.add('tick');
-          setTimeout(() => pointer.classList.remove('tick'), 55);
+          if (pointer) {
+            pointer.classList.add('tick');
+            setTimeout(() => pointer.classList.remove('tick'), 55);
+          }
         }
 
         if (t < 1) {
           requestAnimationFrame(animateSpin);
         } else {
-          isSpinning = false;
-          spinBtn.disabled = false;
-          spinBtn.textContent = currentMode === 'passport' ? '✈️ บินสุ่มอาหารนานาชาติ!' : '🎯 หมุนสุ่มมื้อนี้!';
-          playWinChime();
-          if (navigator.vibrate) navigator.vibrate([60, 40, 100]);
-
           const wonMenu = activeWheelMenus[winIndex];
-          if (wonMenu.category === 'อาหารนานาชาติ' && !state.stamps.includes(wonMenu.region)) {
-            state.stamps.push(wonMenu.region);
-            showToast(`🛂 ปลดล็อกตราประทับประเทศ "${wonMenu.region}"!`);
-          }
-          addXp(15);
-          openMenuResult(wonMenu);
+          finishSpinWithWinner(wonMenu);
         }
       }
 
@@ -1256,30 +1521,58 @@ let MENUS = [];
       }, 'image/png');
     }
 
+    function shuffleDailySamrub() {
+      const mains = getAvailableMenus().filter(m => m.mode === 'main');
+      if (mains.length === 0) return;
+      const others = mains.filter(m => m.id !== currentSamrubMainId);
+      const pool = others.length > 0 ? others : mains;
+      const pick = pool[Math.floor(Math.random() * pool.length)];
+      currentSamrubMainId = pick.id;
+      playTickSound();
+      renderDailySamrub();
+    }
+
     function renderDailySamrub() {
       const box = document.getElementById('dailySamrubBox');
       if (!box) return;
       if (MENUS.length === 0) {
         box.innerHTML = isMenusLoading
-          ? `<div style="width:100%; padding:6px 0;"><div class="skeleton-pulse" style="height:16px; width:70%; border-radius:8px; opacity:0.35; margin-bottom:6px;"></div><div class="skeleton-pulse" style="height:13px; width:45%; border-radius:8px; opacity:0.25;"></div></div>`
+          ? `<div class="samrub-grid-3">${Array.from({ length: 3 }).map(() => `<div class="samrub-mini-tile"><div class="skeleton-pulse" style="width:52px; height:52px; border-radius:14px; opacity:0.35; margin:0 auto 6px;"></div><div class="skeleton-pulse" style="height:12px; width:80%; border-radius:6px; opacity:0.25; margin:0 auto;"></div></div>`).join('')}</div>`
           : `<div style="font-size:14px; color:#FDE68A;">ยังโหลดข้อมูลสำรับไม่สำเร็จ กด "ลองใหม่" ด้านบนเพื่อดึงเมนูครับ</div>`;
         return;
       }
       const avail = getAvailableMenus();
-      const mainSample = avail.find(m => m.id === 'TH-C02') || avail.find(m => m.mode === 'main') || avail[0] || MENUS[0];
+      let mainSample = currentSamrubMainId ? avail.find(m => m.id === currentSamrubMainId) : null;
+      if (!mainSample) {
+        mainSample = avail.find(m => m.id === 'TH-C02') || avail.find(m => m.mode === 'main') || avail[0] || MENUS[0];
+        currentSamrubMainId = mainSample ? mainSample.id : null;
+      }
       const pairSample = resolveMenuPair(mainSample, 'main');
       const sweetSample = resolveMenuPair(mainSample, 'sweet');
       const total = (mainSample.budget || 0) + (pairSample.budget || 0) + (sweetSample.budget || 0);
 
+      const items = [
+        { role: '🍚 จานหลัก', dish: mainSample },
+        { role: '🥘 คู่กับข้าว', dish: pairSample },
+        { role: '🧋 ตบท้าย', dish: sweetSample }
+      ];
+
       box.innerHTML = `
-        <div style="display:flex; align-items:center; gap:10px;">
-          <img src="${mainSample.image_url}" alt="${mainSample.name}" style="width:52px; height:52px; border-radius:14px; object-fit:cover; flex-shrink:0;" onerror="resolveWikiImage(this, '${mainSample.id}')" />
-          <div>
-            <div style="font-size: 15px; font-weight: 700; color: #FFFFFF; line-height:1.25;">${mainSample.name} + ${pairSample.name}</div>
-            <div style="font-size: 13px; color: #FFC53D; margin-top:2px;">ตบท้าย: ${sweetSample.name} • ~${total}฿</div>
-          </div>
+        <div class="samrub-grid-3">
+          ${items.map(it => `
+            <button type="button" class="samrub-mini-tile" onclick="openMenuById('${it.dish.id}')">
+              <img src="${it.dish.image_url}" alt="${escapeHtml(it.dish.name)}" class="samrub-mini-img" onerror="resolveWikiImage(this, '${it.dish.id}')" />
+              <div class="samrub-mini-role">${it.role}</div>
+              <div class="samrub-mini-name">${escapeHtml(it.dish.name)}</div>
+            </button>
+          `).join('')}
         </div>
-        <button onclick="openMenuById('${mainSample.id}')" style="border:none; background:#FFC53D; color:#3A2B22; border-radius:999px; padding:8px 14px; font-weight:700; font-size:14px; cursor:pointer; flex-shrink:0;">ดูชุดนี้</button>
+        <div class="samrub-footer-row">
+          <div class="tabular-nums" style="font-size:13px; color:#FDE68A; font-weight:600;">
+            💰 รวมทั้งสำรับ ~<strong style="color:#FFFFFF; font-size:15px;">${total.toLocaleString()}฿</strong>
+          </div>
+          <button type="button" onclick="openMenuById('${mainSample.id}')" class="samrub-open-btn">ดูชุดนี้ →</button>
+        </div>
       `;
     }
 
@@ -1537,6 +1830,7 @@ let MENUS = [];
         daysHtml += `<div class="day-box ${done ? 'done' : ''}"><div>${d === 7 ? '🎁' : '🍱'}</div><div>วันที่ ${d}</div></div>`;
       }
       document.getElementById('streakDaysGrid').innerHTML = daysHtml;
+      renderHomeContextStrip();
     }
 
     function initApp() {
@@ -1684,6 +1978,40 @@ let MENUS = [];
           spinWheel();
         }
       });
+    })();
+
+    // --- Plan B: Swipe Left/Right on Photo Card to Shuffle ---
+    (function setupPhotoDeckSwipe() {
+      const cardEl = document.getElementById('photoDeckCard');
+      if (!cardEl) return;
+      let startX = 0;
+      let startY = 0;
+      let swiped = false;
+
+      cardEl.addEventListener('pointerdown', (e) => {
+        if (isSpinning) return;
+        startX = e.clientX;
+        startY = e.clientY;
+        swiped = false;
+      });
+
+      cardEl.addEventListener('pointerup', (e) => {
+        if (isSpinning) return;
+        const dx = e.clientX - startX;
+        const dy = e.clientY - startY;
+        if (Math.abs(dx) > 45 && Math.abs(dx) > Math.abs(dy)) {
+          swiped = true;
+          spinWheel();
+        }
+      });
+
+      cardEl.addEventListener('click', (e) => {
+        if (swiped) {
+          e.preventDefault();
+          e.stopPropagation();
+          swiped = false;
+        }
+      }, true);
     })();
 
 
@@ -2038,29 +2366,8 @@ let MENUS = [];
     }
 
     function renderFoodWallet() {
-      const now = new Date();
-      const startOfWeek = new Date(now);
-      const day = startOfWeek.getDay();
-      const diff = startOfWeek.getDate() - day + (day === 0 ? -6 : 1);
-      startOfWeek.setDate(diff);
-      startOfWeek.setHours(0, 0, 0, 0);
-
-      const curMonth = now.getMonth();
-      const curYear = now.getFullYear();
-
-      let weekSpent = 0;
-      let monthSpent = 0;
-
-      (state.expenses || []).forEach(e => {
-        const d = new Date(e.date);
-        const amt = Number(e.amount) || 0;
-        if (d >= startOfWeek) weekSpent += amt;
-        if (d.getMonth() === curMonth && d.getFullYear() === curYear) monthSpent += amt;
-      });
-
-      const goal = state.weeklyBudget || 1000;
-      const remain = goal - weekSpent;
-      const pct = Math.min(100, Math.round((weekSpent / goal) * 100));
+      const { weekSpent, monthSpent, goal, remain, pct } = getWeeklyBudgetSummary();
+      renderHomeContextStrip();
 
       document.getElementById('walletWeekSpent').textContent = `${weekSpent.toLocaleString()}฿`;
       document.getElementById('walletWeekGoal').textContent = `${goal.toLocaleString()}฿`;

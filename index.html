@@ -52,8 +52,16 @@
       </button>
     </div>
 
-    <!-- TAB 1: HOME & SPIN WHEEL -->
+    <!-- TAB 1: HOME & PHOTO-FIRST / SPIN WHEEL -->
     <main id="tab-home" class="view-section active">
+      <!-- Smart Context Strip (Time-Aware Greeting + Live Weekly Budget Remaining) -->
+      <div id="homeContextStrip" class="context-strip">
+        <div class="context-greeting" id="homeMealGreeting">☀️ มื้อนี้กินอะไรดี?</div>
+        <button type="button" id="homeBudgetPill" class="context-budget-pill tabular-nums" onclick="switchTab('saved'); switchSavedSubTab('wallet');" title="แตะเพื่อดูรายละเอียดกระเป๋าคุมงบ">
+          💰 เหลือ 1,000฿
+        </button>
+      </div>
+
       <div class="mode-toggle-wrap">
         <button class="mode-btn active" id="btnModeMain" onclick="setWheelMode('main')">
           <span>🍚</span>
@@ -138,27 +146,64 @@
       </div>
 
       <div id="wheelModeArea">
-      <div class="wheel-stage">
-        <div id="wheelPointer" class="wheel-pointer"></div>
-        <div class="wheel-outer-ring">
-          <canvas id="wheelCanvas" width="560" height="560"></canvas>
+        <!-- View Style Switcher: Photo-First Card Deck vs Classic Wheel -->
+        <div class="picker-style-row">
+          <span class="picker-pool-hint tabular-nums" id="homeQuickPoolLabel">พร้อมสุ่ม 264 เมนู</span>
+          <div class="picker-style-switch" role="group" aria-label="รูปแบบตัวสุ่ม">
+            <button type="button" id="btnPickerCard" class="picker-style-btn active" onclick="setHomePickerStyle('card')">🖼️ การ์ดภาพ</button>
+            <button type="button" id="btnPickerWheel" class="picker-style-btn" onclick="setHomePickerStyle('wheel')">🎡 วงล้อ</button>
+          </div>
         </div>
-        <div class="wheel-center-hub" onclick="spinWheel()" title="แตะเพื่อหมุน">
-          <img src="icon.svg" alt="Spin" style="width: 44px; height: 44px;" />
+
+        <!-- Photo-First Visual Card Deck (Default Signature Experience) -->
+        <div id="photoDeckStage" class="photo-deck-stage">
+          <div class="deck-back-layer layer-2" aria-hidden="true"></div>
+          <div class="deck-back-layer layer-1" aria-hidden="true"></div>
+          <div id="photoDeckCard" class="photo-deck-card" onclick="openCurrentPreviewMenu()">
+            <div id="deckSkeleton" class="deck-skeleton">
+              <div class="skeleton-pulse" style="width:100%; height:100%;"></div>
+            </div>
+            <img id="deckHeroImg" src="" alt="เมนูแนะนำ" class="deck-hero-img" style="display:none;" onerror="resolveWikiImage(this, this.dataset.mid)" />
+            <div class="deck-gradient-scrim"></div>
+            <div class="deck-top-badges">
+              <span id="deckRegionBadge" class="deck-pill-badge">🇹🇭 อาหารไทย</span>
+              <span id="deckHalalBadge" class="deck-pill-badge halal" style="display:none;">☪️ ฮาลาล</span>
+            </div>
+            <div class="deck-bottom-info">
+              <div id="deckDishName" class="deck-dish-name">กำลังโหลดเมนูอร่อย...</div>
+              <div class="deck-meta-row tabular-nums">
+                <span id="deckDishBudget">💰 ~55฿</span>
+                <span>•</span>
+                <span id="deckDishTime">⏱️ 10 นาที</span>
+                <span id="deckDishSpicy">• 🌶️ รสจัด</span>
+              </div>
+            </div>
+          </div>
+          <div id="photoDeckStrip" class="photo-deck-strip" aria-label="ตัวอย่างเมนูในรอบสุ่ม"></div>
         </div>
-      </div>
 
-      <!-- Zero-Match Empty State for Strict Filter Combinations -->
-      <div id="wheelEmptyState" class="empty-state-card" style="display:none; margin-bottom:12px; padding:16px 14px;">
-        <div class="empty-state-icon" style="font-size:30px;">🍽️</div>
-        <div class="empty-state-title">ไม่พบเมนูที่ตรงกับเงื่อนไขทั้งหมดที่เลือก</div>
-        <div class="empty-state-desc">ลองลดตัวกรองบางตัวออก หรือกดล้างตัวกรองเพื่อกลับมาสุ่มได้เลยครับ</div>
-        <button type="button" class="empty-state-cta" onclick="resetHomeFilters()">ล้างตัวกรองทั้งหมด</button>
-      </div>
+        <!-- Classic Spin Wheel Stage (Optional Toggle) -->
+        <div id="classicWheelStage" class="wheel-stage" style="display:none;">
+          <div id="wheelPointer" class="wheel-pointer"></div>
+          <div class="wheel-outer-ring">
+            <canvas id="wheelCanvas" width="560" height="560"></canvas>
+          </div>
+          <div class="wheel-center-hub" onclick="spinWheel()" title="แตะเพื่อหมุน">
+            <img src="icon.svg" alt="Spin" style="width: 44px; height: 44px;" />
+          </div>
+        </div>
 
-      <button id="spinBtn" class="spin-cta" onclick="spinWheel()">
-        🎯 หมุนสุ่มมื้อนี้!
-      </button>
+        <!-- Zero-Match Empty State for Strict Filter Combinations -->
+        <div id="wheelEmptyState" class="empty-state-card" style="display:none; margin-bottom:12px; padding:16px 14px;">
+          <div class="empty-state-icon" style="font-size:30px;">🍽️</div>
+          <div class="empty-state-title">ไม่พบเมนูที่ตรงกับเงื่อนไขทั้งหมดที่เลือก</div>
+          <div class="empty-state-desc">ลองลดตัวกรองบางตัวออก หรือกดล้างตัวกรองเพื่อกลับมาสุ่มได้เลยครับ</div>
+          <button type="button" class="empty-state-cta" onclick="resetHomeFilters()">ล้างตัวกรองทั้งหมด</button>
+        </div>
+
+        <button id="spinBtn" class="spin-cta" onclick="spinWheel()">
+          ✨ สุ่มเมนูภาพจริง!
+        </button>
 
       </div>
 
@@ -192,13 +237,16 @@
         <div id="fridgeResultsBox"></div>
       </div>
 
-      <!-- Featured Samrub Bento Card -->
-      <div class="herb-bento-card reveal-card">
+      <!-- Featured 3-Dish Samrub Bento Card -->
+      <div class="herb-bento-card samrub-bento-card reveal-card">
         <div class="herb-bento-title">
-          <span>🥢 สำรับจับคู่แนะนำวันนี้</span>
-          <span style="font-size: 13px; background: rgba(255,255,255,0.15); padding: 2px 10px; border-radius: 999px;">ไม่ซ้ำโปรตีน</span>
+          <div style="display:flex; align-items:center; gap:6px; flex-wrap:wrap;">
+            <span>🥢 สำรับ 3 ชิ้นแนะนำ</span>
+            <span class="samrub-tag-pill">ไม่ซ้ำโปรตีน</span>
+          </div>
+          <button type="button" class="samrub-shuffle-btn" onclick="shuffleDailySamrub()">🎲 เปลี่ยนชุด</button>
         </div>
-        <div class="pair-preview-box" id="dailySamrubBox"></div>
+        <div id="dailySamrubBox"></div>
       </div>
     </main>
 
