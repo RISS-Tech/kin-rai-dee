@@ -26,9 +26,10 @@
       justify-content: center;
     }
     h1, h2, h3, button { font-family: 'Prompt', 'Noto Sans Thai', sans-serif; }
+    .tabular-nums { font-variant-numeric: tabular-nums; }
     .wrap {
       width: 100%;
-      max-width: 860px;
+      max-width: 900px;
     }
     .card {
       background: #FFFFFF;
@@ -55,6 +56,7 @@
       font-weight: 700;
       color: var(--chili-orange);
       font-family: 'Prompt', sans-serif;
+      font-variant-numeric: tabular-nums;
     }
     .btn {
       border: none;
@@ -63,27 +65,176 @@
       font-size: 14px;
       font-weight: 700;
       cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      transition: opacity 0.15s ease;
     }
+    .btn:disabled { opacity: 0.65; cursor: not-allowed; }
     .btn-orange { background: var(--chili-orange); color: #FFF; }
     .btn-blue { background: #0284C7; color: #FFF; }
     .btn-soft { background: #EFE6D8; color: var(--text-brown); }
+
+    /* Sticky Table Container */
+    .table-scroll-wrap {
+      overflow: auto;
+      max-height: 460px;
+      border: 1px solid #F3E5D5;
+      border-radius: 16px;
+    }
     table {
       width: 100%;
       border-collapse: collapse;
       font-size: 14px;
+      background: #FFFFFF;
     }
     th {
       background: #FFF1E6;
       color: var(--chili-orange);
       text-align: left;
-      padding: 10px 8px;
+      padding: 11px 10px;
       border-bottom: 1.5px solid #F3E5D5;
+      position: sticky;
+      top: 0;
+      z-index: 2;
+      white-space: nowrap;
     }
     td {
-      padding: 10px 8px;
+      padding: 11px 10px;
       border-bottom: 1px dashed #EFE6D8;
       vertical-align: middle;
     }
+    .num-col {
+      text-align: right;
+      font-variant-numeric: tabular-nums;
+      white-space: nowrap;
+    }
+
+    /* Filter Toolbar */
+    .toolbar-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+    .filter-chip {
+      border: 1.5px solid #E5D5C3;
+      background: #FFFAF3;
+      color: var(--text-brown);
+      border-radius: 999px;
+      padding: 6px 13px;
+      font-size: 13px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+    .filter-chip.active {
+      background: var(--chili-orange);
+      border-color: var(--chili-orange);
+      color: #FFFFFF;
+    }
+
+    /* Forms, Persistent Labels & Inline Validation */
+    .field-group {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+    .field-label {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--text-brown);
+    }
+    .field-label .req { color: #DC2626; }
+    input {
+      width: 100%;
+      min-height: 42px;
+      border-radius: 14px;
+      border: 1.5px solid #E5D5C3;
+      background: #FFFAF3;
+      padding: 0 12px;
+      font-size: 15px;
+      font-family: 'Noto Sans Thai', sans-serif;
+      color: var(--text-brown);
+    }
+    [aria-invalid="true"] {
+      border-color: #DC2626 !important;
+      background: #FEF2F2 !important;
+      box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.12);
+    }
+    .field-error {
+      display: none;
+      font-size: 12px;
+      font-weight: 600;
+      color: #DC2626;
+    }
+    .field-error.show { display: block; }
+    .reassurance-note {
+      display: none;
+      margin-top: 8px;
+      padding: 8px 12px;
+      border-radius: 12px;
+      background: #FEF2F2;
+      border: 1px solid #FECACA;
+      color: #991B1B;
+      font-size: 12px;
+      font-weight: 600;
+    }
+    .reassurance-note.show { display: block; }
+
+    /* System Error Banner */
+    .system-error-banner {
+      display: none;
+      padding: 12px 16px;
+      border-radius: 18px;
+      background: #FEF2F2;
+      border: 1.5px solid #FCA5A5;
+      color: #991B1B;
+      margin-bottom: 16px;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      font-size: 14px;
+    }
+    .system-error-banner.show { display: flex; }
+
+    /* Empty State & Skeleton */
+    .empty-state {
+      text-align: center;
+      padding: 28px 16px;
+      color: var(--text-muted);
+    }
+    .empty-state-icon { font-size: 34px; margin-bottom: 6px; }
+    .empty-state-title { font-size: 15px; font-weight: 700; color: var(--text-brown); margin-bottom: 4px; }
+    .empty-state-desc { font-size: 13px; margin-bottom: 10px; }
+
+    .skel-bar {
+      height: 16px;
+      border-radius: 8px;
+      background: linear-gradient(90deg, #EFE6D8 25%, #F8F3EB 50%, #EFE6D8 75%);
+      background-size: 200% 100%;
+      animation: skelMove 1.2s infinite linear;
+    }
+    @keyframes skelMove {
+      0% { background-position: 200% 0; }
+      100% { background-position: -200% 0; }
+    }
+    .btn-spinner {
+      display: inline-block;
+      width: 14px;
+      height: 14px;
+      border: 2.5px solid rgba(255,255,255,0.4);
+      border-top-color: #FFFFFF;
+      border-radius: 50%;
+      animation: spinBtn 0.7s linear infinite;
+    }
+    .btn-spinner.dark {
+      border-color: rgba(58,43,34,0.25);
+      border-top-color: var(--text-brown);
+    }
+    @keyframes spinBtn { to { transform: rotate(360deg); } }
+
     .pill {
       display: inline-block;
       padding: 2px 9px;
@@ -103,13 +254,44 @@
       font-weight: 700;
       margin: 3px;
     }
-    input {
-      min-height: 42px;
-      border-radius: 14px;
-      border: 1.5px solid #E5D5C3;
-      padding: 0 12px;
-      font-size: 15px;
-      font-family: 'Noto Sans Thai', sans-serif;
+
+    .tip-form-grid {
+      display: grid;
+      grid-template-columns: 1.5fr 1fr auto;
+      gap: 10px;
+      align-items: start;
+      margin-bottom: 10px;
+    }
+
+    /* Responsive Card Fallback for Narrow Viewports */
+    @media (max-width: 640px) {
+      .tip-form-grid { grid-template-columns: 1fr; }
+      .table-scroll-wrap { border: none; max-height: none; overflow: visible; }
+      table.responsive-table thead { display: none; }
+      table.responsive-table, table.responsive-table tbody, table.responsive-table tr, table.responsive-table td {
+        display: block;
+        width: 100%;
+      }
+      table.responsive-table tr {
+        background: #FFFDF9;
+        border: 1.5px solid #F3E5D5;
+        border-radius: 16px;
+        padding: 10px 12px;
+        margin-bottom: 10px;
+      }
+      table.responsive-table td {
+        border-bottom: none;
+        padding: 4px 0;
+        text-align: left !important;
+      }
+      table.responsive-table td::before {
+        content: attr(data-label);
+        display: block;
+        font-size: 11px;
+        font-weight: 700;
+        color: var(--text-muted);
+        margin-bottom: 2px;
+      }
     }
   </style>
 </head>
@@ -127,11 +309,20 @@
       </div>
     </div>
 
+    <div id="adminErrorBanner" class="system-error-banner" role="alert">
+      <div>
+        <strong id="adminErrorTitle">⚠️ โหลดข้อมูลระบบไม่สำเร็จชั่วคราว</strong>
+        <div id="adminErrorDesc" style="font-size:12px; margin-top:2px;">โปรดตรวจสอบอินเทอร์เน็ตหรือสิทธิ์ Firestore Rules แล้วลองใหม่</div>
+      </div>
+      <button type="button" class="btn btn-orange" style="padding:6px 14px; font-size:12px;" onclick="reloadAllAdminData()">ลองใหม่</button>
+    </div>
+
     <div id="lockedPanel" class="card" style="text-align:center; padding:36px 20px;">
       <div style="font-size:44px;">🔒</div>
       <h2 style="margin:8px 0;">กรุณาล็อกอินด้วยบัญชีผู้พัฒนา</h2>
       <p style="color:var(--text-muted); font-size:15px;">ระบบสงวนสิทธิ์การดูข้อมูลผู้ใช้และข้อเสนอแนะเฉพาะ <code>farid.hajisalah@gmail.com</code> เท่านั้น</p>
-      <button class="btn btn-orange" onclick="adminLogin()">เข้าสู่ระบบด้วย Google</button>
+      <div id="authDeniedMsg" class="reassurance-note" style="max-width:440px; margin:0 auto 14px; text-align:center;"></div>
+      <button id="lockedLoginBtn" class="btn btn-orange" onclick="adminLogin()">เข้าสู่ระบบด้วย Google</button>
     </div>
 
     <div id="adminContent" style="display:none;">
@@ -161,34 +352,45 @@
 
       <div class="card">
         <h3 style="margin:0 0 6px; font-size:17px;">☕ บันทึกยอดเลี้ยงกาแฟ (ตรวจสอบจากแอปธนาคารกรุงเทพ)</h3>
-        <div style="font-size:13px; color:var(--text-muted); margin-bottom:10px;">
+        <div style="font-size:13px; color:var(--text-muted); margin-bottom:12px;">
           จดยอดเงินโอน PromptPay จริงที่เข้าบัญชีธนาคารกรุงเทพเพื่อเก็บสถิติรวมในหน้านี้
         </div>
-        <div style="display:grid; grid-template-columns: 1.4fr 1fr auto; gap:8px; margin-bottom:10px;">
-          <input type="text" id="tipNoteInput" placeholder="ชื่อผู้โอน / หมายเหตุ เช่น คุณเอ เลี้ยงกาแฟ" />
-          <input type="number" id="tipAmountInput" placeholder="ยอดเงิน (บาท)" />
-          <button class="btn btn-blue" onclick="addTipRecord()">+ บันทึกยอด</button>
+        <div class="tip-form-grid">
+          <div class="field-group">
+            <label for="tipNoteInput" class="field-label">ชื่อผู้โอน / หมายเหตุ</label>
+            <input type="text" id="tipNoteInput" placeholder="เช่น คุณเอ เลี้ยงกาแฟ" />
+          </div>
+          <div class="field-group">
+            <label for="tipAmountInput" class="field-label">ยอดเงิน (บาท) <span class="req">*</span></label>
+            <input type="text" id="tipAmountInput" class="tabular-nums" inputmode="numeric" placeholder="เช่น 50" aria-describedby="tipAmountError" oninput="clearTipError()" onkeydown="if(event.key==='Enter') addTipRecord()" />
+            <div id="tipAmountError" class="field-error" role="alert"></div>
+          </div>
+          <div class="field-group">
+            <span class="field-label" style="visibility:hidden;">บันทึก</span>
+            <button id="addTipBtn" class="btn btn-blue" style="min-height:42px;" onclick="addTipRecord()">+ บันทึกยอด</button>
+          </div>
         </div>
-        <div id="tipRecordsList" style="font-size:14px; color:var(--text-muted);"></div>
+        <div id="tipReassurance" class="reassurance-note" role="status"></div>
+        <div id="tipRecordsList" style="font-size:14px; color:var(--text-muted); margin-top:10px;"></div>
       </div>
 
       <div class="card">
-        <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px; margin-bottom:8px;">
-          <h3 style="margin:0; font-size:17px;">💡 ข้อเสนอแนะและคำขอเมนูจากผู้ใช้ (<span id="fbTotalCount">0</span>)</h3>
-          <button class="btn btn-soft" onclick="reloadAllAdminData()">🔄 รีเฟรชข้อมูล</button>
+        <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px; margin-bottom:10px;">
+          <h3 style="margin:0; font-size:17px;">💡 ข้อเสนอแนะและคำขอเมนูจากผู้ใช้ (<span id="fbTotalCount" class="tabular-nums">0</span>)</h3>
+          <button id="refreshAdminBtn" class="btn btn-soft" onclick="reloadAllAdminData()">🔄 รีเฟรชข้อมูล</button>
         </div>
         <div style="margin-bottom:10px;">
           <span style="font-size:13px; font-weight:700; color:var(--text-muted);">คำที่ถูกขอถึงบ่อย:</span>
           <div id="fbKeywordsBox" style="margin-top:4px;"></div>
         </div>
-        <div style="overflow-x:auto;">
-          <table>
+        <div class="table-scroll-wrap">
+          <table class="responsive-table">
             <thead>
               <tr>
                 <th>หมวดหมู่</th>
                 <th>ข้อความจากผู้ใช้</th>
                 <th>ผู้ส่ง</th>
-                <th>จัดการ</th>
+                <th style="text-align:right;">จัดการ</th>
               </tr>
             </thead>
             <tbody id="fbTableBody"></tbody>
@@ -197,14 +399,32 @@
       </div>
 
       <div class="card">
-        <h3 style="margin:0 0 10px; font-size:17px;">👥 รายชื่อสมาชิกและคะแนนรวมทั้งหมด</h3>
-        <div style="overflow-x:auto;">
-          <table>
+        <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px; margin-bottom:10px;">
+          <h3 style="margin:0; font-size:17px;">👥 รายชื่อสมาชิกและจัดการป้ายผู้สนับสนุน</h3>
+          <span id="userFilterResultText" class="tabular-nums" style="font-size:13px; font-weight:600; color:var(--text-muted);"></span>
+        </div>
+
+        <!-- Search & Filter Toolbar -->
+        <div class="toolbar-row">
+          <div style="flex:1; min-width:200px;">
+            <label for="adminUserSearch" class="field-label" style="display:block; margin-bottom:3px;">ค้นหาสมาชิก (ชื่อ หรือ อีเมล)</label>
+            <input type="search" id="adminUserSearch" placeholder="🔍 พิมพ์ชื่อหรืออีเมล..." oninput="renderAdminUsersTable()" />
+          </div>
+          <div style="display:flex; flex-wrap:wrap; gap:6px; align-self:flex-end;">
+            <button type="button" class="filter-chip active" data-ufilter="all" onclick="setAdminUserFilter('all', this)">ทั้งหมด</button>
+            <button type="button" class="filter-chip" data-ufilter="supporter" onclick="setAdminUserFilter('supporter', this)">💎 ผู้สนับสนุน</button>
+            <button type="button" class="filter-chip" data-ufilter="regular" onclick="setAdminUserFilter('regular', this)">สมาชิกทั่วไป</button>
+            <button type="button" id="resetUserFilterBtn" class="btn btn-soft" style="display:none; padding:6px 12px; font-size:12px;" onclick="resetAdminUserFilters()">ล้างตัวกรอง ✕</button>
+          </div>
+        </div>
+
+        <div class="table-scroll-wrap">
+          <table class="responsive-table">
             <thead>
               <tr>
-                <th>#</th>
+                <th class="num-col">#</th>
                 <th>ชื่อ / อีเมล</th>
-                <th>XP / สกอร์รวม</th>
+                <th class="num-col">XP / สกอร์รวม</th>
                 <th>ไอคอน & ป้ายผู้สนับสนุน</th>
               </tr>
             </thead>
@@ -238,18 +458,56 @@
     const db = getFirestore(app);
     const provider = new GoogleAuthProvider();
 
-    window.adminLogin = () => signInWithPopup(auth, provider);
+    let allUsersCache = [];
+    let currentUserFilter = 'all';
+    let currentTipsSum = 0;
+
+    function showAdminError(title, desc) {
+      const b = document.getElementById('adminErrorBanner');
+      document.getElementById('adminErrorTitle').textContent = title;
+      document.getElementById('adminErrorDesc').textContent = desc;
+      b.classList.add('show');
+    }
+    function hideAdminError() {
+      document.getElementById('adminErrorBanner').classList.remove('show');
+    }
+
+    function renderTableSkeleton(tbodyId, cols, rows = 4) {
+      const el = document.getElementById(tbodyId);
+      if (!el) return;
+      el.innerHTML = Array.from({ length: rows }).map(() => `
+        <tr>${Array.from({ length: cols }).map(() => `<td><div class="skel-bar"></div></td>`).join('')}</tr>
+      `).join('');
+    }
+
+    window.adminLogin = async () => {
+      const btn = document.getElementById('lockedLoginBtn');
+      if (btn) { btn.disabled = true; btn.innerHTML = '<span class="btn-spinner"></span> กำลังเข้าสู่ระบบ...'; }
+      try {
+        await signInWithPopup(auth, provider);
+      } catch (err) {
+        if (err?.code !== 'auth/popup-closed-by-user') {
+          showAdminError('⚠️ เข้าสู่ระบบไม่สำเร็จ', err?.message || 'โปรดลองใหม่อีกครั้ง');
+        }
+      } finally {
+        if (btn) { btn.disabled = false; btn.textContent = 'เข้าสู่ระบบด้วย Google'; }
+      }
+    };
     window.adminLogout = () => signOut(auth);
 
     onAuthStateChanged(auth, async (user) => {
       const isAdmin = user && user.email && user.email.toLowerCase() === ADMIN_EMAIL;
       document.getElementById('lockedPanel').style.display = isAdmin ? 'none' : 'block';
       document.getElementById('adminContent').style.display = isAdmin ? 'block' : 'none';
-      document.getElementById('loginAdminBtn').style.display = user ? 'none' : 'inline-block';
-      document.getElementById('logoutAdminBtn').style.display = user ? 'inline-block' : 'none';
+      document.getElementById('loginAdminBtn').style.display = user ? 'none' : 'inline-flex';
+      document.getElementById('logoutAdminBtn').style.display = user ? 'inline-flex' : 'none';
 
+      const deniedEl = document.getElementById('authDeniedMsg');
       if (user && !isAdmin) {
-        alert("บัญชี " + user.email + " ไม่มีสิทธิ์เข้าถึงหน้าผู้ดูแลระบบ");
+        deniedEl.textContent = `⚠️ บัญชี ${user.email} ไม่มีสิทธิ์เข้าถึงหน้าผู้ดูแลระบบ กรุณาออกจากระบบแล้วล็อกอินด้วยบัญชีแอดมิน`;
+        deniedEl.classList.add('show');
+      } else {
+        deniedEl.classList.remove('show');
       }
       if (isAdmin) {
         await window.reloadAllAdminData();
@@ -257,7 +515,98 @@
     });
 
     window.reloadAllAdminData = async function () {
-      await Promise.all([loadUsers(), loadFeedbacks(), loadTips()]);
+      const rBtn = document.getElementById('refreshAdminBtn');
+      if (rBtn) { rBtn.disabled = true; rBtn.innerHTML = '<span class="btn-spinner dark"></span> กำลังโหลด...'; }
+      hideAdminError();
+      renderTableSkeleton('adminUsersBody', 4, 4);
+      renderTableSkeleton('fbTableBody', 4, 3);
+      try {
+        await Promise.all([loadUsers(), loadFeedbacks(), loadTips()]);
+      } catch (err) {
+        showAdminError('⚠️ โหลดข้อมูลจาก Firestore ไม่สำเร็จ', err?.message || 'โปรดตรวจสอบอินเทอร์เน็ตและลองใหม่');
+      } finally {
+        if (rBtn) { rBtn.disabled = false; rBtn.textContent = '🔄 รีเฟรชข้อมูล'; }
+      }
+    };
+
+    window.setAdminUserFilter = function (filter, btn) {
+      currentUserFilter = filter;
+      document.querySelectorAll('.filter-chip').forEach(b => b.classList.remove('active'));
+      if (btn) btn.classList.add('active');
+      window.renderAdminUsersTable();
+    };
+
+    window.resetAdminUserFilters = function () {
+      const inp = document.getElementById('adminUserSearch');
+      if (inp) inp.value = '';
+      currentUserFilter = 'all';
+      document.querySelectorAll('.filter-chip').forEach(b => {
+        b.classList.toggle('active', b.dataset.ufilter === 'all');
+      });
+      window.renderAdminUsersTable();
+    };
+
+    window.renderAdminUsersTable = function () {
+      const rawQ = (document.getElementById('adminUserSearch')?.value || '').trim();
+      const q = rawQ.toLowerCase();
+      let filtered = allUsersCache;
+
+      if (currentUserFilter === 'supporter') filtered = filtered.filter(u => Boolean(u.isSupporter));
+      if (currentUserFilter === 'regular') filtered = filtered.filter(u => !u.isSupporter);
+      if (q) {
+        filtered = filtered.filter(u =>
+          (u.displayName || '').toLowerCase().includes(q) ||
+          (u.email || '').toLowerCase().includes(q) ||
+          (u.id || '').toLowerCase().includes(q)
+        );
+      }
+
+      const hasActiveFilter = Boolean(q || currentUserFilter !== 'all');
+      const resetBtn = document.getElementById('resetUserFilterBtn');
+      const resText = document.getElementById('userFilterResultText');
+      if (resetBtn) resetBtn.style.display = hasActiveFilter ? 'inline-flex' : 'none';
+      if (resText) resText.textContent = `แสดง ${filtered.length} จาก ${allUsersCache.length} คน`;
+
+      const tbody = document.getElementById('adminUsersBody');
+      if (filtered.length === 0) {
+        tbody.innerHTML = `
+          <tr>
+            <td colspan="4">
+              <div class="empty-state">
+                <div class="empty-state-icon">🔍</div>
+                <div class="empty-state-title">ไม่พบสมาชิกที่ตรงกับเงื่อนไข</div>
+                <div class="empty-state-desc">${hasActiveFilter ? 'ลองเปลี่ยนคำค้นหาหรือล้างตัวกรองเพื่อดูสมาชิกทั้งหมด' : 'ยังไม่มีสมาชิกที่ล็อกอินเข้ามาในระบบ'}</div>
+                ${hasActiveFilter ? '<button type="button" class="btn btn-orange" onclick="resetAdminUserFilters()">ล้างตัวกรองทั้งหมด</button>' : ''}
+              </div>
+            </td>
+          </tr>
+        `;
+        return;
+      }
+
+      const SUPPORTER_ICONS = ['☕', '🌟', '💚', '🍱'];
+      tbody.innerHTML = filtered.map((u, idx) => `
+        <tr>
+          <td class="num-col" data-label="ลำดับ"><strong>${idx + 1}</strong></td>
+          <td data-label="สมาชิก">
+            <div><strong>${u.avatar || '🍲'} ${u.displayName || 'ไม่ระบุชื่อ'}</strong> ${u.isSupporter ? '<span class="pill pill-pay">💎 ผู้สนับสนุน</span>' : ''}</div>
+            <div style="font-size:12px; color:var(--text-muted);">${u.email || u.id}</div>
+          </td>
+          <td class="num-col" data-label="XP / สกอร์รวม"><strong>${(u.xp || 0).toLocaleString()} XP</strong> / รวม ${(u.totalScore || u.xp || 0).toLocaleString()}</td>
+          <td data-label="ไอคอน & ป้ายผู้สนับสนุน">
+            <div style="display:flex; flex-direction:column; gap:6px; align-items:flex-start;">
+              <button class="btn ${u.isSupporter ? 'btn-blue' : 'btn-soft'}" style="padding:5px 12px; font-size:12px;" onclick="toggleUserSupporter('${u.id}', ${!u.isSupporter}, this)">
+                ${u.isSupporter ? '💎 ป้ายผู้สนับสนุน (คลิกปลด)' : '+ มอบป้ายผู้สนับสนุน'}
+              </button>
+              <div style="display:flex; gap:4px; flex-wrap:wrap;">
+                ${SUPPORTER_ICONS.map(ic => `
+                  <button type="button" onclick="assignSupporterIcon('${u.id}', '${ic}', this)" title="ตั้งไอคอนผู้สนับสนุน ${ic}" style="border:1.5px solid ${u.avatar === ic && u.isSupporter ? '#0284C7' : '#BAE6FD'}; background:${u.avatar === ic && u.isSupporter ? '#DBEAFE' : '#F0F9FF'}; border-radius:10px; padding:3px 7px; font-size:14px; cursor:pointer;">${ic}</button>
+                `).join('')}
+              </div>
+            </div>
+          </td>
+        </tr>
+      `).join('');
     };
 
     async function loadUsers() {
@@ -282,50 +631,41 @@
       });
 
       users.sort((a, b) => (b.totalScore || b.xp || 0) - (a.totalScore || a.xp || 0));
+      allUsersCache = users;
 
-      document.getElementById('kpiTotalUsers').textContent = users.length;
-      document.getElementById('kpiActive7d').textContent = active7d;
-      document.getElementById('kpiSupporters').textContent = supporters;
+      document.getElementById('kpiTotalUsers').textContent = users.length.toLocaleString();
+      document.getElementById('kpiActive7d').textContent = active7d.toLocaleString();
+      document.getElementById('kpiSupporters').textContent = supporters.toLocaleString();
 
       document.getElementById('featureStatsRow').innerHTML = `
-        <span class="pill" style="background:#FEF3C7; color:#92400E;">📅 จัดตาราง 7 วัน: ${planUsers} คน</span>
-        <span class="pill" style="background:#DCFCE7; color:#166534;">💰 บันทึกค่ากินสะสม: ${totalExpenseLogs} รายการ</span>
-        <span class="pill" style="background:#FFEDD5; color:#9A3412;">➕ เมนูส่วนตัวที่ผู้ใช้เพิ่ม: ${totalCustomMenus} เมนู</span>
+        <span class="pill tabular-nums" style="background:#FEF3C7; color:#92400E;">📅 จัดตาราง 7 วัน: ${planUsers.toLocaleString()} คน</span>
+        <span class="pill tabular-nums" style="background:#DCFCE7; color:#166534;">💰 บันทึกค่ากินสะสม: ${totalExpenseLogs.toLocaleString()} รายการ</span>
+        <span class="pill tabular-nums" style="background:#FFEDD5; color:#9A3412;">➕ เมนูส่วนตัวที่ผู้ใช้เพิ่ม: ${totalCustomMenus.toLocaleString()} เมนู</span>
       `;
 
-      const SUPPORTER_ICONS = ['☕', '🌟', '💚', '🍱'];
-      document.getElementById('adminUsersBody').innerHTML = users.map((u, idx) => `
-        <tr>
-          <td><strong>${idx + 1}</strong></td>
-          <td>
-            <div><strong>${u.avatar || '🍲'} ${u.displayName || 'ไม่ระบุชื่อ'}</strong> ${u.isSupporter ? '<span class="pill pill-pay">💎 ผู้สนับสนุน</span>' : ''}</div>
-            <div style="font-size:12px; color:var(--text-muted);">${u.email || u.id}</div>
-          </td>
-          <td><strong>${u.xp || 0} XP</strong> / รวม ${(u.totalScore || u.xp || 0)}</td>
-          <td>
-            <div style="display:flex; flex-direction:column; gap:6px; align-items:flex-start;">
-              <button class="btn ${u.isSupporter ? 'btn-blue' : 'btn-soft'}" style="padding:5px 12px; font-size:12px;" onclick="toggleUserSupporter('${u.id}', ${!u.isSupporter})">
-                ${u.isSupporter ? '💎 ป้ายผู้สนับสนุน (คลิกปลด)' : '+ มอบป้ายผู้สนับสนุน'}
-              </button>
-              <div style="display:flex; gap:4px; flex-wrap:wrap;">
-                ${SUPPORTER_ICONS.map(ic => `
-                  <button type="button" onclick="assignSupporterIcon('${u.id}', '${ic}')" title="ตั้งไอคอนผู้สนับสนุน ${ic}" style="border:1.5px solid ${u.avatar === ic && u.isSupporter ? '#0284C7' : '#BAE6FD'}; background:${u.avatar === ic && u.isSupporter ? '#DBEAFE' : '#F0F9FF'}; border-radius:10px; padding:3px 7px; font-size:14px; cursor:pointer;">${ic}</button>
-                `).join('')}
-              </div>
-            </div>
-          </td>
-        </tr>
-      `).join('');
+      window.renderAdminUsersTable();
     }
 
-    window.toggleUserSupporter = async function (uid, nextVal) {
-      await updateDoc(doc(db, "users", uid), { isSupporter: nextVal });
-      await loadUsers();
+    window.toggleUserSupporter = async function (uid, nextVal, btn) {
+      if (btn) { btn.disabled = true; btn.innerHTML = '<span class="btn-spinner dark"></span> กำลังบันทึก...'; }
+      try {
+        await updateDoc(doc(db, "users", uid), { isSupporter: nextVal });
+        await loadUsers();
+      } catch (err) {
+        showAdminError('⚠️ อัปเดตป้ายผู้สนับสนุนไม่สำเร็จ', err?.message || 'ลองใหม่อีกครั้ง');
+        if (btn) btn.disabled = false;
+      }
     };
 
-    window.assignSupporterIcon = async function (uid, icon) {
-      await updateDoc(doc(db, "users", uid), { isSupporter: true, avatar: icon });
-      await loadUsers();
+    window.assignSupporterIcon = async function (uid, icon, btn) {
+      if (btn) btn.disabled = true;
+      try {
+        await updateDoc(doc(db, "users", uid), { isSupporter: true, avatar: icon });
+        await loadUsers();
+      } catch (err) {
+        showAdminError('⚠️ ตั้งไอคอนผู้สนับสนุนไม่สำเร็จ', err?.message || 'ลองใหม่อีกครั้ง');
+        if (btn) btn.disabled = false;
+      }
     };
 
     async function loadFeedbacks() {
@@ -341,28 +681,44 @@
       });
 
       items.sort((a, b) => (b.createdAt?.toMillis?.() || 0) - (a.createdAt?.toMillis?.() || 0));
-      document.getElementById('fbTotalCount').textContent = items.length;
+      document.getElementById('fbTotalCount').textContent = items.length.toLocaleString();
 
       const topWords = Object.entries(wordCounts).sort((a, b) => b[1] - a[1]).slice(0, 10);
       document.getElementById('fbKeywordsBox').innerHTML = topWords.length
-        ? topWords.map(([w, c]) => `<span class="kw-chip">${w} (${c})</span>`).join('')
+        ? topWords.map(([w, c]) => `<span class="kw-chip tabular-nums">${w} (${c})</span>`).join('')
         : '<span style="font-size:13px; color:var(--text-muted);">ยังไม่มีข้อมูลคำค้น</span>';
 
       document.getElementById('fbTableBody').innerHTML = items.length ? items.map(f => `
         <tr>
-          <td><span class="pill pill-cat">${f.category || 'ทั่วไป'}</span></td>
-          <td>${f.text || ''}</td>
-          <td style="font-size:12px; color:var(--text-muted);">${f.userName || 'Guest'}</td>
-          <td>
-            <button class="btn btn-soft" style="padding:4px 10px; font-size:12px;" onclick="deleteFeedback('${f.id}')">ลบ</button>
+          <td data-label="หมวดหมู่"><span class="pill pill-cat">${f.category || 'ทั่วไป'}</span></td>
+          <td data-label="ข้อความ">${f.text || ''}</td>
+          <td data-label="ผู้ส่ง" style="font-size:12px; color:var(--text-muted);">${f.userName || 'Guest'}</td>
+          <td class="num-col" data-label="จัดการ">
+            <button class="btn btn-soft" style="padding:4px 10px; font-size:12px;" onclick="deleteFeedback('${f.id}', this)">ลบ</button>
           </td>
         </tr>
-      `).join('') : '<tr><td colspan="4" style="text-align:center; color:var(--text-muted);">ยังไม่มีข้อเสนอแนะเข้ามา</td></tr>';
+      `).join('') : `
+        <tr>
+          <td colspan="4">
+            <div class="empty-state">
+              <div class="empty-state-icon">✅</div>
+              <div class="empty-state-title">จัดการข้อเสนอแนะครบหมดแล้ว</div>
+              <div class="empty-state-desc">ยังไม่มีข้อความใหม่จากผู้ใช้ในขณะนี้</div>
+            </div>
+          </td>
+        </tr>
+      `;
     }
 
-    window.deleteFeedback = async function (id) {
-      await deleteDoc(doc(db, "feedbacks", id));
-      await loadFeedbacks();
+    window.deleteFeedback = async function (id, btn) {
+      if (btn) { btn.disabled = true; btn.textContent = 'กำลังลบ...'; }
+      try {
+        await deleteDoc(doc(db, "feedbacks", id));
+        await loadFeedbacks();
+      } catch (err) {
+        showAdminError('⚠️ ลบข้อเสนอแนะไม่สำเร็จ', err?.message || 'ลองใหม่อีกครั้ง');
+        if (btn) { btn.disabled = false; btn.textContent = 'ลบ'; }
+      }
     };
 
     async function loadTips() {
@@ -374,39 +730,83 @@
         sum += Number(t.amount) || 0;
         list.push(t);
       });
+      currentTipsSum = sum;
       list.sort((a, b) => (b.createdAt?.toMillis?.() || 0) - (a.createdAt?.toMillis?.() || 0));
       document.getElementById('kpiTipsTotal').textContent = `${sum.toLocaleString()}฿`;
       document.getElementById('tipRecordsList').innerHTML = list.length ? list.map(t => `
-        <div style="display:flex; justify-content:space-between; padding:6px 0; border-bottom:1px solid #F3ECE1;">
+        <div style="display:flex; justify-content:space-between; align-items:center; padding:8px 0; border-bottom:1px solid #F3ECE1;">
           <span>☕ ${t.note || 'ผู้สนับสนุน'}</span>
-          <div>
-            <strong style="color:#0284C7; margin-right:8px;">+${Number(t.amount).toLocaleString()}฿</strong>
-            <button class="btn btn-soft" style="padding:2px 8px; font-size:11px;" onclick="deleteTip('${t.id}')">ลบ</button>
+          <div style="display:flex; align-items:center; gap:8px;">
+            <strong class="tabular-nums" style="color:#0284C7;">+${Number(t.amount).toLocaleString()}฿</strong>
+            <button class="btn btn-soft" style="padding:3px 9px; font-size:11px;" onclick="deleteTip('${t.id}', this)">ลบ</button>
           </div>
         </div>
-      `).join('') : 'ยังไม่มีรายการบันทึกยอดเลี้ยงกาแฟ';
+      `).join('') : `
+        <div class="empty-state" style="padding:16px 10px;">
+          <div class="empty-state-icon">☕</div>
+          <div class="empty-state-title">ยังไม่มีรายการบันทึกยอดเลี้ยงกาแฟ</div>
+          <div class="empty-state-desc">กรอกหมายเหตุและยอดเงินโอนด้านบนเพื่อเริ่มเก็บสถิติได้เลยครับ</div>
+        </div>
+      `;
     }
 
-    window.addTipRecord = async function () {
-      const note = document.getElementById('tipNoteInput').value.trim() || 'ผู้สนับสนุนผ่าน PromptPay';
-      const amount = parseFloat(document.getElementById('tipAmountInput').value);
-      if (isNaN(amount) || amount <= 0) {
-        alert('กรุณากรอกจำนวนเงินให้ถูกต้อง');
-        return;
-      }
-      await addDoc(collection(db, "tip_logs"), {
-        note,
-        amount,
-        createdAt: serverTimestamp()
-      });
-      document.getElementById('tipNoteInput').value = '';
-      document.getElementById('tipAmountInput').value = '';
-      await loadTips();
+    window.clearTipError = function () {
+      const inp = document.getElementById('tipAmountInput');
+      const err = document.getElementById('tipAmountError');
+      const reass = document.getElementById('tipReassurance');
+      if (inp) inp.removeAttribute('aria-invalid');
+      if (err) { err.textContent = ''; err.classList.remove('show'); }
+      if (reass) reass.classList.remove('show');
     };
 
-    window.deleteTip = async function (id) {
-      await deleteDoc(doc(db, "tip_logs", id));
-      await loadTips();
+    window.addTipRecord = async function () {
+      const noteEl = document.getElementById('tipNoteInput');
+      const amtEl = document.getElementById('tipAmountInput');
+      const errEl = document.getElementById('tipAmountError');
+      const reassEl = document.getElementById('tipReassurance');
+      const btn = document.getElementById('addTipBtn');
+
+      const note = noteEl.value.trim() || 'ผู้สนับสนุนผ่าน PromptPay';
+      const rawAmt = (amtEl.value || '').replace(/,/g, '').trim();
+      const amount = parseFloat(rawAmt);
+
+      window.clearTipError();
+      if (!rawAmt || isNaN(amount) || amount <= 0) {
+        amtEl.setAttribute('aria-invalid', 'true');
+        amtEl.focus();
+        errEl.textContent = '⚠️ กรุณากรอกยอดเงินเป็นตัวเลขมากกว่า 0 บาท';
+        errEl.classList.add('show');
+        reassEl.textContent = `ℹ️ ยังไม่มีการบันทึกยอดใดๆ • ยอดรวมเดิมยังคงเป็น ${currentTipsSum.toLocaleString()}฿`;
+        reassEl.classList.add('show');
+        return;
+      }
+
+      if (btn) { btn.disabled = true; btn.innerHTML = '<span class="btn-spinner"></span> กำลังบันทึก...'; }
+      try {
+        await addDoc(collection(db, "tip_logs"), {
+          note,
+          amount,
+          createdAt: serverTimestamp()
+        });
+        noteEl.value = '';
+        amtEl.value = '';
+        await loadTips();
+      } catch (err) {
+        showAdminError('⚠️ บันทึกยอดเลี้ยงกาแฟไม่สำเร็จ', err?.message || 'ลองใหม่อีกครั้ง');
+      } finally {
+        if (btn) { btn.disabled = false; btn.textContent = '+ บันทึกยอด'; }
+      }
+    };
+
+    window.deleteTip = async function (id, btn) {
+      if (btn) { btn.disabled = true; btn.textContent = 'กำลังลบ...'; }
+      try {
+        await deleteDoc(doc(db, "tip_logs", id));
+        await loadTips();
+      } catch (err) {
+        showAdminError('⚠️ ลบรายการไม่สำเร็จ', err?.message || 'ลองใหม่อีกครั้ง');
+        if (btn) { btn.disabled = false; btn.textContent = 'ลบ'; }
+      }
     };
   </script>
 </body>
