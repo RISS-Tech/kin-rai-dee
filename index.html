@@ -1112,8 +1112,8 @@
       </div>
 
       <div id="passportStrip" class="passport-strip">
-        <span>🛂 โหมดบินลัดฟ้าชิมอาหารนานาชาติ 8 ประเทศ</span>
-        <span id="passportProgressBadge">0/8 ดวง</span>
+        <span>🛂 โหมดบินลัดฟ้าชิมอาหารนานาชาติ <span id="passportTotalCountriesStrip">46</span> ประเทศ</span>
+        <span id="passportProgressBadge">0/46 ดวง</span>
       </div>
 
       <!-- Interactive Quick Mood Selector -->
@@ -1377,11 +1377,14 @@
       <!-- Passport Stamps Collection -->
       <div class="soft-card reveal-card">
         <div style="display: flex; justify-content: space-between; align-items: center;">
-          <span style="font-weight: 700;">🛂 สมุดพาสปอร์ตนักชิม (8 ประเทศ)</span>
-          <span style="color: var(--passport-blue); font-weight: 700;" id="stampCountText">0 / 8 ดวง</span>
+          <span style="font-weight: 700;">🛂 สมุดพาสปอร์ตนักชิม (<span id="passportTotalCountriesTitle">46</span> ประเทศ)</span>
+          <span style="color: var(--passport-blue); font-weight: 700;" id="stampCountText">0 / 46 ดวง</span>
         </div>
         <div style="font-size: 13px; color: var(--text-muted); margin-top: 2px;">หมุนโหมด "ตั๋วเครื่องบินทิพย์" เพื่อสะสมตราประทับประเทศ</div>
         <div class="stamp-grid" id="passportStampsGrid"></div>
+        <button type="button" id="passportExpandBtn" onclick="togglePassportExpand()" style="width:100%; margin-top:10px; min-height:40px; border-radius:999px; border:1.5px solid #BFDBFE; background:#EFF6FF; color:#1E3A8A; font-size:14px; font-weight:700; cursor:pointer;">
+          ดูตราประเทศทั้งหมด (46 ประเทศ) ▼
+        </button>
       </div>
 
       <!-- Daily Pinto Streak -->
@@ -1403,7 +1406,7 @@
             <div style="font-size:17px; font-weight:700; color:var(--text-brown);">📊 ตารางรวมผลนักชิม</div>
             <div style="font-size:12px; color:var(--text-muted);">รวมสกอร์สุ่ม • โหมดตู้เย็น • ตาราง 7 วัน • พาสปอร์ต</div>
           </div>
-          <span class="pay-pill">💎 สายเปย์</span>
+          
         </div>
 
         <div class="board-table-wrap">
@@ -1419,16 +1422,7 @@
           </table>
         </div>
 
-        <div style="margin-top:12px; display:flex; justify-content:space-between; align-items:center; gap:8px;">
-          <div>
-            <span style="font-size:13px; font-weight:700; color:#0369A1;">✨ ไอคอนสายชิม / ผู้สนับสนุน</span>
-            <div style="font-size:11px; color:var(--text-muted);">เลือกใช้ได้ฟรี เพื่อความน่ารักในตาราง ไม่ใช่การซื้อฟีเจอร์</div>
-          </div>
-          <button type="button" onclick="claimSupporterBadgeDemo()" style="border:1px solid #7DD3FC; background:#E0F2FE; color:#0369A1; border-radius:999px; padding:4px 10px; font-size:11px; font-weight:700; cursor:pointer; flex-shrink:0;">
-            สลับป้ายผู้สนับสนุน
-          </button>
-        </div>
-        <div class="supporter-avatar-grid" id="supporterAvatarGrid"></div>
+
       </div>
 
       <!-- v12 User Feedback & Feature Request Card (With Auto Profanity & Spam Filter) -->
@@ -1459,7 +1453,7 @@
       <div class="soft-card reveal-card" style="background: #FFFDF9; border: 1.5px solid #F3E5D5;">
         <div style="display: flex; align-items: center; justify-content: space-between; gap: 10px;">
           <div>
-            <div style="font-size: 16px; font-weight: 700; color: var(--text-brown);">เล่นฟรีทุกฟีเจอร์</div>
+            <div style="font-size: 16px; font-weight: 700; color: var(--text-brown);">เล่นฟรี!! ไม่มีค่าสมัคร</div>
             <div style="font-size: 13px; color: var(--text-muted);">พัฒนาโดยทีม TooKMUE • สนับสนุนค่าดูแลเว็บตามสมัครใจ ไม่ผูกกับสิทธิ์ใช้งาน</div>
           </div>
           <button type="button" onclick="openQrModal()" style="border: 1.5px solid #E5D5C3; background: #FFF7ED; color: var(--chili-orange); border-radius: 999px; padding: 9px 15px; font-size: 14px; font-weight: 700; cursor: pointer; flex-shrink: 0;">
@@ -1565,7 +1559,7 @@
         <img src="promptpay-qr.png" alt="PromptPay QR Code" style="width: 100%; max-width: 290px; border-radius: 18px; box-shadow: 0 8px 20px rgba(58,43,34,0.12); display: inline-block;" />
         <div style="margin-top: 10px; font-size: 13px; color: var(--text-muted);">
           พร้อมเพย์สำหรับสนับสนุนผู้พัฒนาแอป <strong>ทุกมื้อ (TooKMUE)</strong><br />
-          ใช้งานฟรีทุกฟีเจอร์ตามปกติ ไม่จำเป็นต้องโอนครับ
+          เล่นฟรี!! ไม่มีค่าสมัคร ตามปกติ ไม่จำเป็นต้องโอนครับ
         </div>
       </div>
     </div>
@@ -1653,8 +1647,89 @@
       { name: 'อินเดีย', flag: '🇮🇳' },
       { name: 'เวียดนาม', flag: '🇻🇳' },
       { name: 'จีน', flag: '🇨🇳' },
-      { name: 'เม็กซิกัน', flag: '🇲🇽' }
+      { name: 'เม็กซิกัน', flag: '🇲🇽' },
+      { name: 'ฝรั่งเศส', flag: '🇫🇷' },
+      { name: 'เยอรมนี', flag: '🇩🇪' },
+      { name: 'สเปน', flag: '🇪🇸' },
+      { name: 'กรีซ', flag: '🇬🇷' },
+      { name: 'ตุรกี', flag: '🇹🇷' },
+      { name: 'ออสเตรเลีย', flag: '🇦🇺' },
+      { name: 'ออสเตรีย', flag: '🇦🇹' },
+      { name: 'เบลเยียม', flag: '🇧🇪' },
+      { name: 'โปแลนด์', flag: '🇵🇱' },
+      { name: 'สวีเดน', flag: '🇸🇪' },
+      { name: 'ฮังการี', flag: '🇭🇺' },
+      { name: 'ไอซ์แลนด์', flag: '🇮🇸' },
+      { name: 'สกอตแลนด์', flag: '🏴󠁧󠁢󠁳󠁣󠁴󠁿' },
+      { name: 'กรีนแลนด์', flag: '🇬🇱' },
+      { name: 'บราซิล', flag: '🇧🇷' },
+      { name: 'อาร์เจนตินา', flag: '🇦🇷' },
+      { name: 'เปรู', flag: '🇵🇪' },
+      { name: 'ชิลี', flag: '🇨🇱' },
+      { name: 'เวเนซุเอลา', flag: '🇻🇪' },
+      { name: 'มาเลเซีย', flag: '🇲🇾' },
+      { name: 'อินโดนีเซีย', flag: '🇮🇩' },
+      { name: 'ลาว', flag: '🇱🇦' },
+      { name: 'เมียนมา', flag: '🇲🇲' },
+      { name: 'ฟิลิปปินส์', flag: '🇵🇭' },
+      { name: 'บรูไน', flag: '🇧🇳' },
+      { name: 'ศรีลังกา', flag: '🇱🇰' },
+      { name: 'ปากีสถาน', flag: '🇵🇰' },
+      { name: 'อัฟกานิสถาน', flag: '🇦🇫' },
+      { name: 'ทิเบต', flag: '🏔️' },
+      { name: 'ซาอุดีอาระเบีย', flag: '🇸🇦' },
+      { name: 'อิหร่าน', flag: '🇮🇷' },
+      { name: 'อิรัก', flag: '🇮🇶' },
+      { name: 'ตะวันออกกลาง', flag: '🕌' },
+      { name: 'อียิปต์', flag: '🇪🇬' },
+      { name: 'แอฟริกาใต้', flag: '🇿🇦' },
+      { name: 'ไนจีเรีย', flag: '🇳🇬' },
+      { name: 'กานา', flag: '🇬🇭' },
+      { name: 'ซูดาน', flag: '🇸🇩' }
     ];
+    let isPassportExpanded = false;
+    function syncCountriesFromMenus() {
+      MENUS.forEach(m => {
+        if (m.category === 'อาหารนานาชาติ' && m.region && !COUNTRIES.some(c => c.name === m.region)) {
+          COUNTRIES.push({ name: m.region, flag: '🌍' });
+        }
+      });
+    }
+    function togglePassportExpand() {
+      isPassportExpanded = !isPassportExpanded;
+      renderPassportStamps();
+    }
+    function renderPassportStamps() {
+      const grid = document.getElementById('passportStampsGrid');
+      const btn = document.getElementById('passportExpandBtn');
+      if (!grid) return;
+      const total = COUNTRIES.length;
+      const ordered = [...COUNTRIES].sort((a, b) => {
+        const ua = state.stamps.includes(a.name) ? 0 : 1;
+        const ub = state.stamps.includes(b.name) ? 0 : 1;
+        return ua - ub;
+      });
+      const visibleList = isPassportExpanded ? ordered : ordered.slice(0, 8);
+      grid.innerHTML = visibleList.map(c => {
+        const unlocked = state.stamps.includes(c.name);
+        return `<div class="stamp-item ${unlocked ? 'unlocked' : ''}">
+          <div style="font-size: 24px;">${c.flag}</div>
+          <div style="font-size: 11px; line-height: 1.25; margin-top: 2px;">${c.name}</div>
+          ${unlocked ? '<div style="font-size: 10px; color: #16A34A; margin-top: 2px;">✓ สะสมแล้ว</div>' : ''}
+        </div>`;
+      }).join('');
+      if (btn) {
+        const hiddenCount = Math.max(0, total - 8);
+        if (hiddenCount === 0) {
+          btn.style.display = 'none';
+        } else {
+          btn.style.display = 'block';
+          btn.textContent = isPassportExpanded
+            ? `ย่อรายการตราประเทศ ▲`
+            : `ขยายดูตราประเทศทั้งหมด (+${hiddenCount} ประเทศ / รวม ${total} ประเทศ) ▼`;
+        }
+      }
+    }
 
     const RANKS = [
       { minXp: 0, title: 'มือใหม่หัดหิว' },
@@ -2514,14 +2589,19 @@
       document.getElementById('headerStreak').textContent = state.streak;
       document.getElementById('soundToggleBtn').textContent = state.soundOn ? '🔊' : '🔇';
       document.getElementById('yesterdayCount').textContent = state.history.length;
-      document.getElementById('passportProgressBadge').textContent = `${state.stamps.length}/8 ดวง`;
+      const totalCountries = COUNTRIES.length;
+      const stripTotalEl = document.getElementById('passportTotalCountriesStrip');
+      const titleTotalEl = document.getElementById('passportTotalCountriesTitle');
+      if (stripTotalEl) stripTotalEl.textContent = totalCountries;
+      if (titleTotalEl) titleTotalEl.textContent = totalCountries;
+      document.getElementById('passportProgressBadge').textContent = `${state.stamps.length}/${totalCountries} ดวง`;
 
       document.getElementById('profileAvatarBig').textContent = state.avatar;
       document.getElementById('profileRankTitle').textContent = displayRank;
       document.getElementById('xpText').textContent = `${state.xp} / ${nextXp} XP`;
       document.getElementById('xpBar').style.width = `${Math.min(100, (state.xp / nextXp) * 100)}%`;
       document.getElementById('streakText').textContent = `${state.streak} วันต่อเนื่อง`;
-      document.getElementById('stampCountText').textContent = `${state.stamps.length} / 8 ดวง`;
+      document.getElementById('stampCountText').textContent = `${state.stamps.length} / ${totalCountries} ดวง`;
       renderCuteLeaderboard();
 
 
@@ -2533,13 +2613,7 @@
         </div>
       `).join('');
 
-      document.getElementById('passportStampsGrid').innerHTML = COUNTRIES.map(c => {
-        const unlocked = state.stamps.includes(c.name);
-        return `<div class="stamp-item ${unlocked ? 'unlocked' : ''}">
-          <div style="font-size: 24px;">${c.flag}</div>
-          <div>${c.name}</div>
-        </div>`;
-      }).join('');
+      renderPassportStamps();
 
       let daysHtml = '';
       for (let d = 1; d <= 7; d++) {
@@ -2551,6 +2625,7 @@
 
     function initApp() {
       mergeCustomMenusIntoCatalog();
+      syncCountriesFromMenus();
       const totalEl = document.getElementById('totalMenuTitleCount');
       if (totalEl) totalEl.textContent = MENUS.length;
       const cAll = document.getElementById('catBtnAll');
@@ -3031,7 +3106,7 @@
         state.avatar = '💚';
       }
       saveState();
-      showToast(state.isSupporter ? 'เปิดป้าย "ผู้สนับสนุน" แล้ว (เล่นฟรีทุกฟีเจอร์เช่นเดิม) 💚' : 'ปิดป้ายผู้สนับสนุนแล้วครับ');
+      showToast(state.isSupporter ? 'เปิดป้าย "ผู้สนับสนุน" แล้ว (เล่นฟรี!! ไม่มีค่าสมัครเช่นเดิม) 💚' : 'ปิดป้ายผู้สนับสนุนแล้วครับ');
     }
 
     function selectSupporterAvatar(icon) {
@@ -3253,6 +3328,7 @@
           }
           if (cloud.avatar) state.avatar = cloud.avatar;
           if (cloud.isVip) state.isVip = true;
+          state.isSupporter = Boolean(cloud.isSupporter);
           state.favorites = Array.from(new Set([...(cloud.favorites || []), ...(state.favorites || [])]));
           state.history = Array.from(new Set([...(cloud.history || []), ...(state.history || [])])).slice(0, 15);
           state.stamps = Array.from(new Set([...(cloud.stamps || []), ...(state.stamps || [])]));
@@ -3281,7 +3357,6 @@
           lastCheckIn: state.lastCheckIn || '',
           avatar: state.avatar,
           isVip: Boolean(state.isVip),
-          isSupporter: Boolean(state.isSupporter),
           totalScore: computeUserFeatureScore(),
           favorites: state.favorites,
           history: state.history,
@@ -3333,7 +3408,6 @@
           lastCheckIn: state.lastCheckIn || '',
           avatar: state.avatar,
           isVip: Boolean(state.isVip),
-          isSupporter: Boolean(state.isSupporter),
           totalScore: computeUserFeatureScore(),
           favorites: state.favorites,
           history: state.history,

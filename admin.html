@@ -145,7 +145,7 @@
           <div class="kpi-num" id="kpiActive7d" style="color:#16A34A;">0</div>
         </div>
         <div class="kpi-box" style="border-top-color:#0284C7;">
-          <div style="font-size:13px; color:var(--text-muted);">ตำแหน่ง "สายเปย์"</div>
+          <div style="font-size:13px; color:var(--text-muted);">ป้าย "ผู้สนับสนุน"</div>
           <div class="kpi-num" id="kpiSupporters" style="color:#0284C7;">0</div>
         </div>
         <div class="kpi-box" style="border-top-color:#D97706;">
@@ -205,7 +205,7 @@
                 <th>#</th>
                 <th>ชื่อ / อีเมล</th>
                 <th>XP / สกอร์รวม</th>
-                <th>ตำแหน่งสายเปย์</th>
+                <th>ไอคอน & ป้ายผู้สนับสนุน</th>
               </tr>
             </thead>
             <tbody id="adminUsersBody"></tbody>
@@ -293,18 +293,26 @@
         <span class="pill" style="background:#FFEDD5; color:#9A3412;">➕ เมนูส่วนตัวที่ผู้ใช้เพิ่ม: ${totalCustomMenus} เมนู</span>
       `;
 
+      const SUPPORTER_ICONS = ['☕', '🌟', '💚', '🍱'];
       document.getElementById('adminUsersBody').innerHTML = users.map((u, idx) => `
         <tr>
           <td><strong>${idx + 1}</strong></td>
           <td>
-            <div><strong>${u.avatar || '🍲'} ${u.displayName || 'ไม่ระบุชื่อ'}</strong></div>
+            <div><strong>${u.avatar || '🍲'} ${u.displayName || 'ไม่ระบุชื่อ'}</strong> ${u.isSupporter ? '<span class="pill pill-pay">💎 ผู้สนับสนุน</span>' : ''}</div>
             <div style="font-size:12px; color:var(--text-muted);">${u.email || u.id}</div>
           </td>
           <td><strong>${u.xp || 0} XP</strong> / รวม ${(u.totalScore || u.xp || 0)}</td>
           <td>
-            <button class="btn ${u.isSupporter ? 'btn-blue' : 'btn-soft'}" style="padding:5px 12px; font-size:12px;" onclick="toggleUserSupporter('${u.id}', ${!u.isSupporter})">
-              ${u.isSupporter ? '💎 สายเปย์ (คลิกปลด)' : '+ มอบสายเปย์'}
-            </button>
+            <div style="display:flex; flex-direction:column; gap:6px; align-items:flex-start;">
+              <button class="btn ${u.isSupporter ? 'btn-blue' : 'btn-soft'}" style="padding:5px 12px; font-size:12px;" onclick="toggleUserSupporter('${u.id}', ${!u.isSupporter})">
+                ${u.isSupporter ? '💎 ป้ายผู้สนับสนุน (คลิกปลด)' : '+ มอบป้ายผู้สนับสนุน'}
+              </button>
+              <div style="display:flex; gap:4px; flex-wrap:wrap;">
+                ${SUPPORTER_ICONS.map(ic => `
+                  <button type="button" onclick="assignSupporterIcon('${u.id}', '${ic}')" title="ตั้งไอคอนผู้สนับสนุน ${ic}" style="border:1.5px solid ${u.avatar === ic && u.isSupporter ? '#0284C7' : '#BAE6FD'}; background:${u.avatar === ic && u.isSupporter ? '#DBEAFE' : '#F0F9FF'}; border-radius:10px; padding:3px 7px; font-size:14px; cursor:pointer;">${ic}</button>
+                `).join('')}
+              </div>
+            </div>
           </td>
         </tr>
       `).join('');
@@ -312,6 +320,11 @@
 
     window.toggleUserSupporter = async function (uid, nextVal) {
       await updateDoc(doc(db, "users", uid), { isSupporter: nextVal });
+      await loadUsers();
+    };
+
+    window.assignSupporterIcon = async function (uid, icon) {
+      await updateDoc(doc(db, "users", uid), { isSupporter: true, avatar: icon });
       await loadUsers();
     };
 
