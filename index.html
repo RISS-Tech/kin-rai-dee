@@ -78,13 +78,63 @@
         <span id="passportProgressBadge">0/46 ดวง</span>
       </div>
 
-      <!-- Interactive Quick Mood Selector -->
-      <div class="mood-bar" id="moodBar">
-        <button class="mood-pill active" onclick="applyMoodFilter('all', this)">✨ ตามใจดวง</button>
-        <button class="mood-pill" onclick="applyMoodFilter('soup', this)">🍲 อยากซดน้ำร้อนๆ</button>
-        <button class="mood-pill" onclick="applyMoodFilter('crispy', this)">🍗 ของทอดกรอบฟิน</button>
-        <button class="mood-pill" onclick="applyMoodFilter('healthy', this)">🥗 สายคลีนสุขภาพ</button>
-        <button class="mood-pill" onclick="applyMoodFilter('noodle', this)">🍜 เส้นเหนียวนุ่ม</button>
+      <!-- Unified Pre-Spin Control Bar (Halal Global Mode + Collapsible Filter Drawer) -->
+      <div class="home-control-bar">
+        <button type="button" id="homeHalalBtn" class="halal-toggle-btn" aria-pressed="false" onclick="toggleHalalMode()">
+          <span>☪️ โหมดฮาลาล</span>
+          <span class="halal-state-pill" id="homeHalalState">ปิด</span>
+        </button>
+        <button type="button" id="homeFilterToggleBtn" class="filter-drawer-btn" aria-expanded="false" aria-controls="homeFilterDrawer" onclick="toggleHomeFilterDrawer()">
+          <span>🎛️ ตัวกรอง</span>
+          <span class="filter-count-badge tabular-nums" id="homeFilterCountBadge" style="display:none;">0</span>
+          <span class="drawer-caret" id="homeFilterCaret">▾</span>
+        </button>
+      </div>
+
+      <!-- Active Filter Chips Strip -->
+      <div id="homeActiveFiltersBar" class="active-filters-bar" style="display:none;">
+        <div id="homeActiveChipsList" class="active-chips-list"></div>
+        <button type="button" class="clear-filters-link" onclick="resetHomeFilters()">ล้างตัวกรอง ✕</button>
+      </div>
+
+      <!-- Collapsible Pre-Spin Filter Drawer -->
+      <div id="homeFilterDrawer" class="filter-drawer" aria-hidden="true">
+        <div class="filter-group-block">
+          <div class="filter-group-title">สไตล์และอาหารเฉพาะทาง</div>
+          <div class="drawer-chip-wrap" id="moodBar">
+            <button type="button" class="mood-pill active" data-mood="all" onclick="applyMoodFilter('all', this)">✨ ตามใจดวง</button>
+            <button type="button" class="mood-pill" data-mood="clean" onclick="applyMoodFilter('clean', this)">🥗 สายคลีน</button>
+            <button type="button" class="mood-pill" data-mood="veg" onclick="applyMoodFilter('veg', this)">🥬 มังสวิรัติ</button>
+            <button type="button" class="mood-pill" data-mood="street" onclick="applyMoodFilter('street', this)">🍢 สตรีทฟู้ด</button>
+            <button type="button" class="mood-pill" data-mood="soup" onclick="applyMoodFilter('soup', this)">🍲 ซดน้ำร้อนๆ</button>
+            <button type="button" class="mood-pill" data-mood="crispy" onclick="applyMoodFilter('crispy', this)">🍗 ของทอดกรอบ</button>
+            <button type="button" class="mood-pill" data-mood="noodle" onclick="applyMoodFilter('noodle', this)">🍜 เมนูเส้น</button>
+          </div>
+        </div>
+
+        <div class="filter-group-block">
+          <div class="filter-group-title">งบประมาณ • เวลา • รสชาติ</div>
+          <div class="drawer-chip-wrap" id="quickFilters">
+            <button type="button" class="chip-btn drawer-chip active" data-filter="all" onclick="setQuickFilter('all', this)">ทั้งหมด</button>
+            <button type="button" class="chip-btn drawer-chip" data-filter="budget50" onclick="setQuickFilter('budget50', this)">💰 ประหยัด (≤50฿)</button>
+            <button type="button" class="chip-btn drawer-chip" data-filter="fast15" onclick="setQuickFilter('fast15', this)">⚡ เร็ว (≤15 นาที)</button>
+            <button type="button" class="chip-btn drawer-chip" data-filter="spicy" onclick="setQuickFilter('spicy', this)">🌶️ รสจัดจ้าน</button>
+            <button type="button" class="chip-btn drawer-chip" data-filter="nonspicy" onclick="setQuickFilter('nonspicy', this)">🌿 ไม่เผ็ด</button>
+          </div>
+        </div>
+
+        <label class="exclude-row drawer-exclude-row">
+          <input type="checkbox" id="excludeYesterday" checked />
+          <span>ตัดเมนูที่ "เมื่อวานเพิ่งกินไป" ออก (<span id="yesterdayCount" class="tabular-nums">0</span> เมนู)</span>
+        </label>
+
+        <div class="filter-drawer-footer">
+          <span id="homePoolCountText" class="tabular-nums" style="font-size:13px; font-weight:600; color:var(--text-muted);">พร้อมสุ่ม 0 เมนู</span>
+          <div style="display:flex; gap:6px;">
+            <button type="button" class="drawer-reset-btn" onclick="resetHomeFilters()">ล้างทั้งหมด</button>
+            <button type="button" class="drawer-done-btn" onclick="toggleHomeFilterDrawer(false)">ตกลง</button>
+          </div>
+        </div>
       </div>
 
       <div id="wheelModeArea">
@@ -98,23 +148,17 @@
         </div>
       </div>
 
+      <!-- Zero-Match Empty State for Strict Filter Combinations -->
+      <div id="wheelEmptyState" class="empty-state-card" style="display:none; margin-bottom:12px; padding:16px 14px;">
+        <div class="empty-state-icon" style="font-size:30px;">🍽️</div>
+        <div class="empty-state-title">ไม่พบเมนูที่ตรงกับเงื่อนไขทั้งหมดที่เลือก</div>
+        <div class="empty-state-desc">ลองลดตัวกรองบางตัวออก หรือกดล้างตัวกรองเพื่อกลับมาสุ่มได้เลยครับ</div>
+        <button type="button" class="empty-state-cta" onclick="resetHomeFilters()">ล้างตัวกรองทั้งหมด</button>
+      </div>
+
       <button id="spinBtn" class="spin-cta" onclick="spinWheel()">
         🎯 หมุนสุ่มมื้อนี้!
       </button>
-
-      <label class="exclude-row">
-        <input type="checkbox" id="excludeYesterday" checked />
-        <span>ตัดเมนูที่ "เมื่อวานเพิ่งกินไป" ออก (<span id="yesterdayCount">0</span> เมนู)</span>
-      </label>
-
-      <!-- Quick Filters -->
-      <div class="filter-scroll" id="quickFilters">
-        <button class="chip-btn active" data-filter="all" onclick="setQuickFilter('all', this)">ทั้งหมด</button>
-        <button class="chip-btn" data-filter="budget50" onclick="setQuickFilter('budget50', this)">💰 ประหยัด (≤50฿)</button>
-        <button class="chip-btn" data-filter="fast15" onclick="setQuickFilter('fast15', this)">⚡ เร็ว (≤15 นาที)</button>
-        <button class="chip-btn" data-filter="spicy" onclick="setQuickFilter('spicy', this)">🌶️ รสจัดจ้าน</button>
-        <button class="chip-btn" data-filter="nonspicy" onclick="setQuickFilter('nonspicy', this)">🥗 ไม่เผ็ด</button>
-      </div>
 
       </div>
 
@@ -133,7 +177,7 @@
           <div style="display:flex; flex-wrap:wrap; gap:6px; margin-bottom: 12px;">
             <span style="font-size:12px; color:#0F766E; font-weight:600; align-self:center;">แตะเพิ่มด่วน:</span>
             <button type="button" class="ing-tag-chip" onclick="appendFridgeIng('ไก่')">+ ไก่</button>
-            <button type="button" class="ing-tag-chip" onclick="appendFridgeIng('หมูสับ')">+ หมูสับ</button>
+            <button type="button" id="fridgePorkChip" class="ing-tag-chip" onclick="appendFridgeIng(state.halalMode ? 'เนื้อ' : 'หมูสับ')">+ หมูสับ</button>
             <button type="button" class="ing-tag-chip" onclick="appendFridgeIng('ไข่')">+ ไข่</button>
             <button type="button" class="ing-tag-chip" onclick="appendFridgeIng('แตงกวา')">+ แตงกวา</button>
             <button type="button" class="ing-tag-chip" onclick="appendFridgeIng('พริก')">+ พริก</button>
@@ -161,10 +205,16 @@
     <!-- TAB 2: 60-MENU EXPLORER -->
     <section id="tab-explore" class="view-section">
       <div class="herb-bento-card" style="margin-bottom: 14px; padding: 14px 18px;">
-        <div style="font-size: 18px; font-weight: 700; color: var(--turmeric-yellow);">
-          🍲 คลังเมนูทั้งหมด <span id="totalMenuTitleCount">264</span> รายการ
+        <div style="display:flex; justify-content:space-between; align-items:center; gap:8px; flex-wrap:wrap;">
+          <div style="font-size: 18px; font-weight: 700; color: var(--turmeric-yellow);">
+            🍲 คลังเมนูทั้งหมด <span id="totalMenuTitleCount" class="tabular-nums">264</span> รายการ
+          </div>
+          <button type="button" id="exploreHalalBtn" class="halal-toggle-btn compact" aria-pressed="false" onclick="toggleHalalMode()">
+            <span>☪️ ฮาลาล</span>
+            <span class="halal-state-pill" id="exploreHalalState">ปิด</span>
+          </button>
         </div>
-        <div style="font-size: 14px; opacity: 0.9;">
+        <div id="exploreSubBanner" style="font-size: 14px; opacity: 0.9; margin-top:4px;">
           พร้อมรูปภาพอาหารจริง ครบ 4 ภาค • นานาชาติ • ของหวาน & น้ำ
         </div>
       </div>
@@ -187,6 +237,13 @@
         <button class="chip-btn" id="catBtnIntl" onclick="setExploreCat('อาหารนานาชาติ', this)">นานาชาติ (114)</button>
         <button class="chip-btn" id="catBtnSweet" onclick="setExploreCat('ของหวาน', this)">ของหวาน (25)</button>
         <button class="chip-btn" id="catBtnBev" onclick="setExploreCat('เครื่องดื่ม', this)">เครื่องดื่ม (25)</button>
+      </div>
+
+      <div class="mood-bar" id="exploreSpecialties" style="padding-bottom:10px;">
+        <button type="button" class="mood-pill active" data-spec="all" onclick="setExploreSpecialty('all', this)">✨ ทุกสไตล์</button>
+        <button type="button" class="mood-pill" data-spec="สายคลีน" onclick="setExploreSpecialty('สายคลีน', this)">🥗 สายคลีน</button>
+        <button type="button" class="mood-pill" data-spec="มังสวิรัติ" onclick="setExploreSpecialty('มังสวิรัติ', this)">🥬 มังสวิรัติ</button>
+        <button type="button" class="mood-pill" data-spec="สตรีทฟู้ด" onclick="setExploreSpecialty('สตรีทฟู้ด', this)">🍢 สตรีทฟู้ด</button>
       </div>
 
       <div class="menu-grid" id="exploreGrid"></div>
@@ -703,6 +760,7 @@
           if (cloud.avatar) state.avatar = cloud.avatar;
           if (cloud.isVip) state.isVip = true;
           state.isSupporter = Boolean(cloud.isSupporter);
+          if (typeof cloud.halalMode === 'boolean') state.halalMode = cloud.halalMode;
           state.favorites = Array.from(new Set([...(cloud.favorites || []), ...(state.favorites || [])]));
           state.history = Array.from(new Set([...(cloud.history || []), ...(state.history || [])])).slice(0, 15);
           state.stamps = Array.from(new Set([...(cloud.stamps || []), ...(state.stamps || [])]));
@@ -717,8 +775,7 @@
           }
 
           localStorage.setItem('tookmue_state', JSON.stringify(state));
-          updateProfileUI();
-          prepareWheelSlices();
+          initApp();
         }
 
         await setDoc(userRef, {
@@ -731,6 +788,7 @@
           lastCheckIn: state.lastCheckIn || '',
           avatar: state.avatar,
           isVip: Boolean(state.isVip),
+          halalMode: Boolean(state.halalMode),
           totalScore: computeUserFeatureScore(),
           favorites: state.favorites,
           history: state.history,
@@ -782,6 +840,7 @@
           lastCheckIn: state.lastCheckIn || '',
           avatar: state.avatar,
           isVip: Boolean(state.isVip),
+          halalMode: Boolean(state.halalMode),
           totalScore: computeUserFeatureScore(),
           favorites: state.favorites,
           history: state.history,

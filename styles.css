@@ -1353,3 +1353,277 @@
     .source-fridge { background: #CCFBF1; color: #0F766E; }
     .source-plan { background: #FEF3C7; color: #92400E; }
     .source-manual { background: #EFE6D8; color: var(--text-brown); }
+
+    /* --- Plan A: Halal Global Mode, Specialty Filters & Top Collapsible Filter Drawer --- */
+    .home-control-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      margin-bottom: 10px;
+    }
+
+    .halal-toggle-btn {
+      flex: 1;
+      min-height: 44px;
+      border-radius: 999px;
+      border: 1.5px solid #D6CCC2;
+      background: #FFFFFF;
+      color: var(--text-brown);
+      padding: 6px 12px;
+      font-size: 14px;
+      font-weight: 700;
+      display: inline-flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      cursor: pointer;
+      box-shadow: var(--shadow-soft);
+      transition: all 0.2s ease;
+    }
+
+    .halal-toggle-btn.active {
+      background: linear-gradient(135deg, #15803D 0%, #166534 100%);
+      border-color: #15803D;
+      color: #FFFFFF;
+      box-shadow: 0 6px 14px rgba(21, 128, 61, 0.28);
+    }
+
+    .halal-toggle-btn.compact {
+      flex: 0 0 auto;
+      min-height: 36px;
+      padding: 4px 10px;
+      font-size: 13px;
+      border-color: rgba(255, 255, 255, 0.35);
+      background: rgba(255, 255, 255, 0.14);
+      color: #FFFFFF;
+      box-shadow: none;
+    }
+
+    .halal-toggle-btn.compact.active {
+      background: #16A34A;
+      border-color: #86EFAC;
+      color: #FFFFFF;
+    }
+
+    .halal-state-pill {
+      font-size: 11px;
+      font-weight: 700;
+      padding: 2px 8px;
+      border-radius: 999px;
+      background: #EFE6D8;
+      color: var(--text-muted);
+    }
+
+    .halal-toggle-btn.active .halal-state-pill {
+      background: rgba(255, 255, 255, 0.22);
+      color: #FFFFFF;
+    }
+
+    .halal-toggle-btn.compact .halal-state-pill {
+      background: rgba(255, 255, 255, 0.2);
+      color: #FFFFFF;
+    }
+
+    .filter-drawer-btn {
+      min-height: 44px;
+      border-radius: 999px;
+      border: 1.5px solid #E5D5C3;
+      background: #FFFFFF;
+      color: var(--text-brown);
+      padding: 6px 14px;
+      font-size: 14px;
+      font-weight: 700;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      cursor: pointer;
+      box-shadow: var(--shadow-soft);
+      white-space: nowrap;
+      transition: all 0.2s ease;
+    }
+
+    .filter-drawer-btn.open {
+      background: #FFF1E6;
+      border-color: var(--chili-orange);
+      color: var(--chili-orange);
+    }
+
+    .filter-count-badge {
+      min-width: 20px;
+      height: 20px;
+      border-radius: 999px;
+      background: var(--chili-orange);
+      color: #FFFFFF;
+      font-size: 11px;
+      font-weight: 700;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0 5px;
+    }
+
+    .drawer-caret {
+      font-size: 13px;
+      opacity: 0.75;
+    }
+
+    .active-filters-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      margin-bottom: 10px;
+      padding: 6px 10px;
+      border-radius: 16px;
+      background: #FFFDF9;
+      border: 1px solid #F3E5D5;
+    }
+
+    .active-chips-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      align-items: center;
+    }
+
+    .active-filter-chip {
+      border: 1px solid #FDBA74;
+      background: #FFF7ED;
+      color: var(--chili-orange);
+      border-radius: 999px;
+      padding: 3px 10px;
+      font-size: 12px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    .active-filter-chip.halal {
+      border-color: #86EFAC;
+      background: #DCFCE7;
+      color: #166534;
+      cursor: default;
+    }
+
+    .clear-filters-link {
+      border: none;
+      background: transparent;
+      color: var(--text-muted);
+      font-size: 12px;
+      font-weight: 700;
+      cursor: pointer;
+      white-space: nowrap;
+      padding: 4px 6px;
+    }
+
+    .filter-drawer {
+      display: none;
+      background: #FFFFFF;
+      border-radius: 22px;
+      padding: 14px;
+      margin-bottom: 14px;
+      box-shadow: var(--shadow-soft);
+      border: 1.5px solid #F3E5D5;
+      animation: fadeIn 0.2s ease;
+    }
+
+    .filter-drawer.open {
+      display: block;
+    }
+
+    .filter-group-block {
+      margin-bottom: 12px;
+    }
+
+    .filter-group-title {
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--text-muted);
+      margin-bottom: 6px;
+    }
+
+    .drawer-chip-wrap {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .drawer-chip {
+      min-height: 36px;
+      padding: 5px 12px;
+      font-size: 13px;
+      box-shadow: none;
+      border: 1.5px solid #F3E5D5;
+    }
+
+    .drawer-chip.active {
+      border-color: var(--chili-orange);
+    }
+
+    .drawer-exclude-row {
+      justify-content: flex-start;
+      margin: 4px 0 12px;
+      font-size: 14px;
+      padding: 8px 10px;
+      border-radius: 14px;
+      background: #FFFAF3;
+    }
+
+    .filter-drawer-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      padding-top: 10px;
+      border-top: 1px dashed #EFE6D8;
+    }
+
+    .drawer-reset-btn {
+      border: 1px solid #E5D5C3;
+      background: #FFFFFF;
+      color: var(--text-muted);
+      border-radius: 999px;
+      padding: 6px 12px;
+      font-size: 13px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    .drawer-done-btn {
+      border: none;
+      background: var(--chili-orange);
+      color: #FFFFFF;
+      border-radius: 999px;
+      padding: 6px 16px;
+      font-size: 13px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    .plan-halal-warn {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 8px;
+      background: #FEF3C7;
+      border: 1.5px solid #FCD34D;
+      color: #92400E;
+      border-radius: 16px;
+      padding: 10px 12px;
+      margin-bottom: 10px;
+      font-size: 13px;
+      font-weight: 600;
+    }
+
+    .plan-halal-refresh-btn {
+      border: none;
+      background: #15803D;
+      color: #FFFFFF;
+      border-radius: 999px;
+      padding: 5px 12px;
+      font-size: 12px;
+      font-weight: 700;
+      cursor: pointer;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }

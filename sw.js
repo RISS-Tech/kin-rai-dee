@@ -1,4 +1,4 @@
-const CACHE_NAME = 'tookmue-v16-phase-d';
+const CACHE_NAME = 'tookmue-v17-halal-ux';
 const IMAGE_CACHE_NAME = 'tookmue-images-v1';
 
 const APP_SHELL = [

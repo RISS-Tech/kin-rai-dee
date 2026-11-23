@@ -55,6 +55,62 @@ let MENUS = [];
         .replace(/'/g, '&#39;');
     }
 
+    const NON_HALAL_KEYWORDS = [
+      'หมู', 'เบคอน', 'แฮม', 'กุนเชียง', 'ขาหมู', 'คากิ', 'แคบหมู', 'ไส้อั่ว',
+      'แหนม', 'ไส้กรอก', 'ซัมกยอบซัล', 'ชาชู', 'ทงคัตสึ', 'คัตสึด้ง',
+      'ชนิทเซล', 'บราทเวิร์ส', 'โคชินิตา', 'หมูยอ', 'ตับบด',
+      'ไวน์', 'เบียร์', 'เหล้า', 'มิริน', 'เลือด', 'น้ำตก', 'บาลุต', 'มดแดง', 'ปลาร้า'
+    ];
+
+    function detectIsHalalText(text, protein = '') {
+      if (protein === 'หมู') return false;
+      const lower = String(text || '').toLowerCase();
+      return !NON_HALAL_KEYWORDS.some(k => lower.includes(k));
+    }
+
+    function isMenuHalal(menu) {
+      if (!menu) return false;
+      if (typeof menu.is_halal === 'boolean') return menu.is_halal;
+      return detectIsHalalText(
+        `${menu.name || ''} ${menu.recipe_hint || ''} ${(menu.ingredients || []).join(' ')}`,
+        menu.protein || ''
+      );
+    }
+
+    function getAvailableMenus() {
+      return state.halalMode ? MENUS.filter(isMenuHalal) : MENUS;
+    }
+
+    function resolveMenuPair(menu, type) {
+      const avail = getAvailableMenus();
+      if (!menu || avail.length === 0) return menu;
+
+      if (type === 'main') {
+        const direct = avail.find(m => m.id === menu.pair_id);
+        if (direct && direct.id !== menu.id) return direct;
+        const candidates = avail.filter(m =>
+          m.mode === 'main' &&
+          m.id !== menu.id &&
+          m.protein !== menu.protein &&
+          Array.isArray(m.tags) && m.tags.includes('กับข้าว')
+        );
+        if (candidates.length > 0) {
+          const seed = String(menu.id || '').split('').reduce((acc, ch) => acc + ch.charCodeAt(0), 0);
+          return candidates[seed % candidates.length];
+        }
+        return avail.find(m => m.mode === 'main' && m.id !== menu.id) || avail[0] || menu;
+      }
+
+      const directSweet = avail.find(m => m.id === menu.dessert_pair_id);
+      if (directSweet && directSweet.id !== menu.id) return directSweet;
+      const sweets = avail.filter(m => m.mode === 'sweet' && m.id !== menu.id);
+      if (sweets.length > 0) {
+        const seed = String(menu.id || '').split('').reduce((acc, ch) => acc + ch.charCodeAt(0), 0);
+        return sweets[seed % sweets.length];
+      }
+      return avail[0] || menu;
+    }
+
     function recordEatenMeal({ menuId = null, name, amount = 0, xp = 25, source = 'wheel' }) {
       const cleanName = String(name || 'มื้ออาหาร').trim();
       const numericAmount = Math.max(0, Number(amount) || 0);
@@ -227,6 +283,7 @@ let MENUS = [];
       lastCheckIn: '',
       avatar: '🍲',
       isVip: false,
+      halalMode: false,
       soundOn: true,
       favorites: [],
       history: [],
@@ -239,6 +296,7 @@ let MENUS = [];
       customMenus: []
     };
     if (state.soundOn === undefined) state.soundOn = true;
+    if (typeof state.halalMode !== 'boolean') state.halalMode = false;
     if (!Array.isArray(state.stamps)) state.stamps = [];
     if (!state.weeklyBudget) state.weeklyBudget = 1000;
     if (!Array.isArray(state.expenses)) state.expenses = [];
@@ -259,6 +317,8 @@ let MENUS = [];
     let currentMode = 'main';
     let quickFilter = 'all';
     let exploreCat = 'all';
+    let exploreSpecialty = 'all';
+    let isHomeFilterDrawerOpen = false;
     let currentRotation = 0;
     let isSpinning = false;
     let activeWheelMenus = [];
@@ -433,15 +493,22 @@ let MENUS = [];
       btnSweet.className = 'mode-btn' + (mode === 'sweet' ? ' active' : '');
       btnFridge.className = 'mode-btn' + (mode === 'fridge' ? ' fridge-active' : '');
 
+      const filterToggleBtn = document.getElementById('homeFilterToggleBtn');
+      const activeBar = document.getElementById('homeActiveFiltersBar');
+
       if (mode === 'fridge') {
         wheelArea.style.display = 'none';
         passStrip.classList.remove('show');
         fridgeArea.classList.add('show');
+        if (filterToggleBtn) filterToggleBtn.style.display = 'none';
+        if (activeBar) activeBar.style.display = 'none';
+        toggleHomeFilterDrawer(false);
         return;
       }
 
       wheelArea.style.display = 'block';
       fridgeArea.classList.remove('show');
+      if (filterToggleBtn) filterToggleBtn.style.display = 'inline-flex';
 
       if (mode === 'passport') {
         spinBtn.className = 'spin-cta passport-btn';
@@ -506,7 +573,13 @@ let MENUS = [];
         creativeDesc = `นำวัตถุดิบทั้งหมดมาผัดไฟแรงปรุงรสด้วยน้ำปลา ซอสหอยนางรม และพริกกระเทียม กินคู่ข้าวสวยร้อนๆ ประหยัดงบ 0 บาท!`;
       }
 
-      const scoredMenus = MENUS.map(m => {
+      if (state.halalMode && !detectIsHalalText(raw)) {
+        setFieldError('fridgeInput', 'fridgeError', 'โหมดฮาลาลเปิดอยู่ ☪️ กรุณาหลีกเลี่ยงวัตถุดิบที่ไม่ฮาลาล หรือปิดโหมดฮาลาลด้านบนก่อนครับ');
+        return;
+      }
+
+      const fridgePool = getAvailableMenus();
+      const scoredMenus = fridgePool.map(m => {
         const hay = (m.name + ' ' + (m.ingredients || []).join(' ') + ' ' + m.recipe_hint).toLowerCase();
         const matched = tokens.filter(t => hay.includes(t));
         return { menu: m, matchCount: matched.length, matchedTokens: matched };
@@ -549,7 +622,7 @@ let MENUS = [];
       `;
 
       if (scoredMenus.length > 0) {
-        htmlOut += `<div style="font-weight:700; font-size:16px; margin: 14px 4px 4px; color: var(--text-brown);">🍲 เมนูตรงสเปกในคลัง ${MENUS.length} รายการ (${scoredMenus.length} เมนู):</div>`;
+        htmlOut += `<div style="font-weight:700; font-size:16px; margin: 14px 4px 4px; color: var(--text-brown);">🍲 เมนูตรงสเปก${state.halalMode ? ' (ฮาลาล ☪️)' : ''} ในคลัง ${fridgePool.length} รายการ (${scoredMenus.length} เมนู):</div>`;
         htmlOut += scoredMenus.map(item => {
           const m = item.menu;
           const pct = Math.round((item.matchCount / tokens.length) * 100);
@@ -649,22 +722,169 @@ let MENUS = [];
       showToast(`บันทึก "${menu.name}" จากตู้เย็น (0฿) +35 XP 🧊`);
     }
 
+    const MOOD_LABELS = {
+      clean: '🥗 สายคลีน',
+      veg: '🥬 มังสวิรัติ',
+      street: '🍢 สตรีทฟู้ด',
+      soup: '🍲 ซดน้ำร้อนๆ',
+      crispy: '🍗 ของทอดกรอบ',
+      noodle: '🍜 เมนูเส้น'
+    };
+
+    const QUICK_LABELS = {
+      budget50: '💰 ≤50฿',
+      fast15: '⚡ ≤15 นาที',
+      spicy: '🌶️ รสจัดจ้าน',
+      nonspicy: '🌿 ไม่เผ็ด'
+    };
+
+    function toggleHalalMode() {
+      state.halalMode = !state.halalMode;
+      saveState();
+      updateHalalUI();
+      initApp();
+      renderWeeklyPlan();
+      const fridgeBox = document.getElementById('fridgeResultsBox');
+      if (fridgeBox && fridgeBox.innerHTML.trim() && document.getElementById('fridgeInput')?.value.trim()) {
+        cookFromFridge();
+      }
+      const availCount = getAvailableMenus().length;
+      showToast(state.halalMode
+        ? `เปิดโหมดฮาลาลแล้ว ☪️ (แสดงเฉพาะเมนูฮาลาล ${availCount} รายการ)`
+        : `ปิดโหมดฮาลาลแล้ว (แสดงเมนูทั้งหมด ${availCount} รายการ)`);
+    }
+
+    function updateHalalUI() {
+      const isOn = Boolean(state.halalMode);
+      const btns = [
+        { btn: document.getElementById('homeHalalBtn'), stateEl: document.getElementById('homeHalalState') },
+        { btn: document.getElementById('exploreHalalBtn'), stateEl: document.getElementById('exploreHalalState') }
+      ];
+      btns.forEach(({ btn, stateEl }) => {
+        if (btn) {
+          btn.classList.toggle('active', isOn);
+          btn.setAttribute('aria-pressed', isOn ? 'true' : 'false');
+        }
+        if (stateEl) stateEl.textContent = isOn ? 'เปิด' : 'ปิด';
+      });
+
+      const subBanner = document.getElementById('exploreSubBanner');
+      if (subBanner) {
+        subBanner.textContent = isOn
+          ? '☪️ โหมดฮาลาลเปิดอยู่ — ซ่อนเมนูหมู แอลกอฮอล์ ไส้กรอก และปลาร้าอัตโนมัติ'
+          : 'พร้อมรูปภาพอาหารจริง ครบ 4 ภาค • นานาชาติ • ของหวาน & น้ำ';
+      }
+
+      const porkChip = document.getElementById('fridgePorkChip');
+      if (porkChip) {
+        porkChip.textContent = isOn ? '+ เนื้อ' : '+ หมูสับ';
+      }
+      const fridgeInp = document.getElementById('fridgeInput');
+      if (fridgeInp) {
+        fridgeInp.placeholder = isOn
+          ? 'เช่น แตงกวา - ไก่ - พริก หรือ ไข่ เนื้อวัว'
+          : 'เช่น แตงกวา - ไก่ - พริก หรือ ไข่ หมูสับ';
+      }
+    }
+
+    function toggleHomeFilterDrawer(forceState) {
+      const drawer = document.getElementById('homeFilterDrawer');
+      const btn = document.getElementById('homeFilterToggleBtn');
+      const caret = document.getElementById('homeFilterCaret');
+      if (!drawer || !btn) return;
+      isHomeFilterDrawerOpen = typeof forceState === 'boolean' ? forceState : !isHomeFilterDrawerOpen;
+      drawer.classList.toggle('open', isHomeFilterDrawerOpen);
+      drawer.setAttribute('aria-hidden', isHomeFilterDrawerOpen ? 'false' : 'true');
+      btn.classList.toggle('open', isHomeFilterDrawerOpen);
+      btn.setAttribute('aria-expanded', isHomeFilterDrawerOpen ? 'true' : 'false');
+      if (caret) caret.textContent = isHomeFilterDrawerOpen ? '▴' : '▾';
+    }
+
+    function removeSingleHomeFilter(type) {
+      if (type === 'mood') {
+        moodFilter = 'all';
+        document.querySelectorAll('#moodBar .mood-pill').forEach(p => {
+          p.classList.toggle('active', p.dataset.mood === 'all');
+        });
+      } else if (type === 'quick') {
+        quickFilter = 'all';
+        document.querySelectorAll('#quickFilters .chip-btn').forEach(b => {
+          b.classList.toggle('active', b.dataset.filter === 'all');
+        });
+      }
+      prepareWheelSlices();
+    }
+
+    function resetHomeFilters() {
+      moodFilter = 'all';
+      quickFilter = 'all';
+      document.querySelectorAll('#moodBar .mood-pill').forEach(p => {
+        p.classList.toggle('active', p.dataset.mood === 'all');
+      });
+      document.querySelectorAll('#quickFilters .chip-btn').forEach(b => {
+        b.classList.toggle('active', b.dataset.filter === 'all');
+      });
+      prepareWheelSlices();
+      showToast('ล้างตัวกรองการสุ่มแล้ว ✨');
+    }
+
+    function updateHomeFilterBarUI(poolCount) {
+      const badge = document.getElementById('homeFilterCountBadge');
+      const bar = document.getElementById('homeActiveFiltersBar');
+      const listEl = document.getElementById('homeActiveChipsList');
+      const poolText = document.getElementById('homePoolCountText');
+      const clearLink = bar ? bar.querySelector('.clear-filters-link') : null;
+
+      let activeFilterCount = 0;
+      const chips = [];
+
+      if (state.halalMode) {
+        chips.push(`<span class="active-filter-chip halal">☪️ ฮาลาล</span>`);
+      }
+      if (moodFilter !== 'all' && MOOD_LABELS[moodFilter]) {
+        activeFilterCount++;
+        chips.push(`<button type="button" class="active-filter-chip" onclick="removeSingleHomeFilter('mood')">${MOOD_LABELS[moodFilter]} ✕</button>`);
+      }
+      if (quickFilter !== 'all' && QUICK_LABELS[quickFilter]) {
+        activeFilterCount++;
+        chips.push(`<button type="button" class="active-filter-chip" onclick="removeSingleHomeFilter('quick')">${QUICK_LABELS[quickFilter]} ✕</button>`);
+      }
+
+      if (badge) {
+        badge.textContent = String(activeFilterCount);
+        badge.style.display = activeFilterCount > 0 ? 'inline-flex' : 'none';
+      }
+      if (poolText) {
+        poolText.textContent = `พร้อมสุ่ม ${poolCount} เมนู`;
+      }
+      if (bar && listEl) {
+        if (currentMode !== 'fridge' && chips.length > 0) {
+          bar.style.display = 'flex';
+          listEl.innerHTML = chips.join('');
+          if (clearLink) clearLink.style.display = activeFilterCount > 0 ? 'inline-block' : 'none';
+        } else {
+          bar.style.display = 'none';
+        }
+      }
+    }
+
     function setQuickFilter(filter, btn) {
       quickFilter = filter;
       document.querySelectorAll('#quickFilters .chip-btn').forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
+      if (btn) btn.classList.add('active');
       prepareWheelSlices();
     }
 
     function getBaseModePool() {
+      const avail = getAvailableMenus();
       if (currentMode === 'passport') {
-        return MENUS.filter(m => m.category === 'อาหารนานาชาติ');
+        return avail.filter(m => m.category === 'อาหารนานาชาติ');
       }
-      return MENUS.filter(m => m.mode === currentMode);
+      return avail.filter(m => m.mode === currentMode);
     }
 
     function getFilteredPool() {
-      const excludeYest = document.getElementById('excludeYesterday').checked;
+      const excludeYest = document.getElementById('excludeYesterday')?.checked;
       let pool = getBaseModePool();
 
       if (quickFilter === 'budget50') pool = pool.filter(m => m.budget <= 50);
@@ -672,20 +892,31 @@ let MENUS = [];
       if (quickFilter === 'spicy') pool = pool.filter(m => m.is_spicy);
       if (quickFilter === 'nonspicy') pool = pool.filter(m => !m.is_spicy);
 
+      if (moodFilter === 'clean') pool = pool.filter(m => m.tags && (m.tags.includes('สายคลีน') || m.tags.includes('สุขภาพ')));
+      if (moodFilter === 'veg') pool = pool.filter(m => m.protein === 'มังสวิรัติ' || (m.tags && m.tags.includes('มังสวิรัติ')));
+      if (moodFilter === 'street') pool = pool.filter(m => m.tags && m.tags.includes('สตรีทฟู้ด'));
       if (moodFilter === 'soup') pool = pool.filter(m => m.tags && m.tags.includes('ต้ม'));
       if (moodFilter === 'crispy') pool = pool.filter(m => m.tags && (m.tags.includes('ทอด') || m.name.includes('กรอบ')));
-      if (moodFilter === 'healthy') pool = pool.filter(m => m.tags && m.tags.includes('สุขภาพ'));
       if (moodFilter === 'noodle') pool = pool.filter(m => m.tags && m.tags.includes('เส้น'));
 
-      if (excludeYest && state.history.length > 0) {
+      if (excludeYest && state.history.length > 0 && pool.length > 0) {
         const filtered = pool.filter(m => !state.history.includes(m.id));
         if (filtered.length >= 2) pool = filtered;
       }
-      return pool.length > 0 ? pool : getBaseModePool();
+      return pool;
     }
 
     function prepareWheelSlices() {
       const pool = getFilteredPool();
+      updateHomeFilterBarUI(pool.length);
+
+      const emptyBox = document.getElementById('wheelEmptyState');
+      const spinBtn = document.getElementById('spinBtn');
+      const hasZeroMatches = !isMenusLoading && MENUS.length > 0 && pool.length === 0;
+
+      if (emptyBox) emptyBox.style.display = hasZeroMatches ? 'block' : 'none';
+      if (spinBtn && !isSpinning) spinBtn.disabled = hasZeroMatches;
+
       const shuffled = [...pool].sort(() => 0.5 - Math.random());
       activeWheelMenus = shuffled.slice(0, Math.min(8, shuffled.length));
       drawWheel();
@@ -720,7 +951,7 @@ let MENUS = [];
         ctx.fillStyle = '#786458';
         ctx.font = 'bold 22px "Prompt", sans-serif';
         ctx.textAlign = 'center';
-        ctx.fillText(isMenusLoading ? 'กำลังโหลดเมนู...' : 'ไม่พบรายการเมนู', cx, cy - 64);
+        ctx.fillText(isMenusLoading ? 'กำลังโหลดเมนู...' : 'ไม่พบเมนูที่ตรงตัวกรอง', cx, cy - 64);
         return;
       }
 
@@ -824,8 +1055,8 @@ let MENUS = [];
 
     function openMenuResult(menu) {
       selectedMenu = menu;
-      const pairMain = MENUS.find(m => m.id === menu.pair_id) || MENUS[2] || MENUS[0] || menu;
-      const pairSweet = MENUS.find(m => m.id === menu.dessert_pair_id) || MENUS[48] || MENUS[0] || menu;
+      const pairMain = resolveMenuPair(menu, 'main');
+      const pairSweet = resolveMenuPair(menu, 'sweet');
       const countryObj = COUNTRIES.find(c => c.name === menu.region);
       const regionLabel = countryObj ? `${countryObj.flag} ${menu.region}` : menu.region;
 
@@ -925,8 +1156,8 @@ let MENUS = [];
 
     async function shareSamrubCard() {
       if (!selectedMenu) return;
-      const pairMain = MENUS.find(m => m.id === selectedMenu.pair_id) || MENUS[2] || MENUS[0] || selectedMenu;
-      const pairSweet = MENUS.find(m => m.id === selectedMenu.dessert_pair_id) || MENUS[48] || MENUS[0] || selectedMenu;
+      const pairMain = resolveMenuPair(selectedMenu, 'main');
+      const pairSweet = resolveMenuPair(selectedMenu, 'sweet');
       const rankTitle = getCurrentRankTitle();
 
       const canvas = document.getElementById('shareCanvas');
@@ -1034,9 +1265,10 @@ let MENUS = [];
           : `<div style="font-size:14px; color:#FDE68A;">ยังโหลดข้อมูลสำรับไม่สำเร็จ กด "ลองใหม่" ด้านบนเพื่อดึงเมนูครับ</div>`;
         return;
       }
-      const mainSample = MENUS.find(m => m.id === 'TH-C02') || MENUS[1] || MENUS[0];
-      const pairSample = MENUS.find(m => m.id === mainSample.pair_id) || MENUS[2] || MENUS[0] || mainSample;
-      const sweetSample = MENUS.find(m => m.id === mainSample.dessert_pair_id) || MENUS[48] || MENUS[0] || mainSample;
+      const avail = getAvailableMenus();
+      const mainSample = avail.find(m => m.id === 'TH-C02') || avail.find(m => m.mode === 'main') || avail[0] || MENUS[0];
+      const pairSample = resolveMenuPair(mainSample, 'main');
+      const sweetSample = resolveMenuPair(mainSample, 'sweet');
       const total = (mainSample.budget || 0) + (pairSample.budget || 0) + (sweetSample.budget || 0);
 
       box.innerHTML = `
@@ -1054,7 +1286,14 @@ let MENUS = [];
     function setExploreCat(cat, btn) {
       exploreCat = cat;
       document.querySelectorAll('#exploreCategories .chip-btn').forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
+      if (btn) btn.classList.add('active');
+      renderExplorer();
+    }
+
+    function setExploreSpecialty(spec, btn) {
+      exploreSpecialty = spec;
+      document.querySelectorAll('#exploreSpecialties .mood-pill').forEach(b => b.classList.remove('active'));
+      if (btn) btn.classList.add('active');
       renderExplorer();
     }
 
@@ -1062,9 +1301,13 @@ let MENUS = [];
       const inp = document.getElementById('searchInput');
       if (inp) inp.value = '';
       exploreCat = 'all';
+      exploreSpecialty = 'all';
       document.querySelectorAll('#exploreCategories .chip-btn').forEach(b => b.classList.remove('active'));
       const allBtn = document.getElementById('catBtnAll');
       if (allBtn) allBtn.classList.add('active');
+      document.querySelectorAll('#exploreSpecialties .mood-pill').forEach(b => {
+        b.classList.toggle('active', b.dataset.spec === 'all');
+      });
       renderExplorer();
     }
 
@@ -1088,13 +1331,22 @@ let MENUS = [];
 
       const rawQ = document.getElementById('searchInput').value.trim();
       const q = rawQ.toLowerCase();
-      let list = MENUS;
+      const baseAvail = getAvailableMenus();
+      let list = baseAvail;
       if (exploreCat !== 'all') list = list.filter(m => m.category === exploreCat);
+      if (exploreSpecialty !== 'all') {
+        list = list.filter(m =>
+          (Array.isArray(m.tags) && m.tags.includes(exploreSpecialty)) ||
+          (exploreSpecialty === 'มังสวิรัติ' && m.protein === 'มังสวิรัติ') ||
+          (exploreSpecialty === 'สายคลีน' && Array.isArray(m.tags) && m.tags.includes('สุขภาพ'))
+        );
+      }
       if (q) {
         list = list.filter(m =>
           m.name.toLowerCase().includes(q) ||
           m.region.toLowerCase().includes(q) ||
           m.protein.toLowerCase().includes(q) ||
+          (Array.isArray(m.tags) && m.tags.some(t => t.toLowerCase().includes(q))) ||
           (Array.isArray(m.ingredients) && m.ingredients.some(i => i.toLowerCase().includes(q)))
         );
       }
@@ -1102,16 +1354,17 @@ let MENUS = [];
       const filterBar = document.getElementById('exploreActiveFilterBar');
       const countText = document.getElementById('exploreResultCountText');
       if (filterBar && countText) {
-        if (q || exploreCat !== 'all') {
+        if (q || exploreCat !== 'all' || exploreSpecialty !== 'all') {
           filterBar.style.display = 'flex';
-          countText.textContent = `พบ ${list.length} เมนู${q ? ` สำหรับ "${rawQ}"` : ''}`;
+          const specLabel = exploreSpecialty !== 'all' ? ` • ${exploreSpecialty}` : '';
+          countText.textContent = `พบ ${list.length} เมนู${specLabel}${q ? ` สำหรับ "${rawQ}"` : ''}`;
         } else {
           filterBar.style.display = 'none';
         }
       }
 
       if (list.length === 0) {
-        const popular = MENUS.slice(0, 3);
+        const popular = baseAvail.slice(0, 3);
         grid.innerHTML = `
           <div class="empty-state-card">
             <div class="empty-state-icon">🔍</div>
@@ -1289,21 +1542,23 @@ let MENUS = [];
     function initApp() {
       mergeCustomMenusIntoCatalog();
       syncCountriesFromMenus();
+      updateHalalUI();
+      const avail = getAvailableMenus();
       if (MENUS.length > 0) {
         const totalEl = document.getElementById('totalMenuTitleCount');
-        if (totalEl) totalEl.textContent = MENUS.length;
+        if (totalEl) totalEl.textContent = avail.length;
         const cAll = document.getElementById('catBtnAll');
         const cThai = document.getElementById('catBtnThai');
         const cIntl = document.getElementById('catBtnIntl');
         const cSweet = document.getElementById('catBtnSweet');
         const cBev = document.getElementById('catBtnBev');
-        if (cAll) cAll.textContent = `ทั้งหมด (${MENUS.length})`;
-        if (cThai) cThai.textContent = `ไทย 4 ภาค (${MENUS.filter(m => m.category === 'อาหารไทย 4 ภาค').length})`;
-        if (cIntl) cIntl.textContent = `นานาชาติ (${MENUS.filter(m => m.category === 'อาหารนานาชาติ').length})`;
-        if (cSweet) cSweet.textContent = `ของหวาน (${MENUS.filter(m => m.category === 'ของหวาน').length})`;
-        if (cBev) cBev.textContent = `เครื่องดื่ม (${MENUS.filter(m => m.category === 'เครื่องดื่ม').length})`;
+        if (cAll) cAll.textContent = `ทั้งหมด (${avail.length})`;
+        if (cThai) cThai.textContent = `ไทย 4 ภาค (${avail.filter(m => m.category === 'อาหารไทย 4 ภาค').length})`;
+        if (cIntl) cIntl.textContent = `นานาชาติ (${avail.filter(m => m.category === 'อาหารนานาชาติ').length})`;
+        if (cSweet) cSweet.textContent = `ของหวาน (${avail.filter(m => m.category === 'ของหวาน').length})`;
+        if (cBev) cBev.textContent = `เครื่องดื่ม (${avail.filter(m => m.category === 'เครื่องดื่ม').length})`;
         const navExp = document.getElementById('navExploreLabel');
-        if (navExp) navExp.textContent = `คลัง ${MENUS.length} เมนู`;
+        if (navExp) navExp.textContent = `คลัง ${avail.length} เมนู`;
       }
 
       updateProfileUI();
@@ -1460,7 +1715,7 @@ let MENUS = [];
     const DAY_NAMES = ['วันจันทร์', 'วันอังคาร', 'วันพุธ', 'วันพฤหัสบดี', 'วันศุกร์', 'วันเสาร์', 'วันอาทิตย์'];
 
     function generateWeeklyPlan(style) {
-      let pool = MENUS.filter(m => m.mode === 'main');
+      let pool = getAvailableMenus().filter(m => m.mode === 'main');
       if (pool.length === 0) {
         showToast(isMenusLoading ? 'กำลังโหลดรายการเมนู กรุณารอสักครู่...' : 'ไม่พบเมนูสำหรับจัดตาราง ลองกดลองใหม่ด้านบนครับ');
         return;
@@ -1487,7 +1742,7 @@ let MENUS = [];
       saveState();
       playWinChime();
       renderWeeklyPlan();
-      showToast(style === 'budget' ? 'จัดตาราง 7 วันโหมดประหยัดงบแล้ว! 💰' : 'จัดตารางมื้ออาหาร 7 วันเรียบร้อย! 📅');
+      showToast(style === 'budget' ? `จัดตาราง 7 วันโหมดประหยัด${state.halalMode ? ' (ฮาลาล ☪️)' : ''} แล้ว! 💰` : `จัดตารางมื้ออาหาร 7 วัน${state.halalMode ? ' (ฮาลาล ☪️)' : ''} เรียบร้อย! 📅`);
     }
 
     function renderWeeklyPlan() {
@@ -1572,6 +1827,19 @@ let MENUS = [];
         `;
       }).join('');
 
+      const hasNonHalalInPlan = state.halalMode && state.weeklyPlan.some(row => {
+        const l = MENUS.find(m => m.id === row.lunchId);
+        const d = MENUS.find(m => m.id === row.dinnerId);
+        return (l && !isMenuHalal(l)) || (d && !isMenuHalal(d));
+      });
+
+      const halalWarnBanner = hasNonHalalInPlan ? `
+        <div class="plan-halal-warn">
+          <span>☪️ โหมดฮาลาลเปิดอยู่ แต่ตารางเดิมยังมีเมนูที่ไม่ใช่ฮาลาล</span>
+          <button type="button" onclick="generateWeeklyPlan('all')" class="plan-halal-refresh-btn">จัดตารางฮาลาลใหม่</button>
+        </div>
+      ` : '';
+
       const progressBanner = loggedMealsCount > 0 ? `
         <div class="plan-progress-bar">
           <span class="tabular-nums">🍽️ บันทึกจากตารางแล้ว <strong>${loggedMealsCount}/${totalSlots} มื้อ</strong></span>
@@ -1579,7 +1847,7 @@ let MENUS = [];
         </div>
       ` : '';
 
-      box.innerHTML = progressBanner + cardsHtml;
+      box.innerHTML = halalWarnBanner + progressBanner + cardsHtml;
 
       if (badge) badge.textContent = `รวม ~${totalWeek.toLocaleString()}฿`;
       renderGroceryList(allIngs);
@@ -1610,7 +1878,7 @@ let MENUS = [];
     }
 
     function swapPlanMeal(dayIdx, slot) {
-      const mains = MENUS.filter(m => m.mode === 'main');
+      const mains = getAvailableMenus().filter(m => m.mode === 'main');
       if (mains.length === 0) return;
       const pick = mains[Math.floor(Math.random() * mains.length)];
       if (!pick || !state.weeklyPlan[dayIdx]) return;
@@ -1888,6 +2156,7 @@ let MENUS = [];
         budget_tier: budget <= 50 ? 'ประหยัด' : (budget <= 90 ? 'ปานกลาง' : 'พรีเมียม'),
         prep_time: 15,
         is_spicy: false,
+        is_halal: detectIsHalalText(`${name} ${rawIng}`),
         tags: ['เมนูส่วนตัว'],
         pair_id: 'TH-C06',
         dessert_pair_id: 'BEV-001',
