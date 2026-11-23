@@ -1444,7 +1444,7 @@
     ],
     "pair_id": "TH-C01",
     "dessert_pair_id": "DES-004",
-    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Thai_iced_tea.jpg?width=600",
+    "image_url": "images/BEV-001.webp",
     "recipe_hint": "ชงใบชาไทยแท้จนเข้มข้น ผสมนมข้นหวานและนมข้นจืด เทใส่น้ำแข็งเต็มแก้วแล้วราดนมสดด้านบน",
     "wiki_query": "Thai iced tea",
     "ingredients": [
@@ -1468,7 +1468,7 @@
     ],
     "pair_id": "INT-07",
     "dessert_pair_id": "DES-006",
-    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Iced_Americano.jpg?width=600",
+    "image_url": "images/BEV-002.webp",
     "recipe_hint": "เทน้ำส้มคั้นสดเย็นจัดลงในแก้วน้ำแข็ง แล้วค่อยๆ เทช็อตเอสเพรสโซคั่วกลางทับด้านบนให้แยกชั้นสวยงาม",
     "wiki_query": "Iced coffee orange juice glass",
     "ingredients": [
@@ -1493,7 +1493,7 @@
     ],
     "pair_id": "INT-04",
     "dessert_pair_id": "DES-006",
-    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Bubble_tea.jpg?width=600",
+    "image_url": "images/BEV-003.webp",
     "recipe_hint": "ตักไข่มุกเคี่ยวน้ำตาลทรายแดงอุ่นๆ ใส่ก้นแก้ว เติมน้ำแข็งและชานมอัสสัมหอมมัน",
     "wiki_query": "Brown sugar bubble tea",
     "ingredients": [
@@ -1518,7 +1518,7 @@
     ],
     "pair_id": "TH-C03",
     "dessert_pair_id": "DES-001",
-    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Chrysanthemum_tea.jpg?width=600",
+    "image_url": "images/BEV-004.webp",
     "recipe_hint": "ต้มดอกเก๊กฮวยแห้งกับเม็ดพุดจีนให้ได้สีเหลืองทอง ปรุงหวานน้อย เสิร์ฟเย็นจัดแก้ร้อนใน",
     "wiki_query": "Chrysanthemum tea iced drink",
     "ingredients": [
@@ -1543,7 +1543,7 @@
     ],
     "pair_id": "TH-C05",
     "dessert_pair_id": "DES-003",
-    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Roselle_juice.jpg?width=600",
+    "image_url": "images/BEV-005.webp",
     "recipe_hint": "เคี่ยวดอกกระเจี๊ยบแดงกับพุทราจีนแห้ง ตัดรสด้วยเกลือป่นเล็กน้อย ดื่มเย็นๆ เปรี้ยวหวานชื่นใจ",
     "wiki_query": "Roselle juice",
     "ingredients": [
@@ -1567,7 +1567,7 @@
     ],
     "pair_id": "INT-01",
     "dessert_pair_id": "DES-006",
-    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Iced_matcha_latte.jpg?width=600",
+    "image_url": "images/BEV-006.webp",
     "recipe_hint": "ตีผงมัทฉะแท้กับน้ำอุ่นจนขึ้นฟองเนียน แล้วเทราดบนนมสดเย็นจัดในแก้วน้ำแข็ง",
     "wiki_query": "Iced matcha latte",
     "ingredients": [
@@ -4821,7 +4821,7 @@
     ],
     "pair_id": "TH-C01",
     "dessert_pair_id": "DES-019",
-    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Cha_khiao_yen.JPG?width=600",
+    "image_url": "images/BEV-007.webp",
     "wiki_query": "Thai green tea iced",
     "recipe_hint": "ชงใบชาเขียวไทยหอมกลิ่นมะลิ ผสมนมสดและนมข้นหวาน เทใส่น้ำแข็งเย็นชื่นใจ",
     "ingredients": [
@@ -4846,7 +4846,7 @@
     ],
     "pair_id": "TH-C03",
     "dessert_pair_id": "DES-016",
-    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Kafae_boran.JPG?width=600",
+    "image_url": "images/BEV-008.webp",
     "wiki_query": "Thai iced coffee",
     "recipe_hint": "ชงกาแฟคั่วเข้มสไตล์ไทย ใส่นมข้นหวานและนมสด ปลุกความสดชื่นยามบ่าย",
     "ingredients": [
@@ -4871,7 +4871,7 @@
     ],
     "pair_id": "TH-C01",
     "dessert_pair_id": "DES-019",
-    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Iced_chocolate.jpg?width=600",
+    "image_url": "images/BEV-009.webp",
     "wiki_query": "Iced cocoa chocolate drink",
     "recipe_hint": "ชงผงโกโก้แท้เข้มข้นกับนมสดเย็นจัด หวานมันกลมกล่อมถูกใจสายช็อกโกแลต",
     "ingredients": [
@@ -4947,7 +4947,7 @@
     ],
     "pair_id": "TH-S01",
     "dessert_pair_id": "DES-007",
-    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Coconut_water.jpg?width=600",
+    "image_url": "images/BEV-012.webp",
     "wiki_query": "Fresh coconut drink",
     "recipe_hint": "น้ำมะพร้าวน้ำหอมสดแท้ธรรมชาติพร้อมเนื้อมะพร้าวอ่อน หวานหอมชื่นใจ",
     "ingredients": [
@@ -4972,7 +4972,7 @@
     ],
     "pair_id": "TH-C01",
     "dessert_pair_id": "DES-001",
-    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Nam_bai_toei.JPG?width=600",
+    "image_url": "images/BEV-013.webp",
     "wiki_query": "Pandan drink green",
     "recipe_hint": "ต้มใบเตยหอมสดจนได้สีเขียวธรรมชาติ ปรุงหวานน้อย ดื่มเย็นๆ บำรุงหัวใจ",
     "ingredients": [
@@ -4996,7 +4996,7 @@
     ],
     "pair_id": "TH-C19",
     "dessert_pair_id": "DES-008",
-    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Ginger_tea.jpg?width=600",
+    "image_url": "images/BEV-014.webp",
     "wiki_query": "Ginger tea",
     "recipe_hint": "ต้มขิงแก่ฝานแว่นกับน้ำตาลอ้อย เผ็ดร้อนนิดๆ ช่วยย่อยอาหารและแก้หวัด",
     "ingredients": [
@@ -5021,7 +5021,7 @@
     ],
     "pair_id": "TH-C07",
     "dessert_pair_id": "DES-003",
-    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Nam_matum.JPG?width=600",
+    "image_url": "images/BEV-015.webp",
     "wiki_query": "Bael fruit juice",
     "recipe_hint": "ต้มมะตูมแห้งปิ้งจนหอมกรุ่น ปรุงหวานกำลังดี เสิร์ฟใส่น้ำแข็งเย็นฉ่ำ",
     "ingredients": [
@@ -5045,7 +5045,7 @@
     ],
     "pair_id": "TH-C09",
     "dessert_pair_id": "DES-010",
-    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Oliang.JPG?width=600",
+    "image_url": "images/BEV-016.webp",
     "wiki_query": "Oliang",
     "recipe_hint": "โอเลี้ยงกาแฟดำโบราณใส่น้ำแข็งเต็มแก้ว ราดนมข้นจืดด้านบนแบบยกล้อ",
     "ingredients": [
@@ -5071,7 +5071,7 @@
     ],
     "pair_id": "TH-C01",
     "dessert_pair_id": "DES-011",
-    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Cha_dam_yen.JPG?width=600",
+    "image_url": "images/BEV-017.webp",
     "wiki_query": "Thai black tea",
     "recipe_hint": "น้ำชาไทยเข้มข้นไม่ใส่นม ปรุงหวานกำลังดี เทใส่น้ำแข็งดื่มคล่องคอ",
     "ingredients": [
@@ -5096,7 +5096,7 @@
     ],
     "pair_id": "TH-C05",
     "dessert_pair_id": "DES-003",
-    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Cha_manao.JPG?width=600",
+    "image_url": "images/BEV-018.webp",
     "wiki_query": "Thai lemon tea",
     "recipe_hint": "ผสมน้ำชาไทยเข้มข้นกับน้ำมะนาวสด เปรี้ยวหวานหอมชาแก้เลี่ยนมื้อหนัก",
     "ingredients": [
@@ -5121,7 +5121,7 @@
     ],
     "pair_id": "TH-C01",
     "dessert_pair_id": "DES-021",
-    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Nom_yen.JPG?width=600",
+    "image_url": "images/BEV-019.webp",
     "wiki_query": "Pink milk drink iced",
     "recipe_hint": "น้ำแดงเฮลซ์บลูบอยผสมนมสดและนมข้นหวาน ใส่น้ำแข็งเย็นฉ่ำสีชมพูพาสเทล",
     "ingredients": [
@@ -5145,7 +5145,7 @@
     ],
     "pair_id": "INT-07",
     "dessert_pair_id": "DES-019",
-    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Iced_caramel_macchiato.jpg?width=600",
+    "image_url": "images/BEV-020.webp",
     "wiki_query": "Caramel macchiato",
     "recipe_hint": "นมสดเย็นราดช็อตเอสเพรสโซและซอสคาราเมลหอมหวาน",
     "ingredients": [
@@ -5170,7 +5170,7 @@
     ],
     "pair_id": "INT-01",
     "dessert_pair_id": "DES-025",
-    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Matcha_latte.jpg?width=600",
+    "image_url": "images/BEV-021.webp",
     "wiki_query": "Matcha frappe",
     "recipe_hint": "ปั่นผงชาเขียวมัทฉะกับนมสดจนเนียนละเอียด ท็อปด้วยวิปครีมนุ่มฟู",
     "ingredients": [
@@ -5197,7 +5197,7 @@
     ],
     "pair_id": "TH-E01",
     "dessert_pair_id": "DES-005",
-    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Watermelon_juice.jpg?width=600",
+    "image_url": "images/BEV-022.webp",
     "wiki_query": "Watermelon juice",
     "recipe_hint": "ปั่นเนื้อแตงโมแดงหวานฉ่ำกับน้ำแข็ง ดับกระหายคลายร้อนทันที",
     "ingredients": [
@@ -5222,7 +5222,7 @@
     ],
     "pair_id": "TH-S01",
     "dessert_pair_id": "DES-003",
-    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Butterfly_pea_tea.jpg?width=600",
+    "image_url": "images/BEV-023.webp",
     "wiki_query": "Butterfly pea tea",
     "recipe_hint": "น้ำดอกอัญชันสีน้ำเงินเข้มบีบมะนาวเปลี่ยนเป็นสีม่วงสวย ซ่าสดชื่น",
     "ingredients": [
@@ -5247,7 +5247,7 @@
     ],
     "pair_id": "TH-N01",
     "dessert_pair_id": "DES-001",
-    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Nam_lamyai.JPG?width=600",
+    "image_url": "images/BEV-024.webp",
     "wiki_query": "Longan juice",
     "recipe_hint": "ต้มเนื้อลำไยอบแห้งสีทองจนหอมหวาน เสิร์ฟพร้อมเนื้อลำไยเต็มแก้ว",
     "ingredients": [
@@ -5271,7 +5271,7 @@
     ],
     "pair_id": "INT-08",
     "dessert_pair_id": "DES-022",
-    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Iced_latte.jpg?width=600",
+    "image_url": "images/BEV-025.webp",
     "wiki_query": "Iced latte",
     "recipe_hint": "ช็อตเอสเพรสโซคั่วกลางผสมนมสดแท้ไม่หวาน ดื่มง่ายนุ่มละมุน",
     "ingredients": [
