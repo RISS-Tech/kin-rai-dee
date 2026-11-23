@@ -875,7 +875,7 @@
     ],
     "pair_id": "BEV-006",
     "dessert_pair_id": "BEV-006",
-    "image_url": "images/Tonkotsu_ramen_bowl_served_29c65d45.jpg",
+    "image_url": "images/INT-01.webp",
     "recipe_hint": "ลวกเส้นราเมนใส่ชามน้ำซุปกระดูกหมูเคี่ยวข้น วางหมูชาชู ไข่ต้มยางมะตูม สาหร่าย และต้นหอมญี่ปุ่น",
     "wiki_query": "Tonkotsu ramen",
     "ingredients": [
@@ -951,7 +951,7 @@
     ],
     "pair_id": "INT-06",
     "dessert_pair_id": "BEV-003",
-    "image_url": "images/Serving_Korean_Dolsot_Bibimbap_241d3b99.jpg",
+    "image_url": "images/INT-04.webp",
     "recipe_hint": "เรียงผักยำเกาหลี เนื้อผัดซอส และไข่ดาวบนข้าวสวย คลุกเคล้ากับซอสโคชูจังและน้ำมันงาหอมๆ",
     "wiki_query": "Bibimbap",
     "ingredients": [
@@ -1031,7 +1031,7 @@
     ],
     "pair_id": "BEV-002",
     "dessert_pair_id": "BEV-002",
-    "image_url": "images/Spaghetti_Carbonara_in_bowl_4e6de8d4.jpg",
+    "image_url": "images/INT-07.webp",
     "recipe_hint": "คลุกเส้นสปาเก็ตตี้ต้มสุกกับซอสไข่แดง พาร์เมซานชีส พริกไทยดำ และเบคอนทอดกรอบ",
     "wiki_query": "Spaghetti alla Carbonara",
     "ingredients": [
@@ -1058,7 +1058,7 @@
     ],
     "pair_id": "BEV-002",
     "dessert_pair_id": "BEV-002",
-    "image_url": "images/Pulling_slice_of_Neapolitan_pizza_844323cd.jpg",
+    "image_url": "images/INT-08.webp",
     "recipe_hint": "ทาซอสมะเขือเทศโฮมเมดบนแป้งพิซซ่า โรยมอสซาเรลล่าชีสสดและใบโหระพาอิตาเลียน อบจนขอบกรอบ",
     "wiki_query": "Pizza Margherita",
     "ingredients": [
@@ -1135,7 +1135,7 @@
     ],
     "pair_id": "BEV-005",
     "dessert_pair_id": "BEV-005",
-    "image_url": "images/Vietnamese_Beef_Pho_Soup_2735c256.jpg",
+    "image_url": "images/INT-11.webp",
     "recipe_hint": "ลวกเส้นเฝอในน้ำซุปเครื่องเทศหอมอบเชยโป๊ยกั๊ก ใส่เนื้อสไลด์ ลูกชิ้น โหระพา ถั่วงอก และบีบมะนาว",
     "wiki_query": "Pho beef noodles",
     "ingredients": [
@@ -1160,7 +1160,7 @@
     ],
     "pair_id": "BEV-004",
     "dessert_pair_id": "BEV-004",
-    "image_url": "images/Wonton_noodle_soup_with_pork_e24b41ad.jpg",
+    "image_url": "images/INT-12.webp",
     "recipe_hint": "ลวกบะหมี่ไข่เส้นเล็ก เสิร์ฟพร้อมเกี๊ยวกุ้งเด้งเต็มคำ หมูแดงย่าง และผักกวางตุ้งลวก",
     "wiki_query": "Wonton noodle soup",
     "ingredients": [
@@ -1269,7 +1269,7 @@
     ],
     "pair_id": "BEV-006",
     "dessert_pair_id": "BEV-006",
-    "image_url": "images/Pork_yakisoba_noodles_served_ebffa809.jpg",
+    "image_url": "images/INT-16.webp",
     "recipe_hint": "ผัดเส้นยากิโซบะกับหมูสไลด์ กะหล่ำปลี และแครอท ปรุงด้วยซอสยากิโซบะ โรยสาหร่ายป่นและขิงดอง",
     "wiki_query": "Yakisoba",
     "ingredients": [
@@ -3442,7 +3442,7 @@
     ],
     "pair_id": "BEV-006",
     "dessert_pair_id": "BEV-006",
-    "image_url": "images/Seared_salmon_sushi_roll_served_bbd138dc.jpg",
+    "image_url": "images/INT-17.webp",
     "wiki_query": "Salmon sushi",
     "recipe_hint": "ข้าวญี่ปุ่นปั้นหน้าปลาแซลมอนสดเบิร์นไฟหอมๆ ราดซอสสไปซี่มาโยและไข่กุ้ง",
     "ingredients": [
@@ -3521,7 +3521,7 @@
     ],
     "pair_id": "BEV-006",
     "dessert_pair_id": "DES-006",
-    "image_url": "images/Sukiyaki_hot_pot_simmering_on_1002e23e.jpg",
+    "image_url": "images/INT-20.webp",
     "wiki_query": "Shabu-shabu",
     "recipe_hint": "ต้มเนื้อสไลด์ ผักกาดขาว เห็ดเข็มทอง และเต้าหู้ในน้ำซุปสุกี้น้ำดำ จุ่มไข่สด",
     "ingredients": [
@@ -3548,7 +3548,7 @@
     ],
     "pair_id": "BEV-006",
     "dessert_pair_id": "BEV-006",
-    "image_url": "images/Takoyaki_octopus_balls_served_1adebe03.jpg",
+    "image_url": "images/INT-21.webp",
     "wiki_query": "Takoyaki",
     "recipe_hint": "แป้งทาโกะยากิสอดไส้ปลาหมึกยักษ์ ราดซอสทาโกะยากิ มายองเนส และปลาโออบแห้ง",
     "ingredients": [
@@ -3736,7 +3736,7 @@
     ],
     "pair_id": "BEV-002",
     "dessert_pair_id": "DES-006",
-    "image_url": "images/Spaghetti_with_bacon_and_garlic_d323a53d.jpg",
+    "image_url": "images/INT-28.webp",
     "wiki_query": "Spaghetti aglio olio",
     "recipe_hint": "ผัดเส้นสปาเก็ตตี้กับน้ำมันมะกอก กระเทียมสไลด์ พริกแห้ง และเบคอนทอดกรอบ",
     "ingredients": [
@@ -3764,7 +3764,7 @@
     ],
     "pair_id": "BEV-002",
     "dessert_pair_id": "DES-006",
-    "image_url": "images/Spaghetti_Bolognese_served_with_…_741796e6.jpg",
+    "image_url": "images/INT-29.webp",
     "wiki_query": "Spaghetti bolognese",
     "recipe_hint": "เคี่ยวซอสมะเขือเทศเข้มข้นกับหมูสับและเครื่องเทศอิตาเลียน ราดบนเส้นสปาเก็ตตี้",
     "ingredients": [
@@ -3816,7 +3816,7 @@
     ],
     "pair_id": "BEV-002",
     "dessert_pair_id": "BEV-002",
-    "image_url": "images/Seafood_pizza_with_cheese_crust_761f284e.jpg",
+    "image_url": "images/INT-31.webp",
     "wiki_query": "Seafood pizza",
     "recipe_hint": "พิซซ่าแป้งหนานุ่มหน้ากุ้ง ปลาหมึก ปูอัด และมอสซาเรลล่าชีสยืดเต็มคำ",
     "ingredients": [
@@ -3844,7 +3844,7 @@
     ],
     "pair_id": "BEV-002",
     "dessert_pair_id": "DES-006",
-    "image_url": "images/Stir-fried_macaroni_with_prawns_47fd9b86.jpg",
+    "image_url": "images/INT-32.webp",
     "wiki_query": "Stir fried macaroni",
     "recipe_hint": "ผัดเส้นมักกะโรนีกับไข่ไก่ กุ้งสด หอมใหญ่ มะเขือเทศ และซอสมะเขือเทศรสกลมกล่อม",
     "ingredients": [
@@ -3975,7 +3975,7 @@
     ],
     "pair_id": "BEV-004",
     "dessert_pair_id": "BEV-004",
-    "image_url": "images/Yang_Zhou_Fried_Rice_plated_0a66c72a.jpg",
+    "image_url": "images/INT-37.webp",
     "wiki_query": "Yangzhou fried rice",
     "recipe_hint": "ผัดข้าวหอมมะลิกับไข่ไก่ หมูแดงหั่นเต๋า กุ้งสด แครอท และถั่วลันเตา",
     "ingredients": [
@@ -4003,7 +4003,7 @@
     ],
     "pair_id": "BEV-004",
     "dessert_pair_id": "BEV-004",
-    "image_url": "images/Steamed_buns_in_bamboo_steamer_57ff01b7.jpg",
+    "image_url": "images/INT-38.webp",
     "wiki_query": "Steamed pork bun baozi",
     "recipe_hint": "ซาลาเปาแป้งนุ่มฟูสอดไส้หมูสับปรุงรสหอมพริกไทยและไข่แดงเค็มเต็มลูก",
     "ingredients": [
@@ -4028,7 +4028,7 @@
     ],
     "pair_id": "BEV-004",
     "dessert_pair_id": "BEV-004",
-    "image_url": "images/Steaming_Cantonese_Dim_Sum_baskets_153a720a.jpg",
+    "image_url": "images/INT-39.webp",
     "wiki_query": "Dim sum",
     "recipe_hint": "ชุดขนมจีบหมูกุ้งและฮะเก๋าแป้งใสนึ่งร้อนๆ จิ้มจิ๊กโฉ่วเปรี้ยวหวาน",
     "ingredients": [
@@ -4054,7 +4054,7 @@
     ],
     "pair_id": "BEV-004",
     "dessert_pair_id": "BEV-004",
-    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Mapo_tofu.jpg?width=600",
+    "image_url": "images/INT-40.webp",
     "wiki_query": "Mapo tofu",
     "recipe_hint": "ผัดหมูสับกับพริกเสฉวนและเต้าหู้ขาวนิ่มในซอสรสเผ็ดชาหอมน้ำมันพริก",
     "ingredients": [
@@ -4081,7 +4081,7 @@
     ],
     "pair_id": "TH-C06",
     "dessert_pair_id": "BEV-004",
-    "image_url": "images/Stir-fried_chicken_with_cashew_nuts_1b5b2e5e.jpg",
+    "image_url": "images/INT-41.webp",
     "wiki_query": "Kai phat met mamuang",
     "recipe_hint": "ผัดเนื้อไก่ทอดกรอบกับเม็ดมะม่วงหิมพานต์ พริกแห้งทอด หอมใหญ่ และซอสสามรส",
     "ingredients": [
@@ -4131,7 +4131,7 @@
     ],
     "pair_id": "BEV-005",
     "dessert_pair_id": "BEV-005",
-    "image_url": "images/Vietnamese_Banh_Mi_sandwich_d0ed8d1e.jpg",
+    "image_url": "images/INT-43.webp",
     "wiki_query": "Banh mi",
     "recipe_hint": "บาแก็ตกรอบนอกนุ่มในสอดไส้หมูย่าง ตับบด แครอทดอง แตงกวา และผักชี",
     "ingredients": [
@@ -4158,7 +4158,7 @@
     ],
     "pair_id": "BEV-005",
     "dessert_pair_id": "BEV-005",
-    "image_url": "images/Vietnamese_Banh_Cuon_served_with…_d7ea0ddc.jpg",
+    "image_url": "images/INT-44.webp",
     "wiki_query": "Banh cuon",
     "recipe_hint": "แป้งข้าวเจ้าละเลงไอน้ำบางนุ่มห่อไส้หมูสับผัดเห็ดหูหนู โรยหอมเจียวและหมูยอ",
     "ingredients": [
@@ -4249,7 +4249,7 @@
     "name": "นาซีเลอมักไก่ทอดสมุนไพรมาเลย์",
     "mode": "main",
     "category": "อาหารนานาชาติ",
-    "region": "อินเดีย",
+    "region": "มาเลเซีย",
     "protein": "ไก่",
     "budget": 70,
     "budget_tier": "ปานกลาง",
@@ -4260,7 +4260,7 @@
     ],
     "pair_id": "BEV-001",
     "dessert_pair_id": "BEV-001",
-    "image_url": "images/Nasi_Lemak_with_Fried_Chicken_b85e81b9.jpg",
+    "image_url": "images/INT-48.webp",
     "wiki_query": "Nasi lemak",
     "recipe_hint": "ข้าวหุงกะทิใบเตย เสิร์ฟคู่ไก่ทอด ปลากรอบ ถั่วลิสง ไข่ต้ม แตงกวา และซอสซัมบัล",
     "ingredients": [
@@ -4312,7 +4312,7 @@
     ],
     "pair_id": "BEV-002",
     "dessert_pair_id": "BEV-002",
-    "image_url": "images/Mexican_Loaded_Cheese_Nachos_24d6be29.jpg",
+    "image_url": "images/INT-50.webp",
     "wiki_query": "Nachos melted cheese",
     "recipe_hint": "ตอร์ติญ่าชิปส์กรอบราดชีสเยิ้ม เนื้อบดผัดเครื่องเทศ และซัลซ่ามะเขือเทศสด",
     "ingredients": [
@@ -5454,7 +5454,7 @@
     ],
     "pair_id": "BEV-004",
     "dessert_pair_id": "BEV-005",
-    "image_url": "images/Mutabbaq_served_with_lemon_wedges_e96865b6.jpg",
+    "image_url": "images/INT-57.webp",
     "recipe_hint": "ทอดแผ่นแป้งสอดไส้เครื่องเทศและผัก/ไข่จนกรอบ เสิร์ฟพร้อมซอสและมะนาวฝาน",
     "wiki_query": "มุฏฏะบักแป้งกรอบเสิร์ฟมะนาว",
     "ingredients": [
@@ -5480,7 +5480,7 @@
     ],
     "pair_id": "BEV-004",
     "dessert_pair_id": "BEV-005",
-    "image_url": "images/Persian_Ghormeh_Sabzi_stewing_9c2f4229.jpg",
+    "image_url": "images/INT-58.webp",
     "recipe_hint": "เคี่ยวเนื้อกับสมุนไพรเขียว ถั่วแดง และมะนาวแห้งสไตล์เปอร์เซียหอมกรุ่น",
     "wiki_query": "กอร์เมห์ ซับซี สตูว์สมุนไพรเปอร์เซีย",
     "ingredients": [
@@ -5506,7 +5506,7 @@
     ],
     "pair_id": "BEV-004",
     "dessert_pair_id": "BEV-005",
-    "image_url": "images/Peruvian_ceviche_in_glass_bowl_670685a6.jpg",
+    "image_url": "images/INT-59.webp",
     "recipe_hint": "หมักอาหารทะเลสดด้วยน้ำมะนาวคั้นสด พริก หอมแดง และผักชี เสิร์ฟเย็นสดชื่น",
     "wiki_query": "เซบิเช่เปรูซีฟู้ดมะนาวสด",
     "ingredients": [
@@ -5533,7 +5533,7 @@
     ],
     "pair_id": "BEV-004",
     "dessert_pair_id": "BEV-005",
-    "image_url": "images/Plating_Laotian_Larb_meal_679b44c6.jpg",
+    "image_url": "images/INT-60.webp",
     "recipe_hint": "รวนเนื้อปรุงรสน้ำปลาร้า น้ำปลา มะนาว พริกป่น ข้าวคั่ว และสมุนไพรสดกินคู่ข้าวเหนียว",
     "wiki_query": "ลาบลาวสมุนไพรข้าวคั่วหอม",
     "ingredients": [
@@ -5560,7 +5560,7 @@
     ],
     "pair_id": "BEV-004",
     "dessert_pair_id": "BEV-005",
-    "image_url": "images/Polish_cabbage_rolls_served_with…_3f11fe4a.jpg",
+    "image_url": "images/INT-61.webp",
     "recipe_hint": "ห่อไส้หมูและข้าวในใบกะหล่ำปลีตุ๋นในซอสรสกลมกล่อม เสิร์ฟพร้อมเครื่องเคียง",
     "wiki_query": "กะหล่ำปลีห่อไส้สไตล์โปแลนด์",
     "ingredients": [
@@ -5586,7 +5586,7 @@
     ],
     "pair_id": "BEV-004",
     "dessert_pair_id": "BEV-005",
-    "image_url": "images/Roasted_pork_knuckle_with_sides_c7ddc015.jpg",
+    "image_url": "images/INT-62.webp",
     "recipe_hint": "อบขาหมูจนหนังกรอบเนื้อนุ่มชุ่มฉ่ำ เสิร์ฟคู่มันฝรั่งและกะหล่ำดอง",
     "wiki_query": "ขาหมูเยอรมันอบกรอบเครื่องเคียงครบ",
     "ingredients": [
@@ -5612,7 +5612,7 @@
     ],
     "pair_id": "BEV-004",
     "dessert_pair_id": "BEV-005",
-    "image_url": "images/Saudi_Arabian_Kabsa_on_platter_549f7916.jpg",
+    "image_url": "images/INT-63.webp",
     "recipe_hint": "หุงข้าวเครื่องเทศหอมกรุ่นพร้อมเนื้อสัตว์นุ่มและซอสมะเขือเทศรสเข้มข้น",
     "wiki_query": "ข้าวอบคัพซาซาอุดีอาระเบีย",
     "ingredients": [
@@ -5638,7 +5638,7 @@
     ],
     "pair_id": "BEV-004",
     "dessert_pair_id": "BEV-005",
-    "image_url": "images/Scottish_haggis_served_with_sides_163c29bc.jpg",
+    "image_url": "images/INT-64.webp",
     "recipe_hint": "อาหารดั้งเดิมสกอตแลนด์รสเข้มข้นเครื่องเทศ เสิร์ฟพร้อมมันบดและเครื่องเคียง",
     "wiki_query": "ฮากกิสสกอตแลนด์เสิร์ฟเครื่องเคียง",
     "ingredients": [
@@ -5663,7 +5663,7 @@
     ],
     "pair_id": "BEV-004",
     "dessert_pair_id": "BEV-005",
-    "image_url": "images/Serving_Austrian_Tafelspitz_with…_55810bda.jpg",
+    "image_url": "images/INT-65.webp",
     "recipe_hint": "ต้มเนื้อนุ่มในน้ำซุปผักหอมกรุ่น เสิร์ฟคู่ซอสแอปเปิลครีมและผักเครื่องเคียง",
     "wiki_query": "ทาเฟิลสปิตซ์เนื้อต้มออสเตรีย",
     "ingredients": [
@@ -5688,7 +5688,7 @@
     ],
     "pair_id": "BEV-004",
     "dessert_pair_id": "BEV-005",
-    "image_url": "images/Serving_traditional_Bruneian_Amb…_6dd56df3.jpg",
+    "image_url": "images/INT-66.webp",
     "recipe_hint": "แป้งสาคูต้นเนื้อใสหนึบเสิร์ฟคู่เครื่องเคียงและซอสเปรี้ยวเผ็ดกลมกล่อม",
     "wiki_query": "อัมบูยัตบรูไนซุปแป้งสาคูต้น",
     "ingredients": [
@@ -5714,7 +5714,7 @@
     ],
     "pair_id": "BEV-004",
     "dessert_pair_id": "BEV-005",
-    "image_url": "images/Serving_traditional_Laotian_Or_L…_9441121f.jpg",
+    "image_url": "images/INT-67.webp",
     "recipe_hint": "ต้มซุปสมุนไพรหลวงพระบางหอมไม้สะค้าน เห็ด ผักพื้นบ้าน และข้าวเบือข้นนัว",
     "wiki_query": "ออร์ลามหลวงพระบางซุปสมุนไพร",
     "ingredients": [
@@ -5741,7 +5741,7 @@
     ],
     "pair_id": "BEV-004",
     "dessert_pair_id": "BEV-005",
-    "image_url": "images/Sliced_Brazilian_Picanha_steak_o…_9e54d5a4.jpg",
+    "image_url": "images/INT-68.webp",
     "recipe_hint": "ย่างเนื้อปิคานญ่าติดมันจนหอมเกรียม หั่นสไลด์ชิ้นพอดีคำชุ่มฉ่ำ",
     "wiki_query": "สเต๊กเนื้อปิคานญ่าบราซิลสไลด์",
     "ingredients": [
@@ -5765,7 +5765,7 @@
     ],
     "pair_id": "BEV-004",
     "dessert_pair_id": "BEV-005",
-    "image_url": "images/Spanish_seafood_paella_served_on…_c08710af.jpg",
+    "image_url": "images/INT-69.webp",
     "recipe_hint": "ผัดข้าวปาเอญ่าหอมหญ้าฝรั่นกับกุ้ง หอย และอาหารทะเลสดบนกระทะแบน",
     "wiki_query": "ปาเอญ่าซีฟู้ดสเปนกระทะร้อน",
     "ingredients": [
@@ -5791,7 +5791,7 @@
     ],
     "pair_id": "BEV-004",
     "dessert_pair_id": "BEV-005",
-    "image_url": "images/Sri_Lankan_Lamprais_meal_served_ea21b307.jpg",
+    "image_url": "images/INT-70.webp",
     "recipe_hint": "ข้าวอบเครื่องเทศศรีลังกาพร้อมเนื้อสัตว์และเครื่องเคียงห่อใบตองหอมกรุ่น",
     "wiki_query": "ลัมไพรส์ศรีลังกาห่อใบตอง",
     "ingredients": [
@@ -5817,7 +5817,7 @@
     ],
     "pair_id": "BEV-004",
     "dessert_pair_id": "BEV-005",
-    "image_url": "images/Steamed_dumplings_in_bamboo_basket_fd9f7b10.jpg",
+    "image_url": "images/INT-71.webp",
     "recipe_hint": "เกี๊ยวนึ่งแป้งนุ่มไส้แน่นเสิร์ฟร้อนในเข่งไม้ไผ่ กินคู่ซอสจิ้ม",
     "wiki_query": "เกี๊ยวนึ่งเข่งไม้ไผ่ร้อนๆ",
     "ingredients": [
@@ -5842,7 +5842,7 @@
     ],
     "pair_id": "BEV-004",
     "dessert_pair_id": "BEV-005",
-    "image_url": "images/Sudanese_sambuxa_with_spicy_dip_50ad59d2.jpg",
+    "image_url": "images/INT-72.webp",
     "recipe_hint": "แป้งทอดกรอบไส้รสเข้มข้นสไตล์ซูดาน เสิร์ฟพร้อมน้ำจิ้มรสจัด",
     "wiki_query": "ซัมบูซาซูดานแป้งทอดไส้เข้มข้น",
     "ingredients": [
@@ -5867,7 +5867,7 @@
     ],
     "pair_id": "BEV-004",
     "dessert_pair_id": "BEV-005",
-    "image_url": "images/Surströmming_sandwich_served_on_…_5fce6a2a.jpg",
+    "image_url": "images/INT-73.webp",
     "recipe_hint": "ขนมปังแผ่นเสิร์ฟคู่ปลาหมักรสจัด หอมแดง และเครื่องเคียงสไตล์สแกนดิเนเวีย",
     "wiki_query": "แซนด์วิชซอสเปรี้ยวสวีเดน",
     "ingredients": [
@@ -5891,7 +5891,7 @@
     ],
     "pair_id": "BEV-004",
     "dessert_pair_id": "BEV-005",
-    "image_url": "images/Tibetan_Momos_in_steamer_basket_985fd195.jpg",
+    "image_url": "images/INT-74.webp",
     "recipe_hint": "เกี๊ยวโมโม่สไตล์ทิเบตนึ่งร้อนในเข่งไม้ไผ่ ไส้ฉ่ำหอมเครื่องเทศ",
     "wiki_query": "โมโม่ทิเบตนึ่งเข่งร้อนๆ",
     "ingredients": [
@@ -5916,7 +5916,7 @@
     ],
     "pair_id": "BEV-004",
     "dessert_pair_id": "BEV-005",
-    "image_url": "images/Turkish_mantı_served_with_yogurt_9618d472.jpg",
+    "image_url": "images/INT-75.webp",
     "recipe_hint": "เกี๊ยวชิ้นเล็กสไตล์ตุรกีราดซอสโยเกิร์ตกระเทียมและเนยพริกปาปริก้า",
     "wiki_query": "มันตีเกี๊ยวตุรกีราดซอสโยเกิร์ต",
     "ingredients": [
@@ -5942,7 +5942,7 @@
     ],
     "pair_id": "BEV-004",
     "dessert_pair_id": "BEV-005",
-    "image_url": "images/Vietnamese_grilled_pork_sausage_…_31cd2d8c.jpg",
+    "image_url": "images/INT-76.webp",
     "recipe_hint": "ย่างไส้กรอกหมูสไตล์เวียดนามจนหอมเกรียม เสิร์ฟพร้อมผักสดและน้ำจิ้ม",
     "wiki_query": "ไส้กรอกหมูย่างเวียดนาม",
     "ingredients": [
@@ -6810,6 +6810,137 @@
     "wiki_query": "ล็อบสเตอร์โรลเนยกระเทียม",
     "ingredients": [
       "กุ้ง",
+      "กระเทียม"
+    ]
+  },
+  {
+    "id": "INT-110",
+    "name": "ก๋วยเตี๋ยวแกงลักซามาเลเซีย",
+    "mode": "main",
+    "category": "อาหารนานาชาติ",
+    "region": "มาเลเซีย",
+    "protein": "ทะเล",
+    "budget": 85,
+    "budget_tier": "ปานกลาง",
+    "prep_time": 20,
+    "is_spicy": true,
+    "tags": [
+      "จานเดียว",
+      "เส้น",
+      "แกงกะทิ",
+      "เผ็ด"
+    ],
+    "pair_id": "BEV-004",
+    "dessert_pair_id": "BEV-005",
+    "image_url": "images/INT-110.webp",
+    "recipe_hint": "เส้นหมี่เหลืองในน้ำซุปแกงกะทิเครื่องเทศหอมเข้มข้น ใส่กุ้งสด เต้าหู้พวง และไข่ต้ม",
+    "wiki_query": "ก๋วยเตี๋ยวแกงลักซามาเลเซีย",
+    "ingredients": [
+      "กุ้ง",
+      "กะทิ",
+      "เต้าหู้",
+      "ไข่"
+    ]
+  },
+  {
+    "id": "INT-111",
+    "name": "โรตีจาไนแกงกะหรี่มาเลเซีย",
+    "mode": "main",
+    "category": "อาหารนานาชาติ",
+    "region": "มาเลเซีย",
+    "protein": "มังสวิรัติ",
+    "budget": 60,
+    "budget_tier": "ปานกลาง",
+    "prep_time": 15,
+    "is_spicy": false,
+    "tags": [
+      "จานเดียว",
+      "ไม่เผ็ด"
+    ],
+    "pair_id": "BEV-004",
+    "dessert_pair_id": "BEV-005",
+    "image_url": "images/INT-111.webp",
+    "recipe_hint": "แป้งโรตีทอดกรอบนอกนุ่มในเป็นชั้นบาง เสิร์ฟคู่แกงกะหรี่ถั่วและซอสเครื่องเทศ",
+    "wiki_query": "โรตีจาไนแกงกะหรี่มาเลเซีย",
+    "ingredients": [
+      "แป้ง",
+      "พริก"
+    ]
+  },
+  {
+    "id": "INT-112",
+    "name": "พายเนื้ออบมันบดออสเตรเลีย",
+    "mode": "main",
+    "category": "อาหารนานาชาติ",
+    "region": "ออสเตรเลีย",
+    "protein": "เนื้อ",
+    "budget": 115,
+    "budget_tier": "พรีเมียม",
+    "prep_time": 25,
+    "is_spicy": false,
+    "tags": [
+      "จานเดียว",
+      "ไม่เผ็ด"
+    ],
+    "pair_id": "BEV-004",
+    "dessert_pair_id": "BEV-005",
+    "image_url": "images/INT-112.webp",
+    "recipe_hint": "แป้งพายอบกรอบสีทองสอดไส้เนื้อตุ๋นซอสเกรวี่เข้มข้น เสิร์ฟคู่มันฝรั่งบดเนียนนุ่ม",
+    "wiki_query": "พายเนื้ออบมันบดออสเตรเลีย",
+    "ingredients": [
+      "เนื้อ",
+      "มันฝรั่ง"
+    ]
+  },
+  {
+    "id": "INT-113",
+    "name": "โคชินิตาพิบิลหมูตุ๋นเม็กซิกัน",
+    "mode": "main",
+    "category": "อาหารนานาชาติ",
+    "region": "เม็กซิกัน",
+    "protein": "หมู",
+    "budget": 110,
+    "budget_tier": "พรีเมียม",
+    "prep_time": 35,
+    "is_spicy": true,
+    "tags": [
+      "กับข้าว",
+      "เผ็ด"
+    ],
+    "pair_id": "BEV-004",
+    "dessert_pair_id": "BEV-005",
+    "image_url": "images/INT-113.webp",
+    "recipe_hint": "หมูตุ๋นเครื่องเทศเม็กซิกันและน้ำส้มซ่าจนเปื่อยนุ่ม เสิร์ฟพร้อมหอมแดงดองและแป้งตอร์ติญ่า",
+    "wiki_query": "โคชินิตาพิบิลหมูตุ๋นเม็กซิกัน",
+    "ingredients": [
+      "หมู",
+      "พริก"
+    ]
+  },
+  {
+    "id": "INT-114",
+    "name": "พาเนียร์บัตเตอร์มาซาลาแกงชีสอินเดีย",
+    "mode": "main",
+    "category": "อาหารนานาชาติ",
+    "region": "อินเดีย",
+    "protein": "มังสวิรัติ",
+    "budget": 95,
+    "budget_tier": "พรีเมียม",
+    "prep_time": 20,
+    "is_spicy": false,
+    "tags": [
+      "กับข้าว",
+      "แกง",
+      "มังสวิรัติ",
+      "ไม่เผ็ด"
+    ],
+    "pair_id": "BEV-004",
+    "dessert_pair_id": "BEV-005",
+    "image_url": "images/INT-114.webp",
+    "recipe_hint": "ชีสพาเนียร์นุ่มในซอสมะเขือเทศเนยและครีมเครื่องเทศอินเดีย กินคู่แป้งนานร้อนๆ",
+    "wiki_query": "พาเนียร์บัตเตอร์มาซาลาแกงชีสอินเดีย",
+    "ingredients": [
+      "ชีส",
       "กระเทียม"
     ]
   }
