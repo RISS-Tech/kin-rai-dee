@@ -1,4 +1,4 @@
-const CACHE_NAME = 'tookmue-v15-modular';
+const CACHE_NAME = 'tookmue-v16-phase-d';
 const IMAGE_CACHE_NAME = 'tookmue-images-v1';
 
 const APP_SHELL = [
@@ -41,8 +41,8 @@ self.addEventListener('fetch', (event) => {
   const url = new URL(event.request.url);
   if (url.origin !== self.location.origin) return;
 
-  // 1. HTML navigation & menus.json -> Network-First (อัปเดตข้อมูลล่าสุดทันทีเมื่อมีเน็ต)
-  if (event.request.mode === 'navigate' || url.pathname.endsWith('/menus.json')) {
+  // 1. HTML navigation, menus.json, app.js & styles.css -> Network-First (อัปเดตโค้ดและเมนูล่าสุดทันทีเมื่อมีเน็ต)
+  if (event.request.mode === 'navigate' || url.pathname.endsWith('/menus.json') || url.pathname.endsWith('/app.js') || url.pathname.endsWith('/styles.css')) {
     event.respondWith(
       fetch(event.request)
         .then((res) => {

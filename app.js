@@ -46,6 +46,43 @@ let MENUS = [];
       }
     }
 
+    function escapeHtml(str) {
+      return String(str || '')
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#39;');
+    }
+
+    function recordEatenMeal({ menuId = null, name, amount = 0, xp = 25, source = 'wheel' }) {
+      const cleanName = String(name || 'มื้ออาหาร').trim();
+      const numericAmount = Math.max(0, Number(amount) || 0);
+
+      // 1. บันทึกเข้าประวัติการกิน (รักษาโครงสร้าง string array เพื่อรองรับ Firestore เดิม)
+      const histKey = menuId ? String(menuId) : `FRIDGE:${cleanName.slice(0, 60)}`;
+      const existingIdx = state.history.indexOf(histKey);
+      if (existingIdx >= 0) state.history.splice(existingIdx, 1);
+      state.history.unshift(histKey);
+      if (state.history.length > 15) state.history.pop();
+
+      // 2. บันทึกเข้ากระเป๋าคุมงบค่ากิน
+      state.expenses.unshift({
+        id: 'EXP-' + Date.now() + '-' + Math.floor(Math.random() * 1000),
+        name: cleanName,
+        amount: numericAmount,
+        source,
+        date: new Date().toISOString()
+      });
+      if (state.expenses.length > 120) state.expenses.pop();
+
+      // 3. เพิ่ม XP + บันทึก LocalStorage + ซิงก์คลาวด์ + อัปเดตทุกหน้าจอที่เกี่ยวข้อง
+      addXp(xp);
+      renderSaved();
+      renderFoodWallet();
+      prepareWheelSlices();
+    }
+
     function loadMenusJson() {
       isMenusLoading = true;
       fetch('menus.json')
@@ -477,6 +514,9 @@ let MENUS = [];
         .sort((a, b) => b.matchCount - a.matchCount || a.menu.budget - b.menu.budget)
         .slice(0, 6);
 
+      window._latestFridgeDishName = creativeTitle;
+      window._latestFridgeLogged = false;
+
       let htmlOut = `
         <div class="fridge-result-item" style="border-left-color: #D97706; background: linear-gradient(135deg, #FFFBEB 0%, #FFFFFF 100%);">
           <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:6px; margin-bottom:8px;">
@@ -484,14 +524,24 @@ let MENUS = [];
             <span style="font-size:12px; font-weight:700; color:#B45309;">${creativeBadge}</span>
           </div>
           <div style="font-size: 18px; font-weight: 700; color: var(--text-brown); line-height: 1.35; margin-bottom: 6px;">
-            👨‍🍳 ${creativeTitle}
+            👨‍🍳 ${escapeHtml(creativeTitle)}
           </div>
           <div style="font-size: 14px; color: var(--text-muted); margin-bottom: 12px;">
-            ${creativeDesc}
+            ${escapeHtml(creativeDesc)}
           </div>
-          <button onclick="claimFridgeBonus('${creativeTitle.replace(/'/g, '')}')" class="btn-action btn-orange" style="width:100%; min-height:46px; font-size:15px;">
-            ✅ ทำเมนูนี้เคลียร์ตู้เย็น! (+35 XP)
+          <div class="field-group" style="margin-bottom:10px;">
+            <label for="fridgeExtraCostInput" class="field-label" style="color:#92400E;">ค่าของซื้อเพิ่ม (บาท) — ว่างไว้ = 0฿ ประหยัดจากตู้เย็น</label>
+            <input type="text" id="fridgeExtraCostInput" class="v10-input tabular-nums" inputmode="numeric" placeholder="0" aria-describedby="fridgeCostError" oninput="clearFieldError('fridgeExtraCostInput','fridgeCostError'); document.getElementById('fridgeCostReassurance')?.classList.remove('show');" />
+            <div id="fridgeCostError" class="field-error" role="alert"></div>
+            <div id="fridgeCostReassurance" class="reassurance-note" role="status"></div>
+          </div>
+          <button type="button" id="fridgeClaimBtn" onclick="claimFridgeBonus()" class="btn-action btn-orange" style="width:100%; min-height:46px; font-size:15px;">
+            ✅ ทำเมนูนี้ & บันทึกประวัติ/งบ (+35 XP)
           </button>
+          <div id="fridgeLoggedActions" class="fridge-logged-bar" style="display:none;">
+            <span>✓ บันทึกเข้าประวัติและกระเป๋าคุมงบแล้ว</span>
+            <button type="button" onclick="switchTab('saved'); switchSavedSubTab('wallet');" class="fridge-wallet-link">ดูในกระเป๋างบ →</button>
+          </div>
           <button type="button" onclick="openQrModal()" style="width:100%; margin-top:8px; min-height:40px; border-radius:999px; border:1px solid #E5D5C3; background:#FFFFFF; color:var(--text-brown); font-size:13px; font-weight:600; cursor:pointer;">
             เลี้ยงข้าวผู้พัฒนา
           </button>
@@ -504,15 +554,22 @@ let MENUS = [];
           const m = item.menu;
           const pct = Math.round((item.matchCount / tokens.length) * 100);
           return `
-            <div class="fridge-result-item" onclick="openMenuById('${m.id}')" style="cursor:pointer; display:flex; align-items:center; gap:12px;">
-              <img src="${m.image_url}" alt="${m.name}" style="width:68px; height:68px; border-radius:14px; object-fit:cover; flex-shrink:0;" onerror="resolveWikiImage(this, '${m.id}')" />
-              <div style="flex:1; min-width:0;">
-                <div style="display:flex; justify-content:space-between; align-items:center; gap:4px;">
-                  <span style="font-size:11px; font-weight:700; background:#CCFBF1; color:#0F766E; padding:2px 8px; border-radius:999px;">ตรง ${item.matchCount}/${tokens.length} อย่าง (${pct}%)</span>
-                  <span style="font-size:12px; color:var(--text-muted); font-weight:600;">⏱️ ${m.prep_time} น.</span>
+            <div class="fridge-result-item" onclick="openMenuById('${m.id}')" style="cursor:pointer;">
+              <div style="display:flex; align-items:center; gap:12px;">
+                <img src="${m.image_url}" alt="${escapeHtml(m.name)}" style="width:68px; height:68px; border-radius:14px; object-fit:cover; flex-shrink:0;" onerror="resolveWikiImage(this, '${m.id}')" />
+                <div style="flex:1; min-width:0;">
+                  <div style="display:flex; justify-content:space-between; align-items:center; gap:4px;">
+                    <span style="font-size:11px; font-weight:700; background:#CCFBF1; color:#0F766E; padding:2px 8px; border-radius:999px;">ตรง ${item.matchCount}/${tokens.length} อย่าง (${pct}%)</span>
+                    <span class="tabular-nums" style="font-size:12px; color:var(--text-muted); font-weight:600;">⏱️ ${m.prep_time} น.</span>
+                  </div>
+                  <div style="font-size:16px; font-weight:700; margin-top:4px; color:var(--text-brown);">${escapeHtml(m.name)}</div>
+                  <div style="font-size:12px; color:#0D9488; font-weight:600;">มีแล้ว: ${escapeHtml(item.matchedTokens.join(', '))}</div>
                 </div>
-                <div style="font-size:16px; font-weight:700; margin-top:4px; color:var(--text-brown);">${m.name}</div>
-                <div style="font-size:12px; color:#0D9488; font-weight:600;">มีแล้ว: ${item.matchedTokens.join(', ')}</div>
+              </div>
+              <div style="display:flex; justify-content:flex-end; margin-top:10px; padding-top:8px; border-top:1px dashed #CCFBF1;">
+                <button type="button" class="fridge-quick-eat-btn" onclick="event.stopPropagation(); eatMatchedFridgeMenu('${m.id}', this)">
+                  ✅ ทำกินเคลียร์ตู้เย็น (0฿ • +35 XP)
+                </button>
               </div>
             </div>
           `;
@@ -522,10 +579,74 @@ let MENUS = [];
       document.getElementById('fridgeResultsBox').innerHTML = htmlOut;
     }
 
-    function claimFridgeBonus(dishName) {
-      addXp(35);
+    function claimFridgeBonus() {
+      if (window._latestFridgeLogged) return;
+      const dishName = window._latestFridgeDishName || 'เมนูเคลียร์ตู้เย็น';
+      const costInp = document.getElementById('fridgeExtraCostInput');
+      const reassEl = document.getElementById('fridgeCostReassurance');
+      const rawCost = costInp ? costInp.value.replace(/,/g, '').trim() : '';
+
+      clearFieldError('fridgeExtraCostInput', 'fridgeCostError');
+      if (reassEl) reassEl.classList.remove('show');
+
+      let extraCost = 0;
+      if (rawCost !== '') {
+        extraCost = parseFloat(rawCost);
+        if (isNaN(extraCost) || extraCost < 0) {
+          setFieldError('fridgeExtraCostInput', 'fridgeCostError', 'กรุณากรอกเป็นตัวเลขตั้งแต่ 0 บาทขึ้นไป หรือเว้นว่างไว้');
+          if (reassEl) {
+            reassEl.textContent = 'ℹ️ ยังไม่มีการบันทึกยอดใดๆ • งบค่ากินของคุณยังคงเดิม';
+            reassEl.classList.add('show');
+          }
+          return;
+        }
+      }
+
+      window._latestFridgeLogged = true;
+      recordEatenMeal({
+        menuId: null,
+        name: `🧊 ${dishName}`,
+        amount: extraCost,
+        xp: 35,
+        source: 'fridge'
+      });
+
+      const btn = document.getElementById('fridgeClaimBtn');
+      if (btn) {
+        btn.disabled = true;
+        btn.textContent = extraCost > 0
+          ? `✓ บันทึกแล้ว (-${extraCost.toLocaleString()}฿ • +35 XP)`
+          : '✓ บันทึกแล้ว (ประหยัดงบ 0฿ • +35 XP)';
+      }
+      if (costInp) costInp.disabled = true;
+      const loggedBar = document.getElementById('fridgeLoggedActions');
+      if (loggedBar) loggedBar.style.display = 'flex';
+
       playWinChime();
-      showToast(`เยี่ยมมาก! เคลียร์ตู้เย็นด้วย "${dishName.slice(0, 22)}..." (+35 XP) 🧊`);
+      const costText = extraCost > 0 ? `-${extraCost.toLocaleString()}฿` : '0฿ ประหยัดสุดๆ';
+      showToast(`บันทึก "${dishName.slice(0, 20)}..." (${costText}) +35 XP 🧊`);
+    }
+
+    function eatMatchedFridgeMenu(menuId, btnEl) {
+      if (btnEl && btnEl.disabled) return;
+      const menu = MENUS.find(m => m.id === menuId);
+      if (!menu) return;
+
+      recordEatenMeal({
+        menuId: menu.id,
+        name: menu.name,
+        amount: 0,
+        xp: 35,
+        source: 'fridge'
+      });
+
+      if (btnEl) {
+        btnEl.disabled = true;
+        btnEl.classList.add('logged');
+        btnEl.textContent = '✓ บันทึกเข้าประวัติ & งบ (0฿) แล้ว';
+      }
+      playWinChime();
+      showToast(`บันทึก "${menu.name}" จากตู้เย็น (0฿) +35 XP 🧊`);
     }
 
     function setQuickFilter(filter, btn) {
@@ -746,23 +867,17 @@ let MENUS = [];
 
     function confirmAteMeal() {
       if (!selectedMenu) return;
-      if (!state.history.includes(selectedMenu.id)) {
-        state.history.unshift(selectedMenu.id);
-        if (state.history.length > 15) state.history.pop();
-      }
-      state.expenses.unshift({
-        id: 'EXP-' + Date.now(),
-        name: selectedMenu.name,
-        amount: Number(selectedMenu.budget) || 50,
-        date: new Date().toISOString()
+      const dishName = selectedMenu.name;
+      const dishBudget = Number(selectedMenu.budget) || 50;
+      recordEatenMeal({
+        menuId: selectedMenu.id,
+        name: dishName,
+        amount: dishBudget,
+        xp: 25,
+        source: 'wheel'
       });
-      if (state.expenses.length > 120) state.expenses.pop();
-
-      addXp(25);
-      saveState();
       closeResultModal();
-      showToast(`บันทึก "${selectedMenu.name}" (~${selectedMenu.budget}฿) +25 XP`);
-      prepareWheelSlices();
+      showToast(`บันทึก "${dishName}" (~${dishBudget.toLocaleString()}฿) +25 XP`);
     }
 
     function toggleFavoriteCurrent() {
@@ -1067,8 +1182,13 @@ let MENUS = [];
         `;
       } else {
         histEl.innerHTML = state.history.map(id => {
-          const m = MENUS.find(x => x.id === id);
-          return m ? `<div style="padding:8px 0; border-bottom:1px solid #F3ECE1; display:flex; justify-content:space-between;"><span>🍽️ ${m.name}</span><span style="font-size:14px; color:var(--chili-orange);">งดสุ่มซ้ำ</span></div>` : '';
+          const strId = String(id || '');
+          if (strId.startsWith('FRIDGE:')) {
+            const label = strId.slice(7).replace(/^🧊\s*/, '');
+            return `<div style="padding:8px 0; border-bottom:1px solid #F3ECE1; display:flex; justify-content:space-between; align-items:center; gap:8px;"><span>🧊 ${escapeHtml(label)}</span><span class="source-badge source-fridge">เมนูตู้เย็น</span></div>`;
+          }
+          const m = MENUS.find(x => x.id === strId);
+          return m ? `<div onclick="openMenuById('${m.id}')" style="padding:8px 0; border-bottom:1px solid #F3ECE1; display:flex; justify-content:space-between; align-items:center; gap:8px; cursor:pointer;"><span>🍽️ ${escapeHtml(m.name)}</span><span style="font-size:13px; color:var(--chili-orange); font-weight:600; flex-shrink:0;">งดสุ่มซ้ำ</span></div>` : '';
         }).join('');
       }
     }
@@ -1131,7 +1251,7 @@ let MENUS = [];
       document.getElementById('headerRank').textContent = displayRank;
       document.getElementById('headerStreak').textContent = state.streak;
       document.getElementById('soundToggleBtn').textContent = state.soundOn ? '🔊' : '🔇';
-      document.getElementById('yesterdayCount').textContent = state.history.length;
+      document.getElementById('yesterdayCount').textContent = state.history.filter(id => !String(id).startsWith('FRIDGE:')).length;
       const totalCountries = COUNTRIES.length;
       const stripTotalEl = document.getElementById('passportTotalCountriesStrip');
       const titleTotalEl = document.getElementById('passportTotalCountriesTitle');
@@ -1357,7 +1477,9 @@ let MENUS = [];
         plan.push({
           day: DAY_NAMES[d],
           lunchId: lunch.id,
-          dinnerId: dinner.id
+          dinnerId: dinner.id,
+          lunchLogged: false,
+          dinnerLogged: false
         });
       }
       state.weeklyPlan = plan;
@@ -1391,12 +1513,30 @@ let MENUS = [];
         return;
       }
 
+      if (MENUS.length === 0) {
+        box.innerHTML = `
+          <div class="empty-state-card">
+            <div class="empty-state-icon">⚠️</div>
+            <div class="empty-state-title">ยังโหลดข้อมูลเมนูไม่สำเร็จ</div>
+            <div class="empty-state-desc">แตะปุ่ม "ลองใหม่" ด้านบนเพื่อโหลดข้อมูลตาราง 7 วันครับ</div>
+          </div>
+        `;
+        return;
+      }
+
       let totalWeek = 0;
+      let loggedMealsCount = 0;
+      const totalSlots = state.weeklyPlan.length * 2;
       const allIngs = [];
 
-      box.innerHTML = state.weeklyPlan.map((row, idx) => {
+      const cardsHtml = state.weeklyPlan.map((row, idx) => {
         const lunch = MENUS.find(m => m.id === row.lunchId) || MENUS[0];
-        const dinner = MENUS.find(m => m.id === row.dinnerId) || MENUS[1];
+        const dinner = MENUS.find(m => m.id === row.dinnerId) || MENUS[1] || MENUS[0];
+        const lunchDone = Boolean(row.lunchLogged);
+        const dinnerDone = Boolean(row.dinnerLogged);
+        if (lunchDone) loggedMealsCount++;
+        if (dinnerDone) loggedMealsCount++;
+
         const daySum = (lunch.budget || 0) + (dinner.budget || 0);
         totalWeek += daySum;
         (lunch.ingredients || []).forEach(i => allIngs.push(i));
@@ -1406,22 +1546,67 @@ let MENUS = [];
           <div class="plan-day-card">
             <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:6px;">
               <strong style="color:var(--chili-orange); font-size:16px;">${row.day}</strong>
-              <span style="font-size:13px; font-weight:700; color:var(--text-muted);">รวม ~${daySum}฿</span>
+              <span class="tabular-nums" style="font-size:13px; font-weight:700; color:var(--text-muted);">รวม ~${daySum.toLocaleString()}฿</span>
             </div>
-            <div class="plan-meal-row">
-              <span onclick="openMenuById('${lunch.id}')" style="cursor:pointer; flex:1;">☀️ กลางวัน: <strong>${lunch.name}</strong> (${lunch.budget}฿)</span>
-              <button type="button" onclick="swapPlanMeal(${idx}, 'lunch')" style="border:none; background:#FFF1E6; color:var(--chili-orange); border-radius:999px; padding:3px 10px; font-size:12px; font-weight:700; cursor:pointer;">สลับ</button>
+            <div class="plan-meal-row ${lunchDone ? 'is-logged' : ''}">
+              <span onclick="openMenuById('${lunch.id}')" style="cursor:pointer; flex:1; min-width:0;">☀️ กลางวัน: <strong>${escapeHtml(lunch.name)}</strong> <span class="tabular-nums" style="color:var(--text-muted);">(${lunch.budget}฿)</span></span>
+              <div class="plan-meal-actions">
+                ${lunchDone
+                  ? `<span class="plan-eat-btn logged">✓ กินแล้ว</span>`
+                  : `<button type="button" class="plan-eat-btn" onclick="logPlanMeal(${idx}, 'lunch')">✅ กินแล้ว</button>
+                     <button type="button" class="plan-swap-btn" onclick="swapPlanMeal(${idx}, 'lunch')">สลับ</button>`
+                }
+              </div>
             </div>
-            <div class="plan-meal-row">
-              <span onclick="openMenuById('${dinner.id}')" style="cursor:pointer; flex:1;">🌙 เย็น: <strong>${dinner.name}</strong> (${dinner.budget}฿)</span>
-              <button type="button" onclick="swapPlanMeal(${idx}, 'dinner')" style="border:none; background:#FFF1E6; color:var(--chili-orange); border-radius:999px; padding:3px 10px; font-size:12px; font-weight:700; cursor:pointer;">สลับ</button>
+            <div class="plan-meal-row ${dinnerDone ? 'is-logged' : ''}">
+              <span onclick="openMenuById('${dinner.id}')" style="cursor:pointer; flex:1; min-width:0;">🌙 เย็น: <strong>${escapeHtml(dinner.name)}</strong> <span class="tabular-nums" style="color:var(--text-muted);">(${dinner.budget}฿)</span></span>
+              <div class="plan-meal-actions">
+                ${dinnerDone
+                  ? `<span class="plan-eat-btn logged">✓ กินแล้ว</span>`
+                  : `<button type="button" class="plan-eat-btn" onclick="logPlanMeal(${idx}, 'dinner')">✅ กินแล้ว</button>
+                     <button type="button" class="plan-swap-btn" onclick="swapPlanMeal(${idx}, 'dinner')">สลับ</button>`
+                }
+              </div>
             </div>
           </div>
         `;
       }).join('');
 
+      const progressBanner = loggedMealsCount > 0 ? `
+        <div class="plan-progress-bar">
+          <span class="tabular-nums">🍽️ บันทึกจากตารางแล้ว <strong>${loggedMealsCount}/${totalSlots} มื้อ</strong></span>
+          <button type="button" onclick="switchSavedSubTab('wallet')" class="fridge-wallet-link">ดูยอดในกระเป๋างบ →</button>
+        </div>
+      ` : '';
+
+      box.innerHTML = progressBanner + cardsHtml;
+
       if (badge) badge.textContent = `รวม ~${totalWeek.toLocaleString()}฿`;
       renderGroceryList(allIngs);
+    }
+
+    function logPlanMeal(dayIdx, slot) {
+      const row = state.weeklyPlan[dayIdx];
+      if (!row) return;
+      const loggedKey = slot === 'lunch' ? 'lunchLogged' : 'dinnerLogged';
+      if (row[loggedKey]) return;
+
+      const menuId = slot === 'lunch' ? row.lunchId : row.dinnerId;
+      const menu = MENUS.find(m => m.id === menuId);
+      if (!menu) return;
+
+      row[loggedKey] = true;
+      recordEatenMeal({
+        menuId: menu.id,
+        name: menu.name,
+        amount: Number(menu.budget) || 50,
+        xp: 25,
+        source: 'plan'
+      });
+
+      playWinChime();
+      renderWeeklyPlan();
+      showToast(`บันทึก "${menu.name}" (-${Number(menu.budget || 50).toLocaleString()}฿) +25 XP 📅`);
     }
 
     function swapPlanMeal(dayIdx, slot) {
@@ -1429,8 +1614,13 @@ let MENUS = [];
       if (mains.length === 0) return;
       const pick = mains[Math.floor(Math.random() * mains.length)];
       if (!pick || !state.weeklyPlan[dayIdx]) return;
-      if (slot === 'lunch') state.weeklyPlan[dayIdx].lunchId = pick.id;
-      else state.weeklyPlan[dayIdx].dinnerId = pick.id;
+      if (slot === 'lunch') {
+        state.weeklyPlan[dayIdx].lunchId = pick.id;
+        state.weeklyPlan[dayIdx].lunchLogged = false;
+      } else {
+        state.weeklyPlan[dayIdx].dinnerId = pick.id;
+        state.weeklyPlan[dayIdx].dinnerLogged = false;
+      }
       playTickSound();
       saveState();
       renderWeeklyPlan();
@@ -1561,6 +1751,7 @@ let MENUS = [];
         id: 'EXP-' + Date.now(),
         name,
         amount,
+        source: 'manual',
         date: new Date().toISOString()
       });
       nameEl.value = '';
@@ -1621,21 +1812,36 @@ let MENUS = [];
           <div class="empty-state-card" style="padding:16px 12px;">
             <div class="empty-state-icon">🧾</div>
             <div class="empty-state-title">ยังไม่มีประวัติรายจ่ายค่าอาหาร</div>
-            <div class="empty-state-desc">กรอกยอดด้านบน หรือกด "✅ กินเมนูนี้" หลังสุ่มเพื่อบันทึกค่ากินอัตโนมัติ</div>
+            <div class="empty-state-desc">กรอกยอดด้านบน หรือกดบันทึกจากหน้าสุ่ม โหมดตู้เย็น หรือตาราง 7 วันได้ในคลิกเดียว</div>
             <button type="button" class="empty-state-cta" onclick="switchTab('home')">ไปสุ่มมื้อนี้เลย</button>
           </div>
         `;
       } else {
+        const SOURCE_LABELS = {
+          wheel: { text: '🎯 สุ่มมื้อ', cls: 'source-wheel' },
+          fridge: { text: '🧊 ตู้เย็น', cls: 'source-fridge' },
+          plan: { text: '📅 ตาราง 7 วัน', cls: 'source-plan' },
+          manual: { text: '✍️ จดเอง', cls: 'source-manual' }
+        };
         logEl.innerHTML = state.expenses.slice(0, 25).map(e => {
           const d = new Date(e.date);
           const dateLabel = `${String(d.getDate()).padStart(2, '0')}/${String(d.getMonth() + 1).padStart(2, '0')} ${String(d.getHours()).padStart(2, '0')}:${String(d.getMinutes()).padStart(2, '0')}`;
+          const amt = Number(e.amount) || 0;
+          const srcMeta = SOURCE_LABELS[e.source];
+          const srcBadge = srcMeta ? `<span class="source-badge ${srcMeta.cls}">${srcMeta.text}</span>` : '';
+          const amtHtml = amt === 0
+            ? `<strong class="tabular-nums" style="color:#0D9488; text-align:right;">0฿ (ประหยัด!)</strong>`
+            : `<strong class="tabular-nums" style="color:var(--chili-orange); text-align:right;">-${amt.toLocaleString()}฿</strong>`;
           return `
-            <div style="display:flex; justify-content:space-between; align-items:center; padding:8px 0; border-bottom:1px solid #F3ECE1;">
-              <div>
-                <div style="font-weight:600; color:var(--text-brown);">${e.name}</div>
-                <div class="tabular-nums" style="font-size:12px; color:var(--text-muted);">${dateLabel}</div>
+            <div style="display:flex; justify-content:space-between; align-items:center; gap:8px; padding:8px 0; border-bottom:1px solid #F3ECE1;">
+              <div style="min-width:0;">
+                <div style="font-weight:600; color:var(--text-brown);">${escapeHtml(e.name)}</div>
+                <div class="tabular-nums" style="font-size:12px; color:var(--text-muted); display:flex; align-items:center; gap:6px; flex-wrap:wrap; margin-top:2px;">
+                  <span>${dateLabel}</span>
+                  ${srcBadge}
+                </div>
               </div>
-              <strong class="tabular-nums" style="color:var(--chili-orange); text-align:right;">-${Number(e.amount).toLocaleString()}฿</strong>
+              ${amtHtml}
             </div>
           `;
         }).join('');
