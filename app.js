@@ -328,7 +328,8 @@ let MENUS = [];
       weeklyPlan: [],
       groceryChecked: [],
       customGroceries: [],
-      customMenus: []
+      customMenus: [],
+      weeklyQuestClaims: {}
     };
     if (state.soundOn === undefined) state.soundOn = true;
     if (typeof state.halalMode !== 'boolean') state.halalMode = false;
@@ -346,6 +347,7 @@ let MENUS = [];
     if (!Array.isArray(state.groceryChecked)) state.groceryChecked = [];
     if (!Array.isArray(state.customGroceries)) state.customGroceries = [];
     if (!Array.isArray(state.customMenus)) state.customMenus = [];
+    if (!state.weeklyQuestClaims || typeof state.weeklyQuestClaims !== 'object') state.weeklyQuestClaims = {};
 
     function mergeCustomMenusIntoCatalog() {
       if (!Array.isArray(state.customMenus)) return;
@@ -377,6 +379,12 @@ let MENUS = [];
     let selectedMenu = null;
     let currentPreviewMenu = null;
     let currentSamrubMainId = null;
+    let samrubBudgetCap = 0;
+    let currentSamrubTrio = null;
+    let groupSpinTab = 'rules';
+    let groupRules = { halal: false, nonspicy: false, fast: false, veg: false, maxBudget: 0 };
+    let groupCustomPicks = [];
+    let latestGroupResult = null;
 
 
     // Smart Wikimedia Commons Live API Fallback (Resolves exact dish photo automatically)
@@ -567,10 +575,74 @@ let MENUS = [];
       return '🦉 มื้อดึกเบาๆ อะไรดี?';
     }
 
+    function getTimeAwareActionSpec() {
+      const h = new Date().getHours();
+      if (h >= 5 && h < 11) {
+        return { key: 'morning', label: '⚡ มื้อเช้าด่วน (≤15 น.)' };
+      }
+      if (h >= 11 && h < 15) {
+        return { key: 'lunch', label: '💰 มื้อเที่ยงประหยัด (≤50฿)' };
+      }
+      if (h >= 15 && h < 17) {
+        return { key: 'afternoon', label: '☕ แก้ง่วงยามบ่าย' };
+      }
+      if (h >= 17 && h < 21) {
+        return { key: 'dinner', label: '🥢 สำรับเย็น ≤180฿' };
+      }
+      return { key: 'latenight', label: '🌙 มื้อดึกย่อยง่าย' };
+    }
+
+    function triggerTimeAwareAction() {
+      const spec = getTimeAwareActionSpec();
+      playTickSound();
+      if (spec.key === 'morning') {
+        state.spinSource = 'all';
+        moodFilter = 'all';
+        quickFilter = 'fast15';
+        setWheelMode('main');
+        document.querySelectorAll('#quickFilters .chip-btn').forEach(b => b.classList.toggle('active', b.dataset.filter === 'fast15'));
+        prepareWheelSlices();
+        showToast('คัดเมนูเช้าทำไว ≤15 นาที พร้อมสุ่มแล้ว ⚡');
+      } else if (spec.key === 'lunch') {
+        state.spinSource = 'all';
+        moodFilter = 'all';
+        quickFilter = 'budget50';
+        setWheelMode('main');
+        document.querySelectorAll('#quickFilters .chip-btn').forEach(b => b.classList.toggle('active', b.dataset.filter === 'budget50'));
+        prepareWheelSlices();
+        showToast('คัดมื้อเที่ยงประหยัด ≤50฿ พร้อมสุ่มแล้ว 💰');
+      } else if (spec.key === 'afternoon') {
+        state.spinSource = 'all';
+        quickFilter = 'all';
+        moodFilter = 'all';
+        setWheelMode('drink');
+        showToast('สลับสู่โหมดเครื่องดื่มแก้ง่วงยามบ่ายแล้ว ☕');
+      } else if (spec.key === 'dinner') {
+        const capBtn = document.querySelector('#samrubBudgetGroup .samrub-cap-chip[data-cap="180"]');
+        setSamrubBudgetCap(180, capBtn);
+        const card = document.getElementById('dailySamrubCard');
+        if (card) card.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        showToast('จัดสำรับ 3 ชิ้นมื้อเย็น งบรวม ≤180฿ ให้แล้ว 🥢');
+      } else {
+        state.spinSource = 'all';
+        moodFilter = 'all';
+        quickFilter = 'nonspicy';
+        setWheelMode('main');
+        document.querySelectorAll('#quickFilters .chip-btn').forEach(b => b.classList.toggle('active', b.dataset.filter === 'nonspicy'));
+        prepareWheelSlices();
+        showToast('คัดเมนูมื้อดึกไม่เผ็ด ย่อยง่าย พร้อมสุ่มแล้ว 🌙');
+      }
+    }
+
     function renderHomeContextStrip() {
       const greetEl = document.getElementById('homeMealGreeting');
       const pillEl = document.getElementById('homeBudgetPill');
+      const timeBtn = document.getElementById('homeTimeActionBtn');
       if (greetEl) greetEl.textContent = getMealContextGreeting();
+      if (timeBtn) {
+        const spec = getTimeAwareActionSpec();
+        timeBtn.innerHTML = `<span>${spec.label}</span>`;
+      }
       if (!pillEl) return;
 
       const { remain, pct } = getWeeklyBudgetSummary();
@@ -1918,18 +1990,90 @@ let MENUS = [];
       }, 'image/png');
     }
 
-    function shuffleDailySamrub() {
-      const mains = getAvailableMenus({ allowExotic: false }).filter(m => m.mode === 'main');
-      if (mains.length === 0) return;
-      const others = mains.filter(m => m.id !== currentSamrubMainId);
-      const pool = others.length > 0 ? others : mains;
-      const pick = pool[Math.floor(Math.random() * pool.length)];
-      currentSamrubMainId = pick.id;
+    function setSamrubBudgetCap(cap, btn) {
+      samrubBudgetCap = Number(cap) || 0;
+      document.querySelectorAll('#samrubBudgetGroup .samrub-cap-chip').forEach(b => {
+        b.classList.toggle('active', Number(b.dataset.cap) === samrubBudgetCap);
+      });
+      currentSamrubTrio = null;
       playTickSound();
-      renderDailySamrub();
+      renderDailySamrub(true);
     }
 
-    function renderDailySamrub() {
+    function pickSamrubTrio(budgetCap, forceRandom = false) {
+      const avail = getAvailableMenus({ allowExotic: false });
+      const mains = avail.filter(m => m.mode === 'main');
+      const sides = mains.filter(m => Array.isArray(m.tags) && m.tags.includes('กับข้าว'));
+      const sweets = avail.filter(m => m.mode === 'dessert' || m.mode === 'drink');
+      if (mains.length === 0 || sweets.length === 0) return null;
+
+      if (!budgetCap || budgetCap <= 0) {
+        let mainSample = (!forceRandom && currentSamrubMainId)
+          ? mains.find(m => m.id === currentSamrubMainId)
+          : null;
+        if (!mainSample) {
+          if (!forceRandom && !currentSamrubMainId) {
+            mainSample = mains.find(m => m.id === 'TH-C02') || mains[0];
+          } else {
+            const others = mains.filter(m => m.id !== currentSamrubMainId);
+            const pool = others.length > 0 ? others : mains;
+            mainSample = pool[Math.floor(Math.random() * pool.length)];
+          }
+        }
+        const pairSample = resolveMenuPair(mainSample, 'main');
+        const sweetSample = resolveMenuPair(mainSample, 'sweet');
+        return { main: mainSample, side: pairSample, sweet: sweetSample, logged: false };
+      }
+
+      // สุ่มหาชุด 3 ชิ้น (จานหลัก + กับข้าวไม่ซ้ำโปรตีน + ของหวาน/เครื่องดื่ม) ที่ราคารวม <= budgetCap
+      const shuffledMains = [...mains].sort(() => 0.5 - Math.random());
+      const shuffledSides = [...(sides.length > 0 ? sides : mains)].sort(() => 0.5 - Math.random());
+      const shuffledSweets = [...sweets].sort(() => 0.5 - Math.random());
+
+      const minSweetBudget = Math.min(...sweets.map(s => Number(s.budget) || 0));
+      for (const m of shuffledMains) {
+        if (forceRandom && currentSamrubMainId && m.id === currentSamrubMainId && shuffledMains.length > 1) continue;
+        const mCost = Number(m.budget) || 0;
+        if (mCost + minSweetBudget >= budgetCap) continue;
+        for (const s of shuffledSides) {
+          if (s.id === m.id || s.protein === m.protein) continue;
+          const pairCost = mCost + (Number(s.budget) || 0);
+          if (pairCost + minSweetBudget > budgetCap) continue;
+          const validSweet = shuffledSweets.find(sw => pairCost + (Number(sw.budget) || 0) <= budgetCap);
+          if (validSweet) {
+            return { main: m, side: s, sweet: validSweet, logged: false };
+          }
+        }
+      }
+      return null;
+    }
+
+    function shuffleDailySamrub() {
+      playTickSound();
+      renderDailySamrub(true);
+    }
+
+    function confirmAteSamrubTrio(btnEl) {
+      if (!currentSamrubTrio || currentSamrubTrio.logged) return;
+      const { main, side, sweet } = currentSamrubTrio;
+      const total = (Number(main.budget) || 0) + (Number(side.budget) || 0) + (Number(sweet.budget) || 0);
+      currentSamrubTrio.logged = true;
+      recordEatenMeal({
+        menuId: main.id,
+        name: `🥢 สำรับ: ${main.name} + ${side.name}`,
+        amount: total,
+        xp: 40,
+        source: 'wheel'
+      });
+      playWinChime();
+      if (btnEl) {
+        btnEl.disabled = true;
+        btnEl.textContent = '✓ บันทึกสำรับแล้ว';
+      }
+      showToast(`บันทึกสำรับ 3 ชิ้น (~${total.toLocaleString()}฿) +40 XP 🥢`);
+    }
+
+    function renderDailySamrub(forceRandom = false) {
       const box = document.getElementById('dailySamrubBox');
       if (!box) return;
       if (MENUS.length === 0) {
@@ -1938,20 +2082,38 @@ let MENUS = [];
           : `<div style="font-size:14px; color:#FDE68A;">ยังโหลดข้อมูลสำรับไม่สำเร็จ กด "ลองใหม่" ด้านบนเพื่อดึงเมนูครับ</div>`;
         return;
       }
-      const avail = getAvailableMenus({ allowExotic: false });
-      let mainSample = currentSamrubMainId ? avail.find(m => m.id === currentSamrubMainId) : null;
-      if (!mainSample) {
-        mainSample = avail.find(m => m.id === 'TH-C02') || avail.find(m => m.mode === 'main') || avail[0] || MENUS[0];
-        currentSamrubMainId = mainSample ? mainSample.id : null;
+
+      const availIds = new Set(getAvailableMenus({ allowExotic: false }).map(m => m.id));
+      const existingValid = !forceRandom && currentSamrubTrio &&
+        availIds.has(currentSamrubTrio.main.id) &&
+        availIds.has(currentSamrubTrio.side.id) &&
+        availIds.has(currentSamrubTrio.sweet.id) &&
+        (samrubBudgetCap === 0 || ((currentSamrubTrio.main.budget || 0) + (currentSamrubTrio.side.budget || 0) + (currentSamrubTrio.sweet.budget || 0)) <= samrubBudgetCap);
+
+      if (!existingValid) {
+        currentSamrubTrio = pickSamrubTrio(samrubBudgetCap, forceRandom);
       }
-      const pairSample = resolveMenuPair(mainSample, 'main');
-      const sweetSample = resolveMenuPair(mainSample, 'sweet');
+
+      if (!currentSamrubTrio) {
+        box.innerHTML = `
+          <div style="background:rgba(255,255,255,0.1); border-radius:16px; padding:14px; text-align:center;">
+            <div style="font-size:14px; font-weight:700; color:#FDE68A; margin-bottom:4px;">ไม่พบสำรับ 3 ชิ้นในงบ ≤${samrubBudgetCap}฿</div>
+            <div style="font-size:12px; opacity:0.9; margin-bottom:8px;">ลองขยับเพดานงบเป็น ≤180฿ หรือไม่จำกัดดูครับ</div>
+            <button type="button" onclick="setSamrubBudgetCap(180)" class="samrub-open-btn">ลองงบ ≤180฿</button>
+          </div>
+        `;
+        return;
+      }
+
+      const { main: mainSample, side: pairSample, sweet: sweetSample, logged } = currentSamrubTrio;
+      currentSamrubMainId = mainSample.id;
       const total = (mainSample.budget || 0) + (pairSample.budget || 0) + (sweetSample.budget || 0);
+      const sweetRole = sweetSample.category === 'เครื่องดื่ม' ? '🥤 เครื่องดื่ม' : '🍨 ของหวาน';
 
       const items = [
         { role: '🍚 จานหลัก', dish: mainSample },
         { role: '🥘 คู่กับข้าว', dish: pairSample },
-        { role: '🧋 ตบท้าย', dish: sweetSample }
+        { role: sweetRole, dish: sweetSample }
       ];
 
       box.innerHTML = `
@@ -1961,14 +2123,17 @@ let MENUS = [];
               <img src="${it.dish.image_url}" alt="${escapeHtml(it.dish.name)}" class="samrub-mini-img" onerror="resolveWikiImage(this, '${it.dish.id}')" />
               <div class="samrub-mini-role">${it.role}</div>
               <div class="samrub-mini-name">${escapeHtml(it.dish.name)}</div>
+              <div class="samrub-mini-price tabular-nums">~${it.dish.budget}฿</div>
             </button>
           `).join('')}
         </div>
         <div class="samrub-footer-row">
           <div class="tabular-nums" style="font-size:13px; color:#FDE68A; font-weight:600;">
-            💰 รวมทั้งสำรับ ~<strong style="color:#FFFFFF; font-size:15px;">${total.toLocaleString()}฿</strong>
+            💰 รวม ~<strong style="color:#FFFFFF; font-size:15px;">${total.toLocaleString()}฿</strong>${samrubBudgetCap > 0 ? ' <span class="samrub-in-budget">✓ ในงบ</span>' : ''}
           </div>
-          <button type="button" onclick="openMenuById('${mainSample.id}')" class="samrub-open-btn">ดูชุดนี้ →</button>
+          <div style="display:flex; gap:6px; align-items:center;">
+            <button type="button" onclick="confirmAteSamrubTrio(this)" class="samrub-eat-btn" ${logged ? 'disabled' : ''}>${logged ? '✓ กินแล้ว' : '✅ กินชุดนี้ (+40 XP)'}</button>
+          </div>
         </div>
       `;
     }
@@ -2232,6 +2397,7 @@ let MENUS = [];
         daysHtml += `<div class="day-box ${done ? 'done' : ''}"><div>${d === 7 ? '🎁' : '🍱'}</div><div>วันที่ ${d}</div></div>`;
       }
       document.getElementById('streakDaysGrid').innerHTML = daysHtml;
+      renderWeeklyQuests();
       renderHomeContextStrip();
     }
 
@@ -3369,6 +3535,466 @@ let MENUS = [];
       updateSpinSourceUI();
       prepareWheelSlices();
       showToast(`จัดถาดสุ่มเอง ${state.customSpinIds.length} รายการเรียบร้อย! 🎯`);
+    }
+
+
+    // --- M2-3: WEEKLY FOOD QUESTS & BADGES (ภารกิจนักชิมประจำสัปดาห์) ---
+    function getCurrentWeekStartDate() {
+      const now = new Date();
+      const d = new Date(now);
+      const day = d.getDay();
+      const diff = d.getDate() - day + (day === 0 ? -6 : 1);
+      d.setDate(diff);
+      d.setHours(0, 0, 0, 0);
+      return d;
+    }
+
+    function getCurrentWeekKey() {
+      const d = getCurrentWeekStartDate();
+      const y = d.getFullYear();
+      const m = String(d.getMonth() + 1).padStart(2, '0');
+      const day = String(d.getDate()).padStart(2, '0');
+      return `${y}-${m}-${day}`;
+    }
+
+    function getWeeklyQuestsList() {
+      const weekStart = getCurrentWeekStartDate();
+      const budgetMealsThisWeek = (state.expenses || []).filter(e => {
+        const dt = new Date(e.date);
+        const amt = Number(e.amount) || 0;
+        return dt >= weekStart && amt <= 50;
+      }).length;
+
+      const stampCount = Array.isArray(state.stamps) ? state.stamps.length : 0;
+
+      const planLoggedCount = (state.weeklyPlan || []).reduce((acc, row) => {
+        return acc + (row.lunchLogged ? 1 : 0) + (row.dinnerLogged ? 1 : 0);
+      }, 0);
+
+      const exoticCount = Number(state.exoticEatenCount) || 0;
+      const favCount = Array.isArray(state.favorites) ? state.favorites.length : 0;
+      const explorerDone = exoticCount >= 1 || favCount >= 3;
+
+      return [
+        {
+          id: 'q_budget',
+          icon: '💰',
+          title: 'สายประหยัดประจำสัปดาห์',
+          desc: 'บันทึกมื้ออาหารงบ ≤50฿ หรือเมนูตู้เย็น 0฿ ครบ 3 มื้อในสัปดาห์นี้',
+          progress: Math.min(3, budgetMealsThisWeek),
+          target: 3,
+          xp: 35
+        },
+        {
+          id: 'q_passport',
+          icon: '✈️',
+          title: 'นักเดินทางสายชิม',
+          desc: 'สะสมตราประทับพาสปอร์ตนานาชาติอย่างน้อย 3 ประเทศ',
+          progress: Math.min(3, stampCount),
+          target: 3,
+          xp: 40
+        },
+        {
+          id: 'q_planner',
+          icon: '📅',
+          title: 'นักวางแผนมือโปร',
+          desc: 'จัดตารางมื้อ 7 วัน และกดบันทึกกินแล้วอย่างน้อย 2 มื้อ',
+          progress: Math.min(2, planLoggedCount),
+          target: 2,
+          xp: 45
+        },
+        {
+          id: 'q_explorer',
+          icon: '🌟',
+          title: 'ผู้กล้า / นักสะสมเมนูโปรด',
+          desc: 'พิชิตเมนูแปลก 1 จาน หรือบันทึกเมนูโปรดครบ 3 เมนู',
+          progress: explorerDone ? 3 : Math.min(3, favCount),
+          target: 3,
+          xp: 50
+        }
+      ];
+    }
+
+    function renderWeeklyQuests() {
+      const box = document.getElementById('weeklyQuestsList');
+      const pill = document.getElementById('weeklyQuestSummaryPill');
+      if (!box) return;
+
+      const weekKey = getCurrentWeekKey();
+      const claimed = Array.isArray(state.weeklyQuestClaims?.[weekKey]) ? state.weeklyQuestClaims[weekKey] : [];
+      const quests = getWeeklyQuestsList();
+      const doneCount = quests.filter(q => claimed.includes(q.id)).length;
+
+      if (pill) {
+        pill.textContent = `${doneCount}/${quests.length} สำเร็จ`;
+        pill.classList.toggle('all-done', doneCount === quests.length);
+      }
+
+      const celebBanner = doneCount === quests.length ? `
+        <div class="quest-all-done-banner">
+          🎉 สุดยอด! คุณเคลียร์ภารกิจประจำสัปดาห์ครบทั้ง ${quests.length} ข้อแล้ว
+        </div>
+      ` : '';
+
+      box.innerHTML = celebBanner + quests.map(q => {
+        const isClaimed = claimed.includes(q.id);
+        const canClaim = !isClaimed && q.progress >= q.target;
+        const pct = Math.min(100, Math.round((q.progress / q.target) * 100));
+        let actionHtml = '';
+        if (isClaimed) {
+          actionHtml = `<span class="quest-btn claimed">✓ รับแล้ว</span>`;
+        } else if (canClaim) {
+          actionHtml = `<button type="button" class="quest-btn claimable" onclick="claimWeeklyQuest('${q.id}', ${q.xp})">🎁 รับ +${q.xp} XP</button>`;
+        } else {
+          actionHtml = `<span class="quest-btn pending tabular-nums">${q.progress}/${q.target}</span>`;
+        }
+        return `
+          <div class="quest-item-row ${isClaimed ? 'is-claimed' : (canClaim ? 'is-ready' : '')}">
+            <div class="quest-icon-box">${q.icon}</div>
+            <div style="flex:1; min-width:0;">
+              <div style="font-size:14px; font-weight:700; color:var(--text-brown);">${q.title}</div>
+              <div style="font-size:12px; color:var(--text-muted); line-height:1.3;">${q.desc}</div>
+              <div class="quest-bar-track">
+                <div class="quest-bar-fill" style="width:${isClaimed ? 100 : pct}%;"></div>
+              </div>
+            </div>
+            ${actionHtml}
+          </div>
+        `;
+      }).join('');
+    }
+
+    function claimWeeklyQuest(questId, rewardXp) {
+      const weekKey = getCurrentWeekKey();
+      if (!state.weeklyQuestClaims || typeof state.weeklyQuestClaims !== 'object') {
+        state.weeklyQuestClaims = {};
+      }
+      if (!Array.isArray(state.weeklyQuestClaims[weekKey])) {
+        state.weeklyQuestClaims[weekKey] = [];
+      }
+      if (state.weeklyQuestClaims[weekKey].includes(questId)) return;
+
+      const quest = getWeeklyQuestsList().find(q => q.id === questId);
+      if (!quest || quest.progress < quest.target) return;
+
+      state.weeklyQuestClaims[weekKey].push(questId);
+      addXp(Number(rewardXp) || 35);
+      playWinChime();
+      showToast(`🏅 เคลียร์ภารกิจ "${quest.title}" สำเร็จ! รับ +${rewardXp} XP`);
+    }
+
+    // --- M2-1: GROUP LUNCH & OFFICE SPIN MODAL (วงล้อกลุ่มเพื่อน / ออฟฟิศ) ---
+    function openGroupSpinModal() {
+      groupRules.halal = Boolean(state.halalMode);
+      const modal = document.getElementById('groupSpinModal');
+      if (!modal) return;
+      syncGroupRuleChipsUI();
+      updateGroupRuleHint();
+      renderGroupPicksList();
+      const resBox = document.getElementById('groupSpinResultBox');
+      if (resBox && !latestGroupResult) resBox.style.display = 'none';
+      modal.classList.add('open');
+    }
+
+    function closeGroupSpinModal(e) {
+      if (!e || e.target.id === 'groupSpinModal') {
+        const modal = document.getElementById('groupSpinModal');
+        if (modal) modal.classList.remove('open');
+      }
+    }
+
+    function switchGroupSpinTab(tab) {
+      groupSpinTab = tab === 'picks' ? 'picks' : 'rules';
+      const btnRules = document.getElementById('groupTabRulesBtn');
+      const btnPicks = document.getElementById('groupTabPicksBtn');
+      const viewRules = document.getElementById('groupView-rules');
+      const viewPicks = document.getElementById('groupView-picks');
+      if (btnRules) btnRules.classList.toggle('active', groupSpinTab === 'rules');
+      if (btnPicks) btnPicks.classList.toggle('active', groupSpinTab === 'picks');
+      if (viewRules) viewRules.style.display = groupSpinTab === 'rules' ? 'block' : 'none';
+      if (viewPicks) viewPicks.style.display = groupSpinTab === 'picks' ? 'block' : 'none';
+      if (groupSpinTab === 'picks') {
+        renderGroupPicksList();
+        document.getElementById('groupPickInput')?.focus();
+      } else {
+        updateGroupRuleHint();
+      }
+    }
+
+    function syncGroupRuleChipsUI() {
+      document.getElementById('grpRuleHalal')?.classList.toggle('active', groupRules.halal);
+      document.getElementById('grpRuleNonSpicy')?.classList.toggle('active', groupRules.nonspicy);
+      document.getElementById('grpRuleFast')?.classList.toggle('active', groupRules.fast);
+      document.getElementById('grpRuleVeg')?.classList.toggle('active', groupRules.veg);
+      document.querySelectorAll('#groupBudgetChips .drawer-chip').forEach(b => {
+        b.classList.toggle('active', Number(b.dataset.gcap) === Number(groupRules.maxBudget));
+      });
+    }
+
+    function toggleGroupRule(ruleKey) {
+      groupRules[ruleKey] = !groupRules[ruleKey];
+      syncGroupRuleChipsUI();
+      updateGroupRuleHint();
+    }
+
+    function setGroupBudgetCap(cap, btn) {
+      groupRules.maxBudget = Number(cap) || 0;
+      document.querySelectorAll('#groupBudgetChips .drawer-chip').forEach(b => b.classList.remove('active'));
+      if (btn) btn.classList.add('active');
+      updateGroupRuleHint();
+    }
+
+    function getGroupRulePool() {
+      let pool = MENUS.filter(m => m.mode === 'main' && !isMenuExotic(m));
+      if (groupRules.halal) pool = pool.filter(isMenuHalal);
+      if (groupRules.nonspicy) pool = pool.filter(m => !m.is_spicy);
+      if (groupRules.fast) pool = pool.filter(m => (Number(m.prep_time) || 99) <= 15);
+      if (groupRules.veg) pool = pool.filter(m => m.protein === 'มังสวิรัติ' || (Array.isArray(m.tags) && m.tags.includes('มังสวิรัติ')));
+      if (groupRules.maxBudget > 0) pool = pool.filter(m => (Number(m.budget) || 999) <= groupRules.maxBudget);
+      return pool;
+    }
+
+    function updateGroupRuleHint() {
+      const hint = document.getElementById('groupRulePoolHint');
+      const btn = document.getElementById('groupRuleSpinBtn');
+      const pool = getGroupRulePool();
+      if (hint) {
+        hint.textContent = pool.length > 0
+          ? `✅ พบ ${pool.length} เมนูที่ทุกคนในโต๊ะกินได้ร่วมกัน`
+          : '⚠️ เงื่อนไขเข้มเกินไป (พบ 0 เมนู) ลองปลดบางเงื่อนไขหรือเพิ่มงบต่อคนครับ';
+        hint.classList.toggle('empty', pool.length === 0);
+      }
+      if (btn) btn.disabled = pool.length === 0;
+    }
+
+    function runGroupRuleSpin() {
+      const pool = getGroupRulePool();
+      if (pool.length === 0) {
+        showToast('ไม่พบเมนูที่ตรงทุกเงื่อนไข ลองปรับเงื่อนไขก่อนครับ');
+        return;
+      }
+      const btn = document.getElementById('groupRuleSpinBtn');
+      if (btn) {
+        btn.disabled = true;
+        btn.innerHTML = '<span class="btn-spinner"></span> กำลังสุ่มเมนูกลาง...';
+      }
+      getAudioCtx();
+      playTickSound();
+
+      setTimeout(() => {
+        const winDish = pool[Math.floor(Math.random() * pool.length)];
+        const activeRuleLabels = [];
+        if (groupRules.halal) activeRuleLabels.push('☪️ ฮาลาล');
+        if (groupRules.nonspicy) activeRuleLabels.push('🌿 ไม่เผ็ด');
+        if (groupRules.fast) activeRuleLabels.push('⚡ ≤15 น.');
+        if (groupRules.veg) activeRuleLabels.push('🥬 มังสวิรัติ');
+        if (groupRules.maxBudget > 0) activeRuleLabels.push(`💰 ≤${groupRules.maxBudget}฿`);
+
+        latestGroupResult = {
+          mode: 'rules',
+          title: winDish.name,
+          subtitle: activeRuleLabels.length ? activeRuleLabels.join(' • ') : 'รวมมิตรทั้งโต๊ะ',
+          dish: winDish
+        };
+
+        if (btn) {
+          btn.disabled = false;
+          btn.textContent = '🔄 สุ่มเมนูกลางอีกรอบ!';
+        }
+        playWinChime();
+        if (navigator.vibrate) navigator.vibrate([50, 30, 80]);
+        renderGroupSpinResult();
+      }, 480);
+    }
+
+    function addGroupPick() {
+      const inp = document.getElementById('groupPickInput');
+      const raw = (inp ? inp.value : '').trim();
+      clearFieldError('groupPickInput', 'groupPickError');
+      if (!raw) {
+        setFieldError('groupPickInput', 'groupPickError', 'กรุณาพิมพ์ชื่อเมนูหรือร้านที่เพื่อนอยากกินก่อนกดเพิ่ม');
+        return;
+      }
+      const pieces = raw.split(/[,\n]+/).map(s => s.trim()).filter(Boolean);
+      for (const p of pieces) {
+        if (groupCustomPicks.length >= 8) {
+          setFieldError('groupPickInput', 'groupPickError', 'ใส่ได้สูงสุด 8 ตัวเลือกต่อรอบครับ');
+          break;
+        }
+        if (!groupCustomPicks.includes(p)) {
+          groupCustomPicks.push(p);
+        }
+      }
+      if (inp) inp.value = '';
+      renderGroupPicksList();
+    }
+
+    function removeGroupPick(idx) {
+      groupCustomPicks.splice(idx, 1);
+      renderGroupPicksList();
+    }
+
+    function quickFillGroupPicks() {
+      const pool = getAvailableMenus({ allowExotic: false }).filter(m => m.mode === 'main');
+      const shuffled = [...pool].sort(() => 0.5 - Math.random());
+      const needed = Math.max(0, 5 - groupCustomPicks.length);
+      for (const m of shuffled) {
+        if (groupCustomPicks.length >= 5) break;
+        if (!groupCustomPicks.includes(m.name)) groupCustomPicks.push(m.name);
+      }
+      clearFieldError('groupPickInput', 'groupPickError');
+      renderGroupPicksList();
+      if (needed > 0) showToast('เติมไอเดียเมนูลงวงล้อกลุ่มให้แล้ว 🎲');
+    }
+
+    function clearGroupPicks() {
+      groupCustomPicks = [];
+      clearFieldError('groupPickInput', 'groupPickError');
+      renderGroupPicksList();
+    }
+
+    function renderGroupPicksList() {
+      const box = document.getElementById('groupPicksChips');
+      if (!box) return;
+      if (groupCustomPicks.length === 0) {
+        box.innerHTML = `<div style="font-size:13px; color:var(--text-muted); text-align:center; padding:10px 4px;">ยังไม่มีตัวเลือก พิมพ์เมนูที่เพื่อนโหวตด้านบน หรือกด "🎲 เติมไอเดียเมนูด่วน" ได้เลยครับ</div>`;
+        return;
+      }
+      box.innerHTML = groupCustomPicks.map((name, idx) => `
+        <span class="group-pick-chip">
+          <span>${idx + 1}. ${escapeHtml(name)}</span>
+          <button type="button" onclick="removeGroupPick(${idx})" aria-label="ลบตัวเลือก">✕</button>
+        </span>
+      `).join('');
+    }
+
+    function runGroupPickSpin() {
+      clearFieldError('groupPickInput', 'groupPickError');
+      if (groupCustomPicks.length < 2) {
+        setFieldError('groupPickInput', 'groupPickError', 'กรุณาเพิ่มตัวเลือกอย่างน้อย 2 รายการขึ้นไปก่อนสุ่มตัดสินครับ');
+        return;
+      }
+      const btn = document.getElementById('groupPickSpinBtn');
+      if (btn) {
+        btn.disabled = true;
+        btn.innerHTML = '<span class="btn-spinner"></span> กำลังหมุนตัดสิน...';
+      }
+      getAudioCtx();
+      playTickSound();
+
+      setTimeout(() => {
+        const winnerName = groupCustomPicks[Math.floor(Math.random() * groupCustomPicks.length)];
+        const matchedDish = MENUS.find(m => m.name === winnerName) || null;
+        latestGroupResult = {
+          mode: 'picks',
+          title: winnerName,
+          subtitle: `สุ่มตัดสินจาก ${groupCustomPicks.length} ตัวเลือกของกลุ่ม`,
+          dish: matchedDish
+        };
+        if (btn) {
+          btn.disabled = false;
+          btn.textContent = '🔄 สุ่มตัดสินใหม่!';
+        }
+        playWinChime();
+        if (navigator.vibrate) navigator.vibrate([50, 30, 80]);
+        renderGroupSpinResult();
+      }, 520);
+    }
+
+    function renderGroupSpinResult() {
+      const box = document.getElementById('groupSpinResultBox');
+      if (!box || !latestGroupResult) return;
+      const { title, subtitle, dish } = latestGroupResult;
+      const dishDetailHtml = dish ? `
+        <div class="party-dish-row" onclick="openMenuById('${dish.id}')" style="margin-top:8px;">
+          <img src="${dish.image_url}" alt="${escapeHtml(dish.name)}" class="party-dish-thumb" onerror="resolveWikiImage(this, '${dish.id}')" />
+          <div style="flex:1; min-width:0; text-align:left;">
+            <div style="font-size:15px; font-weight:700; color:var(--text-brown);">${escapeHtml(dish.name)}</div>
+            <div class="tabular-nums" style="font-size:12px; color:var(--text-muted); margin-top:2px;">💰 ~${dish.budget}฿ • ⏱️ ${dish.prep_time} น. • ${escapeHtml(dish.region)}</div>
+            <div style="font-size:11px; color:var(--chili-orange); font-weight:700; margin-top:3px;">แตะเพื่อดูรายละเอียด & หาร้านใกล้ฉัน →</div>
+          </div>
+        </div>
+      ` : '';
+
+      box.style.display = 'block';
+      box.innerHTML = `
+        <div class="group-winner-tag">🎉 มติเอกฉันท์จากวงล้อกลุ่ม!</div>
+        <div class="group-winner-title">${escapeHtml(title)}</div>
+        <div style="font-size:12px; color:var(--text-muted); margin-bottom:6px;">${escapeHtml(subtitle)}</div>
+        ${dishDetailHtml}
+        <button type="button" onclick="shareGroupSpinCard()" class="btn-action btn-line" style="min-height:44px; font-size:14px; margin-top:10px;">
+          📤 แชร์ผลโหวตเข้ากลุ่ม LINE
+        </button>
+        <div id="groupSharePreview" class="share-preview-container" style="margin-top:10px;">
+          <div style="font-size:13px; font-weight:700; color:#06C755; margin-bottom:6px;">📸 แตะค้างที่รูปเพื่อบันทึก หรือส่งเข้าแชตกลุ่ม LINE ด้านล่าง</div>
+          <img id="groupShareImg" src="" alt="การ์ดผลโหวตกลุ่ม TooKMUE" style="width:100%; max-width:240px; border-radius:14px;" />
+          <a id="groupLineLink" href="#" target="_blank" rel="noopener" class="btn-action btn-line" style="margin-top:8px; min-height:42px; font-size:14px;">💬 ส่งมติเข้าแชตกลุ่ม LINE</a>
+        </div>
+      `;
+      box.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
+
+    function shareGroupSpinCard() {
+      if (!latestGroupResult) return;
+      const { title, subtitle, dish } = latestGroupResult;
+      const canvas = document.getElementById('shareCanvas');
+      const ctx = canvas.getContext('2d');
+
+      ctx.fillStyle = '#1E3A8A';
+      ctx.fillRect(0, 0, 720, 900);
+
+      ctx.fillStyle = '#FFC53D';
+      ctx.font = 'bold 36px "Prompt", sans-serif';
+      ctx.textAlign = 'center';
+      ctx.fillText('👥 มติวงล้อกลุ่มเพื่อน • TooKMUE', 360, 92);
+
+      ctx.fillStyle = '#FFFFFF';
+      roundRect(ctx, 48, 136, 624, 600, 36);
+      ctx.fill();
+
+      ctx.fillStyle = '#2563EB';
+      ctx.font = 'bold 26px "Prompt", sans-serif';
+      ctx.fillText('🎯 มื้อนี้ทั้งโต๊ะตกลงกิน...', 360, 210);
+
+      ctx.fillStyle = '#C2410C';
+      ctx.font = 'bold 46px "Prompt", sans-serif';
+      ctx.textAlign = 'left';
+      wrapCanvasText(ctx, title, 88, 295, 544, 60);
+
+      ctx.fillStyle = '#475569';
+      ctx.font = '600 24px "Noto Sans Thai", sans-serif';
+      wrapCanvasText(ctx, `เงื่อนไข: ${subtitle}`, 88, 485, 544, 38);
+
+      if (dish) {
+        ctx.fillStyle = '#0F766E';
+        ctx.font = 'bold 26px "Prompt", sans-serif';
+        ctx.fillText(`💰 งบเฉลี่ย ~${dish.budget} บาท/คน  |  ⏱️ ${dish.prep_time} นาที`, 88, 620);
+      }
+
+      ctx.fillStyle = '#DBEAFE';
+      ctx.font = 'bold 24px "Prompt", sans-serif';
+      ctx.textAlign = 'center';
+      ctx.fillText('หมดปัญหา "กินไรดี?" ทั้งออฟฟิศที่ tookmue.pages.dev', 360, 822);
+
+      const shareText = `👥 มติวงล้อกลุ่ม TooKMUE ออกแล้ว! มื้อนี้กิน "${title}" (${subtitle}) 🍽️ มาสุ่มกับเพื่อนฟรีที่ https://tookmue.pages.dev/`;
+      const dataUrl = canvas.toDataURL('image/png');
+
+      const preview = document.getElementById('groupSharePreview');
+      const imgEl = document.getElementById('groupShareImg');
+      const linkEl = document.getElementById('groupLineLink');
+      if (imgEl) imgEl.src = dataUrl;
+      if (linkEl) linkEl.href = `https://line.me/R/share?text=${encodeURIComponent(shareText)}`;
+      if (preview) preview.classList.add('open');
+
+      if (!/Line/i.test(navigator.userAgent)) {
+        const a = document.createElement('a');
+        a.download = `TooKMUE_GroupSpin.png`;
+        a.href = dataUrl;
+        a.click();
+        if (navigator.clipboard) navigator.clipboard.writeText(shareText).catch(() => {});
+      }
+      addXp(10);
+      showToast('สร้างการ์ดผลโหวตกลุ่มแล้ว! (+10 XP) 👥');
     }
 
     initApp();

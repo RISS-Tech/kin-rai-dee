@@ -1,4 +1,4 @@
-const CACHE_NAME = 'tookmue-v19-master-m1';
+const CACHE_NAME = 'tookmue-v20-master-m2';
 const IMAGE_CACHE_NAME = 'tookmue-images-v1';
 
 const APP_SHELL = [

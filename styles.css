@@ -2454,3 +2454,352 @@
       flex-shrink: 0;
       background: #FDE68A;
     }
+
+    /* --- Master Blueprint Phase M2: Time-Aware Quick Actions, Group Spin, Samrub Budget & Weekly Quests --- */
+    .quick-action-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 7px;
+      margin-bottom: 10px;
+    }
+
+    .time-quick-btn,
+    .group-quick-btn {
+      min-height: 40px;
+      border-radius: 16px;
+      border: 1.5px solid #F3E5D5;
+      background: #FFFFFF;
+      color: var(--text-brown);
+      font-size: 12.5px;
+      font-weight: 700;
+      padding: 6px 10px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 5px;
+      cursor: pointer;
+      box-shadow: 0 3px 10px rgba(58, 43, 34, 0.05);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      transition: transform 0.15s ease, background 0.15s ease;
+    }
+
+    .time-quick-btn {
+      background: linear-gradient(135deg, #FFFBEB 0%, #FEF3C7 100%);
+      border-color: #FCD34D;
+      color: #92400E;
+    }
+
+    .group-quick-btn {
+      background: linear-gradient(135deg, #EFF6FF 0%, #DBEAFE 100%);
+      border-color: #93C5FD;
+      color: #1E3A8A;
+    }
+
+    .time-quick-btn:active,
+    .group-quick-btn:active {
+      transform: scale(0.96);
+    }
+
+    /* Samrub Budget Selector */
+    .samrub-budget-bar {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      margin-bottom: 10px;
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
+
+    .samrub-budget-bar::-webkit-scrollbar {
+      display: none;
+    }
+
+    .samrub-budget-label {
+      font-size: 12px;
+      font-weight: 700;
+      color: #A7F3D0;
+      white-space: nowrap;
+      margin-right: 2px;
+    }
+
+    .samrub-cap-chip {
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      background: rgba(255, 255, 255, 0.1);
+      color: #FFFFFF;
+      border-radius: 999px;
+      padding: 3px 10px;
+      font-size: 12px;
+      font-weight: 700;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+
+    .samrub-cap-chip.active {
+      background: var(--turmeric-yellow);
+      border-color: var(--turmeric-yellow);
+      color: var(--text-brown);
+    }
+
+    .samrub-mini-price {
+      font-size: 11px;
+      font-weight: 600;
+      color: #FDE68A;
+      margin-top: 2px;
+    }
+
+    .samrub-in-budget {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 700;
+      background: #16A34A;
+      color: #FFFFFF;
+      padding: 1px 7px;
+      border-radius: 999px;
+      margin-left: 4px;
+    }
+
+    .samrub-eat-btn {
+      border: none;
+      background: var(--turmeric-yellow);
+      color: var(--text-brown);
+      border-radius: 999px;
+      padding: 7px 14px;
+      font-size: 12.5px;
+      font-weight: 700;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+
+    .samrub-eat-btn:disabled {
+      background: #DCFCE7;
+      color: #166534;
+      cursor: default;
+    }
+
+    /* Group Lunch & Office Spin Modal */
+    .group-sub-tabs {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6px;
+      background: #EFE6D8;
+      padding: 4px;
+      border-radius: 18px;
+      margin-bottom: 12px;
+      box-shadow: var(--shadow-inset);
+    }
+
+    .group-sub-btn {
+      border: none;
+      border-radius: 14px;
+      padding: 8px 6px;
+      font-size: 13px;
+      font-weight: 700;
+      background: transparent;
+      color: var(--text-muted);
+      cursor: pointer;
+    }
+
+    .group-sub-btn.active {
+      background: #FFFFFF;
+      color: #1D4ED8;
+      box-shadow: 0 3px 8px rgba(58, 43, 34, 0.08);
+    }
+
+    .group-pool-hint {
+      font-size: 13px;
+      font-weight: 700;
+      color: #166534;
+      background: #DCFCE7;
+      border: 1px solid #86EFAC;
+      border-radius: 14px;
+      padding: 8px 12px;
+      margin-bottom: 10px;
+      text-align: center;
+    }
+
+    .group-pool-hint.empty {
+      color: #991B1B;
+      background: #FEF2F2;
+      border-color: #FCA5A5;
+    }
+
+    .group-picks-box {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      padding: 10px;
+      border-radius: 16px;
+      background: #FFFAF3;
+      border: 1.5px dashed #E5D5C3;
+      min-height: 54px;
+    }
+
+    .group-pick-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: #FFFFFF;
+      border: 1.5px solid #93C5FD;
+      color: #1E3A8A;
+      border-radius: 999px;
+      padding: 4px 10px;
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .group-pick-chip button {
+      border: none;
+      background: #EFF6FF;
+      color: #1D4ED8;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      font-size: 11px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0;
+    }
+
+    .group-result-box {
+      margin-top: 14px;
+      background: #FFFFFF;
+      border-radius: 22px;
+      padding: 14px;
+      border: 2px solid #93C5FD;
+      text-align: center;
+      box-shadow: var(--shadow-soft);
+      animation: fadeIn 0.25s ease;
+    }
+
+    .group-winner-tag {
+      font-size: 12px;
+      font-weight: 700;
+      color: #1D4ED8;
+    }
+
+    .group-winner-title {
+      font-family: 'Prompt', 'Noto Sans Thai', sans-serif;
+      font-size: 24px;
+      font-weight: 700;
+      color: var(--chili-orange);
+      margin: 2px 0 4px;
+      line-height: 1.25;
+    }
+
+    /* Weekly Food Quests Card */
+    .quest-summary-pill {
+      font-size: 12px;
+      font-weight: 700;
+      padding: 3px 10px;
+      border-radius: 999px;
+      background: #FEF3C7;
+      color: #92400E;
+      white-space: nowrap;
+    }
+
+    .quest-summary-pill.all-done {
+      background: #DCFCE7;
+      color: #166534;
+    }
+
+    .weekly-quests-list {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .quest-all-done-banner {
+      background: #DCFCE7;
+      border: 1.5px solid #86EFAC;
+      color: #166534;
+      border-radius: 14px;
+      padding: 9px 12px;
+      font-size: 13px;
+      font-weight: 700;
+      text-align: center;
+    }
+
+    .quest-item-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px;
+      border-radius: 18px;
+      background: #FFFAF3;
+      border: 1.5px solid #F3E5D5;
+    }
+
+    .quest-item-row.is-ready {
+      background: #FFFBEB;
+      border-color: #F59E0B;
+      box-shadow: 0 4px 12px rgba(245, 158, 11, 0.14);
+    }
+
+    .quest-item-row.is-claimed {
+      opacity: 0.72;
+      background: #F0FDF4;
+      border-color: #BBF7D0;
+    }
+
+    .quest-icon-box {
+      width: 40px;
+      height: 40px;
+      border-radius: 13px;
+      background: #FFFFFF;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      flex-shrink: 0;
+      box-shadow: 0 2px 6px rgba(58, 43, 34, 0.06);
+    }
+
+    .quest-bar-track {
+      height: 6px;
+      border-radius: 999px;
+      background: #EFE6D8;
+      overflow: hidden;
+      margin-top: 6px;
+    }
+
+    .quest-bar-fill {
+      height: 100%;
+      background: linear-gradient(90deg, #F59E0B, #EA580C);
+      border-radius: 999px;
+      transition: width 0.3s ease;
+    }
+
+    .quest-item-row.is-claimed .quest-bar-fill {
+      background: #16A34A;
+    }
+
+    .quest-btn {
+      border: none;
+      border-radius: 999px;
+      padding: 6px 11px;
+      font-size: 12px;
+      font-weight: 700;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    .quest-btn.claimable {
+      background: linear-gradient(135deg, #EA580C 0%, #C2410C 100%);
+      color: #FFFFFF;
+      cursor: pointer;
+      box-shadow: 0 4px 10px rgba(194, 65, 12, 0.28);
+    }
+
+    .quest-btn.claimed {
+      background: #DCFCE7;
+      color: #166534;
+    }
+
+    .quest-btn.pending {
+      background: #EFE6D8;
+      color: var(--text-muted);
+    }

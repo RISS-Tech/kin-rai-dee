@@ -62,6 +62,16 @@
         </button>
       </div>
 
+      <!-- Time-Aware 1-Tap Quick Action + Group Spin Shortcut -->
+      <div id="homeQuickActionRow" class="quick-action-row">
+        <button type="button" id="homeTimeActionBtn" class="time-quick-btn" onclick="triggerTimeAwareAction()">
+          <span>⚡ มื้อด่วนแนะนำ</span>
+        </button>
+        <button type="button" id="homeGroupSpinBtn" class="group-quick-btn" onclick="openGroupSpinModal()">
+          <span>👥 สุ่มกลุ่มเพื่อน</span>
+        </button>
+      </div>
+
       <div class="mode-toggle-wrap mode-5">
         <button class="mode-btn active" id="btnModeMain" onclick="setWheelMode('main')">
           <span>🍚</span>
@@ -286,14 +296,21 @@
         <div id="fridgeResultsBox"></div>
       </div>
 
-      <!-- Featured 3-Dish Samrub Bento Card -->
-      <div class="herb-bento-card samrub-bento-card reveal-card">
+      <!-- Featured 3-Dish Samrub Bento Card (With Budget Ceiling Selector) -->
+      <div id="dailySamrubCard" class="herb-bento-card samrub-bento-card reveal-card">
         <div class="herb-bento-title">
           <div style="display:flex; align-items:center; gap:6px; flex-wrap:wrap;">
             <span>🥢 สำรับ 3 ชิ้นแนะนำ</span>
             <span class="samrub-tag-pill">ไม่ซ้ำโปรตีน</span>
           </div>
           <button type="button" class="samrub-shuffle-btn" onclick="shuffleDailySamrub()">🎲 เปลี่ยนชุด</button>
+        </div>
+        <div class="samrub-budget-bar" id="samrubBudgetGroup" role="group" aria-label="เพดานงบรวมสำรับ 3 ชิ้น">
+          <span class="samrub-budget-label">งบรวม:</span>
+          <button type="button" class="samrub-cap-chip active" data-cap="0" onclick="setSamrubBudgetCap(0, this)">ไม่จำกัด</button>
+          <button type="button" class="samrub-cap-chip tabular-nums" data-cap="120" onclick="setSamrubBudgetCap(120, this)">≤120฿</button>
+          <button type="button" class="samrub-cap-chip tabular-nums" data-cap="180" onclick="setSamrubBudgetCap(180, this)">≤180฿</button>
+          <button type="button" class="samrub-cap-chip tabular-nums" data-cap="250" onclick="setSamrubBudgetCap(250, this)">≤250฿</button>
         </div>
         <div id="dailySamrubBox"></div>
       </div>
@@ -537,6 +554,18 @@
         <button type="button" id="passportExpandBtn" onclick="togglePassportExpand()" style="width:100%; margin-top:10px; min-height:40px; border-radius:999px; border:1.5px solid #BFDBFE; background:#EFF6FF; color:#1E3A8A; font-size:14px; font-weight:700; cursor:pointer;">
           ดูตราประเทศทั้งหมด (46 ประเทศ) ▼
         </button>
+      </div>
+
+      <!-- Weekly Food Quests & Bonus Badges -->
+      <div id="weeklyQuestsCard" class="soft-card reveal-card" style="border: 1.5px solid #FDE68A;">
+        <div style="display: flex; justify-content: space-between; align-items: center; gap: 8px; margin-bottom: 4px;">
+          <span style="font-weight: 700; font-size: 17px; color: var(--text-brown);">🏅 ภารกิจนักชิมประจำสัปดาห์</span>
+          <span id="weeklyQuestSummaryPill" class="quest-summary-pill tabular-nums">0/4 สำเร็จ</span>
+        </div>
+        <div style="font-size: 13px; color: var(--text-muted); margin-bottom: 10px;">
+          ทำภารกิจครบแล้วกดรับโบนัส XP พิเศษได้เลย (รีเซ็ตทุกวันจันทร์)
+        </div>
+        <div id="weeklyQuestsList" class="weekly-quests-list"></div>
       </div>
 
       <!-- Daily Pinto Streak -->
@@ -830,6 +859,75 @@
       </div>
     </div>
 
+    <!-- Group Lunch & Office Spin Modal ("วงล้อกลุ่มเพื่อน / ออฟฟิศ") -->
+    <div id="groupSpinModal" class="result-overlay" onclick="closeGroupSpinModal(event)" style="z-index: 156;">
+      <div class="result-sheet" onclick="event.stopPropagation()" style="max-width: 450px;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+          <span style="font-weight: 700; font-size: 18px; color: var(--text-brown);">👥 วงล้อกลุ่มเพื่อน / ออฟฟิศ</span>
+          <button type="button" onclick="closeGroupSpinModal()" style="border:none; background:#EFE6D8; width:34px; height:34px; border-radius:50%; font-size:17px; cursor:pointer;">✕</button>
+        </div>
+
+        <div class="group-sub-tabs">
+          <button type="button" id="groupTabRulesBtn" class="group-sub-btn active" onclick="switchGroupSpinTab('rules')">🤝 รวมเงื่อนไขทั้งโต๊ะ</button>
+          <button type="button" id="groupTabPicksBtn" class="group-sub-btn" onclick="switchGroupSpinTab('picks')">🗳️ ใส่เมนูคนละอย่าง</button>
+        </div>
+
+        <!-- Sub-Tab 1: Shared Group Constraints -->
+        <div id="groupView-rules">
+          <div class="field-group" style="margin-bottom:10px;">
+            <span class="field-label">ติ๊กเงื่อนไขที่ทุกคนในโต๊ะต้องกินได้ร่วมกัน</span>
+            <div class="drawer-chip-wrap" id="groupRuleChips">
+              <button type="button" id="grpRuleHalal" class="chip-btn drawer-chip" onclick="toggleGroupRule('halal')">☪️ ต้องฮาลาล</button>
+              <button type="button" id="grpRuleNonSpicy" class="chip-btn drawer-chip" onclick="toggleGroupRule('nonspicy')">🌿 ไม่เผ็ด</button>
+              <button type="button" id="grpRuleFast" class="chip-btn drawer-chip" onclick="toggleGroupRule('fast')">⚡ เร็ว ≤15 นาที</button>
+              <button type="button" id="grpRuleVeg" class="chip-btn drawer-chip" onclick="toggleGroupRule('veg')">🥬 มังสวิรัติ</button>
+            </div>
+          </div>
+
+          <div class="field-group" style="margin-bottom:10px;">
+            <span class="field-label">งบต่อคนไม่เกิน</span>
+            <div class="drawer-chip-wrap" id="groupBudgetChips">
+              <button type="button" class="chip-btn drawer-chip active" data-gcap="0" onclick="setGroupBudgetCap(0, this)">ไม่จำกัด</button>
+              <button type="button" class="chip-btn drawer-chip tabular-nums" data-gcap="50" onclick="setGroupBudgetCap(50, this)">≤50฿</button>
+              <button type="button" class="chip-btn drawer-chip tabular-nums" data-gcap="80" onclick="setGroupBudgetCap(80, this)">≤80฿</button>
+              <button type="button" class="chip-btn drawer-chip tabular-nums" data-gcap="120" onclick="setGroupBudgetCap(120, this)">≤120฿</button>
+            </div>
+          </div>
+
+          <div id="groupRulePoolHint" class="group-pool-hint tabular-nums">พบ 0 เมนูที่ทุกคนในโต๊ะกินได้</div>
+
+          <button type="button" id="groupRuleSpinBtn" onclick="runGroupRuleSpin()" class="spin-cta" style="min-height:48px; font-size:17px;">
+            🎯 สุ่มเมนูกลางที่ทุกคนโอเค!
+          </button>
+        </div>
+
+        <!-- Sub-Tab 2: Friends Submit 1 Dish/Shop Each -->
+        <div id="groupView-picks" style="display:none;">
+          <div class="field-group" style="margin-bottom:8px;">
+            <label for="groupPickInput" class="field-label">พิมพ์ชื่อเมนูหรือร้านที่เพื่อนอยากกิน (2–8 รายการ) <span class="req">*</span></label>
+            <div style="display:flex; gap:6px;">
+              <input type="text" id="groupPickInput" class="v10-input" placeholder="เช่น ข้าวมันไก่, ชาบู, ส้มตำหน้าตึก" aria-describedby="groupPickError" oninput="clearFieldError('groupPickInput','groupPickError')" onkeydown="if(event.key==='Enter') addGroupPick()" />
+              <button type="button" onclick="addGroupPick()" style="border:none; background:var(--chili-orange); color:#FFFFFF; border-radius:14px; padding:0 16px; font-weight:700; cursor:pointer; white-space:nowrap;">+ เพิ่ม</button>
+            </div>
+            <div id="groupPickError" class="field-error" role="alert"></div>
+          </div>
+
+          <div class="tray-quick-actions">
+            <button type="button" class="tray-mini-action" onclick="quickFillGroupPicks()">🎲 เติมไอเดียเมนูด่วน</button>
+            <button type="button" class="tray-mini-action" onclick="clearGroupPicks()">ล้างรายการ</button>
+          </div>
+
+          <div id="groupPicksChips" class="group-picks-box"></div>
+
+          <button type="button" id="groupPickSpinBtn" onclick="runGroupPickSpin()" class="spin-cta" style="min-height:48px; font-size:17px; margin-top:10px;">
+            🎡 หมุนตัดสินให้ทั้งกลุ่ม!
+          </button>
+        </div>
+
+        <div id="groupSpinResultBox" class="group-result-box" style="display:none;"></div>
+      </div>
+    </div>
+
     <canvas id="shareCanvas" width="720" height="900" style="display:none;"></canvas>
 
     <!-- 5-Button Floating Bottom Navigation Bar -->
@@ -945,6 +1043,14 @@
           }
           if (cloud.spinTraySize === 5 || cloud.spinTraySize === 8) state.spinTraySize = cloud.spinTraySize;
           if (cloud.exoticEatenCount) state.exoticEatenCount = Math.max(state.exoticEatenCount || 0, cloud.exoticEatenCount || 0);
+          if (cloud.weeklyQuestClaims && typeof cloud.weeklyQuestClaims === 'object') {
+            if (!state.weeklyQuestClaims || typeof state.weeklyQuestClaims !== 'object') state.weeklyQuestClaims = {};
+            Object.keys(cloud.weeklyQuestClaims).forEach(wk => {
+              const localArr = Array.isArray(state.weeklyQuestClaims[wk]) ? state.weeklyQuestClaims[wk] : [];
+              const cloudArr = Array.isArray(cloud.weeklyQuestClaims[wk]) ? cloud.weeklyQuestClaims[wk] : [];
+              state.weeklyQuestClaims[wk] = Array.from(new Set([...localArr, ...cloudArr]));
+            });
+          }
           state.favorites = Array.from(new Set([...(cloud.favorites || []), ...(state.favorites || [])]));
           state.history = Array.from(new Set([...(cloud.history || []), ...(state.history || [])])).slice(0, 15);
           state.stamps = Array.from(new Set([...(cloud.stamps || []), ...(state.stamps || [])]));
@@ -977,6 +1083,7 @@
           customSpinIds: Array.isArray(state.customSpinIds) ? state.customSpinIds.slice(0, 8) : [],
           spinTraySize: state.spinTraySize === 8 ? 8 : 5,
           exoticEatenCount: Number(state.exoticEatenCount) || 0,
+          weeklyQuestClaims: (state.weeklyQuestClaims && typeof state.weeklyQuestClaims === 'object') ? state.weeklyQuestClaims : {},
           totalScore: computeUserFeatureScore(),
           favorites: state.favorites,
           history: state.history,
@@ -1033,6 +1140,7 @@
           customSpinIds: Array.isArray(state.customSpinIds) ? state.customSpinIds.slice(0, 8) : [],
           spinTraySize: state.spinTraySize === 8 ? 8 : 5,
           exoticEatenCount: Number(state.exoticEatenCount) || 0,
+          weeklyQuestClaims: (state.weeklyQuestClaims && typeof state.weeklyQuestClaims === 'object') ? state.weeklyQuestClaims : {},
           totalScore: computeUserFeatureScore(),
           favorites: state.favorites,
           history: state.history,
