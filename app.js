@@ -77,12 +77,29 @@ let MENUS = [];
       );
     }
 
-    function getAvailableMenus() {
-      return state.halalMode ? MENUS.filter(isMenuHalal) : MENUS;
+    function isMenuExotic(menu) {
+      return Boolean(menu && menu.is_exotic === true);
+    }
+
+    function getExoticLevelMeta(level) {
+      const lvl = Number(level) || 1;
+      if (lvl === 3) return { skulls: '💀💀💀', text: '💀💀💀 ตำนานระดับโลก', short: '💀💀💀 Lv.3' };
+      if (lvl === 2) return { skulls: '💀💀', text: '💀💀 ฮาร์ดคอร์ท้องถิ่น', short: '💀💀 Lv.2' };
+      return { skulls: '💀', text: '💀 แปลกแต่น่าลอง', short: '💀 Lv.1' };
+    }
+
+    function getAvailableMenus(opts = {}) {
+      const allowExotic = typeof opts.allowExotic === 'boolean' ? opts.allowExotic : Boolean(state.exoticMode);
+      return MENUS.filter(m => {
+        if (state.halalMode && !isMenuHalal(m)) return false;
+        if (!allowExotic && isMenuExotic(m)) return false;
+        return true;
+      });
     }
 
     function resolveMenuPair(menu, type) {
-      const avail = getAvailableMenus();
+      // คู่จับคู่สำรับเลือกจากเมนูมาตรฐานที่ปลอดภัย (ไม่ดึงเมนูแปลกมาปน และเคารพโหมดฮาลาล 100%)
+      const avail = getAvailableMenus({ allowExotic: false });
       if (!menu || avail.length === 0) return menu;
 
       if (type === 'main') {
@@ -103,7 +120,13 @@ let MENUS = [];
 
       const directSweet = avail.find(m => m.id === menu.dessert_pair_id);
       if (directSweet && directSweet.id !== menu.id) return directSweet;
-      const sweets = avail.filter(m => m.mode === 'sweet' && m.id !== menu.id);
+      const targetSweetMode = menu.mode === 'dessert' ? 'drink' : (menu.mode === 'drink' ? 'dessert' : null);
+      let sweets = targetSweetMode
+        ? avail.filter(m => m.mode === targetSweetMode && m.id !== menu.id)
+        : [];
+      if (sweets.length === 0) {
+        sweets = avail.filter(m => (m.mode === 'dessert' || m.mode === 'drink') && m.id !== menu.id);
+      }
       if (sweets.length > 0) {
         const seed = String(menu.id || '').split('').reduce((acc, ch) => acc + ch.charCodeAt(0), 0);
         return sweets[seed % sweets.length];
@@ -223,7 +246,12 @@ let MENUS = [];
       { name: 'แอฟริกาใต้', flag: '🇿🇦' },
       { name: 'ไนจีเรีย', flag: '🇳🇬' },
       { name: 'กานา', flag: '🇬🇭' },
-      { name: 'ซูดาน', flag: '🇸🇩' }
+      { name: 'ซูดาน', flag: '🇸🇩' },
+      { name: 'เดนมาร์ก', flag: '🇩🇰' },
+      { name: 'ปาเลา', flag: '🇵🇼' },
+      { name: 'นอร์เวย์', flag: '🇳🇴' },
+      { name: 'แคนาดา', flag: '🇨🇦' },
+      { name: 'อังกฤษ', flag: '🇬🇧' }
     ];
     let isPassportExpanded = false;
     function syncCountriesFromMenus() {
@@ -284,7 +312,13 @@ let MENUS = [];
       avatar: '🍲',
       isVip: false,
       halalMode: false,
+      exoticMode: false,
+      exoticEatenCount: 0,
       homePickerStyle: 'card',
+      spinSource: 'all',
+      spinTraySize: 5,
+      customSpinIds: [],
+      favAutoFill: false,
       soundOn: true,
       favorites: [],
       history: [],
@@ -298,7 +332,13 @@ let MENUS = [];
     };
     if (state.soundOn === undefined) state.soundOn = true;
     if (typeof state.halalMode !== 'boolean') state.halalMode = false;
+    if (typeof state.exoticMode !== 'boolean') state.exoticMode = false;
+    if (!state.exoticEatenCount) state.exoticEatenCount = 0;
     if (state.homePickerStyle !== 'card' && state.homePickerStyle !== 'wheel') state.homePickerStyle = 'card';
+    if (!['all', 'favorites', 'custom'].includes(state.spinSource)) state.spinSource = 'all';
+    if (state.spinTraySize !== 5 && state.spinTraySize !== 8) state.spinTraySize = 5;
+    if (!Array.isArray(state.customSpinIds)) state.customSpinIds = [];
+    if (typeof state.favAutoFill !== 'boolean') state.favAutoFill = false;
     if (!Array.isArray(state.stamps)) state.stamps = [];
     if (!state.weeklyBudget) state.weeklyBudget = 1000;
     if (!Array.isArray(state.expenses)) state.expenses = [];
@@ -310,6 +350,10 @@ let MENUS = [];
     function mergeCustomMenusIntoCatalog() {
       if (!Array.isArray(state.customMenus)) return;
       state.customMenus.forEach(cm => {
+        if (cm.mode === 'sweet') {
+          cm.mode = cm.category === 'เครื่องดื่ม' ? 'drink' : 'dessert';
+        }
+        if (typeof cm.is_exotic !== 'boolean') cm.is_exotic = false;
         if (!MENUS.some(m => m.id === cm.id)) {
           MENUS.unshift(cm);
         }
@@ -321,6 +365,12 @@ let MENUS = [];
     let exploreCat = 'all';
     let exploreSpecialty = 'all';
     let isHomeFilterDrawerOpen = false;
+    let exoticOnly = true;
+    let exoticLevelFilter = 'all';
+    let partyDareLevel = 'all';
+    let latestPartyDare = null;
+    let trayDraftIds = [];
+    let trayModalSize = 5;
     let currentRotation = 0;
     let isSpinning = false;
     let activeWheelMenus = [];
@@ -537,10 +587,19 @@ let MENUS = [];
     }
 
     function getSpinCtaLabel() {
-      if (currentMode === 'passport') return '✈️ บินสุ่มอาหารนานาชาติ!';
-      if (state.homePickerStyle === 'card') {
-        return currentMode === 'sweet' ? '🧋 สุ่มของหวาน & เครื่องดื่ม!' : '✨ สุ่มเมนูภาพจริง!';
+      if (state.spinSource === 'favorites') {
+        return state.homePickerStyle === 'card' ? '❤️ สุ่มจากเมนูโปรด!' : '❤️ หมุนวงล้อเมนูโปรด!';
       }
+      if (state.spinSource === 'custom') {
+        return state.homePickerStyle === 'card' ? '🎯 สุ่มจากถาดคัดเอง!' : '🎯 หมุนถาดคัดเอง!';
+      }
+      if (state.exoticMode && exoticOnly && (currentMode === 'main' || currentMode === 'passport')) {
+        return '🦂 สุ่มท้าลองเมนูแปลก!';
+      }
+      if (currentMode === 'passport') return '✈️ บินสุ่มอาหารนานาชาติ!';
+      if (currentMode === 'dessert') return state.homePickerStyle === 'card' ? '🍨 สุ่มของหวานฮีลใจ!' : '🍨 หมุนสุ่มของหวาน!';
+      if (currentMode === 'drink') return state.homePickerStyle === 'card' ? '🥤 สุ่มเครื่องดื่มสดชื่น!' : '🥤 หมุนสุ่มเครื่องดื่ม!';
+      if (state.homePickerStyle === 'card') return '✨ สุ่มเมนูภาพจริง!';
       return '🎯 หมุนสุ่มมื้อนี้!';
     }
 
@@ -585,6 +644,7 @@ let MENUS = [];
       const img = document.getElementById('deckHeroImg');
       const regBadge = document.getElementById('deckRegionBadge');
       const halalBadge = document.getElementById('deckHalalBadge');
+      const exoticBadge = document.getElementById('deckExoticBadge');
       const nameEl = document.getElementById('deckDishName');
       const budgetEl = document.getElementById('deckDishBudget');
       const timeEl = document.getElementById('deckDishTime');
@@ -600,6 +660,7 @@ let MENUS = [];
         if (timeEl) timeEl.textContent = '⏱️ -- นาที';
         if (spicyEl) spicyEl.textContent = '';
         if (halalBadge) halalBadge.style.display = 'none';
+        if (exoticBadge) exoticBadge.style.display = 'none';
         return;
       }
 
@@ -615,11 +676,20 @@ let MENUS = [];
       const regPrefix = cObj ? cObj.flag : (menu.category === 'เครื่องดื่ม' ? '🥤' : (menu.category === 'ของหวาน' ? '🍨' : '🇹🇭'));
       if (regBadge) regBadge.textContent = `${regPrefix} ${menu.region || menu.category}`;
       if (halalBadge) halalBadge.style.display = (state.halalMode && isMenuHalal(menu)) ? 'inline-flex' : 'none';
+      if (exoticBadge) {
+        if (isMenuExotic(menu)) {
+          exoticBadge.textContent = getExoticLevelMeta(menu.exotic_level).short;
+          exoticBadge.style.display = 'inline-flex';
+        } else {
+          exoticBadge.style.display = 'none';
+        }
+      }
 
       nameEl.textContent = menu.name;
       if (budgetEl) budgetEl.textContent = `💰 ~${menu.budget}฿`;
       if (timeEl) timeEl.textContent = `⏱️ ${menu.prep_time} นาที`;
-      if (spicyEl) spicyEl.textContent = menu.mode === 'sweet' ? '' : (menu.is_spicy ? '• 🌶️ รสจัด' : '• 🌿 ไม่เผ็ด');
+      const isSweetOrDrink = menu.mode === 'dessert' || menu.mode === 'drink' || menu.mode === 'sweet';
+      if (spicyEl) spicyEl.textContent = isSweetOrDrink ? '' : (menu.is_spicy ? '• 🌶️ รสจัด' : '• 🌿 ไม่เผ็ด');
     }
 
     function renderPhotoDeckStrip() {
@@ -629,7 +699,8 @@ let MENUS = [];
         strip.innerHTML = '';
         return;
       }
-      const peekList = activeWheelMenus.slice(0, 5);
+      const maxThumbs = state.spinTraySize === 8 ? 8 : 5;
+      const peekList = activeWheelMenus.slice(0, maxThumbs);
       strip.innerHTML = peekList.map((m, idx) => {
         const isActive = currentPreviewMenu && currentPreviewMenu.id === m.id;
         return `
@@ -655,20 +726,28 @@ let MENUS = [];
     }
 
     function setWheelMode(mode) {
+      if (mode === 'sweet') mode = 'dessert';
       currentMode = mode;
       const btnMain = document.getElementById('btnModeMain');
       const btnPass = document.getElementById('btnModePassport');
-      const btnSweet = document.getElementById('btnModeSweet');
+      const btnDessert = document.getElementById('btnModeDessert');
+      const btnDrink = document.getElementById('btnModeDrink');
       const btnFridge = document.getElementById('btnModeFridge');
       const spinBtn = document.getElementById('spinBtn');
       const passStrip = document.getElementById('passportStrip');
       const wheelArea = document.getElementById('wheelModeArea');
       const fridgeArea = document.getElementById('fridgeModeArea');
 
-      btnMain.className = 'mode-btn' + (mode === 'main' ? ' active' : '');
-      btnPass.className = 'mode-btn' + (mode === 'passport' ? ' passport-active' : '');
-      btnSweet.className = 'mode-btn' + (mode === 'sweet' ? ' active' : '');
-      btnFridge.className = 'mode-btn' + (mode === 'fridge' ? ' fridge-active' : '');
+      if (btnMain) btnMain.className = 'mode-btn' + (mode === 'main' ? ' active' : '');
+      if (btnPass) btnPass.className = 'mode-btn' + (mode === 'passport' ? ' passport-active' : '');
+      if (btnDessert) btnDessert.className = 'mode-btn' + (mode === 'dessert' ? ' active' : '');
+      if (btnDrink) btnDrink.className = 'mode-btn' + (mode === 'drink' ? ' drink-active' : '');
+      if (btnFridge) btnFridge.className = 'mode-btn' + (mode === 'fridge' ? ' fridge-active' : '');
+
+      // เมื่อเปลี่ยนไปโหมดของหวาน/เครื่องดื่ม ให้สลับออกจาก exoticOnly อัตโนมัติเพื่อไม่ให้ติด 0 รายการ
+      if ((mode === 'dessert' || mode === 'drink') && exoticOnly) {
+        exoticOnly = false;
+      }
 
       const filterToggleBtn = document.getElementById('homeFilterToggleBtn');
       const activeBar = document.getElementById('homeActiveFiltersBar');
@@ -679,6 +758,7 @@ let MENUS = [];
         fridgeArea.classList.add('show');
         if (filterToggleBtn) filterToggleBtn.style.display = 'none';
         if (activeBar) activeBar.style.display = 'none';
+        updateExoticUI();
         toggleHomeFilterDrawer(false);
         return;
       }
@@ -688,14 +768,29 @@ let MENUS = [];
       if (filterToggleBtn) filterToggleBtn.style.display = 'inline-flex';
 
       if (mode === 'passport') {
-        spinBtn.className = 'spin-cta passport-btn';
         passStrip.classList.add('show');
       } else {
-        spinBtn.className = 'spin-cta';
         passStrip.classList.remove('show');
       }
-      spinBtn.textContent = getSpinCtaLabel();
+
+      updateSpinBtnTheme();
+      updateExoticUI();
       prepareWheelSlices();
+    }
+
+    function updateSpinBtnTheme() {
+      const spinBtn = document.getElementById('spinBtn');
+      if (!spinBtn) return;
+      if (state.exoticMode && exoticOnly && state.spinSource === 'all' && (currentMode === 'main' || currentMode === 'passport')) {
+        spinBtn.className = 'spin-cta exotic-cta';
+      } else if (currentMode === 'passport' && state.spinSource === 'all') {
+        spinBtn.className = 'spin-cta passport-btn';
+      } else if (currentMode === 'drink' && state.spinSource === 'all') {
+        spinBtn.className = 'spin-cta drink-cta';
+      } else {
+        spinBtn.className = 'spin-cta';
+      }
+      if (!isSpinning) spinBtn.textContent = getSpinCtaLabel();
     }
 
     // --- FRIDGE-TO-TABLE ENGINE ("เมนู-ตู้เย็น") + CREATIVITY SCORE ---
@@ -918,6 +1013,8 @@ let MENUS = [];
       state.halalMode = !state.halalMode;
       saveState();
       updateHalalUI();
+      updateExoticUI();
+      updateSpinSourceUI();
       initApp();
       renderWeeklyPlan();
       const fridgeBox = document.getElementById('fridgeResultsBox');
@@ -944,12 +1041,7 @@ let MENUS = [];
         if (stateEl) stateEl.textContent = isOn ? 'เปิด' : 'ปิด';
       });
 
-      const subBanner = document.getElementById('exploreSubBanner');
-      if (subBanner) {
-        subBanner.textContent = isOn
-          ? '☪️ โหมดฮาลาลเปิดอยู่ — ซ่อนเมนูหมู แอลกอฮอล์ ไส้กรอก และปลาร้าอัตโนมัติ'
-          : 'พร้อมรูปภาพอาหารจริง ครบ 4 ภาค • นานาชาติ • ของหวาน & น้ำ';
-      }
+      updateExploreBannerText();
 
       const porkChip = document.getElementById('fridgePorkChip');
       if (porkChip) {
@@ -963,6 +1055,196 @@ let MENUS = [];
       }
     }
 
+    function updateExploreBannerText() {
+      const subBanner = document.getElementById('exploreSubBanner');
+      if (!subBanner) return;
+      if (state.halalMode && state.exoticMode) {
+        subBanner.textContent = '☪️ ฮาลาล + 🦂 เมนูแปลกเปิดอยู่ — แสดงเฉพาะเมนูฮาลาลรวมเมนูแปลกฮาลาล';
+      } else if (state.halalMode) {
+        subBanner.textContent = '☪️ โหมดฮาลาลเปิดอยู่ — ซ่อนเมนูหมู แอลกอฮอล์ ไส้กรอก และปลาร้าอัตโนมัติ';
+      } else if (state.exoticMode) {
+        subBanner.textContent = '🦂 โหมดเมนูแปลกเปิดอยู่ — รวมเมนูแปลกไทยและทั่วโลกครบทุกระดับความโหด';
+      } else {
+        subBanner.textContent = 'พร้อมรูปภาพอาหารจริง ครบ 4 ภาค • นานาชาติ • ของหวาน & เครื่องดื่ม (ซ่อนเมนูแปลกไว้)';
+      }
+    }
+
+    function toggleExoticMode() {
+      state.exoticMode = !state.exoticMode;
+      if (state.exoticMode) {
+        exoticOnly = (currentMode === 'main' || currentMode === 'passport');
+        exoticLevelFilter = 'all';
+      } else {
+        exoticOnly = false;
+        exoticLevelFilter = 'all';
+        if (exploreSpecialty === 'เมนูแปลก') {
+          exploreSpecialty = 'all';
+          document.querySelectorAll('#exploreSpecialties .mood-pill').forEach(b => {
+            b.classList.toggle('active', b.dataset.spec === 'all');
+          });
+        }
+      }
+      saveState();
+      updateExoticUI();
+      initApp();
+      const exCount = getAvailableMenus({ allowExotic: true }).filter(isMenuExotic).length;
+      showToast(state.exoticMode
+        ? `เปิดโหมดเมนูแปลกแล้ว 🦂 (พร้อมท้าลอง ${exCount} เมนู • กินจริงรับ +50 XP!)`
+        : 'ปิดโหมดเมนูแปลกแล้ว (ซ่อนเมนูแปลกออกจากระบบเรียบร้อย)');
+    }
+
+    function updateExoticUI() {
+      const isOn = Boolean(state.exoticMode);
+      const btns = [
+        { btn: document.getElementById('homeExoticBtn'), stateEl: document.getElementById('homeExoticState') },
+        { btn: document.getElementById('exploreExoticBtn'), stateEl: document.getElementById('exploreExoticState') }
+      ];
+      btns.forEach(({ btn, stateEl }) => {
+        if (btn) {
+          btn.classList.toggle('active', isOn);
+          btn.setAttribute('aria-pressed', isOn ? 'true' : 'false');
+        }
+        if (stateEl) stateEl.textContent = isOn ? 'เปิด' : 'ปิด';
+      });
+
+      const strip = document.getElementById('exoticStrip');
+      if (strip) {
+        strip.classList.toggle('show', isOn && currentMode !== 'fridge');
+      }
+      const availExoticCnt = getAvailableMenus({ allowExotic: true }).filter(isMenuExotic).length;
+      const cntEl = document.getElementById('exoticAvailCount');
+      if (cntEl) cntEl.textContent = String(availExoticCnt);
+
+      const btnOnly = document.getElementById('btnExoticOnly');
+      const btnMix = document.getElementById('btnExoticMix');
+      if (btnOnly) btnOnly.classList.toggle('active', exoticOnly);
+      if (btnMix) btnMix.classList.toggle('active', !exoticOnly);
+
+      document.querySelectorAll('#exoticStrip .exotic-lvl-chip').forEach(b => {
+        b.classList.toggle('active', String(b.dataset.level) === String(exoticLevelFilter));
+      });
+
+      const specBtn = document.getElementById('exploreExoticSpecBtn');
+      if (specBtn) specBtn.style.display = isOn ? 'inline-block' : 'none';
+
+      updateExploreBannerText();
+      updateSpinBtnTheme();
+    }
+
+    function setExoticScope(onlyExotic) {
+      exoticOnly = Boolean(onlyExotic);
+      if (exoticOnly && (currentMode === 'dessert' || currentMode === 'drink' || currentMode === 'fridge')) {
+        setWheelMode('main');
+      }
+      if (exoticOnly && state.spinSource !== 'all') {
+        state.spinSource = 'all';
+        saveState();
+      }
+      updateExoticUI();
+      prepareWheelSlices();
+    }
+
+    function setExoticLevel(level, btn) {
+      exoticLevelFilter = level;
+      if (level !== 'all') {
+        exoticOnly = true;
+        if (currentMode === 'dessert' || currentMode === 'drink' || currentMode === 'fridge') {
+          setWheelMode('main');
+        }
+      }
+      document.querySelectorAll('#exoticStrip .exotic-lvl-chip').forEach(b => b.classList.remove('active'));
+      if (btn) btn.classList.add('active');
+      updateExoticUI();
+      prepareWheelSlices();
+    }
+
+    // --- SPIN SOURCE & CURATED TRAY (5 / 8 ITEMS) ---
+    function setSpinSource(source) {
+      if (source === 'favorites') {
+        const availFavs = getAvailableMenus().filter(m => state.favorites.includes(m.id));
+        if (state.favorites.length === 0) {
+          showToast('ยังไม่มีเมนูโปรด ลองจิ้มคัดเมนูใส่ถาดสุ่มเองได้เลยครับ 🎯');
+          openTrayBuilderModal();
+          return;
+        }
+        if (availFavs.length === 0) {
+          showToast('เมนูโปรดทั้งหมดถูกซ่อนตามโหมดฮาลาล/เมนูแปลก ลองคัดเมนูใส่ถาดเพิ่มครับ');
+          openTrayBuilderModal();
+          return;
+        }
+      }
+      if (source === 'custom') {
+        const availCustom = getAvailableMenus().filter(m => state.customSpinIds.includes(m.id));
+        if (availCustom.length < 2) {
+          openTrayBuilderModal();
+          return;
+        }
+      }
+      state.spinSource = source;
+      saveState();
+      updateSpinSourceUI();
+      prepareWheelSlices();
+    }
+
+    function setSpinTraySize(size) {
+      state.spinTraySize = size === 8 ? 8 : 5;
+      saveState();
+      updateSpinSourceUI();
+      prepareWheelSlices();
+    }
+
+    function toggleFavAutoFill(checked) {
+      state.favAutoFill = Boolean(checked);
+      saveState();
+      prepareWheelSlices();
+    }
+
+    function updateSpinSourceUI() {
+      const availIds = new Set(getAvailableMenus().map(m => m.id));
+      const availFavCount = state.favorites.filter(id => availIds.has(id)).length;
+      const availCustomCount = state.customSpinIds.filter(id => availIds.has(id)).length;
+
+      const favCntEl = document.getElementById('drawerFavCount');
+      const cusCntEl = document.getElementById('drawerCustomCount');
+      if (favCntEl) favCntEl.textContent = String(availFavCount);
+      if (cusCntEl) cusCntEl.textContent = String(availCustomCount);
+
+      document.querySelectorAll('#spinSourceGroup .drawer-chip').forEach(b => {
+        b.classList.toggle('active', b.dataset.source === state.spinSource);
+      });
+      document.querySelectorAll('#traySizeGroup .tray-size-btn').forEach(b => {
+        b.classList.toggle('active', Number(b.dataset.size) === state.spinTraySize);
+      });
+
+      const autoWrap = document.getElementById('favAutoFillWrap');
+      const autoCheck = document.getElementById('favAutoFillCheck');
+      const autoTarget = document.getElementById('favAutoFillTarget');
+      if (autoWrap) autoWrap.style.display = state.spinSource === 'favorites' ? 'flex' : 'none';
+      if (autoCheck) autoCheck.checked = Boolean(state.favAutoFill);
+      if (autoTarget) autoTarget.textContent = String(state.spinTraySize);
+    }
+
+    function spinFavoritesNow() {
+      if (state.favorites.length === 0) {
+        showToast('ยังไม่มีเมนูโปรดครับ มาจิ้มคัดเมนูใส่ถาดสุ่มกันเลย 🎯');
+        switchTab('home');
+        openTrayBuilderModal();
+        return;
+      }
+      const availFavs = getAvailableMenus().filter(m => state.favorites.includes(m.id));
+      if (availFavs.length === 0) {
+        showToast('เมนูโปรดทั้งหมดถูกซ่อนตามโหมดฮาลาล/เมนูแปลก ลองเปิดโหมดหรือคัดถาดใหม่ครับ');
+        return;
+      }
+      state.spinSource = 'favorites';
+      saveState();
+      switchTab('home');
+      if (currentMode === 'fridge') setWheelMode('main');
+      updateSpinSourceUI();
+      prepareWheelSlices();
+      showToast(`ดึงเมนูโปรด ${availFavs.length} รายการเข้ากองสุ่มแล้ว ❤️`);
+    }
+
     function toggleHomeFilterDrawer(forceState) {
       const drawer = document.getElementById('homeFilterDrawer');
       const btn = document.getElementById('homeFilterToggleBtn');
@@ -974,6 +1256,7 @@ let MENUS = [];
       btn.classList.toggle('open', isHomeFilterDrawerOpen);
       btn.setAttribute('aria-expanded', isHomeFilterDrawerOpen ? 'true' : 'false');
       if (caret) caret.textContent = isHomeFilterDrawerOpen ? '▴' : '▾';
+      if (isHomeFilterDrawerOpen) updateSpinSourceUI();
     }
 
     function removeSingleHomeFilter(type) {
@@ -987,6 +1270,13 @@ let MENUS = [];
         document.querySelectorAll('#quickFilters .chip-btn').forEach(b => {
           b.classList.toggle('active', b.dataset.filter === 'all');
         });
+      } else if (type === 'source') {
+        state.spinSource = 'all';
+        saveState();
+        updateSpinSourceUI();
+      } else if (type === 'exoticLevel') {
+        exoticLevelFilter = 'all';
+        updateExoticUI();
       }
       prepareWheelSlices();
     }
@@ -994,17 +1284,24 @@ let MENUS = [];
     function resetHomeFilters() {
       moodFilter = 'all';
       quickFilter = 'all';
+      exoticLevelFilter = 'all';
+      if (state.spinSource !== 'all') {
+        state.spinSource = 'all';
+        saveState();
+      }
       document.querySelectorAll('#moodBar .mood-pill').forEach(p => {
         p.classList.toggle('active', p.dataset.mood === 'all');
       });
       document.querySelectorAll('#quickFilters .chip-btn').forEach(b => {
         b.classList.toggle('active', b.dataset.filter === 'all');
       });
+      updateSpinSourceUI();
+      updateExoticUI();
       prepareWheelSlices();
       showToast('ล้างตัวกรองการสุ่มแล้ว ✨');
     }
 
-    function updateHomeFilterBarUI(poolCount) {
+    function updateHomeFilterBarUI(poolCount, hiddenNoticeCount = 0) {
       const badge = document.getElementById('homeFilterCountBadge');
       const bar = document.getElementById('homeActiveFiltersBar');
       const listEl = document.getElementById('homeActiveChipsList');
@@ -1017,6 +1314,19 @@ let MENUS = [];
       if (state.halalMode) {
         chips.push(`<span class="active-filter-chip halal">☪️ ฮาลาล</span>`);
       }
+      if (state.exoticMode) {
+        const exText = exoticLevelFilter !== 'all'
+          ? `🦂 เมนูแปลก ${getExoticLevelMeta(exoticLevelFilter).short}`
+          : (exoticOnly ? '🦂 เฉพาะเมนูแปลก' : '🦂 รวมเมนูแปลก');
+        chips.push(`<span class="active-filter-chip exotic">${exText}</span>`);
+      }
+      if (state.spinSource === 'favorites') {
+        activeFilterCount++;
+        chips.push(`<button type="button" class="active-filter-chip source" onclick="removeSingleHomeFilter('source')">❤️ เฉพาะโปรด (${state.spinTraySize}) ✕</button>`);
+      } else if (state.spinSource === 'custom') {
+        activeFilterCount++;
+        chips.push(`<button type="button" class="active-filter-chip source" onclick="removeSingleHomeFilter('source')">🎯 ถาดคัดเอง (${poolCount}/${state.spinTraySize}) ✕</button>`);
+      }
       if (moodFilter !== 'all' && MOOD_LABELS[moodFilter]) {
         activeFilterCount++;
         chips.push(`<button type="button" class="active-filter-chip" onclick="removeSingleHomeFilter('mood')">${MOOD_LABELS[moodFilter]} ✕</button>`);
@@ -1024,6 +1334,9 @@ let MENUS = [];
       if (quickFilter !== 'all' && QUICK_LABELS[quickFilter]) {
         activeFilterCount++;
         chips.push(`<button type="button" class="active-filter-chip" onclick="removeSingleHomeFilter('quick')">${QUICK_LABELS[quickFilter]} ✕</button>`);
+      }
+      if (hiddenNoticeCount > 0) {
+        chips.push(`<span class="active-filter-chip muted">ซ่อน ${hiddenNoticeCount} เมนูตามโหมด</span>`);
       }
 
       if (badge) {
@@ -1053,6 +1366,16 @@ let MENUS = [];
 
     function getBaseModePool() {
       const avail = getAvailableMenus();
+      if (state.exoticMode && exoticOnly && (currentMode === 'main' || currentMode === 'passport')) {
+        let exPool = avail.filter(isMenuExotic);
+        if (currentMode === 'passport') {
+          exPool = exPool.filter(m => m.category === 'อาหารนานาชาติ');
+        }
+        if (exoticLevelFilter !== 'all') {
+          exPool = exPool.filter(m => Number(m.exotic_level) === Number(exoticLevelFilter));
+        }
+        return exPool;
+      }
       if (currentMode === 'passport') {
         return avail.filter(m => m.category === 'อาหารนานาชาติ');
       }
@@ -1082,15 +1405,63 @@ let MENUS = [];
       return pool;
     }
 
-    function prepareWheelSlices() {
+    function getActiveSpinContext() {
+      const avail = getAvailableMenus();
+      const availMap = new Map(avail.map(m => [m.id, m]));
+      const trayLimit = state.spinTraySize === 8 ? 8 : 5;
+
+      if (state.spinSource === 'custom') {
+        const matched = state.customSpinIds.map(id => availMap.get(id)).filter(Boolean);
+        const hiddenCount = Math.max(0, state.customSpinIds.length - matched.length);
+        const tray = matched.slice(0, trayLimit);
+        return { pool: tray, tray, hiddenCount, fixedTray: true };
+      }
+
+      if (state.spinSource === 'favorites') {
+        const allAvailFavs = state.favorites.map(id => availMap.get(id)).filter(Boolean);
+        const hiddenCount = Math.max(0, state.favorites.length - allAvailFavs.length);
+        const modeFavs = currentMode === 'passport'
+          ? allAvailFavs.filter(m => m.category === 'อาหารนานาชาติ')
+          : allAvailFavs.filter(m => m.mode === currentMode);
+        let picked = modeFavs.length > 0 ? [...modeFavs] : [...allAvailFavs];
+
+        if (state.favAutoFill && picked.length > 0 && picked.length < trayLimit) {
+          const pickedIds = new Set(picked.map(m => m.id));
+          const extras = getFilteredPool().filter(m => !pickedIds.has(m.id)).sort(() => 0.5 - Math.random());
+          picked = [...picked, ...extras.slice(0, trayLimit - picked.length)];
+        }
+        const tray = picked.length > trayLimit
+          ? [...picked].sort(() => 0.5 - Math.random()).slice(0, trayLimit)
+          : picked;
+        return { pool: picked, tray, hiddenCount, fixedTray: true };
+      }
+
       const pool = getFilteredPool();
-      updateHomeFilterBarUI(pool.length);
+      const shuffled = [...pool].sort(() => 0.5 - Math.random());
+      const tray = shuffled.slice(0, Math.min(trayLimit, shuffled.length));
+      return { pool, tray, hiddenCount: 0, fixedTray: false };
+    }
+
+    function prepareWheelSlices() {
+      updateSpinSourceUI();
+      const ctx = getActiveSpinContext();
+      const pool = ctx.pool;
+      updateHomeFilterBarUI(pool.length, ctx.hiddenCount);
 
       const quickPoolEl = document.getElementById('homeQuickPoolLabel');
       if (quickPoolEl) {
-        quickPoolEl.textContent = isMenusLoading && MENUS.length === 0
-          ? 'กำลังโหลดคลังเมนู...'
-          : `พร้อมสุ่ม ${pool.length} เมนู${state.halalMode ? ' (ฮาลาล ☪️)' : ''}`;
+        if (isMenusLoading && MENUS.length === 0) {
+          quickPoolEl.textContent = 'กำลังโหลดคลังเมนู...';
+        } else if (state.spinSource === 'custom') {
+          quickPoolEl.textContent = `🎯 ถาดคัดเอง ${ctx.tray.length}/${state.spinTraySize} รายการ`;
+        } else if (state.spinSource === 'favorites') {
+          quickPoolEl.textContent = `❤️ เฉพาะเมนูโปรด ${ctx.tray.length} รายการ`;
+        } else {
+          const tags = [];
+          if (state.halalMode) tags.push('ฮาลาล ☪️');
+          if (state.exoticMode && exoticOnly && (currentMode === 'main' || currentMode === 'passport')) tags.push('แปลก 🦂');
+          quickPoolEl.textContent = `พร้อมสุ่ม ${pool.length} เมนู${tags.length ? ' (' + tags.join(' • ') + ')' : ''}`;
+        }
       }
 
       const emptyBox = document.getElementById('wheelEmptyState');
@@ -1100,12 +1471,11 @@ let MENUS = [];
       if (emptyBox) emptyBox.style.display = hasZeroMatches ? 'block' : 'none';
       if (spinBtn && !isSpinning) {
         spinBtn.disabled = hasZeroMatches;
-        spinBtn.textContent = getSpinCtaLabel();
+        updateSpinBtnTheme();
       }
       syncHomePickerVisibility();
 
-      const shuffled = [...pool].sort(() => 0.5 - Math.random());
-      activeWheelMenus = shuffled.slice(0, Math.min(8, shuffled.length));
+      activeWheelMenus = ctx.tray;
 
       const cardStage = document.getElementById('photoDeckCard');
       if (cardStage) cardStage.classList.remove('winner', 'shuffling');
@@ -1124,7 +1494,10 @@ let MENUS = [];
       const count = activeWheelMenus.length;
       const paletteMain = ['#C2410C', '#FFC53D', '#24442F', '#EA580C', '#F59E0B', '#2F573D', '#D97706', '#9A3412'];
       const palettePassport = ['#1D4ED8', '#FFC53D', '#0F766E', '#2563EB', '#EA580C', '#1E40AF', '#047857', '#D97706'];
-      const colors = currentMode === 'passport' ? palettePassport : paletteMain;
+      const paletteExotic = ['#7C2D12', '#F59E0B', '#4C1D95', '#B91C1C', '#D97706', '#581C87', '#9A3412', '#3B0764'];
+      const colors = (state.exoticMode && exoticOnly && state.spinSource === 'all' && (currentMode === 'main' || currentMode === 'passport'))
+        ? paletteExotic
+        : (currentMode === 'passport' ? palettePassport : paletteMain);
 
       ctx.clearRect(0, 0, canvas.width, canvas.height);
 
@@ -1235,8 +1608,9 @@ let MENUS = [];
             cardEl.classList.remove('shuffling', 'pop');
             cardEl.classList.add('winner');
           }
-          if (!activeWheelMenus.slice(0, 5).some(m => m.id === winMenu.id)) {
-            activeWheelMenus = [winMenu, ...activeWheelMenus.filter(m => m.id !== winMenu.id)].slice(0, 8);
+          const maxThumbs = state.spinTraySize === 8 ? 8 : 5;
+          if (!activeWheelMenus.slice(0, maxThumbs).some(m => m.id === winMenu.id)) {
+            activeWheelMenus = [winMenu, ...activeWheelMenus.filter(m => m.id !== winMenu.id)].slice(0, maxThumbs);
           }
           renderPhotoDeckStrip();
           setTimeout(() => {
@@ -1249,7 +1623,8 @@ let MENUS = [];
 
     function spinWheel() {
       if (isSpinning) return;
-      const pool = getFilteredPool();
+      const spinCtx = getActiveSpinContext();
+      const pool = spinCtx.pool;
       if (pool.length === 0) {
         prepareWheelSlices();
         showToast(isMenusLoading ? 'กำลังโหลดรายการเมนู กรุณารอสักครู่...' : 'ไม่พบเมนูในหมวดนี้ ลองล้างตัวกรองก่อนครับ');
@@ -1262,15 +1637,16 @@ let MENUS = [];
       const spinBtn = document.getElementById('spinBtn');
       if (spinBtn) {
         spinBtn.disabled = true;
-        spinBtn.textContent = currentMode === 'passport' ? '✈️ กำลังบินข้ามประเทศ...' : '🎲 กำลังสุ่มความอร่อย...';
+        spinBtn.textContent = (state.exoticMode && exoticOnly && state.spinSource === 'all')
+          ? '🦂 กำลังสุ่มความท้าทาย...'
+          : (currentMode === 'passport' ? '✈️ กำลังบินข้ามประเทศ...' : '🎲 กำลังสุ่มความอร่อย...');
       }
       if (navigator.vibrate) navigator.vibrate(40);
 
       // Photo-First Card Deck mode
       if (state.homePickerStyle !== 'wheel') {
-        const shuffled = [...pool].sort(() => 0.5 - Math.random());
-        activeWheelMenus = shuffled.slice(0, Math.min(8, shuffled.length));
-        runPhotoCardShuffle(pool);
+        activeWheelMenus = spinCtx.tray;
+        runPhotoCardShuffle(spinCtx.fixedTray ? spinCtx.tray : pool);
         return;
       }
 
@@ -1335,6 +1711,20 @@ let MENUS = [];
       document.getElementById('resBudget').textContent = menu.budget;
       document.getElementById('resTime').textContent = menu.prep_time;
 
+      const resExoticEl = document.getElementById('resExoticBadge');
+      const ateBtn = document.getElementById('confirmAteBtn');
+      if (isMenuExotic(menu)) {
+        const meta = getExoticLevelMeta(menu.exotic_level);
+        if (resExoticEl) {
+          resExoticEl.textContent = meta.text;
+          resExoticEl.style.display = 'inline-flex';
+        }
+        if (ateBtn) ateBtn.textContent = '🔥 ใจถึง! กินจริง (+50 XP)';
+      } else {
+        if (resExoticEl) resExoticEl.style.display = 'none';
+        if (ateBtn) ateBtn.textContent = '✅ กินเมนูนี้ (+25 XP)';
+      }
+
       const pmImg = document.getElementById('resPairMainImg'); pmImg.style.display='block'; pmImg.dataset.triedWiki='0'; pmImg.dataset.mid=pairMain.id; pmImg.src = pairMain.image_url || '';
       document.getElementById('resPairMain').textContent = `${pairMain.name} (~${pairMain.budget}฿)`;
 
@@ -1365,15 +1755,22 @@ let MENUS = [];
       if (!selectedMenu) return;
       const dishName = selectedMenu.name;
       const dishBudget = Number(selectedMenu.budget) || 50;
+      const isEx = isMenuExotic(selectedMenu);
+      const rewardXp = isEx ? 50 : 25;
+      if (isEx) {
+        state.exoticEatenCount = (Number(state.exoticEatenCount) || 0) + 1;
+      }
       recordEatenMeal({
         menuId: selectedMenu.id,
         name: dishName,
         amount: dishBudget,
-        xp: 25,
+        xp: rewardXp,
         source: 'wheel'
       });
       closeResultModal();
-      showToast(`บันทึก "${dishName}" (~${dishBudget.toLocaleString()}฿) +25 XP`);
+      showToast(isEx
+        ? `🔥 ใจถึงมาก! พิชิตเมนูแปลก "${dishName}" (+50 XP)`
+        : `บันทึก "${dishName}" (~${dishBudget.toLocaleString()}฿) +25 XP`);
     }
 
     function toggleFavoriteCurrent() {
@@ -1522,7 +1919,7 @@ let MENUS = [];
     }
 
     function shuffleDailySamrub() {
-      const mains = getAvailableMenus().filter(m => m.mode === 'main');
+      const mains = getAvailableMenus({ allowExotic: false }).filter(m => m.mode === 'main');
       if (mains.length === 0) return;
       const others = mains.filter(m => m.id !== currentSamrubMainId);
       const pool = others.length > 0 ? others : mains;
@@ -1541,7 +1938,7 @@ let MENUS = [];
           : `<div style="font-size:14px; color:#FDE68A;">ยังโหลดข้อมูลสำรับไม่สำเร็จ กด "ลองใหม่" ด้านบนเพื่อดึงเมนูครับ</div>`;
         return;
       }
-      const avail = getAvailableMenus();
+      const avail = getAvailableMenus({ allowExotic: false });
       let mainSample = currentSamrubMainId ? avail.find(m => m.id === currentSamrubMainId) : null;
       if (!mainSample) {
         mainSample = avail.find(m => m.id === 'TH-C02') || avail.find(m => m.mode === 'main') || avail[0] || MENUS[0];
@@ -1675,12 +2072,17 @@ let MENUS = [];
       grid.innerHTML = list.map((m, idx) => {
         const cObj = COUNTRIES.find(c => c.name === m.region);
         const badge = cObj ? `${cObj.flag} ${m.region}` : m.region;
+        const exBadge = isMenuExotic(m)
+          ? `<span class="menu-badge exotic-mini-badge">${getExoticLevelMeta(m.exotic_level).short}</span>`
+          : '';
         return `
         <div class="menu-card reveal-card" style="transition-delay: ${(idx % 6) * 35}ms;" onclick="openMenuById('${m.id}')">
           <img src="${m.image_url}" alt="${m.name}" loading="lazy" class="menu-card-img" onerror="resolveWikiImage(this, '${m.id}')" />
           <div class="menu-card-body">
             <div>
-              <span class="menu-badge">${badge}</span>
+              <div style="display:flex; gap:4px; flex-wrap:wrap;">
+                <span class="menu-badge">${badge}</span>${exBadge}
+              </div>
               <div style="font-size: 16px; font-weight: 700; line-height: 1.3; margin-bottom: 6px;">${m.name}</div>
             </div>
             <div class="tabular-nums" style="font-size: 13px; color: var(--text-muted); font-weight: 600;">
@@ -1837,6 +2239,8 @@ let MENUS = [];
       mergeCustomMenusIntoCatalog();
       syncCountriesFromMenus();
       updateHalalUI();
+      updateExoticUI();
+      updateSpinSourceUI();
       const avail = getAvailableMenus();
       if (MENUS.length > 0) {
         const totalEl = document.getElementById('totalMenuTitleCount');
@@ -2043,7 +2447,7 @@ let MENUS = [];
     const DAY_NAMES = ['วันจันทร์', 'วันอังคาร', 'วันพุธ', 'วันพฤหัสบดี', 'วันศุกร์', 'วันเสาร์', 'วันอาทิตย์'];
 
     function generateWeeklyPlan(style) {
-      let pool = getAvailableMenus().filter(m => m.mode === 'main');
+      let pool = getAvailableMenus({ allowExotic: false }).filter(m => m.mode === 'main');
       if (pool.length === 0) {
         showToast(isMenusLoading ? 'กำลังโหลดรายการเมนู กรุณารอสักครู่...' : 'ไม่พบเมนูสำหรับจัดตาราง ลองกดลองใหม่ด้านบนครับ');
         return;
@@ -2206,7 +2610,7 @@ let MENUS = [];
     }
 
     function swapPlanMeal(dayIdx, slot) {
-      const mains = getAvailableMenus().filter(m => m.mode === 'main');
+      const mains = getAvailableMenus({ allowExotic: false }).filter(m => m.mode === 'main');
       if (mains.length === 0) return;
       const pick = mains[Math.floor(Math.random() * mains.length)];
       if (!pick || !state.weeklyPlan[dayIdx]) return;
@@ -2456,7 +2860,7 @@ let MENUS = [];
         id: 'USR-' + Date.now(),
         name,
         mode,
-        category: mode === 'sweet' ? 'ของหวาน' : 'อาหารไทย 4 ภาค',
+        category: mode === 'drink' ? 'เครื่องดื่ม' : (mode === 'dessert' ? 'ของหวาน' : 'อาหารไทย 4 ภาค'),
         region: 'เมนูส่วนตัว',
         protein: 'อื่นๆ',
         budget,
@@ -2464,6 +2868,7 @@ let MENUS = [];
         prep_time: 15,
         is_spicy: false,
         is_halal: detectIsHalalText(`${name} ${rawIng}`),
+        is_exotic: false,
         tags: ['เมนูส่วนตัว'],
         pair_id: 'TH-C06',
         dessert_pair_id: 'BEV-001',
@@ -2627,6 +3032,343 @@ let MENUS = [];
           btn.textContent = 'ส่งข้อเสนอแนะ';
         }
       }
+    }
+
+
+    // --- M1-3: PARTY DARE MODAL (สุ่มท้าเพื่อนชิมเมนูแปลก) ---
+    function openPartyDareModal() {
+      const m = document.getElementById('partyDareModal');
+      if (!m) return;
+      clearFieldError('partyNamesInput', 'partyNamesError');
+      m.classList.add('open');
+      const inp = document.getElementById('partyNamesInput');
+      if (inp && !inp.value.trim()) inp.focus();
+    }
+
+    function closePartyDareModal(e) {
+      if (!e || e.target.id === 'partyDareModal') {
+        const m = document.getElementById('partyDareModal');
+        if (m) m.classList.remove('open');
+      }
+    }
+
+    function setPartyDareLevel(lvl, btn) {
+      partyDareLevel = lvl;
+      document.querySelectorAll('#partyLevelGroup .exotic-lvl-chip').forEach(b => b.classList.remove('active'));
+      if (btn) btn.classList.add('active');
+    }
+
+    function runPartyDareSpin() {
+      const inp = document.getElementById('partyNamesInput');
+      const raw = (inp ? inp.value : '').trim();
+      clearFieldError('partyNamesInput', 'partyNamesError');
+
+      const names = raw.split(/[,\n\s]+/).map(s => s.trim()).filter(Boolean);
+      const uniqueNames = Array.from(new Set(names));
+      if (uniqueNames.length < 2) {
+        setFieldError('partyNamesInput', 'partyNamesError', 'กรุณาใส่ชื่อเพื่อนอย่างน้อย 2 คน (คั่นด้วยเว้นวรรค หรือ ,) เช่น บอส, แพรว');
+        return;
+      }
+      if (uniqueNames.length > 8) {
+        setFieldError('partyNamesInput', 'partyNamesError', 'ใส่ได้สูงสุด 8 คนต่อรอบครับ กรุณาลดจำนวนชื่อลงเล็กน้อย');
+        return;
+      }
+
+      let pool = getAvailableMenus({ allowExotic: true }).filter(isMenuExotic);
+      if (partyDareLevel !== 'all') {
+        pool = pool.filter(m => Number(m.exotic_level) === Number(partyDareLevel));
+      }
+      if (pool.length === 0) {
+        setFieldError('partyNamesInput', 'partyNamesError', state.halalMode
+          ? 'ไม่พบเมนูแปลกฮาลาลในระดับนี้ ลองเลือก "🎲 ทุกระดับ" ดูครับ'
+          : 'ไม่พบเมนูแปลกในระดับที่เลือก');
+        return;
+      }
+
+      const btn = document.getElementById('partySpinBtn');
+      const box = document.getElementById('partyDareResultBox');
+      if (btn) {
+        btn.disabled = true;
+        btn.innerHTML = '<span class="btn-spinner"></span> กำลังสุ่มผู้กล้า...';
+      }
+      getAudioCtx();
+      playTickSound();
+
+      setTimeout(() => {
+        const chosenFriend = uniqueNames[Math.floor(Math.random() * uniqueNames.length)];
+        const chosenDish = pool[Math.floor(Math.random() * pool.length)];
+        const meta = getExoticLevelMeta(chosenDish.exotic_level);
+        latestPartyDare = { friend: chosenFriend, dish: chosenDish, meta };
+
+        if (btn) {
+          btn.disabled = false;
+          btn.textContent = '🔄 สุ่มผู้กล้าคนถัดไป!';
+        }
+        playWinChime();
+        if (navigator.vibrate) navigator.vibrate([50, 30, 90]);
+
+        if (box) {
+          box.style.display = 'block';
+          box.innerHTML = `
+            <div class="party-winner-tag">🎯 ผู้กล้าประจำโต๊ะที่โดนสุ่มได้</div>
+            <div class="party-winner-name">${escapeHtml(chosenFriend)}</div>
+            <div class="party-dish-row" onclick="openMenuById('${chosenDish.id}')">
+              <img src="${chosenDish.image_url}" alt="${escapeHtml(chosenDish.name)}" class="party-dish-thumb" onerror="resolveWikiImage(this, '${chosenDish.id}')" />
+              <div style="flex:1; min-width:0; text-align:left;">
+                <span class="exotic-res-pill" style="font-size:11px; padding:2px 8px; display:inline-block; margin-bottom:4px;">${meta.text}</span>
+                <div style="font-size:16px; font-weight:700; color:var(--text-brown); line-height:1.25;">${escapeHtml(chosenDish.name)}</div>
+                <div class="tabular-nums" style="font-size:12px; color:var(--text-muted); margin-top:2px;">${escapeHtml(chosenDish.region)} • ~${chosenDish.budget}฿</div>
+              </div>
+            </div>
+            <button type="button" onclick="sharePartyDareCard()" class="btn-action btn-line" style="min-height:44px; font-size:14px; margin-top:10px;">
+              📤 แชร์ภารกิจท้าเพื่อนเข้า LINE
+            </button>
+            <div id="partySharePreview" class="share-preview-container" style="margin-top:10px;">
+              <div style="font-size:13px; font-weight:700; color:#06C755; margin-bottom:6px;">📸 แตะค้างที่รูปเพื่อบันทึก หรือส่งเข้าแชต LINE ด้านล่าง</div>
+              <img id="partyShareImg" src="" alt="การ์ดท้าเพื่อน TooKMUE" style="width:100%; max-width:240px; border-radius:14px;" />
+              <a id="partyLineLink" href="#" target="_blank" rel="noopener" class="btn-action btn-line" style="margin-top:8px; min-height:42px; font-size:14px;">💬 ส่งคำท้าเข้าแชต LINE</a>
+            </div>
+          `;
+          box.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
+      }, 520);
+    }
+
+    function sharePartyDareCard() {
+      if (!latestPartyDare) return;
+      const { friend, dish, meta } = latestPartyDare;
+      const canvas = document.getElementById('shareCanvas');
+      const ctx = canvas.getContext('2d');
+
+      ctx.fillStyle = '#2B1410';
+      ctx.fillRect(0, 0, 720, 900);
+
+      ctx.fillStyle = '#FFC53D';
+      ctx.font = 'bold 36px "Prompt", sans-serif';
+      ctx.textAlign = 'center';
+      ctx.fillText('🦂 ภารกิจท้าชิมเมนูแปลก • TooKMUE', 360, 88);
+
+      ctx.fillStyle = '#FFFFFF';
+      roundRect(ctx, 48, 130, 624, 620, 36);
+      ctx.fill();
+
+      ctx.fillStyle = '#9A3412';
+      ctx.font = 'bold 26px "Prompt", sans-serif';
+      ctx.fillText('🎯 ผู้กล้าประจำโต๊ะที่โดนสุ่มได้', 360, 200);
+
+      ctx.fillStyle = '#C2410C';
+      ctx.font = 'bold 54px "Prompt", sans-serif';
+      ctx.fillText(friend.slice(0, 16), 360, 280);
+
+      ctx.fillStyle = '#FEF3C7';
+      roundRect(ctx, 88, 325, 544, 62, 31);
+      ctx.fill();
+      ctx.fillStyle = '#92400E';
+      ctx.font = 'bold 26px "Prompt", sans-serif';
+      ctx.fillText(meta.text, 360, 366);
+
+      ctx.fillStyle = '#3A2B22';
+      ctx.font = 'bold 38px "Prompt", sans-serif';
+      ctx.textAlign = 'left';
+      wrapCanvasText(ctx, `ภารกิจ: ${dish.name}`, 88, 455, 544, 52);
+
+      ctx.fillStyle = '#786458';
+      ctx.font = '600 24px "Noto Sans Thai", sans-serif';
+      ctx.fillText(`🌍 แหล่งที่มา: ${dish.region}  |  💰 ~${dish.budget} บาท`, 88, 610);
+      ctx.fillText('🔥 กินจริงรับโบนัส +50 XP ในแอปทุกมื้อ!', 88, 665);
+
+      ctx.fillStyle = '#FEF3C7';
+      ctx.font = 'bold 24px "Prompt", sans-serif';
+      ctx.textAlign = 'center';
+      ctx.fillText('ท้าเพื่อนเล่นฟรีได้ที่ tookmue.pages.dev', 360, 825);
+
+      const shareText = `🦂 ภารกิจท้าชิมเมนูแปลกจาก TooKMUE! ผู้กล้าประจำโต๊ะ: "${friend}" โดนสุ่มให้กิน "${dish.name}" (${meta.text})! มาสุ่มท้าเพื่อนกันที่ https://tookmue.pages.dev/`;
+      const dataUrl = canvas.toDataURL('image/png');
+
+      const preview = document.getElementById('partySharePreview');
+      const imgEl = document.getElementById('partyShareImg');
+      const linkEl = document.getElementById('partyLineLink');
+      if (imgEl) imgEl.src = dataUrl;
+      if (linkEl) linkEl.href = `https://line.me/R/share?text=${encodeURIComponent(shareText)}`;
+      if (preview) preview.classList.add('open');
+
+      if (!/Line/i.test(navigator.userAgent)) {
+        const a = document.createElement('a');
+        a.download = `TooKMUE_Dare_${dish.id}.png`;
+        a.href = dataUrl;
+        a.click();
+        if (navigator.clipboard) navigator.clipboard.writeText(shareText).catch(() => {});
+      }
+      addXp(10);
+      showToast('สร้างการ์ดท้าเพื่อนแล้ว! (+10 XP) 🦂');
+    }
+
+    // --- M1-4: CURATED TRAY BUILDER MODAL (จัดถาดสุ่มเอง 5 หรือ 8 รายการ) ---
+    function openTrayBuilderModal() {
+      trayModalSize = state.spinTraySize === 8 ? 8 : 5;
+      const availIds = new Set(getAvailableMenus().map(m => m.id));
+      trayDraftIds = state.customSpinIds.filter(id => availIds.has(id)).slice(0, trayModalSize);
+
+      const hiddenCount = Math.max(0, state.customSpinIds.length - trayDraftIds.length);
+      const notice = document.getElementById('trayHiddenNotice');
+      if (notice) {
+        if (hiddenCount > 0) {
+          notice.textContent = `ℹ️ ซ่อน ${hiddenCount} เมนูเดิมในถาดที่ไม่ตรงกับโหมดฮาลาล/เมนูแปลกปัจจุบัน`;
+          notice.style.display = 'block';
+        } else {
+          notice.style.display = 'none';
+        }
+      }
+
+      const searchInp = document.getElementById('traySearchInput');
+      if (searchInp) searchInp.value = '';
+      const errEl = document.getElementById('trayBuilderError');
+      if (errEl) { errEl.textContent = ''; errEl.classList.remove('show'); }
+
+      updateTrayModalHeader();
+      renderTrayBuilderList();
+      const modal = document.getElementById('trayBuilderModal');
+      if (modal) modal.classList.add('open');
+    }
+
+    function closeTrayBuilderModal(e) {
+      if (!e || e.target.id === 'trayBuilderModal') {
+        const modal = document.getElementById('trayBuilderModal');
+        if (modal) modal.classList.remove('open');
+      }
+    }
+
+    function setTrayModalSize(size) {
+      trayModalSize = size === 8 ? 8 : 5;
+      if (trayDraftIds.length > trayModalSize) {
+        trayDraftIds = trayDraftIds.slice(0, trayModalSize);
+      }
+      updateTrayModalHeader();
+      renderTrayBuilderList();
+    }
+
+    function updateTrayModalHeader() {
+      document.querySelectorAll('#trayModalSizeGroup .tray-size-btn').forEach(b => {
+        b.classList.toggle('active', Number(b.dataset.msize) === trayModalSize);
+      });
+      const counter = document.getElementById('trayModalCounter');
+      if (counter) {
+        counter.textContent = `เลือกแล้ว ${trayDraftIds.length}/${trayModalSize}`;
+        counter.classList.toggle('full', trayDraftIds.length === trayModalSize);
+      }
+    }
+
+    function toggleTrayMenuItem(menuId) {
+      const errEl = document.getElementById('trayBuilderError');
+      if (errEl) { errEl.textContent = ''; errEl.classList.remove('show'); }
+
+      const idx = trayDraftIds.indexOf(menuId);
+      if (idx >= 0) {
+        trayDraftIds.splice(idx, 1);
+      } else {
+        if (trayDraftIds.length >= trayModalSize) {
+          showToast(`เลือกครบ ${trayModalSize} รายการแล้วครับ (แตะเมนูเดิมเพื่อเอาออก หรือเปลี่ยนเป็น 8 รายการ)`);
+          return;
+        }
+        trayDraftIds.push(menuId);
+      }
+      updateTrayModalHeader();
+      renderTrayBuilderList();
+    }
+
+    function fillTrayFromFavorites() {
+      const availIds = new Set(getAvailableMenus().map(m => m.id));
+      const validFavs = state.favorites.filter(id => availIds.has(id));
+      if (validFavs.length === 0) {
+        showToast('ยังไม่มีเมนูโปรดที่พร้อมใช้งานในโหมดปัจจุบันครับ');
+        return;
+      }
+      trayDraftIds = validFavs.slice(0, trayModalSize);
+      updateTrayModalHeader();
+      renderTrayBuilderList();
+      showToast(`ดึงจากเมนูโปรดแล้ว ${trayDraftIds.length} รายการ ❤️`);
+    }
+
+    function clearTrayDraft() {
+      trayDraftIds = [];
+      updateTrayModalHeader();
+      renderTrayBuilderList();
+    }
+
+    function renderTrayBuilderList() {
+      const box = document.getElementById('trayBuilderList');
+      if (!box) return;
+      const q = (document.getElementById('traySearchInput')?.value || '').trim().toLowerCase();
+      let list = getAvailableMenus();
+      if (q) {
+        list = list.filter(m =>
+          m.name.toLowerCase().includes(q) ||
+          (m.region || '').toLowerCase().includes(q) ||
+          (m.category || '').toLowerCase().includes(q) ||
+          (Array.isArray(m.ingredients) && m.ingredients.some(i => i.toLowerCase().includes(q)))
+        );
+      }
+
+      // Show selected items first, then favorites, then others (cap render at 60 for fast mobile scroll)
+      const selectedSet = new Set(trayDraftIds);
+      const favSet = new Set(state.favorites);
+      const sorted = [...list].sort((a, b) => {
+        const sa = selectedSet.has(a.id) ? 0 : (favSet.has(a.id) ? 1 : 2);
+        const sb = selectedSet.has(b.id) ? 0 : (favSet.has(b.id) ? 1 : 2);
+        return sa - sb;
+      }).slice(0, 60);
+
+      if (sorted.length === 0) {
+        box.innerHTML = `
+          <div class="empty-state-card" style="padding:18px 12px;">
+            <div class="empty-state-icon" style="font-size:28px;">🔍</div>
+            <div class="empty-state-title">ไม่พบเมนูที่ค้นหา</div>
+            <div class="empty-state-desc">ลองพิมพ์คำสั้นลง เช่น "กะเพรา", "ไก่", "ชาไทย" ครับ</div>
+          </div>
+        `;
+        return;
+      }
+
+      box.innerHTML = sorted.map(m => {
+        const checked = selectedSet.has(m.id);
+        const isFav = favSet.has(m.id);
+        const exTag = isMenuExotic(m) ? ` • ${getExoticLevelMeta(m.exotic_level).short}` : '';
+        return `
+          <button type="button" class="tray-pick-row ${checked ? 'selected' : ''}" onclick="toggleTrayMenuItem('${m.id}')">
+            <img src="${m.image_url}" alt="${escapeHtml(m.name)}" class="tray-pick-thumb" loading="lazy" onerror="resolveWikiImage(this, '${m.id}')" />
+            <div style="flex:1; min-width:0; text-align:left;">
+              <div style="font-size:14px; font-weight:700; color:var(--text-brown); white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">
+                ${isFav ? '❤️ ' : ''}${escapeHtml(m.name)}
+              </div>
+              <div class="tabular-nums" style="font-size:12px; color:var(--text-muted);">
+                ${escapeHtml(m.region || m.category)} • ~${m.budget}฿${exTag}
+              </div>
+            </div>
+            <span class="tray-check-circle">${checked ? '✓' : '+'}</span>
+          </button>
+        `;
+      }).join('');
+    }
+
+    function applyCuratedTray() {
+      const errEl = document.getElementById('trayBuilderError');
+      if (trayDraftIds.length < 2) {
+        if (errEl) {
+          errEl.textContent = '⚠️ กรุณาเลือกอย่างน้อย 2 เมนูขึ้นไปก่อนนำไปสุ่มครับ';
+          errEl.classList.add('show');
+        }
+        return;
+      }
+      state.customSpinIds = [...trayDraftIds];
+      state.spinTraySize = trayModalSize;
+      state.spinSource = 'custom';
+      saveState();
+      closeTrayBuilderModal();
+      switchTab('home');
+      if (currentMode === 'fridge') setWheelMode('main');
+      updateSpinSourceUI();
+      prepareWheelSlices();
+      showToast(`จัดถาดสุ่มเอง ${state.customSpinIds.length} รายการเรียบร้อย! 🎯`);
     }
 
     initApp();

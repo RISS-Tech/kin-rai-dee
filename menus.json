@@ -29,7 +29,8 @@
       "ใบกะเพรา",
       "พริก"
     ],
-    "is_halal": false
+    "is_halal": false,
+    "is_exotic": false
   },
   {
     "id": "TH-C02",
@@ -56,7 +57,8 @@
       "กุ้ง",
       "พริก"
     ],
-    "is_halal": true
+    "is_halal": true,
+    "is_exotic": false
   },
   {
     "id": "TH-C03",
@@ -85,7 +87,8 @@
       "หมู",
       "ไข่"
     ],
-    "is_halal": false
+    "is_halal": false,
+    "is_exotic": false
   },
   {
     "id": "TH-C04",
@@ -113,7 +116,8 @@
       "มะพร้าว",
       "พริก"
     ],
-    "is_halal": true
+    "is_halal": true,
+    "is_exotic": false
   },
   {
     "id": "TH-C05",
@@ -141,7 +145,8 @@
       "กุ้ง",
       "กระเทียม"
     ],
-    "is_halal": true
+    "is_halal": true,
+    "is_exotic": false
   },
   {
     "id": "TH-C06",
@@ -171,7 +176,8 @@
       "หมู",
       "เต้าหู้"
     ],
-    "is_halal": false
+    "is_halal": false,
+    "is_exotic": false
   },
   {
     "id": "TH-C07",
@@ -196,7 +202,8 @@
     "ingredients": [
       "หมู"
     ],
-    "is_halal": false
+    "is_halal": false,
+    "is_exotic": false
   },
   {
     "id": "TH-C08",
@@ -226,7 +233,8 @@
       "พริก",
       "กระเทียม"
     ],
-    "is_halal": true
+    "is_halal": true,
+    "is_exotic": false
   },
   {
     "id": "TH-C09",
@@ -256,7 +264,8 @@
       "เส้นใหญ่",
       "กระเทียม"
     ],
-    "is_halal": false
+    "is_halal": false,
+    "is_exotic": false
   },
   {
     "id": "TH-C10",
@@ -285,7 +294,8 @@
       "หมู",
       "ข้าว"
     ],
-    "is_halal": false
+    "is_halal": false,
+    "is_exotic": false
   },
   {
     "id": "TH-C11",
@@ -314,7 +324,8 @@
       "ไข่",
       "เต้าหู้"
     ],
-    "is_halal": false
+    "is_halal": false,
+    "is_exotic": false
   },
   {
     "id": "TH-N01",
@@ -342,7 +353,8 @@
       "ไก่",
       "ข้าว"
     ],
-    "is_halal": true
+    "is_halal": true,
+    "is_exotic": false
   },
   {
     "id": "TH-N02",
@@ -369,7 +381,8 @@
       "หมู",
       "พริก"
     ],
-    "is_halal": false
+    "is_halal": false,
+    "is_exotic": false
   },
   {
     "id": "TH-N03",
@@ -396,7 +409,8 @@
       "หมู",
       "พริก"
     ],
-    "is_halal": false
+    "is_halal": false,
+    "is_exotic": false
   },
   {
     "id": "TH-N04",
@@ -423,7 +437,8 @@
     "ingredients": [
       "หมู"
     ],
-    "is_halal": false
+    "is_halal": false,
+    "is_exotic": false
   },
   {
     "id": "TH-N05",
@@ -452,7 +467,8 @@
       "พริก",
       "มะตูม"
     ],
-    "is_halal": true
+    "is_halal": true,
+    "is_exotic": false
   },
   {
     "id": "TH-N06",
@@ -480,7 +496,8 @@
       "หมู",
       "ขนมจีน"
     ],
-    "is_halal": false
+    "is_halal": false,
+    "is_exotic": false
   },
   {
     "id": "TH-N07",
@@ -508,7 +525,8 @@
       "หมู",
       "พริก"
     ],
-    "is_halal": false
+    "is_halal": false,
+    "is_exotic": false
   },
   {
     "id": "TH-E01",
@@ -538,7 +556,8 @@
       "ส้ม",
       "พริก"
     ],
-    "is_halal": true
+    "is_halal": true,
+    "is_exotic": false
   },
   {
     "id": "TH-E02",
@@ -565,7 +584,8 @@
     "ingredients": [
       "ไก่"
     ],
-    "is_halal": true
+    "is_halal": true,
+    "is_exotic": false
   },
   {
     "id": "TH-E03",
@@ -595,7 +615,8 @@
       "ข้าว",
       "พริก"
     ],
-    "is_halal": false
+    "is_halal": false,
+    "is_exotic": false
   },
   {
     "id": "TH-E04",
@@ -623,7 +644,8 @@
       "หมู",
       "พริก"
     ],
-    "is_halal": false
+    "is_halal": false,
+    "is_exotic": false
   },
   {
     "id": "TH-E05",
@@ -650,7 +672,8 @@
     "ingredients": [
       "หมู"
     ],
-    "is_halal": false
+    "is_halal": false,
+    "is_exotic": false
   },
   {
     "id": "TH-E06",
@@ -679,7 +702,8 @@
     "ingredients": [
       "หน่อไม้"
     ],
-    "is_halal": false
+    "is_halal": false,
+    "is_exotic": false
   },
   {
     "id": "TH-E07",
@@ -707,7 +731,8 @@
       "ไก่",
       "พริก"
     ],
-    "is_halal": true
+    "is_halal": true,
+    "is_exotic": false
   },
   {
     "id": "TH-E08",
@@ -738,7 +763,8 @@
       "ปู",
       "พริก"
     ],
-    "is_halal": false
+    "is_halal": false,
+    "is_exotic": false
   },
   {
     "id": "TH-S01",
@@ -767,7 +793,8 @@
       "หมู",
       "พริก"
     ],
-    "is_halal": false
+    "is_halal": false,
+    "is_exotic": false
   },
   {
     "id": "TH-S02",
@@ -796,7 +823,8 @@
       "มะพร้าว",
       "พริก"
     ],
-    "is_halal": true
+    "is_halal": true,
+    "is_exotic": false
   },
   {
     "id": "TH-S03",
@@ -824,7 +852,8 @@
       "สะตอ",
       "กระเทียม"
     ],
-    "is_halal": true
+    "is_halal": true,
+    "is_exotic": false
   },
   {
     "id": "TH-S04",
@@ -853,7 +882,8 @@
       "ไก่",
       "ขมิ้น"
     ],
-    "is_halal": true
+    "is_halal": true,
+    "is_exotic": false
   },
   {
     "id": "TH-S05",
@@ -883,7 +913,8 @@
       "ปลา",
       "พริก"
     ],
-    "is_halal": true
+    "is_halal": true,
+    "is_exotic": false
   },
   {
     "id": "TH-S06",
@@ -913,7 +944,8 @@
       "ใบเหลียง",
       "กระเทียม"
     ],
-    "is_halal": true
+    "is_halal": true,
+    "is_exotic": false
   },
   {
     "id": "INT-01",
@@ -939,7 +971,8 @@
     "ingredients": [
       "หมู"
     ],
-    "is_halal": false
+    "is_halal": false,
+    "is_exotic": false
   },
   {
     "id": "INT-02",
@@ -967,7 +1000,8 @@
       "ข้าว",
       "กระเทียม"
     ],
-    "is_halal": false
+    "is_halal": false,
+    "is_exotic": false
   },
   {
     "id": "INT-03",
@@ -993,7 +1027,8 @@
       "เนื้อ",
       "ข้าว"
     ],
-    "is_halal": false
+    "is_halal": false,
+    "is_exotic": false
   },
   {
     "id": "INT-04",
@@ -1021,7 +1056,8 @@
       "ข้าว",
       "เนื้อ"
     ],
-    "is_halal": true
+    "is_halal": true,
+    "is_exotic": false
   },
   {
     "id": "INT-05",
@@ -1049,7 +1085,8 @@
       "ไก่",
       "กระเทียม"
     ],
-    "is_halal": true
+    "is_halal": true,
+    "is_exotic": false
   },
   {
     "id": "INT-06",
@@ -1078,7 +1115,8 @@
       "เต้าหู้",
       "กิมจิ"
     ],
-    "is_halal": false
+    "is_halal": false,
+    "is_exotic": false
   },
   {
     "id": "INT-07",
@@ -1106,7 +1144,8 @@
       "เบคอน",
       "หมู"
     ],
-    "is_halal": false
+    "is_halal": false,
+    "is_exotic": false
   },
   {
     "id": "INT-08",
@@ -1132,7 +1171,8 @@
     "ingredients": [
       "ชีส"
     ],
-    "is_halal": true
+    "is_halal": true,
+    "is_exotic": false
   },
   {
     "id": "INT-09",
@@ -1160,7 +1200,8 @@
       "ไก่",
       "พริก"
     ],
-    "is_halal": true
+    "is_halal": true,
+    "is_exotic": false
   },
   {
     "id": "INT-10",
@@ -1187,7 +1228,8 @@
       "ไก่",
       "ข้าว"
     ],
-    "is_halal": true
+    "is_halal": true,
+    "is_exotic": false
   },
   {
     "id": "INT-11",
@@ -1216,7 +1258,8 @@
     "ingredients": [
       "เนื้อ"
     ],
-    "is_halal": true
+    "is_halal": true,
+    "is_exotic": false
   },
   {
     "id": "INT-12",
@@ -1246,7 +1289,8 @@
       "กุ้ง",
       "บะหมี่"
     ],
-    "is_halal": false
+    "is_halal": false,
+    "is_exotic": false
   },
   {
     "id": "INT-13",
@@ -1274,7 +1318,8 @@
       "ไก่",
       "ข้าว"
     ],
-    "is_halal": true
+    "is_halal": true,
+    "is_exotic": false
   },
   {
     "id": "INT-14",
@@ -1301,7 +1346,8 @@
       "ไก่",
       "มะเขือ"
     ],
-    "is_halal": true
+    "is_halal": true,
+    "is_exotic": false
   },
   {
     "id": "INT-15",
@@ -1331,7 +1377,8 @@
       "หมู",
       "กระเทียม"
     ],
-    "is_halal": false
+    "is_halal": false,
+    "is_exotic": false
   },
   {
     "id": "INT-16",
@@ -1360,12 +1407,13 @@
       "หมู",
       "กระเทียม"
     ],
-    "is_halal": false
+    "is_halal": false,
+    "is_exotic": false
   },
   {
     "id": "DES-001",
     "name": "บัวลอยไข่หวานทรงเครื่อง",
-    "mode": "sweet",
+    "mode": "dessert",
     "category": "ของหวาน",
     "region": "ขนมไทย",
     "protein": "ไข่",
@@ -1387,12 +1435,13 @@
     "ingredients": [
       "ไข่"
     ],
-    "is_halal": true
+    "is_halal": true,
+    "is_exotic": false
   },
   {
     "id": "DES-002",
     "name": "เฉาก๊วยนมสดคาราเมล",
-    "mode": "sweet",
+    "mode": "dessert",
     "category": "ของหวาน",
     "region": "ขนมไทย",
     "protein": "อื่นๆ",
@@ -1414,12 +1463,13 @@
     "ingredients": [
       "นมสด"
     ],
-    "is_halal": true
+    "is_halal": true,
+    "is_exotic": false
   },
   {
     "id": "DES-003",
     "name": "ทับทิมกรอบกะทิสด",
-    "mode": "sweet",
+    "mode": "dessert",
     "category": "ของหวาน",
     "region": "ขนมไทย",
     "protein": "มังสวิรัติ",
@@ -1442,12 +1492,13 @@
     "ingredients": [
       "มังสวิรัติ"
     ],
-    "is_halal": true
+    "is_halal": true,
+    "is_exotic": false
   },
   {
     "id": "DES-004",
     "name": "ข้าวเหนียวมะม่วงอกร่องทอง",
-    "mode": "sweet",
+    "mode": "dessert",
     "category": "ของหวาน",
     "region": "ขนมไทย",
     "protein": "มังสวิรัติ",
@@ -1470,12 +1521,13 @@
       "ข้าว",
       "มะม่วง"
     ],
-    "is_halal": true
+    "is_halal": true,
+    "is_exotic": false
   },
   {
     "id": "DES-005",
     "name": "ลอดช่องน้ำกะทิแตงไทย",
-    "mode": "sweet",
+    "mode": "dessert",
     "category": "ของหวาน",
     "region": "ขนมไทย",
     "protein": "มังสวิรัติ",
@@ -1498,12 +1550,13 @@
     "ingredients": [
       "มังสวิรัติ"
     ],
-    "is_halal": true
+    "is_halal": true,
+    "is_exotic": false
   },
   {
     "id": "DES-006",
     "name": "โทสต์เนยนมน้ำผึ้งไอศกรีม",
-    "mode": "sweet",
+    "mode": "dessert",
     "category": "ของหวาน",
     "region": "คาเฟ่",
     "protein": "อื่นๆ",
@@ -1523,12 +1576,13 @@
     "ingredients": [
       "อื่นๆ"
     ],
-    "is_halal": true
+    "is_halal": true,
+    "is_exotic": false
   },
   {
     "id": "BEV-001",
     "name": "ชาไทยเย็นโบราณสูตรเข้มข้น",
-    "mode": "sweet",
+    "mode": "drink",
     "category": "เครื่องดื่ม",
     "region": "คาเฟ่",
     "protein": "อื่นๆ",
@@ -1550,12 +1604,13 @@
     "ingredients": [
       "ชาไทย"
     ],
-    "is_halal": true
+    "is_halal": true,
+    "is_exotic": false
   },
   {
     "id": "BEV-002",
     "name": "อเมริกาโน่น้ำส้มคั้นสด",
-    "mode": "sweet",
+    "mode": "drink",
     "category": "เครื่องดื่ม",
     "region": "คาเฟ่",
     "protein": "มังสวิรัติ",
@@ -1576,12 +1631,13 @@
     "ingredients": [
       "ส้ม"
     ],
-    "is_halal": true
+    "is_halal": true,
+    "is_exotic": false
   },
   {
     "id": "BEV-003",
     "name": "ชานมไข่มุกบราวน์ชูการ์",
-    "mode": "sweet",
+    "mode": "drink",
     "category": "เครื่องดื่ม",
     "region": "ไต้หวัน",
     "protein": "อื่นๆ",
@@ -1603,12 +1659,13 @@
     "ingredients": [
       "ไข่"
     ],
-    "is_halal": true
+    "is_halal": true,
+    "is_exotic": false
   },
   {
     "id": "BEV-004",
     "name": "น้ำเก๊กฮวยเย็นสมุนไพร",
-    "mode": "sweet",
+    "mode": "drink",
     "category": "เครื่องดื่ม",
     "region": "สมุนไพร",
     "protein": "มังสวิรัติ",
@@ -1632,12 +1689,13 @@
     "ingredients": [
       "เก๊กฮวย"
     ],
-    "is_halal": true
+    "is_halal": true,
+    "is_exotic": false
   },
   {
     "id": "BEV-005",
     "name": "น้ำกระเจี๊ยบพุทราจีนเย็น",
-    "mode": "sweet",
+    "mode": "drink",
     "category": "เครื่องดื่ม",
     "region": "สมุนไพร",
     "protein": "มังสวิรัติ",
@@ -1661,12 +1719,13 @@
     "ingredients": [
       "กระเจี๊ยบ"
     ],
-    "is_halal": true
+    "is_halal": true,
+    "is_exotic": false
   },
   {
     "id": "BEV-006",
     "name": "มัทฉะลาเต้เย็นพรีเมียม",
-    "mode": "sweet",
+    "mode": "drink",
     "category": "เครื่องดื่ม",
     "region": "ญี่ปุ่น",
     "protein": "อื่นๆ",
@@ -1686,7 +1745,8 @@
     "ingredients": [
       "มัทฉะ"
     ],
-    "is_halal": true
+    "is_halal": true,
+    "is_exotic": false
   },
   {
     "id": "TH-C12",
@@ -1715,7 +1775,8 @@
       "ไข่",
       "กระเทียม"
     ],
-    "is_halal": true
+    "is_halal": true,
+    "is_exotic": false
   },
   {
     "id": "TH-C13",
@@ -1745,7 +1806,8 @@
       "กระเทียม",
       "แครอท"
     ],
-    "is_halal": true
+    "is_halal": true,
+    "is_exotic": false
   },
   {
     "id": "TH-C14",
@@ -1773,7 +1835,8 @@
       "กะทิ",
       "พริก"
     ],
-    "is_halal": false
+    "is_halal": false,
+    "is_exotic": false
   },
   {
     "id": "TH-C15",
@@ -1802,7 +1865,8 @@
       "กะทิ",
       "ถั่วลิสง"
     ],
-    "is_halal": true
+    "is_halal": true,
+    "is_exotic": false
   },
   {
     "id": "TH-C16",
@@ -1832,7 +1896,8 @@
       "ฟักทอง",
       "ใบแมงลัก"
     ],
-    "is_halal": true
+    "is_halal": true,
+    "is_exotic": false
   },
   {
     "id": "TH-C17",
@@ -1860,7 +1925,8 @@
       "กะทิ",
       "พริก"
     ],
-    "is_halal": true
+    "is_halal": true,
+    "is_exotic": false
   },
   {
     "id": "TH-C18",
@@ -1890,7 +1956,8 @@
       "พริก",
       "มะนาว"
     ],
-    "is_halal": false
+    "is_halal": false,
+    "is_exotic": false
   },
   {
     "id": "TH-C19",
@@ -1920,7 +1987,8 @@
       "หมูสับ",
       "กระเทียม"
     ],
-    "is_halal": false
+    "is_halal": false,
+    "is_exotic": false
   },
   {
     "id": "TH-C20",
@@ -1947,7 +2015,8 @@
       "ข้าว",
       "กระเทียม"
     ],
-    "is_halal": true
+    "is_halal": true,
+    "is_exotic": false
   },
   {
     "id": "TH-C21",
@@ -1978,7 +2047,8 @@
       "วุ้นเส้น",
       "ผักบุ้ง"
     ],
-    "is_halal": false
+    "is_halal": false,
+    "is_exotic": false
   },
   {
     "id": "TH-C22",
@@ -2007,7 +2077,8 @@
       "ปลาหมึก",
       "เต้าหู้"
     ],
-    "is_halal": true
+    "is_halal": true,
+    "is_exotic": false
   },
   {
     "id": "TH-C23",
@@ -2036,7 +2107,8 @@
       "หมู",
       "ผักบุ้ง"
     ],
-    "is_halal": false
+    "is_halal": false,
+    "is_exotic": false
   },
   {
     "id": "TH-C24",
@@ -2065,7 +2137,8 @@
       "กุ้ง",
       "ไข่"
     ],
-    "is_halal": false
+    "is_halal": false,
+    "is_exotic": false
   },
   {
     "id": "TH-C25",
@@ -2094,7 +2167,8 @@
       "ไข่",
       "ไส้กรอก"
     ],
-    "is_halal": false
+    "is_halal": false,
+    "is_exotic": false
   },
   {
     "id": "TH-C26",
@@ -2125,7 +2199,8 @@
       "กะทิ",
       "พริก"
     ],
-    "is_halal": true
+    "is_halal": true,
+    "is_exotic": false
   },
   {
     "id": "TH-C27",
@@ -2157,7 +2232,8 @@
       "พริก",
       "ใบกะเพรา"
     ],
-    "is_halal": true
+    "is_halal": true,
+    "is_exotic": false
   },
   {
     "id": "TH-C28",
@@ -2188,7 +2264,8 @@
       "ใบกะเพรา",
       "ไข่"
     ],
-    "is_halal": true
+    "is_halal": true,
+    "is_exotic": false
   },
   {
     "id": "TH-C29",
@@ -2217,7 +2294,8 @@
       "ไก่",
       "กระเทียม"
     ],
-    "is_halal": true
+    "is_halal": true,
+    "is_exotic": false
   },
   {
     "id": "TH-C30",
@@ -2245,7 +2323,8 @@
       "ปลา",
       "มะม่วง"
     ],
-    "is_halal": true
+    "is_halal": true,
+    "is_exotic": false
   },
   {
     "id": "TH-C31",
@@ -2274,7 +2353,8 @@
       "ไข่",
       "คะน้า"
     ],
-    "is_halal": false
+    "is_halal": false,
+    "is_exotic": false
   },
   {
     "id": "TH-C32",
@@ -2303,7 +2383,8 @@
       "ไข่",
       "เห็ด"
     ],
-    "is_halal": true
+    "is_halal": true,
+    "is_exotic": false
   },
   {
     "id": "TH-C33",
@@ -2330,7 +2411,8 @@
       "ไข่",
       "ปู"
     ],
-    "is_halal": true
+    "is_halal": true,
+    "is_exotic": false
   },
   {
     "id": "TH-C34",
@@ -2360,7 +2442,8 @@
       "พริก",
       "มะนาว"
     ],
-    "is_halal": true
+    "is_halal": true,
+    "is_exotic": false
   },
   {
     "id": "TH-C35",
@@ -2390,7 +2473,8 @@
       "แตงกวา",
       "พริก"
     ],
-    "is_halal": true
+    "is_halal": true,
+    "is_exotic": false
   },
   {
     "id": "TH-C36",
@@ -2420,7 +2504,8 @@
       "พริก",
       "กระเทียม"
     ],
-    "is_halal": true
+    "is_halal": true,
+    "is_exotic": false
   },
   {
     "id": "TH-C37",
@@ -2450,7 +2535,8 @@
       "ไข่",
       "แตงกวา"
     ],
-    "is_halal": true
+    "is_halal": true,
+    "is_exotic": false
   },
   {
     "id": "TH-C38",
@@ -2481,7 +2567,8 @@
       "ใบกะเพรา",
       "ไข่"
     ],
-    "is_halal": false
+    "is_halal": false,
+    "is_exotic": false
   },
   {
     "id": "TH-C39",
@@ -2511,7 +2598,8 @@
       "หมู",
       "คะน้า"
     ],
-    "is_halal": false
+    "is_halal": false,
+    "is_exotic": false
   },
   {
     "id": "TH-C40",
@@ -2540,7 +2628,8 @@
       "ขิง",
       "กระเทียม"
     ],
-    "is_halal": false
+    "is_halal": false,
+    "is_exotic": false
   },
   {
     "id": "TH-C41",
@@ -2570,7 +2659,8 @@
       "มะม่วง",
       "พริก"
     ],
-    "is_halal": false
+    "is_halal": false,
+    "is_exotic": false
   },
   {
     "id": "TH-C42",
@@ -2598,7 +2688,8 @@
       "ไข่",
       "พริก"
     ],
-    "is_halal": true
+    "is_halal": true,
+    "is_exotic": false
   },
   {
     "id": "TH-C43",
@@ -2628,7 +2719,8 @@
       "ข้าว",
       "แตงกวา"
     ],
-    "is_halal": false
+    "is_halal": false,
+    "is_exotic": false
   },
   {
     "id": "TH-C44",
@@ -2658,7 +2750,8 @@
       "พริก",
       "กระเทียม"
     ],
-    "is_halal": false
+    "is_halal": false,
+    "is_exotic": false
   },
   {
     "id": "TH-C45",
@@ -2687,7 +2780,8 @@
       "เห็ด",
       "กะทิ"
     ],
-    "is_halal": true
+    "is_halal": true,
+    "is_exotic": false
   },
   {
     "id": "TH-N08",
@@ -2715,7 +2809,8 @@
       "หมู",
       "ผักรวม"
     ],
-    "is_halal": false
+    "is_halal": false,
+    "is_exotic": false
   },
   {
     "id": "TH-N09",
@@ -2744,7 +2839,8 @@
       "ผักรวม",
       "พริก"
     ],
-    "is_halal": true
+    "is_halal": true,
+    "is_exotic": false
   },
   {
     "id": "TH-N10",
@@ -2772,7 +2868,8 @@
       "พริก",
       "กระเทียม"
     ],
-    "is_halal": false
+    "is_halal": false,
+    "is_exotic": false
   },
   {
     "id": "TH-N11",
@@ -2798,7 +2895,8 @@
       "หมูสับ",
       "พริก"
     ],
-    "is_halal": false
+    "is_halal": false,
+    "is_exotic": false
   },
   {
     "id": "TH-N12",
@@ -2826,7 +2924,8 @@
       "พริก",
       "ผักรวม"
     ],
-    "is_halal": true
+    "is_halal": true,
+    "is_exotic": false
   },
   {
     "id": "TH-N13",
@@ -2854,7 +2953,8 @@
       "หมู",
       "กระเทียม"
     ],
-    "is_halal": false
+    "is_halal": false,
+    "is_exotic": false
   },
   {
     "id": "TH-N14",
@@ -2870,7 +2970,8 @@
     "tags": [
       "กับข้าว",
       "ต้ม",
-      "พรีเมียม"
+      "พรีเมียม",
+      "เมนูแปลก"
     ],
     "pair_id": "TH-N04",
     "dessert_pair_id": "DES-005",
@@ -2881,7 +2982,9 @@
       "ไข่",
       "ปลา"
     ],
-    "is_halal": false
+    "is_halal": false,
+    "is_exotic": true,
+    "exotic_level": 2
   },
   {
     "id": "TH-N15",
@@ -2910,7 +3013,8 @@
       "กระเทียม",
       "แตงกวา"
     ],
-    "is_halal": false
+    "is_halal": false,
+    "is_exotic": false
   },
   {
     "id": "TH-N16",
@@ -2925,7 +3029,8 @@
     "is_spicy": false,
     "tags": [
       "กับข้าว",
-      "ไม่เผ็ด"
+      "ไม่เผ็ด",
+      "เมนูแปลก"
     ],
     "pair_id": "TH-N05",
     "dessert_pair_id": "BEV-004",
@@ -2937,7 +3042,9 @@
       "หมู",
       "กระเทียม"
     ],
-    "is_halal": false
+    "is_halal": false,
+    "is_exotic": true,
+    "exotic_level": 1
   },
   {
     "id": "TH-N17",
@@ -2964,7 +3071,8 @@
       "ไก่",
       "พริก"
     ],
-    "is_halal": true
+    "is_halal": true,
+    "is_exotic": false
   },
   {
     "id": "TH-E09",
@@ -2992,7 +3100,8 @@
       "พริก",
       "มะนาว"
     ],
-    "is_halal": true
+    "is_halal": true,
+    "is_exotic": false
   },
   {
     "id": "TH-E10",
@@ -3020,7 +3129,8 @@
       "พริก",
       "มะนาว"
     ],
-    "is_halal": false
+    "is_halal": false,
+    "is_exotic": false
   },
   {
     "id": "TH-E11",
@@ -3047,7 +3157,8 @@
       "เนื้อ",
       "พริก"
     ],
-    "is_halal": true
+    "is_halal": true,
+    "is_exotic": false
   },
   {
     "id": "TH-E12",
@@ -3077,7 +3188,8 @@
       "ปลา",
       "พริก"
     ],
-    "is_halal": false
+    "is_halal": false,
+    "is_exotic": false
   },
   {
     "id": "TH-E13",
@@ -3106,7 +3218,8 @@
       "พริก",
       "กระเทียม"
     ],
-    "is_halal": false
+    "is_halal": false,
+    "is_exotic": false
   },
   {
     "id": "TH-E14",
@@ -3134,7 +3247,8 @@
       "พริก",
       "มะนาว"
     ],
-    "is_halal": true
+    "is_halal": true,
+    "is_exotic": false
   },
   {
     "id": "TH-E15",
@@ -3162,7 +3276,8 @@
       "หมู",
       "กระเทียม"
     ],
-    "is_halal": false
+    "is_halal": false,
+    "is_exotic": false
   },
   {
     "id": "TH-E16",
@@ -3192,7 +3307,8 @@
       "ฟักทอง",
       "พริก"
     ],
-    "is_halal": true
+    "is_halal": true,
+    "is_exotic": false
   },
   {
     "id": "TH-E17",
@@ -3219,7 +3335,8 @@
       "พริก",
       "มะนาว"
     ],
-    "is_halal": true
+    "is_halal": true,
+    "is_exotic": false
   },
   {
     "id": "TH-E18",
@@ -3249,7 +3366,8 @@
       "ขิง",
       "พริก"
     ],
-    "is_halal": false
+    "is_halal": false,
+    "is_exotic": false
   },
   {
     "id": "TH-E19",
@@ -3278,7 +3396,8 @@
       "ไข่",
       "พริก"
     ],
-    "is_halal": false
+    "is_halal": false,
+    "is_exotic": false
   },
   {
     "id": "TH-E20",
@@ -3305,7 +3424,8 @@
     "ingredients": [
       "ปลา"
     ],
-    "is_halal": true
+    "is_halal": true,
+    "is_exotic": false
   },
   {
     "id": "TH-E21",
@@ -3332,7 +3452,8 @@
       "ไก่",
       "พริก"
     ],
-    "is_halal": true
+    "is_halal": true,
+    "is_exotic": false
   },
   {
     "id": "TH-E22",
@@ -3360,7 +3481,8 @@
       "ผักบุ้ง",
       "พริก"
     ],
-    "is_halal": false
+    "is_halal": false,
+    "is_exotic": false
   },
   {
     "id": "TH-S07",
@@ -3389,7 +3511,8 @@
       "ฟักทอง",
       "พริก"
     ],
-    "is_halal": true
+    "is_halal": true,
+    "is_exotic": false
   },
   {
     "id": "TH-S08",
@@ -3417,7 +3540,8 @@
       "หมู",
       "กระเทียม"
     ],
-    "is_halal": false
+    "is_halal": false,
+    "is_exotic": false
   },
   {
     "id": "TH-S09",
@@ -3433,7 +3557,8 @@
     "tags": [
       "กับข้าว",
       "แกงกะทิ",
-      "เผ็ด"
+      "เผ็ด",
+      "เมนูแปลก"
     ],
     "pair_id": "TH-C03",
     "dessert_pair_id": "DES-005",
@@ -3445,7 +3570,9 @@
       "กะทิ",
       "พริก"
     ],
-    "is_halal": true
+    "is_halal": true,
+    "is_exotic": true,
+    "exotic_level": 1
   },
   {
     "id": "TH-S10",
@@ -3474,7 +3601,8 @@
       "ขมิ้น",
       "กระเทียม"
     ],
-    "is_halal": true
+    "is_halal": true,
+    "is_exotic": false
   },
   {
     "id": "TH-S11",
@@ -3501,7 +3629,8 @@
       "ปลา",
       "พริก"
     ],
-    "is_halal": true
+    "is_halal": true,
+    "is_exotic": false
   },
   {
     "id": "TH-S12",
@@ -3529,7 +3658,8 @@
       "กะทิ",
       "พริก"
     ],
-    "is_halal": false
+    "is_halal": false,
+    "is_exotic": false
   },
   {
     "id": "TH-S13",
@@ -3558,7 +3688,8 @@
       "หมูสับ",
       "พริก"
     ],
-    "is_halal": false
+    "is_halal": false,
+    "is_exotic": false
   },
   {
     "id": "TH-S14",
@@ -3588,7 +3719,8 @@
       "กระเทียม",
       "มะนาว"
     ],
-    "is_halal": true
+    "is_halal": true,
+    "is_exotic": false
   },
   {
     "id": "TH-S15",
@@ -3616,7 +3748,8 @@
       "กะทิ",
       "พริก"
     ],
-    "is_halal": true
+    "is_halal": true,
+    "is_exotic": false
   },
   {
     "id": "TH-S16",
@@ -3644,7 +3777,8 @@
       "ปลา",
       "ขิง"
     ],
-    "is_halal": true
+    "is_halal": true,
+    "is_exotic": false
   },
   {
     "id": "INT-17",
@@ -3672,7 +3806,8 @@
       "ปลา",
       "ข้าว"
     ],
-    "is_halal": true
+    "is_halal": true,
+    "is_exotic": false
   },
   {
     "id": "INT-18",
@@ -3700,7 +3835,8 @@
       "ไข่",
       "ข้าว"
     ],
-    "is_halal": false
+    "is_halal": false,
+    "is_exotic": false
   },
   {
     "id": "INT-19",
@@ -3727,7 +3863,8 @@
       "ปลา",
       "ข้าว"
     ],
-    "is_halal": true
+    "is_halal": true,
+    "is_exotic": false
   },
   {
     "id": "INT-20",
@@ -3756,7 +3893,8 @@
       "เห็ด",
       "เต้าหู้"
     ],
-    "is_halal": true
+    "is_halal": true,
+    "is_exotic": false
   },
   {
     "id": "INT-21",
@@ -3783,7 +3921,8 @@
       "ปลาหมึก",
       "ไข่"
     ],
-    "is_halal": true
+    "is_halal": true,
+    "is_exotic": false
   },
   {
     "id": "INT-22",
@@ -3810,7 +3949,8 @@
       "กุ้ง",
       "ข้าว"
     ],
-    "is_halal": true
+    "is_halal": true,
+    "is_exotic": false
   },
   {
     "id": "INT-23",
@@ -3840,7 +3980,8 @@
       "ไข่",
       "พริก"
     ],
-    "is_halal": true
+    "is_halal": true,
+    "is_exotic": false
   },
   {
     "id": "INT-24",
@@ -3868,7 +4009,8 @@
       "กิมจิ",
       "กระเทียม"
     ],
-    "is_halal": false
+    "is_halal": false,
+    "is_exotic": false
   },
   {
     "id": "INT-25",
@@ -3897,7 +4039,8 @@
       "หมูสับ",
       "แตงกวา"
     ],
-    "is_halal": false
+    "is_halal": false,
+    "is_exotic": false
   },
   {
     "id": "INT-26",
@@ -3927,7 +4070,8 @@
       "ชีส",
       "ไส้กรอก"
     ],
-    "is_halal": false
+    "is_halal": false,
+    "is_exotic": false
   },
   {
     "id": "INT-27",
@@ -3956,7 +4100,8 @@
       "เนื้อ",
       "แครอท"
     ],
-    "is_halal": true
+    "is_halal": true,
+    "is_exotic": false
   },
   {
     "id": "INT-28",
@@ -3985,7 +4130,8 @@
       "กระเทียม",
       "พริก"
     ],
-    "is_halal": false
+    "is_halal": false,
+    "is_exotic": false
   },
   {
     "id": "INT-29",
@@ -4012,7 +4158,8 @@
       "สปาเก็ตตี้",
       "หมูสับ"
     ],
-    "is_halal": false
+    "is_halal": false,
+    "is_exotic": false
   },
   {
     "id": "INT-30",
@@ -4039,7 +4186,8 @@
       "หมูสับ",
       "ชีส"
     ],
-    "is_halal": false
+    "is_halal": false,
+    "is_exotic": false
   },
   {
     "id": "INT-31",
@@ -4067,7 +4215,8 @@
       "ปลาหมึก",
       "ชีส"
     ],
-    "is_halal": true
+    "is_halal": true,
+    "is_exotic": false
   },
   {
     "id": "INT-32",
@@ -4095,7 +4244,8 @@
       "กุ้ง",
       "ไข่"
     ],
-    "is_halal": true
+    "is_halal": true,
+    "is_exotic": false
   },
   {
     "id": "INT-33",
@@ -4123,7 +4273,8 @@
       "ชีส",
       "เบคอน"
     ],
-    "is_halal": false
+    "is_halal": false,
+    "is_exotic": false
   },
   {
     "id": "INT-34",
@@ -4149,7 +4300,8 @@
     "ingredients": [
       "ไก่"
     ],
-    "is_halal": true
+    "is_halal": true,
+    "is_exotic": false
   },
   {
     "id": "INT-35",
@@ -4175,7 +4327,8 @@
     "ingredients": [
       "ปลา"
     ],
-    "is_halal": false
+    "is_halal": false,
+    "is_exotic": false
   },
   {
     "id": "INT-36",
@@ -4205,7 +4358,8 @@
       "ชีส",
       "ผักรวม"
     ],
-    "is_halal": false
+    "is_halal": false,
+    "is_exotic": false
   },
   {
     "id": "INT-37",
@@ -4234,7 +4388,8 @@
       "กุ้ง",
       "ไข่"
     ],
-    "is_halal": false
+    "is_halal": false,
+    "is_exotic": false
   },
   {
     "id": "INT-38",
@@ -4262,7 +4417,8 @@
       "หมูสับ",
       "ไข่เค็ม"
     ],
-    "is_halal": false
+    "is_halal": false,
+    "is_exotic": false
   },
   {
     "id": "INT-39",
@@ -4288,7 +4444,8 @@
       "กุ้ง",
       "หมูสับ"
     ],
-    "is_halal": false
+    "is_halal": false,
+    "is_exotic": false
   },
   {
     "id": "INT-40",
@@ -4316,7 +4473,8 @@
       "หมูสับ",
       "พริก"
     ],
-    "is_halal": false
+    "is_halal": false,
+    "is_exotic": false
   },
   {
     "id": "INT-41",
@@ -4343,7 +4501,8 @@
       "ไก่",
       "พริก"
     ],
-    "is_halal": true
+    "is_halal": true,
+    "is_exotic": false
   },
   {
     "id": "INT-42",
@@ -4369,7 +4528,8 @@
     "ingredients": [
       "ข้าว"
     ],
-    "is_halal": true
+    "is_halal": true,
+    "is_exotic": false
   },
   {
     "id": "INT-43",
@@ -4397,7 +4557,8 @@
       "แตงกวา",
       "แครอท"
     ],
-    "is_halal": false
+    "is_halal": false,
+    "is_exotic": false
   },
   {
     "id": "INT-44",
@@ -4426,7 +4587,8 @@
       "หมูสับ",
       "เห็ด"
     ],
-    "is_halal": false
+    "is_halal": false,
+    "is_exotic": false
   },
   {
     "id": "INT-45",
@@ -4455,7 +4617,8 @@
       "มะม่วง",
       "แตงกวา"
     ],
-    "is_halal": false
+    "is_halal": false,
+    "is_exotic": false
   },
   {
     "id": "INT-46",
@@ -4481,7 +4644,8 @@
     "ingredients": [
       "ไก่"
     ],
-    "is_halal": true
+    "is_halal": true,
+    "is_exotic": false
   },
   {
     "id": "INT-47",
@@ -4508,7 +4672,8 @@
       "ชีส",
       "กระเทียม"
     ],
-    "is_halal": true
+    "is_halal": true,
+    "is_exotic": false
   },
   {
     "id": "INT-48",
@@ -4537,7 +4702,8 @@
       "แตงกวา",
       "พริก"
     ],
-    "is_halal": true
+    "is_halal": true,
+    "is_exotic": false
   },
   {
     "id": "INT-49",
@@ -4564,7 +4730,8 @@
       "ข้าว",
       "ชีส"
     ],
-    "is_halal": true
+    "is_halal": true,
+    "is_exotic": false
   },
   {
     "id": "INT-50",
@@ -4590,12 +4757,13 @@
       "ชีส",
       "พริก"
     ],
-    "is_halal": true
+    "is_halal": true,
+    "is_exotic": false
   },
   {
     "id": "DES-007",
     "name": "ไอศกรีมกะทิสดทรงเครื่อง",
-    "mode": "sweet",
+    "mode": "dessert",
     "category": "ของหวาน",
     "region": "ขนมไทย",
     "protein": "มังสวิรัติ",
@@ -4619,12 +4787,13 @@
       "กะทิ",
       "ข้าว"
     ],
-    "is_halal": true
+    "is_halal": true,
+    "is_exotic": false
   },
   {
     "id": "DES-008",
     "name": "กล้วยบวชชีน้ำกะทิหอม",
-    "mode": "sweet",
+    "mode": "dessert",
     "category": "ของหวาน",
     "region": "ขนมไทย",
     "protein": "มังสวิรัติ",
@@ -4647,12 +4816,13 @@
       "กล้วย",
       "กะทิ"
     ],
-    "is_halal": true
+    "is_halal": true,
+    "is_exotic": false
   },
   {
     "id": "DES-009",
     "name": "ข้าวเหนียวทุเรียนน้ำกะทิ",
-    "mode": "sweet",
+    "mode": "dessert",
     "category": "ของหวาน",
     "region": "ขนมไทย",
     "protein": "มังสวิรัติ",
@@ -4674,12 +4844,13 @@
       "ข้าว",
       "กะทิ"
     ],
-    "is_halal": true
+    "is_halal": true,
+    "is_exotic": false
   },
   {
     "id": "DES-010",
     "name": "ขนมครกชาววังกะทิกรอบ",
-    "mode": "sweet",
+    "mode": "dessert",
     "category": "ของหวาน",
     "region": "ขนมไทย",
     "protein": "มังสวิรัติ",
@@ -4703,12 +4874,13 @@
       "กะทิ",
       "เผือก"
     ],
-    "is_halal": true
+    "is_halal": true,
+    "is_exotic": false
   },
   {
     "id": "DES-011",
     "name": "โรตีสายไหมอยุธยาแป้งนุ่ม",
-    "mode": "sweet",
+    "mode": "dessert",
     "category": "ของหวาน",
     "region": "ขนมไทย",
     "protein": "มังสวิรัติ",
@@ -4731,12 +4903,13 @@
     "ingredients": [
       "ใบเตย"
     ],
-    "is_halal": true
+    "is_halal": true,
+    "is_exotic": false
   },
   {
     "id": "DES-012",
     "name": "ขนมถ้วยตะไลหน้ากะทิ",
-    "mode": "sweet",
+    "mode": "dessert",
     "category": "ของหวาน",
     "region": "ขนมไทย",
     "protein": "มังสวิรัติ",
@@ -4760,12 +4933,13 @@
       "ใบเตย",
       "กะทิ"
     ],
-    "is_halal": true
+    "is_halal": true,
+    "is_exotic": false
   },
   {
     "id": "DES-013",
     "name": "สังขยาฟักทองนึ่งกะทิสด",
-    "mode": "sweet",
+    "mode": "dessert",
     "category": "ของหวาน",
     "region": "ขนมไทย",
     "protein": "ไข่",
@@ -4788,12 +4962,13 @@
       "ไข่",
       "กะทิ"
     ],
-    "is_halal": true
+    "is_halal": true,
+    "is_exotic": false
   },
   {
     "id": "DES-014",
     "name": "เฉาก๊วยชากังราวทรงเครื่อง",
-    "mode": "sweet",
+    "mode": "dessert",
     "category": "ของหวาน",
     "region": "ขนมไทย",
     "protein": "มังสวิรัติ",
@@ -4816,12 +4991,13 @@
     "ingredients": [
       "มังสวิรัติ"
     ],
-    "is_halal": true
+    "is_halal": true,
+    "is_exotic": false
   },
   {
     "id": "DES-015",
     "name": "ซาหริ่มทับทิมกรอบน้ำกะทิอบควันเทียน",
-    "mode": "sweet",
+    "mode": "dessert",
     "category": "ของหวาน",
     "region": "ขนมไทย",
     "protein": "มังสวิรัติ",
@@ -4843,12 +5019,13 @@
     "ingredients": [
       "กะทิ"
     ],
-    "is_halal": true
+    "is_halal": true,
+    "is_exotic": false
   },
   {
     "id": "DES-016",
     "name": "ข้าวต้มมัดไส้กล้วยถั่วดำ",
-    "mode": "sweet",
+    "mode": "dessert",
     "category": "ของหวาน",
     "region": "ขนมไทย",
     "protein": "มังสวิรัติ",
@@ -4873,12 +5050,13 @@
       "กล้วย",
       "กะทิ"
     ],
-    "is_halal": true
+    "is_halal": true,
+    "is_exotic": false
   },
   {
     "id": "DES-017",
     "name": "ปังเย็นภูเขาไฟโกโก้เข้มข้น",
-    "mode": "sweet",
+    "mode": "dessert",
     "category": "ของหวาน",
     "region": "คาเฟ่",
     "protein": "อื่นๆ",
@@ -4901,12 +5079,13 @@
       "โกโก้",
       "นมสด"
     ],
-    "is_halal": true
+    "is_halal": true,
+    "is_exotic": false
   },
   {
     "id": "DES-018",
     "name": "บิงซูมะม่วงชีสเค้กเกล็ดหิมะ",
-    "mode": "sweet",
+    "mode": "dessert",
     "category": "ของหวาน",
     "region": "เกาหลี",
     "protein": "อื่นๆ",
@@ -4929,12 +5108,13 @@
       "นมสด",
       "ชีส"
     ],
-    "is_halal": true
+    "is_halal": true,
+    "is_exotic": false
   },
   {
     "id": "DES-019",
     "name": "ครอฟเฟิลอบกรอบคาราเมล",
-    "mode": "sweet",
+    "mode": "dessert",
     "category": "ของหวาน",
     "region": "คาเฟ่",
     "protein": "อื่นๆ",
@@ -4954,12 +5134,13 @@
     "ingredients": [
       "อื่นๆ"
     ],
-    "is_halal": true
+    "is_halal": true,
+    "is_exotic": false
   },
   {
     "id": "DES-020",
     "name": "เครปเย็นวิปครีมฝอยทอง",
-    "mode": "sweet",
+    "mode": "dessert",
     "category": "ของหวาน",
     "region": "คาเฟ่",
     "protein": "ไข่",
@@ -4980,12 +5161,13 @@
     "ingredients": [
       "ไข่"
     ],
-    "is_halal": true
+    "is_halal": true,
+    "is_exotic": false
   },
   {
     "id": "DES-021",
     "name": "โรตีกรอบราดนมข้นน้ำตาล",
-    "mode": "sweet",
+    "mode": "dessert",
     "category": "ของหวาน",
     "region": "คาเฟ่",
     "protein": "อื่นๆ",
@@ -5006,12 +5188,13 @@
     "ingredients": [
       "นมสด"
     ],
-    "is_halal": true
+    "is_halal": true,
+    "is_exotic": false
   },
   {
     "id": "DES-022",
     "name": "บราวนี่ช็อกโกแลตหน้าฟิล์ม",
-    "mode": "sweet",
+    "mode": "dessert",
     "category": "ของหวาน",
     "region": "คาเฟ่",
     "protein": "ไข่",
@@ -5032,12 +5215,13 @@
       "โกโก้",
       "ไข่"
     ],
-    "is_halal": true
+    "is_halal": true,
+    "is_exotic": false
   },
   {
     "id": "DES-023",
     "name": "ชีสเค้กหน้าไหม้บาสก์",
-    "mode": "sweet",
+    "mode": "dessert",
     "category": "ของหวาน",
     "region": "คาเฟ่",
     "protein": "ไข่",
@@ -5058,12 +5242,13 @@
       "ชีส",
       "ไข่"
     ],
-    "is_halal": true
+    "is_halal": true,
+    "is_exotic": false
   },
   {
     "id": "DES-024",
     "name": "พุดดิ้งมะพร้าวอ่อนนมสด",
-    "mode": "sweet",
+    "mode": "dessert",
     "category": "ของหวาน",
     "region": "คาเฟ่",
     "protein": "มังสวิรัติ",
@@ -5087,12 +5272,13 @@
       "มะพร้าว",
       "นมสด"
     ],
-    "is_halal": true
+    "is_halal": true,
+    "is_exotic": false
   },
   {
     "id": "DES-025",
     "name": "ไดฟูกุสตรอว์เบอร์รีถั่วแดง",
-    "mode": "sweet",
+    "mode": "dessert",
     "category": "ของหวาน",
     "region": "ญี่ปุ่น",
     "protein": "มังสวิรัติ",
@@ -5112,12 +5298,13 @@
     "ingredients": [
       "มังสวิรัติ"
     ],
-    "is_halal": true
+    "is_halal": true,
+    "is_exotic": false
   },
   {
     "id": "BEV-007",
     "name": "ชาเขียวนมสดเย็นหอมมะลิ",
-    "mode": "sweet",
+    "mode": "drink",
     "category": "เครื่องดื่ม",
     "region": "คาเฟ่",
     "protein": "อื่นๆ",
@@ -5140,12 +5327,13 @@
       "ชาเขียว",
       "นมสด"
     ],
-    "is_halal": true
+    "is_halal": true,
+    "is_exotic": false
   },
   {
     "id": "BEV-008",
     "name": "กาแฟเย็นโบราณ (เอสเพรสโซไทย)",
-    "mode": "sweet",
+    "mode": "drink",
     "category": "เครื่องดื่ม",
     "region": "คาเฟ่",
     "protein": "อื่นๆ",
@@ -5167,12 +5355,13 @@
       "กาแฟ",
       "นมสด"
     ],
-    "is_halal": true
+    "is_halal": true,
+    "is_exotic": false
   },
   {
     "id": "BEV-009",
     "name": "โกโก้เย็นเข้มข้นหนึบหนับ",
-    "mode": "sweet",
+    "mode": "drink",
     "category": "เครื่องดื่ม",
     "region": "คาเฟ่",
     "protein": "อื่นๆ",
@@ -5194,12 +5383,13 @@
       "โกโก้",
       "นมสด"
     ],
-    "is_halal": true
+    "is_halal": true,
+    "is_exotic": false
   },
   {
     "id": "BEV-010",
     "name": "น้ำมะนาวปั่นสดชื่นจี๊ดจ๊าด",
-    "mode": "sweet",
+    "mode": "drink",
     "category": "เครื่องดื่ม",
     "region": "สมุนไพร",
     "protein": "มังสวิรัติ",
@@ -5217,18 +5407,19 @@
     ],
     "pair_id": "TH-C01",
     "dessert_pair_id": "DES-003",
-    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Lime_juice.jpg?width=600",
+    "image_url": "images/BEV-010.webp",
     "wiki_query": "Lime smoothie",
     "recipe_hint": "ปั่นน้ำมะนาวคั้นสดกับน้ำเชื่อมและเกลือป่นจนเป็นเกล็ดหิมะ เปรี้ยวหวานแก้เลี่ยน",
     "ingredients": [
       "มะนาว"
     ],
-    "is_halal": true
+    "is_halal": true,
+    "is_exotic": false
   },
   {
     "id": "BEV-011",
     "name": "น้ำส้มคั้นสดแท้ 100%",
-    "mode": "sweet",
+    "mode": "drink",
     "category": "เครื่องดื่ม",
     "region": "สมุนไพร",
     "protein": "มังสวิรัติ",
@@ -5246,18 +5437,19 @@
     ],
     "pair_id": "TH-C05",
     "dessert_pair_id": "DES-004",
-    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Orange_juice_1.jpg?width=600",
+    "image_url": "images/BEV-011.webp",
     "wiki_query": "Orange juice",
     "recipe_hint": "น้ำส้มสายน้ำผึ้งคั้นสดแช่เย็นจัด มีเนื้อส้มให้เคี้ยวเพลินวิตามินซีสูง",
     "ingredients": [
       "ส้ม"
     ],
-    "is_halal": true
+    "is_halal": true,
+    "is_exotic": false
   },
   {
     "id": "BEV-012",
     "name": "น้ำมะพร้าวน้ำหอมสดเป็นลูก",
-    "mode": "sweet",
+    "mode": "drink",
     "category": "เครื่องดื่ม",
     "region": "สมุนไพร",
     "protein": "มังสวิรัติ",
@@ -5281,12 +5473,13 @@
     "ingredients": [
       "มะพร้าว"
     ],
-    "is_halal": true
+    "is_halal": true,
+    "is_exotic": false
   },
   {
     "id": "BEV-013",
     "name": "น้ำใบเตยหอมเย็นชื่นใจ",
-    "mode": "sweet",
+    "mode": "drink",
     "category": "เครื่องดื่ม",
     "region": "สมุนไพร",
     "protein": "มังสวิรัติ",
@@ -5310,12 +5503,13 @@
     "ingredients": [
       "ใบเตย"
     ],
-    "is_halal": true
+    "is_halal": true,
+    "is_exotic": false
   },
   {
     "id": "BEV-014",
     "name": "น้ำขิงร้อน/เย็นไล่ลม",
-    "mode": "sweet",
+    "mode": "drink",
     "category": "เครื่องดื่ม",
     "region": "สมุนไพร",
     "protein": "มังสวิรัติ",
@@ -5337,12 +5531,13 @@
     "ingredients": [
       "ขิง"
     ],
-    "is_halal": true
+    "is_halal": true,
+    "is_exotic": false
   },
   {
     "id": "BEV-015",
     "name": "น้ำมะตูมเย็นหอมหวาน",
-    "mode": "sweet",
+    "mode": "drink",
     "category": "เครื่องดื่ม",
     "region": "สมุนไพร",
     "protein": "มังสวิรัติ",
@@ -5366,12 +5561,13 @@
     "ingredients": [
       "มะตูม"
     ],
-    "is_halal": true
+    "is_halal": true,
+    "is_exotic": false
   },
   {
     "id": "BEV-016",
     "name": "โอเลี้ยงยกล้อเย็นเจี๊ยบ",
-    "mode": "sweet",
+    "mode": "drink",
     "category": "เครื่องดื่ม",
     "region": "คาเฟ่",
     "protein": "อื่นๆ",
@@ -5393,12 +5589,13 @@
       "กาแฟ",
       "นมสด"
     ],
-    "is_halal": true
+    "is_halal": true,
+    "is_exotic": false
   },
   {
     "id": "BEV-017",
     "name": "ชาดำเย็นหอมชื่นใจ",
-    "mode": "sweet",
+    "mode": "drink",
     "category": "เครื่องดื่ม",
     "region": "คาเฟ่",
     "protein": "มังสวิรัติ",
@@ -5421,12 +5618,13 @@
     "ingredients": [
       "ชาไทย"
     ],
-    "is_halal": true
+    "is_halal": true,
+    "is_exotic": false
   },
   {
     "id": "BEV-018",
     "name": "ชามะนาวเย็นเปรี้ยวหวาน",
-    "mode": "sweet",
+    "mode": "drink",
     "category": "เครื่องดื่ม",
     "region": "คาเฟ่",
     "protein": "มังสวิรัติ",
@@ -5450,12 +5648,13 @@
       "ชาไทย",
       "มะนาว"
     ],
-    "is_halal": true
+    "is_halal": true,
+    "is_exotic": false
   },
   {
     "id": "BEV-019",
     "name": "นมชมพูเย็นหวานละมุน",
-    "mode": "sweet",
+    "mode": "drink",
     "category": "เครื่องดื่ม",
     "region": "คาเฟ่",
     "protein": "อื่นๆ",
@@ -5476,12 +5675,13 @@
     "ingredients": [
       "นมสด"
     ],
-    "is_halal": true
+    "is_halal": true,
+    "is_exotic": false
   },
   {
     "id": "BEV-020",
     "name": "คาราเมลมัคคิอาโต้เย็น",
-    "mode": "sweet",
+    "mode": "drink",
     "category": "เครื่องดื่ม",
     "region": "คาเฟ่",
     "protein": "อื่นๆ",
@@ -5502,12 +5702,13 @@
       "กาแฟ",
       "นมสด"
     ],
-    "is_halal": true
+    "is_halal": true,
+    "is_exotic": false
   },
   {
     "id": "BEV-021",
     "name": "ชาเขียวปั่นวิปครีม",
-    "mode": "sweet",
+    "mode": "drink",
     "category": "เครื่องดื่ม",
     "region": "คาเฟ่",
     "protein": "อื่นๆ",
@@ -5529,12 +5730,13 @@
       "มัทฉะ",
       "นมสด"
     ],
-    "is_halal": true
+    "is_halal": true,
+    "is_exotic": false
   },
   {
     "id": "BEV-022",
     "name": "น้ำแตงโมปั่นเย็นฉ่ำ",
-    "mode": "sweet",
+    "mode": "drink",
     "category": "เครื่องดื่ม",
     "region": "สมุนไพร",
     "protein": "มังสวิรัติ",
@@ -5558,12 +5760,13 @@
     "ingredients": [
       "มังสวิรัติ"
     ],
-    "is_halal": true
+    "is_halal": true,
+    "is_exotic": false
   },
   {
     "id": "BEV-023",
     "name": "น้ำอัญชันมะนาวโซดา",
-    "mode": "sweet",
+    "mode": "drink",
     "category": "เครื่องดื่ม",
     "region": "สมุนไพร",
     "protein": "มังสวิรัติ",
@@ -5587,12 +5790,13 @@
     "ingredients": [
       "มะนาว"
     ],
-    "is_halal": true
+    "is_halal": true,
+    "is_exotic": false
   },
   {
     "id": "BEV-024",
     "name": "น้ำลำไยสีทองเย็น",
-    "mode": "sweet",
+    "mode": "drink",
     "category": "เครื่องดื่ม",
     "region": "สมุนไพร",
     "protein": "มังสวิรัติ",
@@ -5615,12 +5819,13 @@
     "ingredients": [
       "มังสวิรัติ"
     ],
-    "is_halal": true
+    "is_halal": true,
+    "is_exotic": false
   },
   {
     "id": "BEV-025",
     "name": "ลาเต้เย็นคั่วกลางนุ่มละมุน",
-    "mode": "sweet",
+    "mode": "drink",
     "category": "เครื่องดื่ม",
     "region": "คาเฟ่",
     "protein": "อื่นๆ",
@@ -5641,7 +5846,8 @@
       "กาแฟ",
       "นมสด"
     ],
-    "is_halal": true
+    "is_halal": true,
+    "is_exotic": false
   },
   {
     "id": "INT-51",
@@ -5668,7 +5874,8 @@
       "เนื้อ",
       "บะหมี่"
     ],
-    "is_halal": true
+    "is_halal": true,
+    "is_exotic": false
   },
   {
     "id": "INT-52",
@@ -5696,7 +5903,8 @@
       "กระเทียม",
       "พริก"
     ],
-    "is_halal": true
+    "is_halal": true,
+    "is_exotic": false
   },
   {
     "id": "INT-53",
@@ -5724,7 +5932,8 @@
       "เห็ด",
       "ชีส"
     ],
-    "is_halal": true
+    "is_halal": true,
+    "is_exotic": false
   },
   {
     "id": "INT-54",
@@ -5754,7 +5963,8 @@
       "หมู",
       "ผักรวม"
     ],
-    "is_halal": false
+    "is_halal": false,
+    "is_exotic": false
   },
   {
     "id": "INT-55",
@@ -5782,7 +5992,8 @@
       "มันฝรั่ง",
       "พริก"
     ],
-    "is_halal": true
+    "is_halal": true,
+    "is_exotic": false
   },
   {
     "id": "INT-56",
@@ -5802,14 +6013,15 @@
     ],
     "pair_id": "BEV-002",
     "dessert_pair_id": "BEV-002",
-    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Quesadilla.jpg?width=600",
+    "image_url": "images/INT-56.webp",
     "recipe_hint": "จี่แผ่นแป้งตอร์ติญ่าสอดไส้ไก่ฉีกและชีสผสมจนชีสละลายเยิ้ม หั่นชิ้นพอดีคำ",
     "wiki_query": "Quesadilla",
     "ingredients": [
       "ไก่",
       "ชีส"
     ],
-    "is_halal": true
+    "is_halal": true,
+    "is_exotic": false
   },
   {
     "id": "INT-57",
@@ -5838,7 +6050,8 @@
       "ไข่",
       "มะนาว"
     ],
-    "is_halal": true
+    "is_halal": true,
+    "is_exotic": false
   },
   {
     "id": "INT-58",
@@ -5865,7 +6078,8 @@
       "ผักรวม",
       "มะนาว"
     ],
-    "is_halal": true
+    "is_halal": true,
+    "is_exotic": false
   },
   {
     "id": "INT-59",
@@ -5894,7 +6108,8 @@
       "มะนาว",
       "พริก"
     ],
-    "is_halal": true
+    "is_halal": true,
+    "is_exotic": false
   },
   {
     "id": "INT-60",
@@ -5923,7 +6138,8 @@
       "พริก",
       "มะนาว"
     ],
-    "is_halal": false
+    "is_halal": false,
+    "is_exotic": false
   },
   {
     "id": "INT-61",
@@ -5950,7 +6166,8 @@
       "ข้าว",
       "กะหล่ำปลี"
     ],
-    "is_halal": false
+    "is_halal": false,
+    "is_exotic": false
   },
   {
     "id": "INT-62",
@@ -5977,7 +6194,8 @@
       "หมู",
       "มันฝรั่ง"
     ],
-    "is_halal": false
+    "is_halal": false,
+    "is_exotic": false
   },
   {
     "id": "INT-63",
@@ -6004,7 +6222,8 @@
       "ข้าว",
       "กระเทียม"
     ],
-    "is_halal": true
+    "is_halal": true,
+    "is_exotic": false
   },
   {
     "id": "INT-64",
@@ -6019,7 +6238,8 @@
     "is_spicy": false,
     "tags": [
       "จานเดียว",
-      "ไม่เผ็ด"
+      "ไม่เผ็ด",
+      "เมนูแปลก"
     ],
     "pair_id": "BEV-004",
     "dessert_pair_id": "BEV-005",
@@ -6030,7 +6250,9 @@
       "เนื้อ",
       "มันฝรั่ง"
     ],
-    "is_halal": true
+    "is_halal": true,
+    "is_exotic": true,
+    "exotic_level": 1
   },
   {
     "id": "INT-65",
@@ -6056,7 +6278,8 @@
       "เนื้อ",
       "ผักรวม"
     ],
-    "is_halal": true
+    "is_halal": true,
+    "is_exotic": false
   },
   {
     "id": "INT-66",
@@ -6083,7 +6306,8 @@
       "ปลา",
       "พริก"
     ],
-    "is_halal": true
+    "is_halal": true,
+    "is_exotic": false
   },
   {
     "id": "INT-67",
@@ -6111,7 +6335,8 @@
       "ผักรวม",
       "พริก"
     ],
-    "is_halal": true
+    "is_halal": true,
+    "is_exotic": false
   },
   {
     "id": "INT-68",
@@ -6136,7 +6361,8 @@
     "ingredients": [
       "เนื้อ"
     ],
-    "is_halal": true
+    "is_halal": true,
+    "is_exotic": false
   },
   {
     "id": "INT-69",
@@ -6163,7 +6389,8 @@
       "กุ้ง",
       "หอย"
     ],
-    "is_halal": true
+    "is_halal": true,
+    "is_exotic": false
   },
   {
     "id": "INT-70",
@@ -6190,7 +6417,8 @@
       "ไก่",
       "พริก"
     ],
-    "is_halal": true
+    "is_halal": true,
+    "is_exotic": false
   },
   {
     "id": "INT-71",
@@ -6217,7 +6445,8 @@
       "หมูสับ",
       "กุ้ง"
     ],
-    "is_halal": false
+    "is_halal": false,
+    "is_exotic": false
   },
   {
     "id": "INT-72",
@@ -6244,7 +6473,8 @@
       "เนื้อ",
       "พริก"
     ],
-    "is_halal": true
+    "is_halal": true,
+    "is_exotic": false
   },
   {
     "id": "INT-73",
@@ -6269,7 +6499,8 @@
     "ingredients": [
       "ปลา"
     ],
-    "is_halal": true
+    "is_halal": true,
+    "is_exotic": false
   },
   {
     "id": "INT-74",
@@ -6296,7 +6527,8 @@
       "หมูสับ",
       "กระเทียม"
     ],
-    "is_halal": false
+    "is_halal": false,
+    "is_exotic": false
   },
   {
     "id": "INT-75",
@@ -6323,7 +6555,8 @@
       "กระเทียม",
       "พริก"
     ],
-    "is_halal": true
+    "is_halal": true,
+    "is_exotic": false
   },
   {
     "id": "INT-76",
@@ -6350,7 +6583,8 @@
       "หมู",
       "กระเทียม"
     ],
-    "is_halal": false
+    "is_halal": false,
+    "is_exotic": false
   },
   {
     "id": "INT-77",
@@ -6377,7 +6611,8 @@
       "ไก่",
       "แป้ง"
     ],
-    "is_halal": true
+    "is_halal": true,
+    "is_exotic": false
   },
   {
     "id": "INT-78",
@@ -6404,7 +6639,8 @@
       "เนื้อ",
       "กระเทียม"
     ],
-    "is_halal": true
+    "is_halal": true,
+    "is_exotic": false
   },
   {
     "id": "INT-79",
@@ -6420,7 +6656,8 @@
     "tags": [
       "จานเดียว",
       "ประหยัด",
-      "สตรีทฟู้ด"
+      "สตรีทฟู้ด",
+      "เมนูแปลก"
     ],
     "pair_id": "BEV-004",
     "dessert_pair_id": "BEV-005",
@@ -6431,7 +6668,9 @@
       "ไข่",
       "พริก"
     ],
-    "is_halal": false
+    "is_halal": false,
+    "is_exotic": true,
+    "exotic_level": 3
   },
   {
     "id": "INT-80",
@@ -6459,7 +6698,8 @@
       "กะทิ",
       "พริก"
     ],
-    "is_halal": true
+    "is_halal": true,
+    "is_exotic": false
   },
   {
     "id": "INT-81",
@@ -6487,7 +6727,8 @@
       "แครอท",
       "เห็ด"
     ],
-    "is_halal": false
+    "is_halal": false,
+    "is_exotic": false
   },
   {
     "id": "INT-82",
@@ -6515,7 +6756,8 @@
       "มันฝรั่ง",
       "แครอท"
     ],
-    "is_halal": true
+    "is_halal": true,
+    "is_exotic": false
   },
   {
     "id": "INT-83",
@@ -6542,7 +6784,8 @@
       "ไข่",
       "ข้าว"
     ],
-    "is_halal": true
+    "is_halal": true,
+    "is_exotic": false
   },
   {
     "id": "INT-84",
@@ -6570,7 +6813,8 @@
       "ไก่",
       "พริก"
     ],
-    "is_halal": true
+    "is_halal": true,
+    "is_exotic": false
   },
   {
     "id": "INT-85",
@@ -6599,7 +6843,8 @@
       "ปลา",
       "ไข่"
     ],
-    "is_halal": true
+    "is_halal": true,
+    "is_exotic": false
   },
   {
     "id": "INT-86",
@@ -6628,7 +6873,8 @@
       "ผักรวม",
       "มะนาว"
     ],
-    "is_halal": true
+    "is_halal": true,
+    "is_exotic": false
   },
   {
     "id": "INT-87",
@@ -6657,7 +6903,8 @@
       "กุ้ง",
       "ไข่"
     ],
-    "is_halal": false
+    "is_halal": false,
+    "is_exotic": false
   },
   {
     "id": "INT-88",
@@ -6685,7 +6932,8 @@
       "ขิง",
       "พริก"
     ],
-    "is_halal": true
+    "is_halal": true,
+    "is_exotic": false
   },
   {
     "id": "INT-89",
@@ -6712,7 +6960,8 @@
       "เนื้อ",
       "ไข่"
     ],
-    "is_halal": true
+    "is_halal": true,
+    "is_exotic": false
   },
   {
     "id": "INT-90",
@@ -6741,7 +6990,8 @@
       "หมูสับ",
       "ไข่"
     ],
-    "is_halal": false
+    "is_halal": false,
+    "is_exotic": false
   },
   {
     "id": "INT-91",
@@ -6769,7 +7019,8 @@
       "เห็ด",
       "เบคอน"
     ],
-    "is_halal": false
+    "is_halal": false,
+    "is_exotic": false
   },
   {
     "id": "INT-92",
@@ -6797,7 +7048,8 @@
       "ผักรวม",
       "พริก"
     ],
-    "is_halal": true
+    "is_halal": true,
+    "is_exotic": false
   },
   {
     "id": "INT-93",
@@ -6825,7 +7077,8 @@
       "ข้าว",
       "กระเทียม"
     ],
-    "is_halal": true
+    "is_halal": true,
+    "is_exotic": false
   },
   {
     "id": "INT-94",
@@ -6854,7 +7107,8 @@
       "ข้าว",
       "ผักรวม"
     ],
-    "is_halal": true
+    "is_halal": true,
+    "is_exotic": false
   },
   {
     "id": "INT-95",
@@ -6869,7 +7123,8 @@
     "is_spicy": false,
     "tags": [
       "กับข้าว",
-      "พรีเมียม"
+      "พรีเมียม",
+      "เมนูแปลก"
     ],
     "pair_id": "BEV-004",
     "dessert_pair_id": "BEV-005",
@@ -6879,7 +7134,9 @@
     "ingredients": [
       "ปลา"
     ],
-    "is_halal": true
+    "is_halal": true,
+    "is_exotic": true,
+    "exotic_level": 3
   },
   {
     "id": "INT-96",
@@ -6905,7 +7162,8 @@
       "เนื้อ",
       "พริก"
     ],
-    "is_halal": true
+    "is_halal": true,
+    "is_exotic": false
   },
   {
     "id": "INT-97",
@@ -6933,7 +7191,8 @@
       "เบคอน",
       "มันฝรั่ง"
     ],
-    "is_halal": false
+    "is_halal": false,
+    "is_exotic": false
   },
   {
     "id": "INT-98",
@@ -6960,7 +7219,8 @@
       "หมู",
       "มันฝรั่ง"
     ],
-    "is_halal": false
+    "is_halal": false,
+    "is_exotic": false
   },
   {
     "id": "INT-99",
@@ -6988,7 +7248,8 @@
       "ชีส",
       "มะเขือ"
     ],
-    "is_halal": true
+    "is_halal": true,
+    "is_exotic": false
   },
   {
     "id": "INT-100",
@@ -7003,7 +7264,8 @@
     "is_spicy": false,
     "tags": [
       "กับข้าว",
-      "พรีเมียม"
+      "พรีเมียม",
+      "เมนูแปลก"
     ],
     "pair_id": "BEV-004",
     "dessert_pair_id": "BEV-005",
@@ -7013,7 +7275,9 @@
     "ingredients": [
       "ปลา"
     ],
-    "is_halal": true
+    "is_halal": true,
+    "is_exotic": true,
+    "exotic_level": 3
   },
   {
     "id": "INT-101",
@@ -7041,7 +7305,8 @@
       "หมู",
       "ไส้กรอก"
     ],
-    "is_halal": false
+    "is_halal": false,
+    "is_exotic": false
   },
   {
     "id": "INT-102",
@@ -7068,7 +7333,8 @@
       "เนื้อ",
       "มันฝรั่ง"
     ],
-    "is_halal": true
+    "is_halal": true,
+    "is_exotic": false
   },
   {
     "id": "INT-103",
@@ -7095,7 +7361,8 @@
       "ข้าว",
       "พริก"
     ],
-    "is_halal": true
+    "is_halal": true,
+    "is_exotic": false
   },
   {
     "id": "INT-104",
@@ -7122,7 +7389,8 @@
       "ปลา",
       "มะนาว"
     ],
-    "is_halal": true
+    "is_halal": true,
+    "is_exotic": false
   },
   {
     "id": "INT-105",
@@ -7149,7 +7417,8 @@
       "ไก่",
       "พริก"
     ],
-    "is_halal": true
+    "is_halal": true,
+    "is_exotic": false
   },
   {
     "id": "INT-106",
@@ -7177,7 +7446,8 @@
       "เนื้อ",
       "แครอท"
     ],
-    "is_halal": true
+    "is_halal": true,
+    "is_exotic": false
   },
   {
     "id": "INT-107",
@@ -7205,7 +7475,8 @@
       "เนื้อ",
       "กระเทียม"
     ],
-    "is_halal": true
+    "is_halal": true,
+    "is_exotic": false
   },
   {
     "id": "INT-108",
@@ -7235,7 +7506,8 @@
       "กระเทียม",
       "มะนาว"
     ],
-    "is_halal": false
+    "is_halal": false,
+    "is_exotic": false
   },
   {
     "id": "INT-109",
@@ -7262,7 +7534,8 @@
       "กุ้ง",
       "กระเทียม"
     ],
-    "is_halal": true
+    "is_halal": true,
+    "is_exotic": false
   },
   {
     "id": "INT-110",
@@ -7293,7 +7566,8 @@
       "เต้าหู้",
       "ไข่"
     ],
-    "is_halal": true
+    "is_halal": true,
+    "is_exotic": false
   },
   {
     "id": "INT-111",
@@ -7321,7 +7595,8 @@
       "แป้ง",
       "พริก"
     ],
-    "is_halal": true
+    "is_halal": true,
+    "is_exotic": false
   },
   {
     "id": "INT-112",
@@ -7347,7 +7622,8 @@
       "เนื้อ",
       "มันฝรั่ง"
     ],
-    "is_halal": true
+    "is_halal": true,
+    "is_exotic": false
   },
   {
     "id": "INT-113",
@@ -7373,7 +7649,8 @@
       "หมู",
       "พริก"
     ],
-    "is_halal": false
+    "is_halal": false,
+    "is_exotic": false
   },
   {
     "id": "INT-114",
@@ -7401,7 +7678,8 @@
       "ชีส",
       "กระเทียม"
     ],
-    "is_halal": true
+    "is_halal": true,
+    "is_exotic": false
   },
   {
     "id": "TH-C46",
@@ -7432,7 +7710,8 @@
       "แตงกวา",
       "ถั่วลิสง"
     ],
-    "is_halal": true
+    "is_halal": true,
+    "is_exotic": false
   },
   {
     "id": "TH-C47",
@@ -7461,7 +7740,8 @@
       "ไข่",
       "แป้ง"
     ],
-    "is_halal": true
+    "is_halal": true,
+    "is_exotic": false
   },
   {
     "id": "TH-C48",
@@ -7490,7 +7770,8 @@
       "พริก",
       "กระเทียม"
     ],
-    "is_halal": true
+    "is_halal": true,
+    "is_exotic": false
   },
   {
     "id": "TH-C49",
@@ -7522,7 +7803,8 @@
       "กระเทียม",
       "ขิง"
     ],
-    "is_halal": true
+    "is_halal": true,
+    "is_exotic": false
   },
   {
     "id": "TH-C50",
@@ -7553,7 +7835,8 @@
       "กระเทียม",
       "มะนาว"
     ],
-    "is_halal": true
+    "is_halal": true,
+    "is_exotic": false
   },
   {
     "id": "TH-C51",
@@ -7582,7 +7865,8 @@
       "ไข่เค็ม",
       "กระเทียม"
     ],
-    "is_halal": true
+    "is_halal": true,
+    "is_exotic": false
   },
   {
     "id": "TH-C52",
@@ -7615,7 +7899,8 @@
       "พริก",
       "มะนาว"
     ],
-    "is_halal": true
+    "is_halal": true,
+    "is_exotic": false
   },
   {
     "id": "TH-C53",
@@ -7643,7 +7928,8 @@
       "หมู",
       "กระเทียม"
     ],
-    "is_halal": false
+    "is_halal": false,
+    "is_exotic": false
   },
   {
     "id": "TH-N18",
@@ -7672,7 +7958,8 @@
       "พริก",
       "แตงกวา"
     ],
-    "is_halal": false
+    "is_halal": false,
+    "is_exotic": false
   },
   {
     "id": "TH-E23",
@@ -7702,7 +7989,8 @@
       "พริก",
       "มะนาว"
     ],
-    "is_halal": false
+    "is_halal": false,
+    "is_exotic": false
   },
   {
     "id": "TH-E24",
@@ -7719,7 +8007,8 @@
       "กับข้าว",
       "ทอด",
       "ไม่เผ็ด",
-      "สตรีทฟู้ด"
+      "สตรีทฟู้ด",
+      "เมนูแปลก"
     ],
     "pair_id": "TH-E01",
     "dessert_pair_id": "BEV-005",
@@ -7729,6 +8018,716 @@
     "ingredients": [
       "พริก"
     ],
-    "is_halal": false
+    "is_halal": false,
+    "is_exotic": true,
+    "exotic_level": 2
+  },
+  {
+    "id": "TH-C54",
+    "name": "แกงระแวงเนื้อ (แกงกะทิข้นโบราณ)",
+    "mode": "main",
+    "category": "อาหารไทย 4 ภาค",
+    "region": "ภาคกลาง",
+    "protein": "เนื้อ",
+    "budget": 110,
+    "budget_tier": "พรีเมียม",
+    "prep_time": 40,
+    "is_spicy": true,
+    "tags": [
+      "กับข้าว",
+      "แกงกะทิ",
+      "เผ็ด",
+      "พรีเมียม"
+    ],
+    "pair_id": "TH-C45",
+    "dessert_pair_id": "DES-003",
+    "image_url": "images/TH-C54.webp",
+    "recipe_hint": "เคี่ยวเนื้อวัวกับพริกแกงเขียวหวานผสมขมิ้นและกะทิจนน้ำแกงข้นขลุกขลิก โรยพริกชี้ฟ้าและใบโหระพา",
+    "wiki_query": "Kaeng rawaeng beef coconut curry",
+    "ingredients": [
+      "เนื้อ",
+      "กะทิ",
+      "ขมิ้น",
+      "พริก"
+    ],
+    "is_halal": true,
+    "is_exotic": false
+  },
+  {
+    "id": "TH-C55",
+    "name": "เมี่ยงคำใบชะพลูทรงเครื่อง",
+    "mode": "main",
+    "category": "อาหารไทย 4 ภาค",
+    "region": "ภาคกลาง",
+    "protein": "ทะเล",
+    "budget": 60,
+    "budget_tier": "ปานกลาง",
+    "prep_time": 15,
+    "is_spicy": false,
+    "tags": [
+      "กับข้าว",
+      "สุขภาพ",
+      "สายคลีน",
+      "ไม่เผ็ด",
+      "สตรีทฟู้ด"
+    ],
+    "pair_id": "TH-C02",
+    "dessert_pair_id": "BEV-004",
+    "image_url": "images/TH-C55.webp",
+    "recipe_hint": "จัดใบชะพลูสดคู่เครื่องเคียง มะพร้าวคั่ว ถั่วลิสง กุ้งแห้ง ขิง หอมแดง มะนาวหั่นเต๋า พริกขี้หนู และน้ำเมี่ยงเคี่ยวหอม",
+    "wiki_query": "Miang kham Thai appetizer",
+    "ingredients": [
+      "กุ้ง",
+      "มะพร้าว",
+      "ขิง",
+      "มะนาว",
+      "พริก",
+      "ถั่วลิสง"
+    ],
+    "is_halal": true,
+    "is_exotic": false
+  },
+  {
+    "id": "TH-C56",
+    "name": "น้ำพริกลงเรือหมูหวานไข่เค็ม",
+    "mode": "main",
+    "category": "อาหารไทย 4 ภาค",
+    "region": "ภาคกลาง",
+    "protein": "หมู",
+    "budget": 95,
+    "budget_tier": "พรีเมียม",
+    "prep_time": 25,
+    "is_spicy": true,
+    "tags": [
+      "กับข้าว",
+      "เผ็ด",
+      "พรีเมียม"
+    ],
+    "pair_id": "TH-C06",
+    "dessert_pair_id": "BEV-004",
+    "image_url": "images/TH-C56.webp",
+    "recipe_hint": "ผัดน้ำพริกกะปิกับปลาดุกฟูและหมูหวานจนหอม เสิร์ฟคู่ไข่แดงเค็ม มะเขือเปราะ แตงกวา และผักสดชาววัง",
+    "wiki_query": "Nam phrik long ruea",
+    "ingredients": [
+      "หมู",
+      "ไข่เค็ม",
+      "ปลา",
+      "พริก",
+      "แตงกวา"
+    ],
+    "is_halal": false,
+    "is_exotic": false
+  },
+  {
+    "id": "TH-C57",
+    "name": "แกงคั่วกุ้งแม่น้ำหน่อไม้สด",
+    "mode": "main",
+    "category": "อาหารไทย 4 ภาค",
+    "region": "ภาคกลาง",
+    "protein": "ทะเล",
+    "budget": 125,
+    "budget_tier": "พรีเมียม",
+    "prep_time": 25,
+    "is_spicy": true,
+    "tags": [
+      "กับข้าว",
+      "แกงกะทิ",
+      "เผ็ด",
+      "พรีเมียม"
+    ],
+    "pair_id": "TH-C35",
+    "dessert_pair_id": "DES-005",
+    "image_url": "images/TH-C57.webp",
+    "recipe_hint": "เคี่ยวพริกแกงคั่วกับหัวกะทิจนหอมมัน ใส่หน่อไม้สดหั่นชิ้นและกุ้งแม่น้ำตัวโต โรยใบมะกรูดซอยและพริกชี้ฟ้า",
+    "wiki_query": "Thai red coconut curry river prawns",
+    "ingredients": [
+      "กุ้ง",
+      "หน่อไม้",
+      "กะทิ",
+      "พริก"
+    ],
+    "is_halal": true,
+    "is_exotic": false
+  },
+  {
+    "id": "TH-C58",
+    "name": "ข้าวแช่ชาววังครบเครื่อง",
+    "mode": "main",
+    "category": "อาหารไทย 4 ภาค",
+    "region": "ภาคกลาง",
+    "protein": "หมู",
+    "budget": 160,
+    "budget_tier": "พรีเมียม",
+    "prep_time": 40,
+    "is_spicy": false,
+    "tags": [
+      "จานเดียว",
+      "ไม่เผ็ด",
+      "พรีเมียม",
+      "ครบเครื่อง"
+    ],
+    "pair_id": "BEV-004",
+    "dessert_pair_id": "DES-003",
+    "image_url": "images/TH-C58.webp",
+    "recipe_hint": "ข้าวหอมมะลิขัดเม็ดแช่น้ำลอยดอกมะลิเย็นหอม เสิร์ฟคู่ลูกกะปิทอด พริกหยวกสอดไส้หมูสับ หอมแดงยัดไส้ และปลายี่สนผัดหวาน",
+    "wiki_query": "Khao chae Thai royal cuisine",
+    "ingredients": [
+      "ข้าว",
+      "หมูสับ",
+      "ปลา",
+      "พริก"
+    ],
+    "is_halal": false,
+    "is_exotic": false
+  },
+  {
+    "id": "TH-C59",
+    "name": "ปลาแห้งแตงโมชาววัง",
+    "mode": "main",
+    "category": "อาหารไทย 4 ภาค",
+    "region": "ภาคกลาง",
+    "protein": "ปลา",
+    "budget": 75,
+    "budget_tier": "ปานกลาง",
+    "prep_time": 15,
+    "is_spicy": false,
+    "tags": [
+      "กับข้าว",
+      "ไม่เผ็ด",
+      "สุขภาพ",
+      "สายคลีน",
+      "สดชื่นดับร้อน"
+    ],
+    "pair_id": "TH-C04",
+    "dessert_pair_id": "BEV-004",
+    "image_url": "images/TH-C59.webp",
+    "recipe_hint": "หั่นแตงโมเย็นจัดเป็นชิ้นพอดีคำ โรยหน้าด้วยปลาช่อนแห้งป่นคั่วกับหอมแดงเจียวและน้ำตาลทราย หอมหวานสดชื่นคลายร้อน",
+    "wiki_query": "Pla haeng taeng mo watermelon dried fish",
+    "ingredients": [
+      "ปลา"
+    ],
+    "is_halal": true,
+    "is_exotic": false
+  },
+  {
+    "id": "TH-C60",
+    "name": "ยำทวายโบราณทรงเครื่อง",
+    "mode": "main",
+    "category": "อาหารไทย 4 ภาค",
+    "region": "ภาคกลาง",
+    "protein": "ทะเล",
+    "budget": 95,
+    "budget_tier": "พรีเมียม",
+    "prep_time": 25,
+    "is_spicy": false,
+    "tags": [
+      "กับข้าว",
+      "ยำ/ตำ",
+      "สุขภาพ",
+      "สายคลีน",
+      "ไม่เผ็ด"
+    ],
+    "pair_id": "TH-C45",
+    "dessert_pair_id": "BEV-005",
+    "image_url": "images/TH-C60.webp",
+    "recipe_hint": "เรียงผักลวกนานาชนิด ถั่วฝักยาว ผักบุ้ง หัวปลี กุ้งลวก และไก่ฉีก ราดน้ำยำกะทิคั่วพริกแกงหอมงาคั่วและหอมเจียว",
+    "wiki_query": "Yam Tawai Thai royal salad",
+    "ingredients": [
+      "กุ้ง",
+      "ไก่",
+      "ผักบุ้ง",
+      "กะทิ",
+      "ผักรวม"
+    ],
+    "is_halal": true,
+    "is_exotic": false
+  },
+  {
+    "id": "TH-S17",
+    "name": "ต้มกะทิหมูสามชั้นกุ้งสดปักษ์ใต้",
+    "mode": "main",
+    "category": "อาหารไทย 4 ภาค",
+    "region": "ภาคใต้",
+    "protein": "หมู",
+    "budget": 95,
+    "budget_tier": "พรีเมียม",
+    "prep_time": 30,
+    "is_spicy": false,
+    "tags": [
+      "กับข้าว",
+      "ต้ม",
+      "แกงกะทิ",
+      "ไม่เผ็ด"
+    ],
+    "pair_id": "TH-S02",
+    "dessert_pair_id": "BEV-005",
+    "image_url": "images/TH-S17.webp",
+    "recipe_hint": "ต้มกะทิใส่ตะไคร้ทุบ หอมแดง ขมิ้น และกะปิ เคี่ยวหมูสามชั้นจนนุ่มแล้วใส่กุ้งสด ซดหอมมันกลมกล่อมสไตล์ใต้",
+    "wiki_query": "Southern Thai coconut soup pork belly shrimp",
+    "ingredients": [
+      "หมูสามชั้น",
+      "หมู",
+      "กุ้ง",
+      "กะทิ",
+      "ขมิ้น"
+    ],
+    "is_halal": false,
+    "is_exotic": false
+  },
+  {
+    "id": "TH-C61",
+    "name": "ต้มซุปเปอร์ขาไก่หม้อไฟ",
+    "mode": "main",
+    "category": "อาหารไทย 4 ภาค",
+    "region": "ภาคกลาง",
+    "protein": "ไก่",
+    "budget": 80,
+    "budget_tier": "ปานกลาง",
+    "prep_time": 35,
+    "is_spicy": true,
+    "tags": [
+      "กับข้าว",
+      "ต้ม",
+      "เผ็ด",
+      "สตรีทฟู้ด",
+      "เมนูแปลก"
+    ],
+    "pair_id": "TH-C35",
+    "dessert_pair_id": "BEV-005",
+    "image_url": "images/TH-C61.webp",
+    "recipe_hint": "ตุ๋นขาไก่กับสมุนไพรจนเปื่อยนุ่มร่อนกระดูก ปรุงน้ำซุปรสแซ่บจัดจ้านด้วยพริกขี้หนูสวนทุบและมะนาวสดในหม้อไฟ",
+    "wiki_query": "Tom super chicken feet spicy soup Thai",
+    "ingredients": [
+      "ไก่",
+      "พริก",
+      "มะนาว"
+    ],
+    "is_halal": true,
+    "is_exotic": true,
+    "exotic_level": 1
+  },
+  {
+    "id": "TH-E25",
+    "name": "ก้อยไข่มดแดงทรงเครื่อง",
+    "mode": "main",
+    "category": "อาหารไทย 4 ภาค",
+    "region": "ภาคอีสาน",
+    "protein": "ไข่",
+    "budget": 95,
+    "budget_tier": "พรีเมียม",
+    "prep_time": 12,
+    "is_spicy": true,
+    "tags": [
+      "กับข้าว",
+      "ยำ/ตำ",
+      "เผ็ด",
+      "เมนูแปลก"
+    ],
+    "pair_id": "TH-E02",
+    "dessert_pair_id": "BEV-005",
+    "image_url": "images/TH-E25.webp",
+    "recipe_hint": "คลุกไข่มดแดงสดเต่งๆ กับน้ำปลา มะนาว พริกป่น ข้าวคั่ว หอมแดงซอย ต้นหอม และใบสะระแหน่ กินคู่ข้าวเหนียวร้อนๆ",
+    "wiki_query": "Koi khai mot daeng red ant egg salad",
+    "ingredients": [
+      "ไข่มดแดง",
+      "พริก",
+      "มะนาว"
+    ],
+    "is_halal": false,
+    "is_exotic": true,
+    "exotic_level": 2
+  },
+  {
+    "id": "TH-E26",
+    "name": "ต้มเปรตปลาไหลนาอีสาน",
+    "mode": "main",
+    "category": "อาหารไทย 4 ภาค",
+    "region": "ภาคอีสาน",
+    "protein": "ปลา",
+    "budget": 110,
+    "budget_tier": "พรีเมียม",
+    "prep_time": 30,
+    "is_spicy": true,
+    "tags": [
+      "กับข้าว",
+      "ต้ม",
+      "เผ็ด",
+      "เมนูแปลก"
+    ],
+    "pair_id": "TH-E02",
+    "dessert_pair_id": "BEV-005",
+    "image_url": "images/TH-E26.webp",
+    "recipe_hint": "ต้มปลาไหลนากับข่า ตะไคร้ ใบมะกรูด ใบมะขามอ่อน พริกแห้งคั่ว และข้าวคั่ว หอมสมุนไพรแซ่บถึงใจ",
+    "wiki_query": "Tom pret pla lai spicy Thai eel soup",
+    "ingredients": [
+      "ปลา",
+      "พริก",
+      "มะนาว"
+    ],
+    "is_halal": true,
+    "is_exotic": true,
+    "exotic_level": 2
+  },
+  {
+    "id": "TH-E27",
+    "name": "หมกฮวกสมุนไพร (หมกลูกอ๊อดอีสาน)",
+    "mode": "main",
+    "category": "อาหารไทย 4 ภาค",
+    "region": "ภาคอีสาน",
+    "protein": "อื่นๆ",
+    "budget": 75,
+    "budget_tier": "ปานกลาง",
+    "prep_time": 25,
+    "is_spicy": true,
+    "tags": [
+      "กับข้าว",
+      "เผ็ด",
+      "เมนูแปลก"
+    ],
+    "pair_id": "TH-E02",
+    "dessert_pair_id": "BEV-004",
+    "image_url": "images/TH-E27.webp",
+    "recipe_hint": "คลุกลูกอ๊อดกับพริกแกงอีสาน ตะไคร้ ใบแมงลัก ผักชีลาว และน้ำปลาร้า ห่อใบตองย่างไฟอ่อนจนหอมกรุ่น",
+    "wiki_query": "Mok huak Isan steamed tadpoles banana leaf",
+    "ingredients": [
+      "พริก",
+      "ใบแมงลัก"
+    ],
+    "is_halal": false,
+    "is_exotic": true,
+    "exotic_level": 3
+  },
+  {
+    "id": "TH-E28",
+    "name": "ต้มอึ่งไข่ใบมะขามอ่อน",
+    "mode": "main",
+    "category": "อาหารไทย 4 ภาค",
+    "region": "ภาคอีสาน",
+    "protein": "อื่นๆ",
+    "budget": 120,
+    "budget_tier": "พรีเมียม",
+    "prep_time": 30,
+    "is_spicy": true,
+    "tags": [
+      "กับข้าว",
+      "ต้ม",
+      "เผ็ด",
+      "เมนูแปลก"
+    ],
+    "pair_id": "TH-E02",
+    "dessert_pair_id": "BEV-005",
+    "image_url": "images/TH-E28.webp",
+    "recipe_hint": "ต้มอึ่งอ่างไข่แน่นเต็มท้องในน้ำซุปสมุนไพรข่าตะไคร้ ใส่ใบมะขามอ่อนและพริกแห้งคั่ว ซดเปรี้ยวแซ่บของดีหน้าฝน",
+    "wiki_query": "Tom ueng khai Thai bullfrog soup",
+    "ingredients": [
+      "พริก",
+      "มะนาว"
+    ],
+    "is_halal": false,
+    "is_exotic": true,
+    "exotic_level": 2
+  },
+  {
+    "id": "INT-115",
+    "name": "สลัดมดนอร์ดิกไฟน์ไดนิ่ง",
+    "mode": "main",
+    "category": "อาหารนานาชาติ",
+    "region": "เดนมาร์ก",
+    "protein": "อื่นๆ",
+    "budget": 250,
+    "budget_tier": "พรีเมียม",
+    "prep_time": 15,
+    "is_spicy": false,
+    "tags": [
+      "กับข้าว",
+      "พรีเมียม",
+      "ไม่เผ็ด",
+      "เมนูแปลก"
+    ],
+    "pair_id": "BEV-002",
+    "dessert_pair_id": "BEV-002",
+    "image_url": "images/INT-115.webp",
+    "recipe_hint": "จัดผักสมุนไพรป่านอร์ดิกและดอกไม้กินได้ โรยมดรสเปรี้ยวคล้ายเลมอนธรรมชาติพร้อมซอสครีมสมุนไพร",
+    "wiki_query": "Nordic ant salad fine dining",
+    "ingredients": [
+      "ผักรวม"
+    ],
+    "is_halal": false,
+    "is_exotic": true,
+    "exotic_level": 3
+  },
+  {
+    "id": "INT-116",
+    "name": "ซุปค้างคาวปาเลา",
+    "mode": "main",
+    "category": "อาหารนานาชาติ",
+    "region": "ปาเลา",
+    "protein": "อื่นๆ",
+    "budget": 220,
+    "budget_tier": "พรีเมียม",
+    "prep_time": 45,
+    "is_spicy": false,
+    "tags": [
+      "กับข้าว",
+      "ต้ม",
+      "พรีเมียม",
+      "เมนูแปลก"
+    ],
+    "pair_id": "BEV-004",
+    "dessert_pair_id": "BEV-004",
+    "image_url": "images/INT-116.webp",
+    "recipe_hint": "เมนูพื้นเมืองเกาะปาเลา ต้มค้างคาวผลไม้กับขิง กระเทียม กะทิ และสมุนไพรจนน้ำซุปหอมเข้มข้น",
+    "wiki_query": "Palau fruit bat soup",
+    "ingredients": [
+      "ขิง",
+      "กระเทียม",
+      "กะทิ"
+    ],
+    "is_halal": false,
+    "is_exotic": true,
+    "exotic_level": 3
+  },
+  {
+    "id": "INT-117",
+    "name": "หัวแกะต้มสโมลาโฮเว (นอร์เวย์)",
+    "mode": "main",
+    "category": "อาหารนานาชาติ",
+    "region": "นอร์เวย์",
+    "protein": "เนื้อ",
+    "budget": 240,
+    "budget_tier": "พรีเมียม",
+    "prep_time": 60,
+    "is_spicy": false,
+    "tags": [
+      "จานเดียว",
+      "ต้ม",
+      "พรีเมียม",
+      "ไม่เผ็ด",
+      "เมนูแปลก"
+    ],
+    "pair_id": "BEV-004",
+    "dessert_pair_id": "BEV-004",
+    "image_url": "images/INT-117.webp",
+    "recipe_hint": "หัวแกะหมักเกลือรมควันต้มจนเปื่อยนุ่ม เสิร์ฟสไตล์นอร์เวย์ดั้งเดิมคู่มันฝรั่งบดและรูตาบาก้าบด",
+    "wiki_query": "Smalahove Norwegian sheep head",
+    "ingredients": [
+      "เนื้อ",
+      "มันฝรั่ง"
+    ],
+    "is_halal": true,
+    "is_exotic": true,
+    "exotic_level": 3
+  },
+  {
+    "id": "INT-118",
+    "name": "ชีสหนอนคาซูมาร์ซู (อิตาลี)",
+    "mode": "main",
+    "category": "อาหารนานาชาติ",
+    "region": "อิตาลี",
+    "protein": "อื่นๆ",
+    "budget": 280,
+    "budget_tier": "พรีเมียม",
+    "prep_time": 10,
+    "is_spicy": false,
+    "tags": [
+      "กับข้าว",
+      "พรีเมียม",
+      "ไม่เผ็ด",
+      "เมนูแปลก"
+    ],
+    "pair_id": "BEV-002",
+    "dessert_pair_id": "BEV-002",
+    "image_url": "images/INT-118.webp",
+    "recipe_hint": "ชีสนมแกะหมักพื้นเมืองเกาะซาร์ดิเนียเนื้อนิ่มรสเผ็ดร้อนจัดจ้าน เสิร์ฟคู่ขนมปังกรอบพื้นเมือง",
+    "wiki_query": "Casu Marzu Sardinia cheese",
+    "ingredients": [
+      "ชีส"
+    ],
+    "is_halal": false,
+    "is_exotic": true,
+    "exotic_level": 3
+  },
+  {
+    "id": "INT-119",
+    "name": "งูหางกระดิ่งทอดกรอบ (เท็กซัส)",
+    "mode": "main",
+    "category": "อาหารนานาชาติ",
+    "region": "อเมริกัน",
+    "protein": "อื่นๆ",
+    "budget": 195,
+    "budget_tier": "พรีเมียม",
+    "prep_time": 20,
+    "is_spicy": false,
+    "tags": [
+      "กับข้าว",
+      "ทอด",
+      "พรีเมียม",
+      "เมนูแปลก"
+    ],
+    "pair_id": "BEV-002",
+    "dessert_pair_id": "BEV-002",
+    "image_url": "images/INT-119.webp",
+    "recipe_hint": "ชุบเนื้อหั่นท่อนด้วยแป้งปรุงรสเครื่องเทศเท็กซัสทอดจนเหลืองกรอบ เสิร์ฟคู่ซอสสไปซี่มาโยและมะนาว",
+    "wiki_query": "Fried rattlesnake Texas dish",
+    "ingredients": [
+      "แป้ง",
+      "พริก",
+      "มะนาว"
+    ],
+    "is_halal": false,
+    "is_exotic": true,
+    "exotic_level": 3
+  },
+  {
+    "id": "INT-120",
+    "name": "ปลาลูเทฟิสก์ด่างนอร์ดิก",
+    "mode": "main",
+    "category": "อาหารนานาชาติ",
+    "region": "นอร์เวย์",
+    "protein": "ปลา",
+    "budget": 185,
+    "budget_tier": "พรีเมียม",
+    "prep_time": 25,
+    "is_spicy": false,
+    "tags": [
+      "จานเดียว",
+      "พรีเมียม",
+      "ไม่เผ็ด",
+      "เมนูแปลก"
+    ],
+    "pair_id": "BEV-004",
+    "dessert_pair_id": "BEV-004",
+    "image_url": "images/INT-120.webp",
+    "recipe_hint": "ปลาคอดตากแห้งแช่น้ำด่างจนเนื้อใสนุ่มเด้งคล้ายวุ้น อบร้อนเสิร์ฟคู่มันฝรั่งต้ม ถั่วลันเตาบด และเบคอนกรอบ",
+    "wiki_query": "Lutefisk Norwegian fish dish",
+    "ingredients": [
+      "ปลา",
+      "มันฝรั่ง",
+      "เบคอน"
+    ],
+    "is_halal": false,
+    "is_exotic": true,
+    "exotic_level": 2
+  },
+  {
+    "id": "INT-121",
+    "name": "วุ้นจมูกกวางมูส (แคนาดา)",
+    "mode": "main",
+    "category": "อาหารนานาชาติ",
+    "region": "แคนาดา",
+    "protein": "เนื้อ",
+    "budget": 210,
+    "budget_tier": "พรีเมียม",
+    "prep_time": 45,
+    "is_spicy": false,
+    "tags": [
+      "กับข้าว",
+      "พรีเมียม",
+      "ไม่เผ็ด",
+      "เมนูแปลก"
+    ],
+    "pair_id": "BEV-004",
+    "dessert_pair_id": "BEV-004",
+    "image_url": "images/INT-121.webp",
+    "recipe_hint": "เคี่ยวจมูกกวางมูสกับกระเทียม พริกไทย และสมุนไพรจนเปื่อย ทิ้งให้เซ็ตตัวเป็นวุ้นใสธรรมชาติแล้วหั่นสไลด์เสิร์ฟเย็น",
+    "wiki_query": "Jellied moose nose Canadian dish",
+    "ingredients": [
+      "เนื้อ",
+      "กระเทียม"
+    ],
+    "is_halal": true,
+    "is_exotic": true,
+    "exotic_level": 3
+  },
+  {
+    "id": "INT-122",
+    "name": "พายปลาจ้องดาวสตาร์เกซี (อังกฤษ)",
+    "mode": "main",
+    "category": "อาหารนานาชาติ",
+    "region": "อังกฤษ",
+    "protein": "ปลา",
+    "budget": 175,
+    "budget_tier": "พรีเมียม",
+    "prep_time": 40,
+    "is_spicy": false,
+    "tags": [
+      "จานเดียว",
+      "พรีเมียม",
+      "ไม่เผ็ด",
+      "เมนูแปลก"
+    ],
+    "pair_id": "BEV-002",
+    "dessert_pair_id": "BEV-002",
+    "image_url": "images/INT-122.webp",
+    "recipe_hint": "พายพื้นเมืองคอร์นวอลล์อบปลาซาร์ดีน ไข่ และมันฝรั่งในซอสครีม โดยโผล่หัวปลาขึ้นทะลุแป้งพายเหมือนกำลังจ้องมองดาว",
+    "wiki_query": "Stargazy pie Cornish fish pie",
+    "ingredients": [
+      "ปลา",
+      "ไข่",
+      "มันฝรั่ง",
+      "แป้ง"
+    ],
+    "is_halal": true,
+    "is_exotic": true,
+    "exotic_level": 1
+  },
+  {
+    "id": "INT-123",
+    "name": "หนูตะเภาย่างเปรู (กูย)",
+    "mode": "main",
+    "category": "อาหารนานาชาติ",
+    "region": "เปรู",
+    "protein": "อื่นๆ",
+    "budget": 210,
+    "budget_tier": "พรีเมียม",
+    "prep_time": 45,
+    "is_spicy": false,
+    "tags": [
+      "กับข้าว",
+      "ย่าง",
+      "พรีเมียม",
+      "เมนูแปลก"
+    ],
+    "pair_id": "BEV-002",
+    "dessert_pair_id": "BEV-002",
+    "image_url": "images/INT-123.webp",
+    "recipe_hint": "อาหารดั้งเดิมแถบเทือกเขาแอนดีส หมักเครื่องเทศกระเทียมยี่หร่าแล้วย่างทั้งตัวจนหนังกรอบ เสิร์ฟคู่มันฝรั่งและข้าวโพดเปรู",
+    "wiki_query": "Roasted Cuy Peruvian guinea pig dish",
+    "ingredients": [
+      "มันฝรั่ง",
+      "กระเทียม"
+    ],
+    "is_halal": false,
+    "is_exotic": true,
+    "exotic_level": 3
+  },
+  {
+    "id": "INT-124",
+    "name": "เซมเบ้ตัวต่อญี่ปุ่น (จีบาจิเซมเบ้)",
+    "mode": "main",
+    "category": "อาหารนานาชาติ",
+    "region": "ญี่ปุ่น",
+    "protein": "อื่นๆ",
+    "budget": 120,
+    "budget_tier": "พรีเมียม",
+    "prep_time": 10,
+    "is_spicy": false,
+    "tags": [
+      "กับข้าว",
+      "ไม่เผ็ด",
+      "เมนูแปลก"
+    ],
+    "pair_id": "BEV-006",
+    "dessert_pair_id": "BEV-006",
+    "image_url": "images/INT-124.webp",
+    "recipe_hint": "ข้าวเกรียบเซมเบ้กรอบหอมโชยุอบพร้อมตัวต่อป่าต้มสุก ของฝากขึ้นชื่อประจำจังหวัดนากาโนะ ประเทศญี่ปุ่น",
+    "wiki_query": "Jibachi senbei Japanese wasp crackers",
+    "ingredients": [
+      "แป้ง",
+      "ข้าว"
+    ],
+    "is_halal": false,
+    "is_exotic": true,
+    "exotic_level": 3
   }
 ]

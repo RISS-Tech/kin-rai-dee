@@ -2006,3 +2006,451 @@
       cursor: pointer;
       flex-shrink: 0;
     }
+
+    /* --- Master Blueprint Phase M1: 5 Modes, Exotic Mode, Party Dare & Curated Tray (5/8) --- */
+    .mode-toggle-wrap.mode-5 {
+      grid-template-columns: repeat(5, 1fr);
+      gap: 3px;
+      padding: 4px;
+    }
+
+    .mode-toggle-wrap.mode-5 .mode-btn {
+      font-size: 11.5px;
+      min-height: 46px;
+      padding: 4px 1px;
+    }
+
+    .mode-btn.drink-active {
+      background: linear-gradient(135deg, #0284C7 0%, #0369A1 100%);
+      color: #FFFFFF;
+      box-shadow: 0 6px 14px rgba(2, 132, 199, 0.3);
+    }
+
+    .spin-cta.drink-cta {
+      background: linear-gradient(135deg, #0284C7 0%, #0369A1 100%);
+      box-shadow: 0 10px 20px -4px rgba(2, 132, 199, 0.35);
+    }
+
+    .spin-cta.exotic-cta {
+      background: linear-gradient(135deg, #7C2D12 0%, #581C87 100%);
+      box-shadow: 0 10px 20px -4px rgba(88, 28, 135, 0.38);
+    }
+
+    .home-control-bar {
+      gap: 6px;
+    }
+
+    .home-control-bar .halal-toggle-btn,
+    .home-control-bar .exotic-toggle-btn,
+    .home-control-bar .filter-drawer-btn {
+      min-height: 40px;
+      padding: 5px 10px;
+      font-size: 12.5px;
+      gap: 5px;
+    }
+
+    .exotic-toggle-btn {
+      flex: 1;
+      min-height: 40px;
+      border-radius: 999px;
+      border: 1.5px solid #D6CCC2;
+      background: #FFFFFF;
+      color: var(--text-brown);
+      padding: 5px 10px;
+      font-size: 12.5px;
+      font-weight: 700;
+      display: inline-flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 5px;
+      cursor: pointer;
+      box-shadow: var(--shadow-soft);
+      white-space: nowrap;
+      transition: all 0.2s ease;
+    }
+
+    .exotic-toggle-btn.active {
+      background: linear-gradient(135deg, #7C2D12 0%, #581C87 100%);
+      border-color: #581C87;
+      color: #FFFFFF;
+      box-shadow: 0 6px 14px rgba(88, 28, 135, 0.3);
+    }
+
+    .exotic-toggle-btn.active .halal-state-pill {
+      background: rgba(255, 255, 255, 0.22);
+      color: #FFFFFF;
+    }
+
+    .exotic-toggle-btn.compact {
+      flex: 0 0 auto;
+      min-height: 36px;
+      padding: 4px 10px;
+      font-size: 13px;
+      border-color: rgba(255, 255, 255, 0.35);
+      background: rgba(255, 255, 255, 0.14);
+      color: #FFFFFF;
+      box-shadow: none;
+    }
+
+    .exotic-toggle-btn.compact.active {
+      background: #7C2D12;
+      border-color: #FDBA74;
+      color: #FFFFFF;
+    }
+
+    .exotic-toggle-btn.compact .halal-state-pill {
+      background: rgba(255, 255, 255, 0.2);
+      color: #FFFFFF;
+    }
+
+    .exotic-strip {
+      display: none;
+      background: linear-gradient(135deg, #2E1065 0%, #7C2D12 100%);
+      color: #FEF3C7;
+      border-radius: 20px;
+      padding: 10px 12px;
+      margin-bottom: 10px;
+      box-shadow: 0 10px 22px rgba(88, 28, 135, 0.24);
+      animation: fadeIn 0.2s ease;
+    }
+
+    .exotic-strip.show {
+      display: block;
+    }
+
+    .exotic-strip-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      margin-bottom: 8px;
+    }
+
+    .exotic-strip-title {
+      font-size: 13px;
+      font-weight: 700;
+      color: #FDE68A;
+    }
+
+    .exotic-party-btn {
+      border: none;
+      background: #FFC53D;
+      color: #3A2B22;
+      border-radius: 999px;
+      padding: 4px 11px;
+      font-size: 12px;
+      font-weight: 700;
+      cursor: pointer;
+      white-space: nowrap;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.18);
+    }
+
+    .exotic-strip-controls {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      overflow-x: auto;
+      scrollbar-width: none;
+      padding-bottom: 2px;
+    }
+
+    .exotic-strip-controls::-webkit-scrollbar {
+      display: none;
+    }
+
+    .exotic-chip,
+    .exotic-lvl-chip {
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      background: rgba(255, 255, 255, 0.12);
+      color: #FFFFFF;
+      border-radius: 999px;
+      padding: 4px 10px;
+      font-size: 12px;
+      font-weight: 700;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+
+    .exotic-chip.active,
+    .exotic-lvl-chip.active {
+      background: #FFC53D;
+      border-color: #FFC53D;
+      color: #3A2B22;
+    }
+
+    #partyLevelGroup .exotic-lvl-chip {
+      border-color: #E5D5C3;
+      background: #FFFFFF;
+      color: var(--text-brown);
+    }
+
+    #partyLevelGroup .exotic-lvl-chip.active {
+      background: #7C2D12;
+      border-color: #7C2D12;
+      color: #FFFFFF;
+    }
+
+    .exotic-divider {
+      opacity: 0.35;
+      font-size: 12px;
+      margin: 0 2px;
+    }
+
+    .deck-pill-badge.exotic {
+      background: rgba(88, 28, 135, 0.92);
+      color: #FEF3C7;
+    }
+
+    .exotic-res-pill {
+      background: #F3E8FF !important;
+      color: #581C87 !important;
+      border: 1px solid #D8B4FE !important;
+    }
+
+    .exotic-mini-badge {
+      background: #F3E8FF !important;
+      color: #6B21A8 !important;
+    }
+
+    .exotic-spec-pill.active {
+      background: linear-gradient(135deg, #7C2D12, #581C87);
+      border-color: #581C87;
+      color: #FFFFFF;
+    }
+
+    .active-filter-chip.exotic {
+      border-color: #D8B4FE;
+      background: #F3E8FF;
+      color: #581C87;
+      cursor: default;
+    }
+
+    .active-filter-chip.source {
+      border-color: #93C5FD;
+      background: #EFF6FF;
+      color: #1D4ED8;
+    }
+
+    .active-filter-chip.muted {
+      border-color: #E5D5C3;
+      background: #F7F3EC;
+      color: var(--text-muted);
+      cursor: default;
+    }
+
+    /* Curated Tray & Size Controls */
+    .tray-size-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 8px;
+      padding: 8px 10px;
+      border-radius: 14px;
+      background: #FFFAF3;
+      border: 1px solid #F3E5D5;
+    }
+
+    .tray-size-pills {
+      display: inline-flex;
+      background: #EFE6D8;
+      border-radius: 999px;
+      padding: 2px;
+      gap: 2px;
+    }
+
+    .tray-size-btn {
+      border: none;
+      background: transparent;
+      color: var(--text-muted);
+      border-radius: 999px;
+      padding: 4px 10px;
+      font-size: 12px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    .tray-size-btn.active {
+      background: #FFFFFF;
+      color: var(--chili-orange);
+      box-shadow: 0 2px 6px rgba(58, 43, 34, 0.1);
+    }
+
+    .tray-edit-btn {
+      border: 1px solid #FDBA74;
+      background: #FFF7ED;
+      color: var(--chili-orange);
+      border-radius: 999px;
+      padding: 4px 10px;
+      font-size: 12px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    .fav-spin-shortcut-btn {
+      border: none;
+      background: linear-gradient(135deg, #EA580C 0%, #C2410C 100%);
+      color: #FFFFFF;
+      border-radius: 999px;
+      padding: 5px 12px;
+      font-size: 12px;
+      font-weight: 700;
+      cursor: pointer;
+      box-shadow: 0 4px 10px rgba(194, 65, 12, 0.25);
+    }
+
+    .photo-deck-strip {
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .tray-modal-controls {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      margin-bottom: 10px;
+    }
+
+    .tray-counter-pill {
+      font-size: 13px;
+      font-weight: 700;
+      padding: 4px 11px;
+      border-radius: 999px;
+      background: #FFF1E6;
+      color: var(--chili-orange);
+    }
+
+    .tray-counter-pill.full {
+      background: #DCFCE7;
+      color: #166534;
+    }
+
+    .tray-quick-actions {
+      display: flex;
+      gap: 6px;
+      margin-bottom: 8px;
+    }
+
+    .tray-mini-action {
+      border: 1px solid #E5D5C3;
+      background: #FFFFFF;
+      color: var(--text-brown);
+      border-radius: 999px;
+      padding: 5px 12px;
+      font-size: 12px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    .tray-hidden-notice {
+      font-size: 12px;
+      color: #92400E;
+      background: #FEF3C7;
+      border: 1px solid #FCD34D;
+      border-radius: 12px;
+      padding: 7px 10px;
+      margin-bottom: 8px;
+    }
+
+    .tray-builder-list {
+      max-height: 46vh;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      padding-right: 2px;
+    }
+
+    .tray-pick-row {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 8px 10px;
+      border-radius: 16px;
+      border: 1.5px solid #EFE6D8;
+      background: #FFFFFF;
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+
+    .tray-pick-row.selected {
+      border-color: var(--chili-orange);
+      background: #FFF7ED;
+    }
+
+    .tray-pick-thumb {
+      width: 44px;
+      height: 44px;
+      border-radius: 11px;
+      object-fit: cover;
+      flex-shrink: 0;
+      background: #FDE68A;
+    }
+
+    .tray-check-circle {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: #EFE6D8;
+      color: var(--text-muted);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 15px;
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+
+    .tray-pick-row.selected .tray-check-circle {
+      background: var(--chili-orange);
+      color: #FFFFFF;
+    }
+
+    /* Party Dare Result Card */
+    .party-result-box {
+      margin-top: 14px;
+      background: #FFFFFF;
+      border-radius: 22px;
+      padding: 14px;
+      border: 2px solid #D8B4FE;
+      text-align: center;
+      box-shadow: var(--shadow-soft);
+      animation: fadeIn 0.25s ease;
+    }
+
+    .party-winner-tag {
+      font-size: 12px;
+      font-weight: 700;
+      color: #6B21A8;
+    }
+
+    .party-winner-name {
+      font-family: 'Prompt', 'Noto Sans Thai', sans-serif;
+      font-size: 26px;
+      font-weight: 700;
+      color: var(--chili-orange);
+      margin: 2px 0 10px;
+    }
+
+    .party-dish-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: #FFFAF3;
+      border: 1px solid #F3E5D5;
+      border-radius: 16px;
+      padding: 10px;
+      cursor: pointer;
+    }
+
+    .party-dish-thumb {
+      width: 64px;
+      height: 64px;
+      border-radius: 14px;
+      object-fit: cover;
+      flex-shrink: 0;
+      background: #FDE68A;
+    }

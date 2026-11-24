@@ -62,7 +62,7 @@
         </button>
       </div>
 
-      <div class="mode-toggle-wrap">
+      <div class="mode-toggle-wrap mode-5">
         <button class="mode-btn active" id="btnModeMain" onclick="setWheelMode('main')">
           <span>🍚</span>
           <span>มื้อหลัก</span>
@@ -71,9 +71,13 @@
           <span>✈️</span>
           <span>ตั๋วทิพย์</span>
         </button>
-        <button class="mode-btn" id="btnModeSweet" onclick="setWheelMode('sweet')">
-          <span>🧋</span>
+        <button class="mode-btn" id="btnModeDessert" onclick="setWheelMode('dessert')">
+          <span>🍨</span>
           <span>ของหวาน</span>
+        </button>
+        <button class="mode-btn" id="btnModeDrink" onclick="setWheelMode('drink')">
+          <span>🥤</span>
+          <span>เครื่องดื่ม</span>
         </button>
         <button class="mode-btn" id="btnModeFridge" onclick="setWheelMode('fridge')">
           <span>🧊</span>
@@ -86,17 +90,38 @@
         <span id="passportProgressBadge">0/46 ดวง</span>
       </div>
 
-      <!-- Unified Pre-Spin Control Bar (Halal Global Mode + Collapsible Filter Drawer) -->
+      <!-- Unified Pre-Spin Control Bar (Halal + Exotic [OFF by default] + Collapsible Filter Drawer) -->
       <div class="home-control-bar">
         <button type="button" id="homeHalalBtn" class="halal-toggle-btn" aria-pressed="false" onclick="toggleHalalMode()">
-          <span>☪️ โหมดฮาลาล</span>
+          <span>☪️ ฮาลาล</span>
           <span class="halal-state-pill" id="homeHalalState">ปิด</span>
+        </button>
+        <button type="button" id="homeExoticBtn" class="exotic-toggle-btn" aria-pressed="false" onclick="toggleExoticMode()" title="ปกติปิดไว้ เพื่อซ่อนเมนูแปลกออกจากกองสุ่มทั่วไป">
+          <span>🦂 เมนูแปลก</span>
+          <span class="halal-state-pill" id="homeExoticState">ปิด</span>
         </button>
         <button type="button" id="homeFilterToggleBtn" class="filter-drawer-btn" aria-expanded="false" aria-controls="homeFilterDrawer" onclick="toggleHomeFilterDrawer()">
           <span>🎛️ ตัวกรอง</span>
           <span class="filter-count-badge tabular-nums" id="homeFilterCountBadge" style="display:none;">0</span>
           <span class="drawer-caret" id="homeFilterCaret">▾</span>
         </button>
+      </div>
+
+      <!-- Exotic Challenge Strip (Visible ONLY when Exotic Mode is explicitly enabled) -->
+      <div id="exoticStrip" class="exotic-strip">
+        <div class="exotic-strip-top">
+          <span class="exotic-strip-title">🦂 โหมดเมนูแปลกเปิดอยู่ (<span id="exoticAvailCount" class="tabular-nums">23</span> เมนู)</span>
+          <button type="button" class="exotic-party-btn" onclick="openPartyDareModal()">🎲 ท้าเพื่อน</button>
+        </div>
+        <div class="exotic-strip-controls">
+          <button type="button" id="btnExoticOnly" class="exotic-chip active" onclick="setExoticScope(true)">🦂 เฉพาะเมนูแปลก</button>
+          <button type="button" id="btnExoticMix" class="exotic-chip" onclick="setExoticScope(false)">🔀 ผสมกองปกติ</button>
+          <span class="exotic-divider">|</span>
+          <button type="button" class="exotic-lvl-chip active" data-level="all" onclick="setExoticLevel('all', this)">ทุกระดับ</button>
+          <button type="button" class="exotic-lvl-chip" data-level="1" onclick="setExoticLevel(1, this)">💀</button>
+          <button type="button" class="exotic-lvl-chip" data-level="2" onclick="setExoticLevel(2, this)">💀💀</button>
+          <button type="button" class="exotic-lvl-chip" data-level="3" onclick="setExoticLevel(3, this)">💀💀💀</button>
+        </div>
       </div>
 
       <!-- Active Filter Chips Strip -->
@@ -107,6 +132,27 @@
 
       <!-- Collapsible Pre-Spin Filter Drawer -->
       <div id="homeFilterDrawer" class="filter-drawer" aria-hidden="true">
+        <div class="filter-group-block">
+          <div class="filter-group-title">แหล่งเมนู & ขนาดกองสุ่ม (5 การ์ด / 8 วงล้อ)</div>
+          <div class="drawer-chip-wrap" id="spinSourceGroup">
+            <button type="button" class="chip-btn drawer-chip active" data-source="all" onclick="setSpinSource('all')">🌐 คลังทั้งหมด</button>
+            <button type="button" class="chip-btn drawer-chip" data-source="favorites" onclick="setSpinSource('favorites')">❤️ เฉพาะโปรด (<span id="drawerFavCount" class="tabular-nums">0</span>)</button>
+            <button type="button" class="chip-btn drawer-chip" data-source="custom" onclick="setSpinSource('custom')">🎯 ถาดคัดเอง (<span id="drawerCustomCount" class="tabular-nums">0</span>)</button>
+          </div>
+          <div class="tray-size-row">
+            <span style="font-size:12px; font-weight:700; color:var(--text-muted);">จำนวนในรอบสุ่ม:</span>
+            <div class="tray-size-pills" id="traySizeGroup">
+              <button type="button" class="tray-size-btn active" data-size="5" onclick="setSpinTraySize(5)">🖼️ 5 รายการ</button>
+              <button type="button" class="tray-size-btn" data-size="8" onclick="setSpinTraySize(8)">🎡 8 รายการ</button>
+            </div>
+            <button type="button" class="tray-edit-btn" onclick="openTrayBuilderModal()">✏️ จัดถาดเอง</button>
+          </div>
+          <label id="favAutoFillWrap" class="exclude-row drawer-exclude-row" style="display:none; margin:6px 0 0;">
+            <input type="checkbox" id="favAutoFillCheck" onchange="toggleFavAutoFill(this.checked)" />
+            <span>เติมเมนูแนะนำให้ครบ <span id="favAutoFillTarget" class="tabular-nums">5</span> รายการอัตโนมัติ (ถ้าโปรดไม่พอ)</span>
+          </label>
+        </div>
+
         <div class="filter-group-block">
           <div class="filter-group-title">สไตล์และอาหารเฉพาะทาง</div>
           <div class="drawer-chip-wrap" id="moodBar">
@@ -167,7 +213,10 @@
             <div class="deck-gradient-scrim"></div>
             <div class="deck-top-badges">
               <span id="deckRegionBadge" class="deck-pill-badge">🇹🇭 อาหารไทย</span>
-              <span id="deckHalalBadge" class="deck-pill-badge halal" style="display:none;">☪️ ฮาลาล</span>
+              <div style="display:flex; gap:5px; align-items:center;">
+                <span id="deckExoticBadge" class="deck-pill-badge exotic" style="display:none;">💀 เมนูแปลก</span>
+                <span id="deckHalalBadge" class="deck-pill-badge halal" style="display:none;">☪️ ฮาลาล</span>
+              </div>
             </div>
             <div class="deck-bottom-info">
               <div id="deckDishName" class="deck-dish-name">กำลังโหลดเมนูอร่อย...</div>
@@ -257,10 +306,16 @@
           <div style="font-size: 18px; font-weight: 700; color: var(--turmeric-yellow);">
             🍲 คลังเมนูทั้งหมด <span id="totalMenuTitleCount" class="tabular-nums">264</span> รายการ
           </div>
-          <button type="button" id="exploreHalalBtn" class="halal-toggle-btn compact" aria-pressed="false" onclick="toggleHalalMode()">
-            <span>☪️ ฮาลาล</span>
-            <span class="halal-state-pill" id="exploreHalalState">ปิด</span>
-          </button>
+          <div style="display:flex; gap:6px; flex-wrap:wrap;">
+            <button type="button" id="exploreHalalBtn" class="halal-toggle-btn compact" aria-pressed="false" onclick="toggleHalalMode()">
+              <span>☪️ ฮาลาล</span>
+              <span class="halal-state-pill" id="exploreHalalState">ปิด</span>
+            </button>
+            <button type="button" id="exploreExoticBtn" class="exotic-toggle-btn compact" aria-pressed="false" onclick="toggleExoticMode()">
+              <span>🦂 แปลก</span>
+              <span class="halal-state-pill" id="exploreExoticState">ปิด</span>
+            </button>
+          </div>
         </div>
         <div id="exploreSubBanner" style="font-size: 14px; opacity: 0.9; margin-top:4px;">
           พร้อมรูปภาพอาหารจริง ครบ 4 ภาค • นานาชาติ • ของหวาน & น้ำ
@@ -292,6 +347,7 @@
         <button type="button" class="mood-pill" data-spec="สายคลีน" onclick="setExploreSpecialty('สายคลีน', this)">🥗 สายคลีน</button>
         <button type="button" class="mood-pill" data-spec="มังสวิรัติ" onclick="setExploreSpecialty('มังสวิรัติ', this)">🥬 มังสวิรัติ</button>
         <button type="button" class="mood-pill" data-spec="สตรีทฟู้ด" onclick="setExploreSpecialty('สตรีทฟู้ด', this)">🍢 สตรีทฟู้ด</button>
+        <button type="button" id="exploreExoticSpecBtn" class="mood-pill exotic-spec-pill" data-spec="เมนูแปลก" style="display:none;" onclick="setExploreSpecialty('เมนูแปลก', this)">🦂 เมนูแปลก</button>
       </div>
 
       <div class="menu-grid" id="exploreGrid"></div>
@@ -312,7 +368,10 @@
       <!-- SUB-TAB A: FAVORITES & HISTORY -->
       <div id="subView-saved">
         <div class="soft-card reveal-card">
-          <div style="font-weight: 700; margin-bottom: 8px;">❤️ รายการโปรดของคุณ (<span id="favCount">0</span>)</div>
+          <div style="display:flex; justify-content:space-between; align-items:center; gap:8px; margin-bottom: 8px; flex-wrap:wrap;">
+            <span style="font-weight: 700;">❤️ รายการโปรดของคุณ (<span id="favCount" class="tabular-nums">0</span>)</span>
+            <button type="button" onclick="spinFavoritesNow()" class="fav-spin-shortcut-btn">🎯 นำไปสุ่มทันที</button>
+          </div>
           <div id="favList" style="font-size: 16px; color: var(--text-muted);">ยังไม่มีเมนูโปรด กดรูปหัวใจที่เมนูที่ชอบได้เลยครับ</div>
         </div>
         <div class="soft-card reveal-card">
@@ -582,8 +641,9 @@
         <h2 id="resName" style="margin: 2px 0 8px; font-size: 25px; color: var(--text-brown);">ข้าวกะเพราหมูสับไข่ดาว</h2>
 
         <div style="display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 12px;">
-          <span class="tactile-pill">💰 งบ ~<strong id="resBudget">55</strong>฿</span>
-          <span class="tactile-pill">⏱️ <strong id="resTime">10</strong> นาที</span>
+          <span class="tactile-pill tabular-nums">💰 งบ ~<strong id="resBudget">55</strong>฿</span>
+          <span class="tactile-pill tabular-nums">⏱️ <strong id="resTime">10</strong> นาที</span>
+          <span class="tactile-pill exotic-res-pill" id="resExoticBadge" style="display:none;">💀 ระดับความแปลก</span>
           <button class="tactile-pill" onclick="toggleFavoriteCurrent()" id="resFavBtn">🤍 บันทึกโปรด</button>
         </div>
 
@@ -615,7 +675,7 @@
         </div>
 
         <div class="action-grid-2">
-          <button class="btn-action btn-orange" onclick="confirmAteMeal()">
+          <button id="confirmAteBtn" class="btn-action btn-orange" onclick="confirmAteMeal()">
             ✅ กินเมนูนี้ (+25 XP)
           </button>
           <a id="mapsLink" href="https://www.google.com/maps/search/?api=1&query=%E0%B8%A3%E0%B9%89%E0%B8%B2%E0%B8%99%E0%B8%AD%E0%B8%B2%E0%B8%AB%E0%B8%B2%E0%B8%A3%E0%B9%83%E0%B8%81%E0%B8%A5%E0%B9%89%E0%B8%89%E0%B8%B1%E0%B8%99" target="_blank" rel="noopener" class="btn-action btn-yellow">
@@ -680,7 +740,8 @@
               <label for="customMenuMode" class="field-label">หมวดหมู่</label>
               <select id="customMenuMode" class="v10-input">
                 <option value="main">🍚 มื้อหลัก</option>
-                <option value="sweet">🧋 ของหวาน & น้ำ</option>
+                <option value="dessert">🍨 ของหวาน</option>
+                <option value="drink">🥤 เครื่องดื่ม</option>
               </select>
             </div>
             <div class="field-group">
@@ -697,6 +758,75 @@
             ✅ บันทึกลงคลัง & วงล้อสุ่ม
           </button>
         </div>
+      </div>
+    </div>
+
+    <!-- Party Dare Modal ("สุ่มท้าเพื่อนชิมเมนูแปลก") -->
+    <div id="partyDareModal" class="result-overlay" onclick="closePartyDareModal(event)" style="z-index: 155;">
+      <div class="result-sheet" onclick="event.stopPropagation()" style="max-width: 440px;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+          <span style="font-weight: 700; font-size: 18px; color: #7C2D12;">🦂 สุ่มท้าเพื่อนชิมเมนูแปลก!</span>
+          <button type="button" onclick="closePartyDareModal()" style="border:none; background:#EFE6D8; width:34px; height:34px; border-radius:50%; font-size:17px; cursor:pointer;">✕</button>
+        </div>
+
+        <div class="field-group">
+          <label for="partyNamesInput" class="field-label">รายชื่อเพื่อนในวง (2–8 คน คั่นด้วยเว้นวรรค หรือ ,) <span class="req">*</span></label>
+          <input type="text" id="partyNamesInput" class="v10-input" placeholder="เช่น บอส, แพรว, ต้น, มิ้นท์" aria-describedby="partyNamesError" oninput="clearFieldError('partyNamesInput','partyNamesError')" onkeydown="if(event.key==='Enter') runPartyDareSpin()" />
+          <div id="partyNamesError" class="field-error" role="alert"></div>
+        </div>
+
+        <div class="field-group" style="margin-bottom:12px;">
+          <span class="field-label">เลือกระดับความโหดของภารกิจ</span>
+          <div class="drawer-chip-wrap" id="partyLevelGroup">
+            <button type="button" class="exotic-lvl-chip active" data-plevel="all" onclick="setPartyDareLevel('all', this)">🎲 ทุกระดับ</button>
+            <button type="button" class="exotic-lvl-chip" data-plevel="1" onclick="setPartyDareLevel(1, this)">💀 แปลกน่าลอง</button>
+            <button type="button" class="exotic-lvl-chip" data-plevel="2" onclick="setPartyDareLevel(2, this)">💀💀 ฮาร์ดคอร์</button>
+            <button type="button" class="exotic-lvl-chip" data-plevel="3" onclick="setPartyDareLevel(3, this)">💀💀💀 ตำนานโลก</button>
+          </div>
+        </div>
+
+        <button type="button" id="partySpinBtn" onclick="runPartyDareSpin()" class="spin-cta exotic-cta" style="min-height:48px; font-size:17px;">
+          🎯 สุ่มผู้กล้า × เมนูแปลก!
+        </button>
+
+        <div id="partyDareResultBox" class="party-result-box" style="display:none;"></div>
+      </div>
+    </div>
+
+    <!-- Curated Tray Builder Modal ("จัดถาดคัดเมนูสุ่มเอง 5 หรือ 8 รายการ") -->
+    <div id="trayBuilderModal" class="result-overlay" onclick="closeTrayBuilderModal(event)" style="z-index: 155;">
+      <div class="result-sheet" onclick="event.stopPropagation()" style="max-width: 450px;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+          <span style="font-weight: 700; font-size: 18px; color: var(--text-brown);">🎯 จัดถาดคัดเมนูสุ่มเอง</span>
+          <button type="button" onclick="closeTrayBuilderModal()" style="border:none; background:#EFE6D8; width:34px; height:34px; border-radius:50%; font-size:17px; cursor:pointer;">✕</button>
+        </div>
+
+        <div class="tray-modal-controls">
+          <div class="tray-size-pills" id="trayModalSizeGroup">
+            <button type="button" class="tray-size-btn active" data-msize="5" onclick="setTrayModalSize(5)">🖼️ 5 รายการ</button>
+            <button type="button" class="tray-size-btn" data-msize="8" onclick="setTrayModalSize(8)">🎡 8 รายการ</button>
+          </div>
+          <span id="trayModalCounter" class="tray-counter-pill tabular-nums">เลือกแล้ว 0/5</span>
+        </div>
+
+        <div class="field-group" style="margin-bottom:8px;">
+          <label for="traySearchInput" class="field-label">ค้นหาเมนูที่อยากใส่ลงถาดสุ่ม</label>
+          <input type="search" id="traySearchInput" class="v10-input" placeholder="🔍 พิมพ์ชื่อเมนู หมวด หรือวัตถุดิบ..." oninput="renderTrayBuilderList()" />
+        </div>
+
+        <div class="tray-quick-actions">
+          <button type="button" class="tray-mini-action" onclick="fillTrayFromFavorites()">❤️ ดึงจากเมนูโปรด</button>
+          <button type="button" class="tray-mini-action" onclick="clearTrayDraft()">ล้างที่เลือก</button>
+        </div>
+
+        <div id="trayHiddenNotice" class="tray-hidden-notice" style="display:none;"></div>
+        <div id="trayBuilderError" class="field-error" role="alert" style="margin-bottom:6px;"></div>
+
+        <div id="trayBuilderList" class="tray-builder-list"></div>
+
+        <button type="button" onclick="applyCuratedTray()" class="btn-action btn-orange" style="width:100%; margin-top:10px;">
+          ✅ ใช้ถาดนี้ไปสุ่มเลย!
+        </button>
       </div>
     </div>
 
@@ -809,6 +939,12 @@
           if (cloud.isVip) state.isVip = true;
           state.isSupporter = Boolean(cloud.isSupporter);
           if (typeof cloud.halalMode === 'boolean') state.halalMode = cloud.halalMode;
+          if (typeof cloud.exoticMode === 'boolean') state.exoticMode = cloud.exoticMode;
+          if (Array.isArray(cloud.customSpinIds) && cloud.customSpinIds.length > 0 && state.customSpinIds.length === 0) {
+            state.customSpinIds = cloud.customSpinIds.slice(0, 8);
+          }
+          if (cloud.spinTraySize === 5 || cloud.spinTraySize === 8) state.spinTraySize = cloud.spinTraySize;
+          if (cloud.exoticEatenCount) state.exoticEatenCount = Math.max(state.exoticEatenCount || 0, cloud.exoticEatenCount || 0);
           state.favorites = Array.from(new Set([...(cloud.favorites || []), ...(state.favorites || [])]));
           state.history = Array.from(new Set([...(cloud.history || []), ...(state.history || [])])).slice(0, 15);
           state.stamps = Array.from(new Set([...(cloud.stamps || []), ...(state.stamps || [])]));
@@ -837,6 +973,10 @@
           avatar: state.avatar,
           isVip: Boolean(state.isVip),
           halalMode: Boolean(state.halalMode),
+          exoticMode: Boolean(state.exoticMode),
+          customSpinIds: Array.isArray(state.customSpinIds) ? state.customSpinIds.slice(0, 8) : [],
+          spinTraySize: state.spinTraySize === 8 ? 8 : 5,
+          exoticEatenCount: Number(state.exoticEatenCount) || 0,
           totalScore: computeUserFeatureScore(),
           favorites: state.favorites,
           history: state.history,
@@ -889,6 +1029,10 @@
           avatar: state.avatar,
           isVip: Boolean(state.isVip),
           halalMode: Boolean(state.halalMode),
+          exoticMode: Boolean(state.exoticMode),
+          customSpinIds: Array.isArray(state.customSpinIds) ? state.customSpinIds.slice(0, 8) : [],
+          spinTraySize: state.spinTraySize === 8 ? 8 : 5,
+          exoticEatenCount: Number(state.exoticEatenCount) || 0,
           totalScore: computeUserFeatureScore(),
           favorites: state.favorites,
           history: state.history,
