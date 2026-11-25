@@ -1,4 +1,4 @@
-const CACHE_NAME = 'tookmue-v21-truemoney-qr';
+const CACHE_NAME = 'tookmue-v22-og-meta';
 const IMAGE_CACHE_NAME = 'tookmue-images-v1';
 
 const APP_SHELL = [
@@ -11,6 +11,7 @@ const APP_SHELL = [
   './manifest.json',
   './privacy.html',
   './truemoney-qr.jpg',
+  './og-cover.jpg',
   './icon-192.png',
   './icon-512.png',
   './icon.svg'
