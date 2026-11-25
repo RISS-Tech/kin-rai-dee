@@ -959,7 +959,7 @@ let MENUS = [];
             <button type="button" onclick="switchTab('saved'); switchSavedSubTab('wallet');" class="fridge-wallet-link">ดูในกระเป๋างบ →</button>
           </div>
           <button type="button" onclick="openQrModal()" style="width:100%; margin-top:8px; min-height:40px; border-radius:999px; border:1px solid #E5D5C3; background:#FFFFFF; color:var(--text-brown); font-size:13px; font-weight:600; cursor:pointer;">
-            เลี้ยงข้าวผู้พัฒนา
+            เลี้ยงกาแฟผู้พัฒนา ☕
           </button>
         </div>
       `;

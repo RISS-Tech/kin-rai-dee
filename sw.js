@@ -1,4 +1,4 @@
-const CACHE_NAME = 'tookmue-v20-master-m2';
+const CACHE_NAME = 'tookmue-v21-truemoney-qr';
 const IMAGE_CACHE_NAME = 'tookmue-images-v1';
 
 const APP_SHELL = [
@@ -10,7 +10,7 @@ const APP_SHELL = [
   './menus.json',
   './manifest.json',
   './privacy.html',
-  './promptpay-qr.png',
+  './truemoney-qr.jpg',
   './icon-192.png',
   './icon-512.png',
   './icon.svg'
