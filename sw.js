@@ -1,4 +1,4 @@
-const CACHE_NAME = 'tookmue-v22-og-meta';
+const CACHE_NAME = 'tookmue-v23-share-cards';
 const IMAGE_CACHE_NAME = 'tookmue-images-v1';
 
 const APP_SHELL = [
@@ -12,6 +12,8 @@ const APP_SHELL = [
   './privacy.html',
   './truemoney-qr.jpg',
   './og-cover.jpg',
+  './mascot-pinto.png',
+  './logo-tookmue.png',
   './icon-192.png',
   './icon-512.png',
   './icon.svg'

@@ -1859,7 +1859,7 @@ let MENUS = [];
       saveState();
     }
 
-    // --- Shareable Bento Card Image Generator (Compatible with Safari, Chrome & LINE In-App Browser) ---
+    // --- HD Shareable Bento Card Engine (900x1125 • Photo + Nong Pinto Mascot + Dynamic Themes) ---
     function roundRect(ctx, x, y, w, h, r) {
       ctx.beginPath();
       ctx.moveTo(x + r, y);
@@ -1870,93 +1870,255 @@ let MENUS = [];
       ctx.closePath();
     }
 
-    function wrapCanvasText(ctx, text, x, y, maxWidth, lineHeight) {
-      const words = text.split('');
+    function wrapCanvasText(ctx, text, x, y, maxWidth, lineHeight, maxLines = 3) {
+      const chars = String(text || '').split('');
       let line = '';
       let curY = y;
-      for (let i = 0; i < words.length; i++) {
-        const testLine = line + words[i];
+      let linesDrawn = 0;
+      for (let i = 0; i < chars.length; i++) {
+        const testLine = line + chars[i];
         if (ctx.measureText(testLine).width > maxWidth && i > 0) {
+          linesDrawn++;
+          if (linesDrawn >= maxLines) {
+            let trimmed = line;
+            while (trimmed.length > 1 && ctx.measureText(trimmed + '…').width > maxWidth) {
+              trimmed = trimmed.slice(0, -1);
+            }
+            ctx.fillText(trimmed + '…', x, curY);
+            return curY;
+          }
           ctx.fillText(line, x, curY);
-          line = words[i];
+          line = chars[i];
           curY += lineHeight;
         } else {
           line = testLine;
         }
       }
-      ctx.fillText(line, x, curY);
+      if (line) ctx.fillText(line, x, curY);
       return curY;
     }
 
-    async function shareSamrubCard() {
-      if (!selectedMenu) return;
-      const pairMain = resolveMenuPair(selectedMenu, 'main');
-      const pairSweet = resolveMenuPair(selectedMenu, 'sweet');
-      const rankTitle = getCurrentRankTitle();
+    function loadCanvasImage(src) {
+      return new Promise((resolve) => {
+        if (!src) { resolve(null); return; }
+        const img = new Image();
+        if (/^https?:\/\//i.test(src)) {
+          img.crossOrigin = 'anonymous';
+        }
+        let settled = false;
+        const done = (val) => {
+          if (settled) return;
+          settled = true;
+          resolve(val);
+        };
+        const timer = setTimeout(() => done(null), 4000);
+        img.onload = () => {
+          clearTimeout(timer);
+          done(img.naturalWidth > 0 ? img : null);
+        };
+        img.onerror = () => {
+          clearTimeout(timer);
+          done(null);
+        };
+        img.src = src;
+      });
+    }
 
-      const canvas = document.getElementById('shareCanvas');
-      const ctx = canvas.getContext('2d');
+    function drawImageCover(ctx, img, x, y, w, h, radius) {
+      ctx.save();
+      roundRect(ctx, x, y, w, h, radius);
+      ctx.clip();
+      const imgRatio = img.naturalWidth / img.naturalHeight;
+      const boxRatio = w / h;
+      let drawW = w;
+      let drawH = h;
+      let drawX = x;
+      let drawY = y;
+      if (imgRatio > boxRatio) {
+        drawH = h;
+        drawW = h * imgRatio;
+        drawX = x - (drawW - w) / 2;
+      } else {
+        drawW = w;
+        drawH = w / imgRatio;
+        drawY = y - (drawH - h) / 2;
+      }
+      ctx.drawImage(img, drawX, drawY, drawW, drawH);
+      ctx.restore();
+    }
 
-      ctx.fillStyle = '#FFFAF3';
-      ctx.fillRect(0, 0, 720, 900);
-
-      ctx.fillStyle = '#C2410C';
-      ctx.font = 'bold 38px "Prompt", sans-serif';
-      ctx.textAlign = 'left';
-      ctx.fillText('ทุกมื้อ TooKMUE', 54, 86);
-
-      ctx.fillStyle = '#786458';
-      ctx.font = '600 24px "Prompt", sans-serif';
-      ctx.fillText(`${state.avatar} ${rankTitle}`, 54, 126);
-
-      ctx.fillStyle = '#FFFFFF';
-      roundRect(ctx, 48, 160, 624, 310, 36);
+    function drawCanvasPill(ctx, text, x, y, bgColor, textColor, font = 'bold 24px "Prompt", sans-serif', padX = 20, height = 46, alignRight = false) {
+      ctx.save();
+      ctx.font = font;
+      const tw = ctx.measureText(text).width;
+      const pw = tw + padX * 2;
+      const px = alignRight ? (x - pw) : x;
+      ctx.fillStyle = bgColor;
+      roundRect(ctx, px, y, pw, height, height / 2);
       ctx.fill();
-      ctx.strokeStyle = '#F3E5D5';
-      ctx.lineWidth = 3;
-      ctx.stroke();
+      ctx.fillStyle = textColor;
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'middle';
+      ctx.fillText(text, px + pw / 2, y + height / 2 + 1);
+      ctx.restore();
+      return pw;
+    }
 
-      ctx.fillStyle = '#EA580C';
-      ctx.font = 'bold 24px "Prompt", sans-serif';
-      ctx.fillText(`🎯 ผลการสุ่มมื้อนี้ • ${selectedMenu.region}`, 84, 216);
-
-      ctx.fillStyle = '#3A2B22';
-      ctx.font = 'bold 44px "Prompt", sans-serif';
-      wrapCanvasText(ctx, selectedMenu.name, 84, 286, 550, 56);
-
-      ctx.fillStyle = '#786458';
-      ctx.font = '600 26px "Noto Sans Thai", sans-serif';
-      ctx.fillText(`💰 งบประมาณ ~${selectedMenu.budget} บาท   |   ⏱️ เวลาปรุง ${selectedMenu.prep_time} นาที`, 84, 426);
-
-      ctx.fillStyle = '#24442F';
-      roundRect(ctx, 48, 500, 624, 260, 36);
+    function drawCardFooter(ctx, text, bgColor, textColor, y = 1030) {
+      ctx.save();
+      ctx.fillStyle = bgColor;
+      roundRect(ctx, 56, y, 788, 60, 30);
       ctx.fill();
-
-      ctx.fillStyle = '#FFC53D';
-      ctx.font = 'bold 28px "Prompt", sans-serif';
-      ctx.fillText('🥢 สำรับจับคู่แนะนำ (Food Pairing)', 84, 558);
-
-      ctx.fillStyle = '#FFFFFF';
-      ctx.font = '600 28px "Noto Sans Thai", sans-serif';
-      ctx.fillText(`🍽️ คู่กับข้าว: ${pairMain.name}`, 84, 622);
-
-      ctx.fillStyle = '#FDE68A';
-      ctx.fillText(`🧋 ตบท้ายมื้อ: ${pairSweet.name}`, 84, 686);
-
-      ctx.fillStyle = '#3A2B22';
+      ctx.fillStyle = textColor;
       ctx.font = 'bold 24px "Prompt", sans-serif';
       ctx.textAlign = 'center';
-      ctx.fillText('คิดไม่ออกว่าจะกินอะไร? มาสุ่มฟรีที่ tookmue.pages.dev', 360, 832);
+      ctx.textBaseline = 'middle';
+      ctx.fillText(text, 450, y + 31);
+      ctx.restore();
+    }
 
-      const shareText = `มื้อนี้ "ทุกมื้อ (TooKMUE)" เลือกให้: ${selectedMenu.name} 🍽️ จับคู่กับ ${pairMain.name} และตบท้ายด้วย ${pairSweet.name}! ลองสุ่มมื้อของคุณได้ที่ https://tookmue.pages.dev/`;
-      const dataUrl = canvas.toDataURL('image/png');
+    function drawCardBrandHeader(ctx, logoImg, darkTheme = false, badgeText = '') {
+      ctx.save();
+      if (logoImg) {
+        const lh = 72;
+        const lw = lh * (logoImg.naturalWidth / logoImg.naturalHeight);
+        ctx.drawImage(logoImg, 54, 40, lw, lh);
+        ctx.fillStyle = darkTheme ? '#FEF3C7' : '#C2410C';
+        ctx.font = 'bold 34px "Prompt", sans-serif';
+        ctx.textAlign = 'left';
+        ctx.textBaseline = 'alphabetic';
+        ctx.fillText('ทุกมื้อ', 54 + lw + 14, 78);
+        ctx.fillStyle = darkTheme ? 'rgba(255,255,255,0.82)' : '#786458';
+        ctx.font = '600 18px "Prompt", sans-serif';
+        ctx.fillText('TooKMUE • กินอะไรดี?', 54 + lw + 14, 104);
+      } else {
+        ctx.fillStyle = darkTheme ? '#FFC53D' : '#C2410C';
+        ctx.font = 'bold 40px "Prompt", sans-serif';
+        ctx.textAlign = 'left';
+        ctx.fillText('ทุกมื้อ TooKMUE', 54, 92);
+      }
+      if (badgeText) {
+        drawCanvasPill(
+          ctx,
+          badgeText,
+          846,
+          50,
+          darkTheme ? 'rgba(255,255,255,0.16)' : '#FFFFFF',
+          darkTheme ? '#FEF3C7' : '#3A2B22',
+          'bold 22px "Prompt", sans-serif',
+          18,
+          48,
+          true
+        );
+      }
+      ctx.restore();
+    }
 
-      // Show inline image preview & direct LINE share link (works 100% inside LINE In-App Browser!)
-      const previewBox = document.getElementById('sharePreviewBox');
-      document.getElementById('sharePreviewImg').src = dataUrl;
-      document.getElementById('directLineShareLink').href = `https://line.me/R/share?text=${encodeURIComponent(shareText)}`;
-      previewBox.classList.add('open');
-      previewBox.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    function getShareCardTheme(menu) {
+      if (isMenuExotic(menu)) {
+        return {
+          key: 'exotic',
+          bgTop: '#2E1065',
+          bgBot: '#7C2D12',
+          dark: true,
+          cardBg: '#FFFFFF',
+          cardBorder: '#D8B4FE',
+          accent: '#7C2D12',
+          pairBg: '#4C1D95',
+          pairTitle: '#FFC53D',
+          footerBg: 'rgba(255,255,255,0.15)',
+          footerText: '#FEF3C7',
+          quotes: [
+            'กล้าสุ่มก็ต้องกล้ากิน! น้องปิ่นโตเอาใจช่วย 🦂',
+            'ภารกิจสายแข็ง! แคปส่งอวดเพื่อนในกลุ่มด่วน 🔥',
+            'เปิดโลกความแปลก กินจริงรับโบนัส +50 XP!'
+          ]
+        };
+      }
+      if (menu.category === 'อาหารนานาชาติ') {
+        return {
+          key: 'passport',
+          bgTop: '#EFF6FF',
+          bgBot: '#DBEAFE',
+          dark: false,
+          cardBg: '#FFFFFF',
+          cardBorder: '#93C5FD',
+          accent: '#1D4ED8',
+          pairBg: '#1E3A8A',
+          pairTitle: '#FFC53D',
+          footerBg: '#1D4ED8',
+          footerText: '#FFFFFF',
+          quotes: [
+            'บินลัดฟ้าชิมของอร่อยแบบไม่ต้องง้อตั๋วเครื่องบิน ✈️',
+            'ประทับตราพาสปอร์ตความอร่อย มื้อนี้อินเตอร์สุดๆ!',
+            'ชีพจรลงกระเพาะ! น้องปิ่นโตพาบินไปกินถึงถิ่น 🌍'
+          ]
+        };
+      }
+      if (menu.mode === 'dessert' || menu.mode === 'drink') {
+        const isDrink = menu.mode === 'drink';
+        return {
+          key: 'cafe',
+          bgTop: isDrink ? '#F0F9FF' : '#FFF1F2',
+          bgBot: isDrink ? '#E0F2FE' : '#FEF3C7',
+          dark: false,
+          cardBg: '#FFFFFF',
+          cardBorder: isDrink ? '#7DD3FC' : '#FBCFE8',
+          accent: isDrink ? '#0369A1' : '#BE185D',
+          pairBg: isDrink ? '#0C4A6E' : '#831843',
+          pairTitle: '#FDE68A',
+          footerBg: isDrink ? '#0284C7' : '#DB2777',
+          footerText: '#FFFFFF',
+          quotes: isDrink ? [
+            'เติมความสดชื่นสักแก้ว พร้อมลุยงานต่อทั้งวัน 🥤',
+            'น้ำตาลตกเมื่อไหร่ ให้น้องปิ่นโตจัดแก้วนี้ให้เลย ✨',
+            'แก้วเดียวไม่เคยพอ สดชื่นเกินต้าน!'
+          ] : [
+            'กระเพาะของหวานมีพื้นที่ว่างเสมอ 🍨',
+            'ฮีลใจหลังมื้อหนัก ด้วยของหวานจานนี้เลย ✨',
+            'หวานกำลังดี น้องปิ่นโตคอนเฟิร์มว่าฟิน!'
+          ]
+        };
+      }
+      return {
+        key: 'main',
+        bgTop: '#FFFAF3',
+        bgBot: '#FFEBD6',
+        dark: false,
+        cardBg: '#FFFFFF',
+        cardBorder: '#F3E5D5',
+        accent: '#C2410C',
+        pairBg: '#24442F',
+        pairTitle: '#FFC53D',
+        footerBg: '#C2410C',
+        footerText: '#FFFFFF',
+        quotes: [
+          'สวรรค์ลิขิตให้กินจานนี้ ห้ามขัดขืน! 🍽️',
+          'หมดปัญหา "กินไรดี?" น้องปิ่นโตเคาะจานนี้ให้แล้ว!',
+          'มื้อนี้อร่อยแน่นอน อย่าลืมชวนเพื่อนไปกินด้วยนะ 😋',
+          'ดวงอาหารวันนี้พุ่งแรง จัดจานนี้ไม่มีผิดหวัง!'
+        ]
+      };
+    }
+
+    function deliverShareCard(canvas, filename, shareText, previewBoxId, previewImgId, lineLinkId, toastMsg) {
+      let dataUrl = '';
+      try {
+        dataUrl = canvas.toDataURL('image/png');
+      } catch (e) {
+        showToast('สร้างรูปไม่สำเร็จชั่วคราว กรุณาลองอีกครั้งครับ');
+        return;
+      }
+
+      const previewBox = document.getElementById(previewBoxId);
+      const previewImg = document.getElementById(previewImgId);
+      const lineLink = document.getElementById(lineLinkId);
+      if (previewImg) previewImg.src = dataUrl;
+      if (lineLink) lineLink.href = `https://line.me/R/share?text=${encodeURIComponent(shareText)}`;
+      if (previewBox) {
+        previewBox.classList.add('open');
+        previewBox.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      }
 
       const isLineBrowser = /Line/i.test(navigator.userAgent);
       if (isLineBrowser) {
@@ -1966,28 +2128,228 @@ let MENUS = [];
       }
 
       canvas.toBlob(async (blob) => {
-        const file = new File([blob], 'tookmue-meal.png', { type: 'image/png' });
-        if (navigator.canShare && navigator.canShare({ files: [file] })) {
-          try {
-            await navigator.share({
-              title: 'ทุกมื้อ (TooKMUE) - ผลการสุ่มมื้อนี้',
-              text: shareText,
-              files: [file]
-            });
-            addXp(10);
-            return;
-          } catch (err) {}
+        if (blob) {
+          const file = new File([blob], filename, { type: 'image/png' });
+          if (navigator.canShare && navigator.canShare({ files: [file] })) {
+            try {
+              await navigator.share({
+                title: 'ทุกมื้อ (TooKMUE)',
+                text: shareText,
+                files: [file]
+              });
+              addXp(10);
+              return;
+            } catch (err) {}
+          }
         }
         const link = document.createElement('a');
-        link.download = `TooKMUE_${selectedMenu.id}.png`;
+        link.download = filename;
         link.href = dataUrl;
         link.click();
         if (navigator.clipboard) {
           navigator.clipboard.writeText(shareText).catch(() => {});
         }
         addXp(10);
-        showToast('บันทึกรูปการ์ด & คัดลอกข้อความส่งเข้า LINE แล้ว! (+10 XP)');
+        showToast(toastMsg);
       }, 'image/png');
+    }
+
+    async function shareSamrubCard() {
+      if (!selectedMenu) return;
+      const pairMain = resolveMenuPair(selectedMenu, 'main');
+      const pairSweet = resolveMenuPair(selectedMenu, 'sweet');
+      const rankTitle = getCurrentRankTitle();
+      const theme = getShareCardTheme(selectedMenu);
+
+      const canvas = document.getElementById('shareCanvas');
+      canvas.width = 900;
+      canvas.height = 1125;
+      const ctx = canvas.getContext('2d');
+
+      const [foodImg, mascotImg, logoImg] = await Promise.all([
+        loadCanvasImage(selectedMenu.image_url),
+        loadCanvasImage('mascot-pinto.png'),
+        loadCanvasImage('logo-tookmue.png')
+      ]);
+
+      // 1. Background gradient
+      const bgGrad = ctx.createLinearGradient(0, 0, 0, 1125);
+      bgGrad.addColorStop(0, theme.bgTop);
+      bgGrad.addColorStop(1, theme.bgBot);
+      ctx.fillStyle = bgGrad;
+      ctx.fillRect(0, 0, 900, 1125);
+
+      // Decorative soft circles in background
+      ctx.save();
+      ctx.fillStyle = theme.dark ? 'rgba(255,197,61,0.08)' : 'rgba(234,88,12,0.06)';
+      ctx.beginPath();
+      ctx.arc(820, 160, 180, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.beginPath();
+      ctx.arc(90, 980, 150, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.restore();
+
+      // 2. Brand Header + User Rank Pill
+      drawCardBrandHeader(ctx, logoImg, theme.dark, `${state.avatar} ${rankTitle} • 🔥${state.streak}`);
+
+      // 3. Main White Card Frame
+      ctx.save();
+      ctx.shadowColor = 'rgba(58, 43, 34, 0.14)';
+      ctx.shadowBlur = 28;
+      ctx.shadowOffsetY = 12;
+      ctx.fillStyle = theme.cardBg;
+      roundRect(ctx, 48, 134, 804, 622, 38);
+      ctx.fill();
+      ctx.restore();
+
+      ctx.strokeStyle = theme.cardBorder;
+      ctx.lineWidth = 3;
+      roundRect(ctx, 48, 134, 804, 622, 38);
+      ctx.stroke();
+
+      // Boarding pass notches for Passport theme
+      if (theme.key === 'passport') {
+        ctx.save();
+        ctx.fillStyle = theme.bgBot;
+        ctx.beginPath();
+        ctx.arc(48, 560, 20, 0, Math.PI * 2);
+        ctx.arc(852, 560, 20, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.restore();
+      }
+
+      // 4. Hero Food Photo inside the Card Frame
+      const photoX = 72;
+      const photoY = 158;
+      const photoW = 756;
+      const photoH = 386;
+      if (foodImg) {
+        drawImageCover(ctx, foodImg, photoX, photoY, photoW, photoH, 28);
+        // Subtle bottom scrim inside photo for budget/time pill legibility
+        ctx.save();
+        roundRect(ctx, photoX, photoY, photoW, photoH, 28);
+        ctx.clip();
+        const scrim = ctx.createLinearGradient(0, photoY + photoH - 130, 0, photoY + photoH);
+        scrim.addColorStop(0, 'rgba(0,0,0,0)');
+        scrim.addColorStop(1, 'rgba(24,16,12,0.72)');
+        ctx.fillStyle = scrim;
+        ctx.fillRect(photoX, photoY + photoH - 130, photoW, 130);
+        ctx.restore();
+      } else {
+        ctx.fillStyle = '#FDE68A';
+        roundRect(ctx, photoX, photoY, photoW, photoH, 28);
+        ctx.fill();
+        ctx.fillStyle = '#92400E';
+        ctx.font = 'bold 72px "Prompt", sans-serif';
+        ctx.textAlign = 'center';
+        ctx.fillText('🍽️', 450, photoY + photoH / 2 + 24);
+      }
+
+      // Photo Top-Left Badge: Region + Flag
+      const cObj = COUNTRIES.find(c => c.name === selectedMenu.region);
+      const regFlag = cObj ? cObj.flag : (selectedMenu.category === 'เครื่องดื่ม' ? '🥤' : (selectedMenu.category === 'ของหวาน' ? '🍨' : '🇹🇭'));
+      drawCanvasPill(
+        ctx,
+        `${regFlag} ${selectedMenu.region || selectedMenu.category}`,
+        photoX + 18,
+        photoY + 18,
+        'rgba(255,250,243,0.94)',
+        '#3A2B22',
+        'bold 22px "Prompt", sans-serif',
+        18,
+        44,
+        false
+      );
+
+      // Photo Top-Right Pride Badge (Exotic / Halal / Budget Deal)
+      let rightBadgeText = '';
+      let rightBadgeBg = 'rgba(21,128,61,0.92)';
+      if (isMenuExotic(selectedMenu)) {
+        rightBadgeText = getExoticLevelMeta(selectedMenu.exotic_level).short + ' +50 XP';
+        rightBadgeBg = 'rgba(88,28,135,0.94)';
+      } else if (state.halalMode && isMenuHalal(selectedMenu)) {
+        rightBadgeText = '☪️ ฮาลาล';
+        rightBadgeBg = 'rgba(21,128,61,0.94)';
+      } else if ((Number(selectedMenu.budget) || 0) <= 50) {
+        rightBadgeText = '💰 คุ้มจัด ≤50฿';
+        rightBadgeBg = 'rgba(217,119,6,0.94)';
+      }
+      if (rightBadgeText) {
+        drawCanvasPill(ctx, rightBadgeText, photoX + photoW - 18, photoY + 18, rightBadgeBg, '#FFFFFF', 'bold 21px "Prompt", sans-serif', 16, 44, true);
+      }
+
+      // Photo Bottom-Left Budget & Time Pill
+      drawCanvasPill(
+        ctx,
+        `💰 ~${selectedMenu.budget}฿  •  ⏱️ ${selectedMenu.prep_time} นาที`,
+        photoX + 18,
+        photoY + photoH - 60,
+        'rgba(255,255,255,0.92)',
+        '#3A2B22',
+        'bold 22px "Prompt", sans-serif',
+        18,
+        44,
+        false
+      );
+
+      // 5. Dish Name + Fun Viral Micro-Copy Quote (Left side, leaving space for Nong Pinto on right)
+      const textMaxW = mascotImg ? 565 : 740;
+      ctx.fillStyle = '#3A2B22';
+      ctx.font = 'bold 44px "Prompt", sans-serif';
+      ctx.textAlign = 'left';
+      ctx.textBaseline = 'alphabetic';
+      const lastTitleY = wrapCanvasText(ctx, selectedMenu.name, 78, 606, textMaxW, 52, 2);
+
+      const quote = theme.quotes[Math.floor(Math.random() * theme.quotes.length)];
+      ctx.fillStyle = theme.accent;
+      ctx.font = '600 24px "Noto Sans Thai", sans-serif';
+      wrapCanvasText(ctx, `“${quote}”`, 78, Math.min(714, lastTitleY + 46), textMaxW, 34, 2);
+
+      // 6. Nong Pinto Mascot Sticker peeking on the bottom-right corner of the main card!
+      if (mascotImg) {
+        ctx.save();
+        ctx.shadowColor = 'rgba(58, 43, 34, 0.22)';
+        ctx.shadowBlur = 18;
+        ctx.shadowOffsetY = 8;
+        const mH = 268;
+        const mW = mH * (mascotImg.naturalWidth / mascotImg.naturalHeight);
+        ctx.drawImage(mascotImg, 848 - mW, 764 - mH, mW, mH);
+        ctx.restore();
+      }
+
+      // 7. Compact Food Pairing Box (Text-only as requested)
+      ctx.save();
+      ctx.fillStyle = theme.pairBg;
+      roundRect(ctx, 48, 784, 804, 218, 34);
+      ctx.fill();
+      ctx.restore();
+
+      ctx.fillStyle = theme.pairTitle;
+      ctx.font = 'bold 28px "Prompt", sans-serif';
+      ctx.textAlign = 'left';
+      ctx.fillText('🥢 สำรับจับคู่แนะนำ (Food Pairing)', 84, 840);
+
+      ctx.fillStyle = '#FFFFFF';
+      ctx.font = '600 28px "Noto Sans Thai", sans-serif';
+      wrapCanvasText(ctx, `🍽️ คู่กับข้าว: ${pairMain.name} (~${pairMain.budget}฿)`, 84, 898, 732, 36, 1);
+
+      ctx.fillStyle = '#FDE68A';
+      wrapCanvasText(ctx, `🧋 ตบท้ายมื้อ: ${pairSweet.name} (~${pairSweet.budget}฿)`, 84, 954, 732, 36, 1);
+
+      // 8. Footer CTA Pill
+      drawCardFooter(ctx, 'สุ่มฟรี ไม่มีค่าสมัครสมาชิก • tookmue.pages.dev', theme.footerBg, theme.footerText, 1030);
+
+      const shareText = `มื้อนี้ "ทุกมื้อ (TooKMUE)" เลือกให้: ${selectedMenu.name} 🍽️ จับคู่กับ ${pairMain.name} และตบท้ายด้วย ${pairSweet.name}! เล่นฟรีไม่มีค่าสมัครที่ https://tookmue.pages.dev/`;
+      deliverShareCard(
+        canvas,
+        `TooKMUE_${selectedMenu.id}.png`,
+        shareText,
+        'sharePreviewBox',
+        'sharePreviewImg',
+        'directLineShareLink',
+        'บันทึกรูปการ์ด & คัดลอกข้อความส่งเข้า LINE แล้ว! (+10 XP)'
+      );
     }
 
     function setSamrubBudgetCap(cap, btn) {
@@ -3300,73 +3662,107 @@ let MENUS = [];
       }, 520);
     }
 
-    function sharePartyDareCard() {
+    async function sharePartyDareCard() {
       if (!latestPartyDare) return;
       const { friend, dish, meta } = latestPartyDare;
       const canvas = document.getElementById('shareCanvas');
+      canvas.width = 900;
+      canvas.height = 1125;
       const ctx = canvas.getContext('2d');
 
-      ctx.fillStyle = '#2B1410';
-      ctx.fillRect(0, 0, 720, 900);
+      const [foodImg, mascotImg, logoImg] = await Promise.all([
+        loadCanvasImage(dish.image_url),
+        loadCanvasImage('mascot-pinto.png'),
+        loadCanvasImage('logo-tookmue.png')
+      ]);
 
-      ctx.fillStyle = '#FFC53D';
-      ctx.font = 'bold 36px "Prompt", sans-serif';
-      ctx.textAlign = 'center';
-      ctx.fillText('🦂 ภารกิจท้าชิมเมนูแปลก • TooKMUE', 360, 88);
+      const bgGrad = ctx.createLinearGradient(0, 0, 900, 1125);
+      bgGrad.addColorStop(0, '#2E1065');
+      bgGrad.addColorStop(1, '#7C2D12');
+      ctx.fillStyle = bgGrad;
+      ctx.fillRect(0, 0, 900, 1125);
 
+      drawCardBrandHeader(ctx, logoImg, true, '🦂 ท้าชิมเมนูแปลก');
+
+      // White Card
+      ctx.save();
+      ctx.shadowColor = 'rgba(0,0,0,0.3)';
+      ctx.shadowBlur = 28;
+      ctx.shadowOffsetY = 12;
       ctx.fillStyle = '#FFFFFF';
-      roundRect(ctx, 48, 130, 624, 620, 36);
+      roundRect(ctx, 48, 136, 804, 864, 38);
       ctx.fill();
+      ctx.restore();
 
-      ctx.fillStyle = '#9A3412';
+      // Winner Banner
+      ctx.fillStyle = '#6B21A8';
       ctx.font = 'bold 26px "Prompt", sans-serif';
-      ctx.fillText('🎯 ผู้กล้าประจำโต๊ะที่โดนสุ่มได้', 360, 200);
+      ctx.textAlign = 'center';
+      ctx.fillText('🎯 ผู้กล้าประจำโต๊ะที่โดนสุ่มได้', 450, 198);
 
       ctx.fillStyle = '#C2410C';
-      ctx.font = 'bold 54px "Prompt", sans-serif';
-      ctx.fillText(friend.slice(0, 16), 360, 280);
+      ctx.font = 'bold 58px "Prompt", sans-serif';
+      ctx.fillText(friend.slice(0, 16), 450, 270);
 
-      ctx.fillStyle = '#FEF3C7';
-      roundRect(ctx, 88, 325, 544, 62, 31);
-      ctx.fill();
-      ctx.fillStyle = '#92400E';
+      // Exotic Level Pill
+      drawCanvasPill(ctx, meta.text, 450 - 200, 294, '#FEF3C7', '#92400E', 'bold 26px "Prompt", sans-serif', 28, 52, false);
+      // Re-center pill cleanly
+      ctx.fillStyle = '#FFFFFF';
+      ctx.fillRect(200, 290, 500, 62);
+      ctx.save();
       ctx.font = 'bold 26px "Prompt", sans-serif';
-      ctx.fillText(meta.text, 360, 366);
+      const lvlW = ctx.measureText(meta.text).width + 56;
+      drawCanvasPill(ctx, meta.text, 450 - lvlW / 2, 296, '#FEF3C7', '#92400E', 'bold 26px "Prompt", sans-serif', 28, 52, false);
+      ctx.restore();
 
-      ctx.fillStyle = '#3A2B22';
-      ctx.font = 'bold 38px "Prompt", sans-serif';
-      ctx.textAlign = 'left';
-      wrapCanvasText(ctx, `ภารกิจ: ${dish.name}`, 88, 455, 544, 52);
-
-      ctx.fillStyle = '#786458';
-      ctx.font = '600 24px "Noto Sans Thai", sans-serif';
-      ctx.fillText(`🌍 แหล่งที่มา: ${dish.region}  |  💰 ~${dish.budget} บาท`, 88, 610);
-      ctx.fillText('🔥 กินจริงรับโบนัส +50 XP ในแอปทุกมื้อ!', 88, 665);
-
-      ctx.fillStyle = '#FEF3C7';
-      ctx.font = 'bold 24px "Prompt", sans-serif';
-      ctx.textAlign = 'center';
-      ctx.fillText('ท้าเพื่อนเล่นฟรีได้ที่ tookmue.pages.dev', 360, 825);
-
-      const shareText = `🦂 ภารกิจท้าชิมเมนูแปลกจาก TooKMUE! ผู้กล้าประจำโต๊ะ: "${friend}" โดนสุ่มให้กิน "${dish.name}" (${meta.text})! มาสุ่มท้าเพื่อนกันที่ https://tookmue.pages.dev/`;
-      const dataUrl = canvas.toDataURL('image/png');
-
-      const preview = document.getElementById('partySharePreview');
-      const imgEl = document.getElementById('partyShareImg');
-      const linkEl = document.getElementById('partyLineLink');
-      if (imgEl) imgEl.src = dataUrl;
-      if (linkEl) linkEl.href = `https://line.me/R/share?text=${encodeURIComponent(shareText)}`;
-      if (preview) preview.classList.add('open');
-
-      if (!/Line/i.test(navigator.userAgent)) {
-        const a = document.createElement('a');
-        a.download = `TooKMUE_Dare_${dish.id}.png`;
-        a.href = dataUrl;
-        a.click();
-        if (navigator.clipboard) navigator.clipboard.writeText(shareText).catch(() => {});
+      // Dish Hero Photo
+      const pX = 78;
+      const pY = 374;
+      const pW = 744;
+      const pH = 360;
+      if (foodImg) {
+        drawImageCover(ctx, foodImg, pX, pY, pW, pH, 26);
+      } else {
+        ctx.fillStyle = '#F3E8FF';
+        roundRect(ctx, pX, pY, pW, pH, 26);
+        ctx.fill();
       }
-      addXp(10);
-      showToast('สร้างการ์ดท้าเพื่อนแล้ว! (+10 XP) 🦂');
+      drawCanvasPill(ctx, `🌍 ${dish.region} • ~${dish.budget}฿`, pX + 16, pY + 16, 'rgba(255,250,243,0.94)', '#3A2B22', 'bold 22px "Prompt", sans-serif', 18, 44, false);
+
+      // Dish Name & Bonus text
+      const dMaxW = mascotImg ? 550 : 730;
+      ctx.fillStyle = '#3A2B22';
+      ctx.font = 'bold 40px "Prompt", sans-serif';
+      ctx.textAlign = 'left';
+      const endY = wrapCanvasText(ctx, `ภารกิจ: ${dish.name}`, 78, 798, dMaxW, 50, 2);
+
+      ctx.fillStyle = '#9A3412';
+      ctx.font = 'bold 25px "Noto Sans Thai", sans-serif';
+      ctx.fillText('🔥 กินจริงรับโบนัส +50 XP ในแอปทุกมื้อ!', 78, Math.min(955, endY + 52));
+
+      if (mascotImg) {
+        ctx.save();
+        ctx.shadowColor = 'rgba(58, 43, 34, 0.25)';
+        ctx.shadowBlur = 18;
+        ctx.shadowOffsetY = 8;
+        const mH = 260;
+        const mW = mH * (mascotImg.naturalWidth / mascotImg.naturalHeight);
+        ctx.drawImage(mascotImg, 846 - mW, 996 - mH, mW, mH);
+        ctx.restore();
+      }
+
+      drawCardFooter(ctx, 'ท้าเพื่อนเล่นฟรี ไม่มีค่าสมัคร • tookmue.pages.dev', 'rgba(255,255,255,0.16)', '#FEF3C7', 1030);
+
+      const shareText = `🦂 ภารกิจท้าชิมเมนูแปลกจาก TooKMUE! ผู้กล้าประจำโต๊ะ: "${friend}" โดนสุ่มให้กิน "${dish.name}" (${meta.text})! มาสุ่มท้าเพื่อนฟรีที่ https://tookmue.pages.dev/`;
+      deliverShareCard(
+        canvas,
+        `TooKMUE_Dare_${dish.id}.png`,
+        shareText,
+        'partySharePreview',
+        'partyShareImg',
+        'partyLineLink',
+        'สร้างการ์ดท้าเพื่อนแล้ว! (+10 XP) 🦂'
+      );
     }
 
     // --- M1-4: CURATED TRAY BUILDER MODAL (จัดถาดสุ่มเอง 5 หรือ 8 รายการ) ---
@@ -3934,67 +4330,121 @@ let MENUS = [];
       box.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
     }
 
-    function shareGroupSpinCard() {
+    async function shareGroupSpinCard() {
       if (!latestGroupResult) return;
       const { title, subtitle, dish } = latestGroupResult;
       const canvas = document.getElementById('shareCanvas');
+      canvas.width = 900;
+      canvas.height = 1125;
       const ctx = canvas.getContext('2d');
 
-      ctx.fillStyle = '#1E3A8A';
-      ctx.fillRect(0, 0, 720, 900);
+      const [foodImg, mascotImg, logoImg] = await Promise.all([
+        dish ? loadCanvasImage(dish.image_url) : Promise.resolve(null),
+        loadCanvasImage('mascot-pinto.png'),
+        loadCanvasImage('logo-tookmue.png')
+      ]);
 
-      ctx.fillStyle = '#FFC53D';
-      ctx.font = 'bold 36px "Prompt", sans-serif';
-      ctx.textAlign = 'center';
-      ctx.fillText('👥 มติวงล้อกลุ่มเพื่อน • TooKMUE', 360, 92);
+      const bgGrad = ctx.createLinearGradient(0, 0, 900, 1125);
+      bgGrad.addColorStop(0, '#1E3A8A');
+      bgGrad.addColorStop(1, '#2563EB');
+      ctx.fillStyle = bgGrad;
+      ctx.fillRect(0, 0, 900, 1125);
 
+      drawCardBrandHeader(ctx, logoImg, true, '👥 มติวงล้อกลุ่ม');
+
+      // White Main Card
+      ctx.save();
+      ctx.shadowColor = 'rgba(0,0,0,0.25)';
+      ctx.shadowBlur = 28;
+      ctx.shadowOffsetY = 12;
       ctx.fillStyle = '#FFFFFF';
-      roundRect(ctx, 48, 136, 624, 600, 36);
+      roundRect(ctx, 48, 136, 804, 864, 38);
       ctx.fill();
+      ctx.restore();
 
       ctx.fillStyle = '#2563EB';
-      ctx.font = 'bold 26px "Prompt", sans-serif';
-      ctx.fillText('🎯 มื้อนี้ทั้งโต๊ะตกลงกิน...', 360, 210);
-
-      ctx.fillStyle = '#C2410C';
-      ctx.font = 'bold 46px "Prompt", sans-serif';
-      ctx.textAlign = 'left';
-      wrapCanvasText(ctx, title, 88, 295, 544, 60);
-
-      ctx.fillStyle = '#475569';
-      ctx.font = '600 24px "Noto Sans Thai", sans-serif';
-      wrapCanvasText(ctx, `เงื่อนไข: ${subtitle}`, 88, 485, 544, 38);
-
-      if (dish) {
-        ctx.fillStyle = '#0F766E';
-        ctx.font = 'bold 26px "Prompt", sans-serif';
-        ctx.fillText(`💰 งบเฉลี่ย ~${dish.budget} บาท/คน  |  ⏱️ ${dish.prep_time} นาที`, 88, 620);
-      }
-
-      ctx.fillStyle = '#DBEAFE';
-      ctx.font = 'bold 24px "Prompt", sans-serif';
+      ctx.font = 'bold 28px "Prompt", sans-serif';
       ctx.textAlign = 'center';
-      ctx.fillText('หมดปัญหา "กินไรดี?" ทั้งออฟฟิศที่ tookmue.pages.dev', 360, 822);
+      ctx.fillText('🎉 มติเอกฉันท์! มื้อนี้ทั้งโต๊ะตกลงกิน...', 450, 200);
 
-      const shareText = `👥 มติวงล้อกลุ่ม TooKMUE ออกแล้ว! มื้อนี้กิน "${title}" (${subtitle}) 🍽️ มาสุ่มกับเพื่อนฟรีที่ https://tookmue.pages.dev/`;
-      const dataUrl = canvas.toDataURL('image/png');
+      if (foodImg) {
+        const pX = 78;
+        const pY = 230;
+        const pW = 744;
+        const pH = 400;
+        drawImageCover(ctx, foodImg, pX, pY, pW, pH, 28);
+        if (dish) {
+          drawCanvasPill(
+            ctx,
+            `💰 ~${dish.budget}฿/คน  •  ⏱️ ${dish.prep_time} นาที`,
+            pX + 18,
+            pY + pH - 60,
+            'rgba(255,255,255,0.94)',
+            '#3A2B22',
+            'bold 22px "Prompt", sans-serif',
+            18,
+            44,
+            false
+          );
+        }
 
-      const preview = document.getElementById('groupSharePreview');
-      const imgEl = document.getElementById('groupShareImg');
-      const linkEl = document.getElementById('groupLineLink');
-      if (imgEl) imgEl.src = dataUrl;
-      if (linkEl) linkEl.href = `https://line.me/R/share?text=${encodeURIComponent(shareText)}`;
-      if (preview) preview.classList.add('open');
+        const gMaxW = mascotImg ? 550 : 730;
+        ctx.fillStyle = '#C2410C';
+        ctx.font = 'bold 46px "Prompt", sans-serif';
+        ctx.textAlign = 'left';
+        const endY = wrapCanvasText(ctx, title, 78, 704, gMaxW, 56, 2);
 
-      if (!/Line/i.test(navigator.userAgent)) {
-        const a = document.createElement('a');
-        a.download = `TooKMUE_GroupSpin.png`;
-        a.href = dataUrl;
-        a.click();
-        if (navigator.clipboard) navigator.clipboard.writeText(shareText).catch(() => {});
+        ctx.fillStyle = '#475569';
+        ctx.font = '600 25px "Noto Sans Thai", sans-serif';
+        wrapCanvasText(ctx, `เงื่อนไข: ${subtitle}`, 78, Math.min(930, endY + 52), gMaxW, 36, 2);
+
+        if (mascotImg) {
+          ctx.save();
+          ctx.shadowColor = 'rgba(58, 43, 34, 0.22)';
+          ctx.shadowBlur = 18;
+          ctx.shadowOffsetY = 8;
+          const mH = 265;
+          const mW = mH * (mascotImg.naturalWidth / mascotImg.naturalHeight);
+          ctx.drawImage(mascotImg, 846 - mW, 994 - mH, mW, mH);
+          ctx.restore();
+        }
+      } else {
+        // Custom restaurant/menu vote winner (no catalog photo) -> Big celebratory banner + centered Nong Pinto
+        ctx.fillStyle = '#FFF7ED';
+        roundRect(ctx, 78, 240, 744, 240, 28);
+        ctx.fill();
+        ctx.strokeStyle = '#FDBA74';
+        ctx.lineWidth = 3;
+        ctx.stroke();
+
+        ctx.fillStyle = '#C2410C';
+        ctx.font = 'bold 52px "Prompt", sans-serif';
+        ctx.textAlign = 'center';
+        wrapCanvasText(ctx, title, 450, 340, 680, 64, 2);
+
+        ctx.fillStyle = '#475569';
+        ctx.font = '600 26px "Noto Sans Thai", sans-serif';
+        wrapCanvasText(ctx, subtitle, 450, 540, 700, 38, 2);
+
+        if (mascotImg) {
+          const mH = 340;
+          const mW = mH * (mascotImg.naturalWidth / mascotImg.naturalHeight);
+          ctx.drawImage(mascotImg, 450 - mW / 2, 620, mW, mH);
+        }
       }
-      addXp(10);
-      showToast('สร้างการ์ดผลโหวตกลุ่มแล้ว! (+10 XP) 👥');
+
+      drawCardFooter(ctx, 'หมดปัญหา "กินไรดี?" ทั้งออฟฟิศ • tookmue.pages.dev', 'rgba(255,255,255,0.18)', '#FFFFFF', 1030);
+
+      const shareText = `👥 มติวงล้อกลุ่ม TooKMUE ออกแล้ว! มื้อนี้กิน "${title}" (${subtitle}) 🍽️ เล่นฟรีไม่มีค่าสมัครที่ https://tookmue.pages.dev/`;
+      deliverShareCard(
+        canvas,
+        'TooKMUE_GroupSpin.png',
+        shareText,
+        'groupSharePreview',
+        'groupShareImg',
+        'groupLineLink',
+        'สร้างการ์ดผลโหวตกลุ่มแล้ว! (+10 XP) 👥'
+      );
     }
 
     initApp();
