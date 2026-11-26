@@ -1071,7 +1071,8 @@ let MENUS = [];
       street: '🍢 สตรีทฟู้ด',
       soup: '🍲 ซดน้ำร้อนๆ',
       crispy: '🍗 ของทอดกรอบ',
-      noodle: '🍜 เมนูเส้น'
+      noodle: '🍜 เมนูเส้น',
+      fruit: '🍉 ผลไม้'
     };
 
     const QUICK_LABELS = {
@@ -1311,7 +1312,7 @@ let MENUS = [];
       state.spinSource = 'favorites';
       saveState();
       switchTab('home');
-      if (currentMode === 'fridge') setWheelMode('main');
+      if (mood === 'fruit') { if (currentMode !== 'dessert') setWheelMode('dessert'); } else if (currentMode === 'fridge') { setWheelMode('main'); }
       updateSpinSourceUI();
       prepareWheelSlices();
       showToast(`ดึงเมนูโปรด ${availFavs.length} รายการเข้ากองสุ่มแล้ว ❤️`);
@@ -1469,6 +1470,7 @@ let MENUS = [];
       if (moodFilter === 'soup') pool = pool.filter(m => m.tags && m.tags.includes('ต้ม'));
       if (moodFilter === 'crispy') pool = pool.filter(m => m.tags && (m.tags.includes('ทอด') || m.name.includes('กรอบ')));
       if (moodFilter === 'noodle') pool = pool.filter(m => m.tags && m.tags.includes('เส้น'));
+      if (moodFilter === 'fruit') pool = pool.filter(m => m.tags && m.tags.includes('ผลไม้'));
 
       if (excludeYest && state.history.length > 0 && pool.length > 0) {
         const filtered = pool.filter(m => !state.history.includes(m.id));

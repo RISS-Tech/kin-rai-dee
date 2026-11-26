@@ -1,4 +1,4 @@
-const CACHE_NAME = 'tookmue-v23-share-cards';
+const CACHE_NAME = 'tookmue-v24-358menus';
 const IMAGE_CACHE_NAME = 'tookmue-images-v1';
 
 const APP_SHELL = [

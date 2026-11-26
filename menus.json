@@ -8729,5 +8729,1772 @@
     "is_halal": false,
     "is_exotic": true,
     "exotic_level": 3
+  },
+  {
+    "id": "DES-026",
+    "name": "มะพร้าวน้ำหอมสดเฉาะ",
+    "mode": "dessert",
+    "category": "ของหวาน",
+    "region": "ผลไม้",
+    "protein": "มังสวิรัติ",
+    "budget": 40,
+    "budget_tier": "ประหยัด",
+    "prep_time": 5,
+    "is_spicy": false,
+    "tags": [
+      "ผลไม้",
+      "สดชื่นดับร้อน",
+      "สุขภาพ",
+      "สายคลีน",
+      "มังสวิรัติ",
+      "สตรีทฟู้ด"
+    ],
+    "pair_id": "TH-C01",
+    "dessert_pair_id": "BEV-004",
+    "image_url": "images/DES-026.webp",
+    "recipe_hint": "มะพร้าวน้ำหอมสดแช่เย็นเจี๊ยบ เนื้ออ่อนหวานหอมธรรมชาติ",
+    "wiki_query": "มะพร้าวน้ำหอมสดเฉาะ",
+    "ingredients": [
+      "มะพร้าว"
+    ],
+    "is_halal": true,
+    "is_exotic": false
+  },
+  {
+    "id": "DES-027",
+    "name": "แก้วมังกรสดหั่นชิ้น",
+    "mode": "dessert",
+    "category": "ของหวาน",
+    "region": "ผลไม้",
+    "protein": "มังสวิรัติ",
+    "budget": 30,
+    "budget_tier": "ประหยัด",
+    "prep_time": 5,
+    "is_spicy": false,
+    "tags": [
+      "ผลไม้",
+      "สดชื่นดับร้อน",
+      "สุขภาพ",
+      "สายคลีน",
+      "มังสวิรัติ",
+      "สตรีทฟู้ด"
+    ],
+    "pair_id": "TH-C08",
+    "dessert_pair_id": "BEV-004",
+    "image_url": "images/DES-027.webp",
+    "recipe_hint": "แก้วมังกรเนื้อขาวหวานฉ่ำ แคลอรีต่ำ กากใยสูง ช่วยระบบขับถ่าย",
+    "wiki_query": "แก้วมังกรสดหั่นชิ้น",
+    "ingredients": [
+      "แก้วมังกร"
+    ],
+    "is_halal": true,
+    "is_exotic": false
+  },
+  {
+    "id": "DES-028",
+    "name": "ทุเรียนหมอนทองพูโต",
+    "mode": "dessert",
+    "category": "ของหวาน",
+    "region": "ผลไม้",
+    "protein": "มังสวิรัติ",
+    "budget": 120,
+    "budget_tier": "พรีเมียม",
+    "prep_time": 5,
+    "is_spicy": false,
+    "tags": [
+      "ผลไม้",
+      "หวานฮีลใจ",
+      "มังสวิรัติ",
+      "พรีเมียม"
+    ],
+    "pair_id": "TH-E01",
+    "dessert_pair_id": "BEV-004",
+    "image_url": "images/DES-028.webp",
+    "recipe_hint": "ทุเรียนหมอนทองกรอบนอกนุ่มใน หอมหวานมัน ราชาแห่งผลไม้ไทย",
+    "wiki_query": "ทุเรียนหมอนทองพูโต",
+    "ingredients": [
+      "ทุเรียน"
+    ],
+    "is_halal": true,
+    "is_exotic": false
+  },
+  {
+    "id": "DES-029",
+    "name": "แอปเปิลสดกรอบแช่เย็น",
+    "mode": "dessert",
+    "category": "ของหวาน",
+    "region": "ผลไม้",
+    "protein": "มังสวิรัติ",
+    "budget": 30,
+    "budget_tier": "ประหยัด",
+    "prep_time": 5,
+    "is_spicy": false,
+    "tags": [
+      "ผลไม้",
+      "สดชื่นดับร้อน",
+      "สุขภาพ",
+      "สายคลีน",
+      "มังสวิรัติ",
+      "สตรีทฟู้ด"
+    ],
+    "pair_id": "TH-C06",
+    "dessert_pair_id": "BEV-004",
+    "image_url": "images/DES-029.webp",
+    "recipe_hint": "แอปเปิลแดง-เขียวหั่นชิ้นกรอบหวานอมเปรี้ยว วิตามินสูง",
+    "wiki_query": "แอปเปิลสดกรอบแช่เย็น",
+    "ingredients": [
+      "แอปเปิล"
+    ],
+    "is_halal": true,
+    "is_exotic": false
+  },
+  {
+    "id": "DES-030",
+    "name": "องุ่นสดไร้เมล็ดแช่เย็น",
+    "mode": "dessert",
+    "category": "ของหวาน",
+    "region": "ผลไม้",
+    "protein": "มังสวิรัติ",
+    "budget": 45,
+    "budget_tier": "ประหยัด",
+    "prep_time": 5,
+    "is_spicy": false,
+    "tags": [
+      "ผลไม้",
+      "สดชื่นดับร้อน",
+      "สุขภาพ",
+      "สายคลีน",
+      "มังสวิรัติ",
+      "สตรีทฟู้ด"
+    ],
+    "pair_id": "TH-C05",
+    "dessert_pair_id": "BEV-004",
+    "image_url": "images/DES-030.webp",
+    "recipe_hint": "องุ่นสดกรอบหวานฉ่ำไร้เมล็ด กินเพลินสดชื่นยามบ่าย",
+    "wiki_query": "องุ่นสดไร้เมล็ดแช่เย็น",
+    "ingredients": [
+      "องุ่น"
+    ],
+    "is_halal": true,
+    "is_exotic": false
+  },
+  {
+    "id": "DES-031",
+    "name": "ขนุนสุกสีทองกรอบหวาน",
+    "mode": "dessert",
+    "category": "ของหวาน",
+    "region": "ผลไม้",
+    "protein": "มังสวิรัติ",
+    "budget": 35,
+    "budget_tier": "ประหยัด",
+    "prep_time": 5,
+    "is_spicy": false,
+    "tags": [
+      "ผลไม้",
+      "หวานฮีลใจ",
+      "มังสวิรัติ",
+      "สตรีทฟู้ด"
+    ],
+    "pair_id": "TH-C04",
+    "dessert_pair_id": "BEV-004",
+    "image_url": "images/DES-031.webp",
+    "recipe_hint": "ขนุนสุกเนื้อหนาเหลืองทอง หอมหวานกรอบ เคี้ยวเพลิน",
+    "wiki_query": "ขนุนสุกสีทองกรอบหวาน",
+    "ingredients": [
+      "ขนุน"
+    ],
+    "is_halal": true,
+    "is_exotic": false
+  },
+  {
+    "id": "DES-032",
+    "name": "ส้มสายน้ำผึ้งหวานฉ่ำ",
+    "mode": "dessert",
+    "category": "ของหวาน",
+    "region": "ผลไม้",
+    "protein": "มังสวิรัติ",
+    "budget": 35,
+    "budget_tier": "ประหยัด",
+    "prep_time": 5,
+    "is_spicy": false,
+    "tags": [
+      "ผลไม้",
+      "สดชื่นดับร้อน",
+      "สุขภาพ",
+      "สายคลีน",
+      "มังสวิรัติ",
+      "สตรีทฟู้ด"
+    ],
+    "pair_id": "TH-C01",
+    "dessert_pair_id": "BEV-004",
+    "image_url": "images/DES-032.webp",
+    "recipe_hint": "ส้มสายน้ำผึ้งแกะกลีบหวานอมเปรี้ยว วิตามินซีสูงแก้กระหาย",
+    "wiki_query": "ส้มสายน้ำผึ้งหวานฉ่ำ",
+    "ingredients": [
+      "ส้ม"
+    ],
+    "is_halal": true,
+    "is_exotic": false
+  },
+  {
+    "id": "DES-033",
+    "name": "มะละกอสุกหั่นชิ้นเย็นๆ",
+    "mode": "dessert",
+    "category": "ของหวาน",
+    "region": "ผลไม้",
+    "protein": "มังสวิรัติ",
+    "budget": 25,
+    "budget_tier": "ประหยัด",
+    "prep_time": 5,
+    "is_spicy": false,
+    "tags": [
+      "ผลไม้",
+      "สดชื่นดับร้อน",
+      "สุขภาพ",
+      "สายคลีน",
+      "มังสวิรัติ",
+      "สตรีทฟู้ด"
+    ],
+    "pair_id": "TH-E01",
+    "dessert_pair_id": "BEV-004",
+    "image_url": "images/DES-033.webp",
+    "recipe_hint": "มะละกอฮอลแลนด์สุกเนื้อส้มแดงหวานฉ่ำ ช่วยย่อยและขับถ่ายดี",
+    "wiki_query": "มะละกอสุกหั่นชิ้นเย็นๆ",
+    "ingredients": [
+      "มะละกอ"
+    ],
+    "is_halal": true,
+    "is_exotic": false
+  },
+  {
+    "id": "DES-034",
+    "name": "สตรอว์เบอร์รีสดจิ้มพริกเกลือ",
+    "mode": "dessert",
+    "category": "ของหวาน",
+    "region": "ผลไม้",
+    "protein": "มังสวิรัติ",
+    "budget": 50,
+    "budget_tier": "ประหยัด",
+    "prep_time": 5,
+    "is_spicy": false,
+    "tags": [
+      "ผลไม้",
+      "สดชื่นดับร้อน",
+      "สุขภาพ",
+      "สายคลีน",
+      "มังสวิรัติ",
+      "สตรีทฟู้ด"
+    ],
+    "pair_id": "TH-C01",
+    "dessert_pair_id": "BEV-004",
+    "image_url": "images/DES-034.webp",
+    "recipe_hint": "สตรอว์เบอร์รีสดลูกโตเปรี้ยวอมหวาน จิ้มพริกเกลือหรือบ๊วยยิ่งฟิน",
+    "wiki_query": "สตรอว์เบอร์รีสดจิ้มพริกเกลือ",
+    "ingredients": [
+      "สตรอว์เบอร์รี"
+    ],
+    "is_halal": true,
+    "is_exotic": false
+  },
+  {
+    "id": "DES-035",
+    "name": "แตงโมแดงหวานฉ่ำแช่เย็น",
+    "mode": "dessert",
+    "category": "ของหวาน",
+    "region": "ผลไม้",
+    "protein": "มังสวิรัติ",
+    "budget": 25,
+    "budget_tier": "ประหยัด",
+    "prep_time": 5,
+    "is_spicy": false,
+    "tags": [
+      "ผลไม้",
+      "สดชื่นดับร้อน",
+      "สุขภาพ",
+      "สายคลีน",
+      "มังสวิรัติ",
+      "สตรีทฟู้ด"
+    ],
+    "pair_id": "TH-S01",
+    "dessert_pair_id": "BEV-004",
+    "image_url": "images/DES-035.webp",
+    "recipe_hint": "แตงโมเนื้อแดงกรอบหวานฉ่ำน้ำ ดับร้อนคลายกระหายได้ดีที่สุด",
+    "wiki_query": "แตงโมแดงหวานฉ่ำแช่เย็น",
+    "ingredients": [
+      "แตงโม"
+    ],
+    "is_halal": true,
+    "is_exotic": false
+  },
+  {
+    "id": "DES-036",
+    "name": "มะม่วงดิบจิ้มน้ำปลาหวาน",
+    "mode": "dessert",
+    "category": "ของหวาน",
+    "region": "ผลไม้",
+    "protein": "มังสวิรัติ",
+    "budget": 35,
+    "budget_tier": "ประหยัด",
+    "prep_time": 5,
+    "is_spicy": true,
+    "tags": [
+      "ผลไม้",
+      "สดชื่นดับร้อน",
+      "สตรีทฟู้ด",
+      "เผ็ด"
+    ],
+    "pair_id": "TH-E01",
+    "dessert_pair_id": "BEV-005",
+    "image_url": "images/DES-036.webp",
+    "recipe_hint": "มะม่วงเขียวเสวยหรือมะม่วงเปรี้ยวกรอบๆ จิ้มน้ำปลาหวานกุ้งแห้งและพริกเกลือ",
+    "wiki_query": "มะม่วงดิบจิ้มน้ำปลาหวาน",
+    "ingredients": [
+      "มะม่วง",
+      "พริก"
+    ],
+    "is_halal": true,
+    "is_exotic": false
+  },
+  {
+    "id": "DES-037",
+    "name": "ฝรั่งกิมจูกรอบจิ้มบ๊วย",
+    "mode": "dessert",
+    "category": "ของหวาน",
+    "region": "ผลไม้",
+    "protein": "มังสวิรัติ",
+    "budget": 25,
+    "budget_tier": "ประหยัด",
+    "prep_time": 5,
+    "is_spicy": false,
+    "tags": [
+      "ผลไม้",
+      "สดชื่นดับร้อน",
+      "สุขภาพ",
+      "สายคลีน",
+      "มังสวิรัติ",
+      "สตรีทฟู้ด"
+    ],
+    "pair_id": "TH-C01",
+    "dessert_pair_id": "BEV-004",
+    "image_url": "images/DES-037.webp",
+    "recipe_hint": "ฝรั่งกิมจูเนื้อกรอบหวานกำลังดี คลุกผงบ๊วยหรือพริกเกลือ ผลไม้รถเข็นยอดฮิต",
+    "wiki_query": "ฝรั่งกิมจูกรอบจิ้มบ๊วย",
+    "ingredients": [
+      "ฝรั่ง"
+    ],
+    "is_halal": true,
+    "is_exotic": false
+  },
+  {
+    "id": "DES-038",
+    "name": "ลิ้นจี่จักรพรรดิสดหวานฉ่ำ",
+    "mode": "dessert",
+    "category": "ของหวาน",
+    "region": "ผลไม้",
+    "protein": "มังสวิรัติ",
+    "budget": 50,
+    "budget_tier": "ประหยัด",
+    "prep_time": 5,
+    "is_spicy": false,
+    "tags": [
+      "ผลไม้",
+      "สดชื่นดับร้อน",
+      "หวานฮีลใจ",
+      "มังสวิรัติ"
+    ],
+    "pair_id": "TH-N01",
+    "dessert_pair_id": "BEV-004",
+    "image_url": "images/DES-038.webp",
+    "recipe_hint": "ลิ้นจี่ลูกโตเนื้อหนาใส หอมหวานอมเปรี้ยว แช่เย็นกินชื่นใจ",
+    "wiki_query": "ลิ้นจี่จักรพรรดิสดหวานฉ่ำ",
+    "ingredients": [
+      "ลิ้นจี่"
+    ],
+    "is_halal": true,
+    "is_exotic": false
+  },
+  {
+    "id": "DES-039",
+    "name": "มังคุดสดราชินีผลไม้",
+    "mode": "dessert",
+    "category": "ของหวาน",
+    "region": "ผลไม้",
+    "protein": "มังสวิรัติ",
+    "budget": 40,
+    "budget_tier": "ประหยัด",
+    "prep_time": 5,
+    "is_spicy": false,
+    "tags": [
+      "ผลไม้",
+      "สดชื่นดับร้อน",
+      "สุขภาพ",
+      "สายคลีน",
+      "มังสวิรัติ"
+    ],
+    "pair_id": "TH-S01",
+    "dessert_pair_id": "BEV-004",
+    "image_url": "images/DES-039.webp",
+    "recipe_hint": "มังคุดเนื้อขาวปุยฝ้ายหวานอมเปรี้ยว กินคู่ทุเรียนช่วยแก้ร้อนใน",
+    "wiki_query": "มังคุดสดราชินีผลไม้",
+    "ingredients": [
+      "มังคุด"
+    ],
+    "is_halal": true,
+    "is_exotic": false
+  },
+  {
+    "id": "DES-040",
+    "name": "สับปะรดภูแลกรอบหวาน",
+    "mode": "dessert",
+    "category": "ของหวาน",
+    "region": "ผลไม้",
+    "protein": "มังสวิรัติ",
+    "budget": 30,
+    "budget_tier": "ประหยัด",
+    "prep_time": 5,
+    "is_spicy": false,
+    "tags": [
+      "ผลไม้",
+      "สดชื่นดับร้อน",
+      "สุขภาพ",
+      "สายคลีน",
+      "มังสวิรัติ",
+      "สตรีทฟู้ด"
+    ],
+    "pair_id": "TH-C03",
+    "dessert_pair_id": "BEV-004",
+    "image_url": "images/DES-040.webp",
+    "recipe_hint": "สับปะรดภูแลหรือปัตตาเวียฉ่ำๆ หวานอมเปรี้ยว ช่วยย่อยหลังมื้อหนัก",
+    "wiki_query": "สับปะรดภูแลกรอบหวาน",
+    "ingredients": [
+      "สับปะรด"
+    ],
+    "is_halal": true,
+    "is_exotic": false
+  },
+  {
+    "id": "DES-041",
+    "name": "เงาะโรงเรียนกรอบล่อน",
+    "mode": "dessert",
+    "category": "ของหวาน",
+    "region": "ผลไม้",
+    "protein": "มังสวิรัติ",
+    "budget": 35,
+    "budget_tier": "ประหยัด",
+    "prep_time": 5,
+    "is_spicy": false,
+    "tags": [
+      "ผลไม้",
+      "สดชื่นดับร้อน",
+      "หวานฮีลใจ",
+      "มังสวิรัติ"
+    ],
+    "pair_id": "TH-S01",
+    "dessert_pair_id": "BEV-004",
+    "image_url": "images/DES-041.webp",
+    "recipe_hint": "เงาะโรงเรียนเนื้อหนาหวานกรอบล่อนไม่ติดเม็ด แช่เย็นกินเพลิน",
+    "wiki_query": "เงาะโรงเรียนกรอบล่อน",
+    "ingredients": [
+      "เงาะ"
+    ],
+    "is_halal": true,
+    "is_exotic": false
+  },
+  {
+    "id": "DES-042",
+    "name": "มะม่วงน้ำดอกไม้สุกหวานฉ่ำ",
+    "mode": "dessert",
+    "category": "ของหวาน",
+    "region": "ผลไม้",
+    "protein": "มังสวิรัติ",
+    "budget": 45,
+    "budget_tier": "ประหยัด",
+    "prep_time": 5,
+    "is_spicy": false,
+    "tags": [
+      "ผลไม้",
+      "หวานฮีลใจ",
+      "มังสวิรัติ",
+      "สตรีทฟู้ด"
+    ],
+    "pair_id": "TH-C05",
+    "dessert_pair_id": "BEV-001",
+    "image_url": "images/DES-042.webp",
+    "recipe_hint": "มะม่วงน้ำดอกไม้สีทองสุกหอมหวานละมุนลิ้น กินเปล่าๆ หรือคู่ข้าวเหนียวมูน",
+    "wiki_query": "มะม่วงน้ำดอกไม้สุกหวานฉ่ำ",
+    "ingredients": [
+      "มะม่วง"
+    ],
+    "is_halal": true,
+    "is_exotic": false
+  },
+  {
+    "id": "BEV-026",
+    "name": "ชานมไข่มุกไต้หวันคลาสสิก",
+    "mode": "drink",
+    "category": "เครื่องดื่ม",
+    "region": "ไต้หวัน",
+    "protein": "อื่นๆ",
+    "budget": 45,
+    "budget_tier": "ประหยัด",
+    "prep_time": 5,
+    "is_spicy": false,
+    "tags": [
+      "หวานฮีลใจ",
+      "แก้ง่วงคาเฟอีน",
+      "ประหยัด",
+      "สตรีทฟู้ด"
+    ],
+    "pair_id": "INT-05",
+    "dessert_pair_id": "DES-019",
+    "image_url": "images/BEV-026.webp",
+    "recipe_hint": "ชานมไต้หวันหอมกลิ่นใบชาดำ ใส่ไข่มุกเหนียวหนึบเคี้ยวเพลิน",
+    "wiki_query": "ชานมไข่มุกไต้หวันคลาสสิก",
+    "ingredients": [
+      "ชา",
+      "นมสด"
+    ],
+    "is_halal": true,
+    "is_exotic": false
+  },
+  {
+    "id": "BEV-027",
+    "name": "นมสดเย็นหวานมัน",
+    "mode": "drink",
+    "category": "เครื่องดื่ม",
+    "region": "คาเฟ่",
+    "protein": "อื่นๆ",
+    "budget": 35,
+    "budget_tier": "ประหยัด",
+    "prep_time": 5,
+    "is_spicy": false,
+    "tags": [
+      "หวานฮีลใจ",
+      "ประหยัด",
+      "สุขภาพ",
+      "สตรีทฟู้ด"
+    ],
+    "pair_id": "TH-C01",
+    "dessert_pair_id": "DES-021",
+    "image_url": "images/BEV-027.webp",
+    "recipe_hint": "นมโคสดแท้แช่เย็นจัด ปรุงหวานน้อยหอมมัน ดื่มง่ายได้ทุกวัย",
+    "wiki_query": "นมสดเย็นหวานมัน",
+    "ingredients": [
+      "นมสด"
+    ],
+    "is_halal": true,
+    "is_exotic": false
+  },
+  {
+    "id": "BEV-028",
+    "name": "น้ำเต้าหู้ทรงเครื่องร้อน",
+    "mode": "drink",
+    "category": "เครื่องดื่ม",
+    "region": "สมุนไพร",
+    "protein": "มังสวิรัติ",
+    "budget": 25,
+    "budget_tier": "ประหยัด",
+    "prep_time": 5,
+    "is_spicy": false,
+    "tags": [
+      "สุขภาพ",
+      "ประหยัด",
+      "สายคลีน",
+      "มังสวิรัติ",
+      "สตรีทฟู้ด"
+    ],
+    "pair_id": "TH-C19",
+    "dessert_pair_id": "DES-016",
+    "image_url": "images/BEV-028.webp",
+    "recipe_hint": "น้ำเต้าหู้คั้นสดต้มหอมใบเตย ใส่เม็ดแมงลัก ลูกเดือย และวุ้น อิ่มท้องโปรตีนสูง",
+    "wiki_query": "น้ำเต้าหู้ทรงเครื่องร้อน",
+    "ingredients": [
+      "เต้าหู้"
+    ],
+    "is_halal": true,
+    "is_exotic": false
+  },
+  {
+    "id": "BEV-029",
+    "name": "ชาดำเย็นมะนาวสด (Iced Lemon Tea)",
+    "mode": "drink",
+    "category": "เครื่องดื่ม",
+    "region": "คาเฟ่",
+    "protein": "มังสวิรัติ",
+    "budget": 40,
+    "budget_tier": "ประหยัด",
+    "prep_time": 5,
+    "is_spicy": false,
+    "tags": [
+      "สดชื่นดับร้อน",
+      "แก้ง่วงคาเฟอีน",
+      "ประหยัด",
+      "มังสวิรัติ"
+    ],
+    "pair_id": "TH-C05",
+    "dessert_pair_id": "DES-019",
+    "image_url": "images/BEV-029.webp",
+    "recipe_hint": "ชาดำสกัดเข้มข้นผสมน้ำมะนาวสดฝานแว่น เปรี้ยวหวานสดชื่นตัดเลี่ยน",
+    "wiki_query": "ชาดำเย็นมะนาวสด (Iced Lemon Tea)",
+    "ingredients": [
+      "ชา",
+      "มะนาว"
+    ],
+    "is_halal": true,
+    "is_exotic": false
+  },
+  {
+    "id": "BEV-030",
+    "name": "สมูทตี้สตรอว์เบอร์รีโยเกิร์ต",
+    "mode": "drink",
+    "category": "เครื่องดื่ม",
+    "region": "คาเฟ่",
+    "protein": "มังสวิรัติ",
+    "budget": 60,
+    "budget_tier": "ปานกลาง",
+    "prep_time": 5,
+    "is_spicy": false,
+    "tags": [
+      "สดชื่นดับร้อน",
+      "สุขภาพ",
+      "สายคลีน",
+      "คาเฟ่",
+      "ผลไม้"
+    ],
+    "pair_id": "INT-36",
+    "dessert_pair_id": "DES-023",
+    "image_url": "images/BEV-030.webp",
+    "recipe_hint": "ปั่นสตรอว์เบอร์รีสดกับโยเกิร์ตธรรมชาติจนเนียนนุ่ม เปรี้ยวหวานชื่นใจ",
+    "wiki_query": "สมูทตี้สตรอว์เบอร์รีโยเกิร์ต",
+    "ingredients": [
+      "สตรอว์เบอร์รี",
+      "นมสด"
+    ],
+    "is_halal": true,
+    "is_exotic": false
+  },
+  {
+    "id": "BEV-031",
+    "name": "น้ำเปล่าเย็นชื่นใจ",
+    "mode": "drink",
+    "category": "เครื่องดื่ม",
+    "region": "สมุนไพร",
+    "protein": "มังสวิรัติ",
+    "budget": 10,
+    "budget_tier": "ประหยัด",
+    "prep_time": 1,
+    "is_spicy": false,
+    "tags": [
+      "สดชื่นดับร้อน",
+      "สุขภาพ",
+      "ประหยัด",
+      "สายคลีน",
+      "มังสวิรัติ"
+    ],
+    "pair_id": "TH-C01",
+    "dessert_pair_id": "DES-035",
+    "image_url": "images/BEV-031.webp",
+    "recipe_hint": "น้ำดื่มสะอาดแช่เย็นเจี๊ยบ 0 แคลอรี ประหยัดสุดและดีต่อสุขภาพที่สุด",
+    "wiki_query": "น้ำเปล่าเย็นชื่นใจ",
+    "ingredients": [
+      "น้ำเปล่า"
+    ],
+    "is_halal": true,
+    "is_exotic": false
+  },
+  {
+    "id": "DES-043",
+    "name": "มาการองฝรั่งเศสหลากสี",
+    "mode": "dessert",
+    "category": "ของหวาน",
+    "region": "ฝรั่งเศส",
+    "protein": "ไข่",
+    "budget": 75,
+    "budget_tier": "ปานกลาง",
+    "prep_time": 5,
+    "is_spicy": false,
+    "tags": [
+      "หวานฮีลใจ",
+      "คาเฟ่"
+    ],
+    "pair_id": "BEV-002",
+    "dessert_pair_id": "BEV-002",
+    "image_url": "images/DES-043.webp",
+    "recipe_hint": "ขนมมาการองเปลือกกรอบเนื้อหนึบสอดไส้กานาชหอมหวาน กินคู่กาแฟดำ",
+    "wiki_query": "มาการองฝรั่งเศสหลากสี",
+    "ingredients": [
+      "ไข่"
+    ],
+    "is_halal": true,
+    "is_exotic": false
+  },
+  {
+    "id": "DES-044",
+    "name": "วุ้นกะทิมะพร้าวอ่อน",
+    "mode": "dessert",
+    "category": "ของหวาน",
+    "region": "ขนมไทย",
+    "protein": "มังสวิรัติ",
+    "budget": 30,
+    "budget_tier": "ประหยัด",
+    "prep_time": 5,
+    "is_spicy": false,
+    "tags": [
+      "สดชื่นดับร้อน",
+      "ขนมไทย",
+      "ประหยัด",
+      "มังสวิรัติ",
+      "สตรีทฟู้ด"
+    ],
+    "pair_id": "TH-C01",
+    "dessert_pair_id": "BEV-004",
+    "image_url": "images/DES-044.webp",
+    "recipe_hint": "วุ้นน้ำมะพร้าวอ่อนสลับชั้นกะทิสดหอมมัน แช่เย็นกรอบเด้งชื่นใจ",
+    "wiki_query": "วุ้นกะทิมะพร้าวอ่อน",
+    "ingredients": [
+      "มะพร้าว",
+      "กะทิ"
+    ],
+    "is_halal": true,
+    "is_exotic": false
+  },
+  {
+    "id": "DES-045",
+    "name": "ขนมหม้อแกงเผือกหอม",
+    "mode": "dessert",
+    "category": "ของหวาน",
+    "region": "ขนมไทย",
+    "protein": "ไข่",
+    "budget": 35,
+    "budget_tier": "ประหยัด",
+    "prep_time": 10,
+    "is_spicy": false,
+    "tags": [
+      "หวานฮีลใจ",
+      "ขนมไทย",
+      "ประหยัด"
+    ],
+    "pair_id": "BEV-001",
+    "dessert_pair_id": "BEV-001",
+    "image_url": "images/DES-045.webp",
+    "recipe_hint": "ขนมหม้อแกงไข่กะทิเนื้อเนียนผสมเผือกหอม โรยหอมเจียวกรอบด้านบน",
+    "wiki_query": "ขนมหม้อแกงเผือกหอม",
+    "ingredients": [
+      "ไข่",
+      "กะทิ",
+      "เผือก"
+    ],
+    "is_halal": true,
+    "is_exotic": false
+  },
+  {
+    "id": "DES-046",
+    "name": "บัวลอยเผือกน้ำกะทิสด",
+    "mode": "dessert",
+    "category": "ของหวาน",
+    "region": "ขนมไทย",
+    "protein": "มังสวิรัติ",
+    "budget": 35,
+    "budget_tier": "ประหยัด",
+    "prep_time": 15,
+    "is_spicy": false,
+    "tags": [
+      "หวานฮีลใจ",
+      "ขนมไทย",
+      "ประหยัด",
+      "มังสวิรัติ",
+      "สตรีทฟู้ด"
+    ],
+    "pair_id": "TH-C04",
+    "dessert_pair_id": "BEV-004",
+    "image_url": "images/DES-046.webp",
+    "recipe_hint": "เม็ดบัวลอยผสมเนื้อเผือกหอมเหนียวนุ่มในน้ำกะทิสดหวานมัน",
+    "wiki_query": "บัวลอยเผือกน้ำกะทิสด",
+    "ingredients": [
+      "เผือก",
+      "กะทิ"
+    ],
+    "is_halal": true,
+    "is_exotic": false
+  },
+  {
+    "id": "DES-047",
+    "name": "ขนมต้มคลุกมะพร้าวทึนทึก",
+    "mode": "dessert",
+    "category": "ของหวาน",
+    "region": "ขนมไทย",
+    "protein": "มังสวิรัติ",
+    "budget": 30,
+    "budget_tier": "ประหยัด",
+    "prep_time": 10,
+    "is_spicy": false,
+    "tags": [
+      "หวานฮีลใจ",
+      "ขนมไทย",
+      "ประหยัด",
+      "มังสวิรัติ",
+      "สตรีทฟู้ด"
+    ],
+    "pair_id": "BEV-004",
+    "dessert_pair_id": "BEV-004",
+    "image_url": "images/DES-047.webp",
+    "recipe_hint": "แป้งข้าวเหนียวห่อไส้กระฉีกน้ำตาลมะพร้าวอบควันเทียน คลุกมะพร้าวขูดเค็มมัน",
+    "wiki_query": "ขนมต้มคลุกมะพร้าวทึนทึก",
+    "ingredients": [
+      "มะพร้าว"
+    ],
+    "is_halal": true,
+    "is_exotic": false
+  },
+  {
+    "id": "DES-048",
+    "name": "รวมขนมไทยมงคล (ทองหยิบ ทองหยอด ฝอยทอง)",
+    "mode": "dessert",
+    "category": "ของหวาน",
+    "region": "ขนมไทย",
+    "protein": "ไข่",
+    "budget": 45,
+    "budget_tier": "ประหยัด",
+    "prep_time": 5,
+    "is_spicy": false,
+    "tags": [
+      "หวานฮีลใจ",
+      "ขนมไทย",
+      "ประหยัด"
+    ],
+    "pair_id": "BEV-004",
+    "dessert_pair_id": "BEV-004",
+    "image_url": "images/DES-048.webp",
+    "recipe_hint": "เซ็ตขนมไทยตระกูลทองสีเหลืองอร่าม หวานฉ่ำหอมกลิ่นดอกมะลิ",
+    "wiki_query": "รวมขนมไทยมงคล (ทองหยิบ ทองหยอด ฝอยทอง)",
+    "ingredients": [
+      "ไข่"
+    ],
+    "is_halal": true,
+    "is_exotic": false
+  },
+  {
+    "id": "DES-049",
+    "name": "ขนมโตเกียวไส้รวมกรอบนุ่ม",
+    "mode": "dessert",
+    "category": "ของหวาน",
+    "region": "ขนมไทย",
+    "protein": "ไข่",
+    "budget": 30,
+    "budget_tier": "ประหยัด",
+    "prep_time": 8,
+    "is_spicy": false,
+    "tags": [
+      "หวานฮีลใจ",
+      "ประหยัด",
+      "สตรีทฟู้ด"
+    ],
+    "pair_id": "BEV-001",
+    "dessert_pair_id": "BEV-001",
+    "image_url": "images/DES-049.webp",
+    "recipe_hint": "แป้งโตเกียวหอมเนยสอดไส้คัสตาร์ดครีมใบเตยและไส้เค็มไข่นกกระทา",
+    "wiki_query": "ขนมโตเกียวไส้รวมกรอบนุ่ม",
+    "ingredients": [
+      "ไข่",
+      "แป้ง"
+    ],
+    "is_halal": true,
+    "is_exotic": false
+  },
+  {
+    "id": "DES-050",
+    "name": "ขนมลาปักษ์ใต้กรอบหวาน",
+    "mode": "dessert",
+    "category": "ของหวาน",
+    "region": "ขนมไทย",
+    "protein": "มังสวิรัติ",
+    "budget": 35,
+    "budget_tier": "ประหยัด",
+    "prep_time": 5,
+    "is_spicy": false,
+    "tags": [
+      "หวานฮีลใจ",
+      "ขนมไทย",
+      "ประหยัด",
+      "มังสวิรัติ"
+    ],
+    "pair_id": "TH-S01",
+    "dessert_pair_id": "BEV-001",
+    "image_url": "images/DES-050.webp",
+    "recipe_hint": "ขนมพื้นเมืองปักษ์ใต้เส้นใยบางกรอบหอมน้ำตาลโตนดแท้",
+    "wiki_query": "ขนมลาปักษ์ใต้กรอบหวาน",
+    "ingredients": [
+      "แป้ง"
+    ],
+    "is_halal": true,
+    "is_exotic": false
+  },
+  {
+    "id": "DES-051",
+    "name": "ข้าวเหนียวถั่วดำราดน้ำกะทิ",
+    "mode": "dessert",
+    "category": "ของหวาน",
+    "region": "ขนมไทย",
+    "protein": "มังสวิรัติ",
+    "budget": 30,
+    "budget_tier": "ประหยัด",
+    "prep_time": 10,
+    "is_spicy": false,
+    "tags": [
+      "หวานฮีลใจ",
+      "ขนมไทย",
+      "ประหยัด",
+      "มังสวิรัติ",
+      "สตรีทฟู้ด"
+    ],
+    "pair_id": "TH-C01",
+    "dessert_pair_id": "BEV-004",
+    "image_url": "images/DES-051.webp",
+    "recipe_hint": "ข้าวเหนียวมูนนุ่มๆ ราดน้ำกะทิถั่วดำต้มเปื่อย หวานมันเค็มกลมกล่อม",
+    "wiki_query": "ข้าวเหนียวถั่วดำราดน้ำกะทิ",
+    "ingredients": [
+      "ข้าว",
+      "กะทิ"
+    ],
+    "is_halal": true,
+    "is_exotic": false
+  },
+  {
+    "id": "DES-052",
+    "name": "โดนัทเคลือบน้ำตาลเกลซนุ่มฟู",
+    "mode": "dessert",
+    "category": "ของหวาน",
+    "region": "คาเฟ่",
+    "protein": "ไข่",
+    "budget": 35,
+    "budget_tier": "ประหยัด",
+    "prep_time": 5,
+    "is_spicy": false,
+    "tags": [
+      "หวานฮีลใจ",
+      "คาเฟ่",
+      "ประหยัด"
+    ],
+    "pair_id": "BEV-002",
+    "dessert_pair_id": "BEV-002",
+    "image_url": "images/DES-052.webp",
+    "recipe_hint": "โดนัทเนื้อนุ่มฟูเคลือบน้ำตาลเกลซบางกรอบ หวานละมุนคู่กาแฟ",
+    "wiki_query": "โดนัทเคลือบน้ำตาลเกลซนุ่มฟู",
+    "ingredients": [
+      "แป้ง",
+      "ไข่"
+    ],
+    "is_halal": true,
+    "is_exotic": false
+  },
+  {
+    "id": "INT-125",
+    "name": "ซี่โครงหมูอบซอสบาร์บีคิว",
+    "mode": "main",
+    "category": "อาหารนานาชาติ",
+    "region": "อเมริกัน",
+    "protein": "หมู",
+    "budget": 165,
+    "budget_tier": "พรีเมียม",
+    "prep_time": 35,
+    "is_spicy": false,
+    "tags": [
+      "กับข้าว",
+      "ย่าง",
+      "พรีเมียม",
+      "ไม่เผ็ด"
+    ],
+    "pair_id": "BEV-002",
+    "dessert_pair_id": "DES-006",
+    "image_url": "images/INT-125.webp",
+    "recipe_hint": "อบซี่โครงหมูจนเปื่อยนุ่มร่อนกระดูก ทาซอสบาร์บีคิวรมควันหอมฉ่ำ",
+    "wiki_query": "ซี่โครงหมูอบซอสบาร์บีคิว",
+    "ingredients": [
+      "หมู"
+    ],
+    "is_halal": false,
+    "is_exotic": false
+  },
+  {
+    "id": "INT-126",
+    "name": "ซีซาร์สลัดอกไก่ย่างคลีน",
+    "mode": "main",
+    "category": "อาหารนานาชาติ",
+    "region": "อเมริกัน",
+    "protein": "ไก่",
+    "budget": 85,
+    "budget_tier": "ปานกลาง",
+    "prep_time": 12,
+    "is_spicy": false,
+    "tags": [
+      "จานเดียว",
+      "สุขภาพ",
+      "ไม่เผ็ด",
+      "สายคลีน"
+    ],
+    "pair_id": "BEV-002",
+    "dessert_pair_id": "DES-029",
+    "image_url": "images/INT-126.webp",
+    "recipe_hint": "ผักคอสสดกรอบคลุกน้ำสลัดซีซาร์ อกไก่ย่างพริกไทยดำ ขนมปังกรอบ และพาร์เมซานชีส",
+    "wiki_query": "ซีซาร์สลัดอกไก่ย่างคลีน",
+    "ingredients": [
+      "ไก่",
+      "ผักรวม",
+      "ชีส"
+    ],
+    "is_halal": true,
+    "is_exotic": false
+  },
+  {
+    "id": "INT-127",
+    "name": "กูร์เมต์เบคอนชีสเบอร์เกอร์",
+    "mode": "main",
+    "category": "อาหารนานาชาติ",
+    "region": "อเมริกัน",
+    "protein": "เนื้อ",
+    "budget": 135,
+    "budget_tier": "พรีเมียม",
+    "prep_time": 15,
+    "is_spicy": false,
+    "tags": [
+      "จานเดียว",
+      "พรีเมียม",
+      "ไม่เผ็ด"
+    ],
+    "pair_id": "BEV-002",
+    "dessert_pair_id": "DES-006",
+    "image_url": "images/INT-127.webp",
+    "recipe_hint": "เบอร์เกอร์เนื้อฉ่ำประกบเชดดาร์ชีสเยิ้มและเบคอนรมควันกรอบ เสิร์ฟคู่เฟรนช์ฟรายส์",
+    "wiki_query": "กูร์เมต์เบคอนชีสเบอร์เกอร์",
+    "ingredients": [
+      "เนื้อ",
+      "เบคอน",
+      "ชีส"
+    ],
+    "is_halal": false,
+    "is_exotic": false
+  },
+  {
+    "id": "INT-128",
+    "name": "สเต๊กเนื้อทีโบนย่างเตาถ่าน",
+    "mode": "main",
+    "category": "อาหารนานาชาติ",
+    "region": "อเมริกัน",
+    "protein": "เนื้อ",
+    "budget": 240,
+    "budget_tier": "พรีเมียม",
+    "prep_time": 20,
+    "is_spicy": false,
+    "tags": [
+      "จานเดียว",
+      "ย่าง",
+      "พรีเมียม",
+      "ไม่เผ็ด"
+    ],
+    "pair_id": "BEV-002",
+    "dessert_pair_id": "DES-023",
+    "image_url": "images/INT-128.webp",
+    "recipe_hint": "ย่างเนื้อทีโบนชิ้นหนาความสุกมีเดียมแรร์ หอมเนยกระเทียมโรสแมรี",
+    "wiki_query": "สเต๊กเนื้อทีโบนย่างเตาถ่าน",
+    "ingredients": [
+      "เนื้อ",
+      "กระเทียม"
+    ],
+    "is_halal": true,
+    "is_exotic": false
+  },
+  {
+    "id": "TH-C62",
+    "name": "ยำปลาดุกฟูมะม่วงสับ",
+    "mode": "main",
+    "category": "อาหารไทย 4 ภาค",
+    "region": "ภาคกลาง",
+    "protein": "ปลา",
+    "budget": 85,
+    "budget_tier": "ปานกลาง",
+    "prep_time": 20,
+    "is_spicy": true,
+    "tags": [
+      "กับข้าว",
+      "ทอด",
+      "ยำ/ตำ",
+      "เผ็ด"
+    ],
+    "pair_id": "TH-C02",
+    "dessert_pair_id": "BEV-005",
+    "image_url": "images/TH-C62.webp",
+    "recipe_hint": "ทอดเนื้อปลาดุกย่างจนฟูเหลืองกรอบ เสิร์ฟคู่น้ำยำมะม่วงเปรี้ยวหวานและถั่วลิสงคั่ว",
+    "wiki_query": "ยำปลาดุกฟูมะม่วงสับ",
+    "ingredients": [
+      "ปลา",
+      "มะม่วง",
+      "พริก"
+    ],
+    "is_halal": true,
+    "is_exotic": false
+  },
+  {
+    "id": "TH-C63",
+    "name": "ข้าวหมูกรอบคั่วพริกเกลือ",
+    "mode": "main",
+    "category": "อาหารไทย 4 ภาค",
+    "region": "ภาคกลาง",
+    "protein": "หมู",
+    "budget": 65,
+    "budget_tier": "ปานกลาง",
+    "prep_time": 12,
+    "is_spicy": true,
+    "tags": [
+      "จานเดียว",
+      "ทอด",
+      "สตรีทฟู้ด"
+    ],
+    "pair_id": "TH-C06",
+    "dessert_pair_id": "BEV-001",
+    "image_url": "images/TH-C63.webp",
+    "recipe_hint": "หมูกรอบหนังฟูหั่นชิ้นโต คั่วกระเทียมพริกขี้หนูและต้นหอม ราดบนข้าวสวยร้อนๆ",
+    "wiki_query": "ข้าวหมูกรอบคั่วพริกเกลือ",
+    "ingredients": [
+      "หมูกรอบ",
+      "หมู",
+      "ข้าว",
+      "พริก",
+      "กระเทียม"
+    ],
+    "is_halal": false,
+    "is_exotic": false
+  },
+  {
+    "id": "TH-S18",
+    "name": "ไก่กอและย่างซอสแกงใต้",
+    "mode": "main",
+    "category": "อาหารไทย 4 ภาค",
+    "region": "ภาคใต้",
+    "protein": "ไก่",
+    "budget": 70,
+    "budget_tier": "ปานกลาง",
+    "prep_time": 25,
+    "is_spicy": true,
+    "tags": [
+      "กับข้าว",
+      "ย่าง",
+      "สตรีทฟู้ด"
+    ],
+    "pair_id": "TH-S05",
+    "dessert_pair_id": "BEV-001",
+    "image_url": "images/TH-S18.webp",
+    "recipe_hint": "ย่างสะโพกไก่พร้อมทาซอสพริกแกงกะทิรสเข้มข้นหวานมันเผ็ดนิดๆ หอมกลิ่นเตาถ่าน",
+    "wiki_query": "ไก่กอและย่างซอสแกงใต้",
+    "ingredients": [
+      "ไก่",
+      "กะทิ",
+      "พริก"
+    ],
+    "is_halal": true,
+    "is_exotic": false
+  },
+  {
+    "id": "TH-N19",
+    "name": "ข้าวแรมฟืนทรงเครื่อง (อาหารไทใหญ่)",
+    "mode": "main",
+    "category": "อาหารไทย 4 ภาค",
+    "region": "ภาคเหนือ",
+    "protein": "มังสวิรัติ",
+    "budget": 45,
+    "budget_tier": "ประหยัด",
+    "prep_time": 15,
+    "is_spicy": false,
+    "tags": [
+      "จานเดียว",
+      "ประหยัด",
+      "มังสวิรัติ",
+      "สตรีทฟู้ด"
+    ],
+    "pair_id": "BEV-004",
+    "dessert_pair_id": "BEV-004",
+    "image_url": "images/TH-N19.webp",
+    "recipe_hint": "วุ้นแป้งถั่วลันเตาเนื้อนุ่มหั่นชิ้น ราดน้ำเชื่อมเค็มเปรี้ยว กระเทียมเจียว ถั่วลิสง และผักชี",
+    "wiki_query": "ข้าวแรมฟืนทรงเครื่อง (อาหารไทใหญ่)",
+    "ingredients": [
+      "ถั่วลิสง",
+      "กระเทียม"
+    ],
+    "is_halal": true,
+    "is_exotic": false
+  },
+  {
+    "id": "TH-C64",
+    "name": "ต้มจับฉ่ายกระดูกหมูผักรวม",
+    "mode": "main",
+    "category": "อาหารไทย 4 ภาค",
+    "region": "ภาคกลาง",
+    "protein": "หมู",
+    "budget": 55,
+    "budget_tier": "ปานกลาง",
+    "prep_time": 35,
+    "is_spicy": false,
+    "tags": [
+      "กับข้าว",
+      "ต้ม",
+      "สุขภาพ",
+      "ไม่เผ็ด",
+      "สายคลีน"
+    ],
+    "pair_id": "TH-C03",
+    "dessert_pair_id": "BEV-004",
+    "image_url": "images/TH-C64.webp",
+    "recipe_hint": "ต้มผักกาดขาว กวางตุ้ง หัวไชเท้า เห็ดหอม และกระดูกหมูจนเปื่อยหวานน้ำผัก",
+    "wiki_query": "ต้มจับฉ่ายกระดูกหมูผักรวม",
+    "ingredients": [
+      "หมู",
+      "ผักรวม",
+      "เห็ด"
+    ],
+    "is_halal": false,
+    "is_exotic": false
+  },
+  {
+    "id": "TH-N20",
+    "name": "แกงกระด้างหมูล้านนา",
+    "mode": "main",
+    "category": "อาหารไทย 4 ภาค",
+    "region": "ภาคเหนือ",
+    "protein": "หมู",
+    "budget": 60,
+    "budget_tier": "ปานกลาง",
+    "prep_time": 40,
+    "is_spicy": false,
+    "tags": [
+      "กับข้าว",
+      "ไม่เผ็ด",
+      "เมนูแปลก"
+    ],
+    "pair_id": "TH-N05",
+    "dessert_pair_id": "BEV-004",
+    "image_url": "images/TH-N20.webp",
+    "recipe_hint": "เคี่ยวขาหมูกับพริกไทยกระเทียมจนเป็นวุ้นใสธรรมชาติ หั่นเต๋าเสิร์ฟเย็นคู่ข้าวเหนียว",
+    "wiki_query": "แกงกระด้างหมูล้านนา",
+    "ingredients": [
+      "ขาหมู",
+      "หมู",
+      "กระเทียม"
+    ],
+    "is_halal": false,
+    "is_exotic": true,
+    "exotic_level": 1
+  },
+  {
+    "id": "TH-C65",
+    "name": "กุ้งแช่น้ำปลามะระสด",
+    "mode": "main",
+    "category": "อาหารไทย 4 ภาค",
+    "region": "ภาคกลาง",
+    "protein": "ทะเล",
+    "budget": 95,
+    "budget_tier": "พรีเมียม",
+    "prep_time": 10,
+    "is_spicy": true,
+    "tags": [
+      "กับข้าว",
+      "ยำ/ตำ",
+      "เผ็ด",
+      "สตรีทฟู้ด"
+    ],
+    "pair_id": "TH-C35",
+    "dessert_pair_id": "BEV-005",
+    "image_url": "images/TH-C65.webp",
+    "recipe_hint": "กุ้งสดแช่เย็นราดน้ำปลาปรุงรส ท็อปด้วยกระเทียมฝาน พริกซีฟู้ดรสจัดจ้าน และมะระสดกรอบ",
+    "wiki_query": "กุ้งแช่น้ำปลามะระสด",
+    "ingredients": [
+      "กุ้ง",
+      "มะระ",
+      "พริก",
+      "กระเทียม",
+      "มะนาว"
+    ],
+    "is_halal": true,
+    "is_exotic": false
+  },
+  {
+    "id": "TH-E29",
+    "name": "ปลาเผาเกลือเมี่ยงผักสด",
+    "mode": "main",
+    "category": "อาหารไทย 4 ภาค",
+    "region": "ภาคอีสาน",
+    "protein": "ปลา",
+    "budget": 130,
+    "budget_tier": "พรีเมียม",
+    "prep_time": 30,
+    "is_spicy": false,
+    "tags": [
+      "กับข้าว",
+      "ย่าง",
+      "สุขภาพ",
+      "สายคลีน",
+      "ไม่เผ็ด"
+    ],
+    "pair_id": "TH-E01",
+    "dessert_pair_id": "BEV-005",
+    "image_url": "images/TH-E29.webp",
+    "recipe_hint": "ปลานิลยัดตะไคร้พอกเกลือเผาจนสุกเนื้อหวาน เสิร์ฟคู่ขนมจีน ผักสด และน้ำจิ้มถั่วตัด/ซีฟู้ด",
+    "wiki_query": "ปลาเผาเกลือเมี่ยงผักสด",
+    "ingredients": [
+      "ปลา",
+      "ขนมจีน",
+      "ผักรวม"
+    ],
+    "is_halal": true,
+    "is_exotic": false
+  },
+  {
+    "id": "TH-C66",
+    "name": "เนื้อผัดน้ำมันหอย",
+    "mode": "main",
+    "category": "อาหารไทย 4 ภาค",
+    "region": "ภาคกลาง",
+    "protein": "เนื้อ",
+    "budget": 85,
+    "budget_tier": "ปานกลาง",
+    "prep_time": 12,
+    "is_spicy": false,
+    "tags": [
+      "กับข้าว",
+      "ผัด",
+      "ไม่เผ็ด"
+    ],
+    "pair_id": "TH-C02",
+    "dessert_pair_id": "BEV-004",
+    "image_url": "images/TH-C66.webp",
+    "recipe_hint": "ผัดเนื้อวัวหมักนุ่มกับกระเทียม ซอสหอยนางรม หอมใหญ่ และพริกชี้ฟ้าไฟแรง",
+    "wiki_query": "เนื้อผัดน้ำมันหอย",
+    "ingredients": [
+      "เนื้อ",
+      "กระเทียม"
+    ],
+    "is_halal": true,
+    "is_exotic": false
+  },
+  {
+    "id": "TH-C67",
+    "name": "ปูผัดผงกะหรี่เข้มข้น",
+    "mode": "main",
+    "category": "อาหารไทย 4 ภาค",
+    "region": "ภาคกลาง",
+    "protein": "ปู",
+    "budget": 160,
+    "budget_tier": "พรีเมียม",
+    "prep_time": 20,
+    "is_spicy": false,
+    "tags": [
+      "กับข้าว",
+      "ผัด",
+      "พรีเมียม",
+      "ไม่เผ็ด"
+    ],
+    "pair_id": "TH-C02",
+    "dessert_pair_id": "DES-003",
+    "image_url": "images/TH-C67.webp",
+    "recipe_hint": "ผัดเนื้อปูกับผงกะหรี่ น้ำพริกเผา ไข่ไก่ และนมข้นจืดจนเนียนข้น โรยขึ้นฉ่าย",
+    "wiki_query": "ปูผัดผงกะหรี่เข้มข้น",
+    "ingredients": [
+      "ปู",
+      "ไข่"
+    ],
+    "is_halal": true,
+    "is_exotic": false
+  },
+  {
+    "id": "TH-C68",
+    "name": "ผัดวุ้นเส้นกุ้งสดใส่ไข่",
+    "mode": "main",
+    "category": "อาหารไทย 4 ภาค",
+    "region": "ภาคกลาง",
+    "protein": "ทะเล",
+    "budget": 65,
+    "budget_tier": "ปานกลาง",
+    "prep_time": 12,
+    "is_spicy": false,
+    "tags": [
+      "จานเดียว",
+      "เส้น",
+      "ผัด",
+      "ไม่เผ็ด",
+      "สายคลีน"
+    ],
+    "pair_id": "TH-C06",
+    "dessert_pair_id": "BEV-004",
+    "image_url": "images/TH-C68.webp",
+    "recipe_hint": "ผัดวุ้นเส้นเหนียวนุ่มกับกุ้งสด ไข่ไก่ กะหล่ำปลี มะเขือเทศ และต้นหอม",
+    "wiki_query": "ผัดวุ้นเส้นกุ้งสดใส่ไข่",
+    "ingredients": [
+      "วุ้นเส้น",
+      "กุ้ง",
+      "ไข่"
+    ],
+    "is_halal": true,
+    "is_exotic": false
+  },
+  {
+    "id": "TH-C69",
+    "name": "ผัดผักบุ้งไฟแดง",
+    "mode": "main",
+    "category": "อาหารไทย 4 ภาค",
+    "region": "ภาคกลาง",
+    "protein": "มังสวิรัติ",
+    "budget": 45,
+    "budget_tier": "ประหยัด",
+    "prep_time": 8,
+    "is_spicy": true,
+    "tags": [
+      "กับข้าว",
+      "ผัด",
+      "ประหยัด",
+      "เร็ว",
+      "สายคลีน",
+      "มังสวิรัติ",
+      "สตรีทฟู้ด"
+    ],
+    "pair_id": "TH-C03",
+    "dessert_pair_id": "BEV-004",
+    "image_url": "images/TH-C69.webp",
+    "recipe_hint": "ผัดผักบุ้งจีนกับเต้าเจี้ยว กระเทียมทุบ และพริกขี้หนูด้วยไฟแรงจัด ผักกรอบเขียวสวย",
+    "wiki_query": "ผัดผักบุ้งไฟแดง",
+    "ingredients": [
+      "ผักบุ้ง",
+      "พริก",
+      "กระเทียม"
+    ],
+    "is_halal": true,
+    "is_exotic": false
+  },
+  {
+    "id": "TH-C70",
+    "name": "ไก่ต้มน้ำปลาเนื้อนุ่ม",
+    "mode": "main",
+    "category": "อาหารไทย 4 ภาค",
+    "region": "ภาคกลาง",
+    "protein": "ไก่",
+    "budget": 85,
+    "budget_tier": "ปานกลาง",
+    "prep_time": 30,
+    "is_spicy": false,
+    "tags": [
+      "กับข้าว",
+      "ต้ม",
+      "ไม่เผ็ด",
+      "สุขภาพ"
+    ],
+    "pair_id": "TH-E01",
+    "dessert_pair_id": "BEV-005",
+    "image_url": "images/TH-C70.webp",
+    "recipe_hint": "ต้มน่องสะโพกไก่กับน้ำปลาอย่างดี รากผักชี กระเทียม และน้ำตาลปี๊บ เสิร์ฟคู่น้ำจิ้มซีฟู้ด",
+    "wiki_query": "ไก่ต้มน้ำปลาเนื้อนุ่ม",
+    "ingredients": [
+      "ไก่",
+      "กระเทียม"
+    ],
+    "is_halal": true,
+    "is_exotic": false
+  },
+  {
+    "id": "TH-C71",
+    "name": "ปลาเก๋าทอดกรอบราดซอส",
+    "mode": "main",
+    "category": "อาหารไทย 4 ภาค",
+    "region": "ภาคกลาง",
+    "protein": "ปลา",
+    "budget": 150,
+    "budget_tier": "พรีเมียม",
+    "prep_time": 25,
+    "is_spicy": false,
+    "tags": [
+      "กับข้าว",
+      "ทอด",
+      "พรีเมียม",
+      "ไม่เผ็ด"
+    ],
+    "pair_id": "TH-C02",
+    "dessert_pair_id": "DES-003",
+    "image_url": "images/TH-C71.webp",
+    "recipe_hint": "ทอดปลาเก๋าสดจนเหลืองกรอบนอกนุ่มใน เสิร์ฟคู่ซอสปรุงรสและผักเครื่องเคียง",
+    "wiki_query": "ปลาเก๋าทอดกรอบราดซอส",
+    "ingredients": [
+      "ปลา"
+    ],
+    "is_halal": true,
+    "is_exotic": false
+  },
+  {
+    "id": "TH-E30",
+    "name": "ข้าวเหนียวหมูปิ้งนมสด",
+    "mode": "main",
+    "category": "อาหารไทย 4 ภาค",
+    "region": "ภาคอีสาน",
+    "protein": "หมู",
+    "budget": 40,
+    "budget_tier": "ประหยัด",
+    "prep_time": 10,
+    "is_spicy": false,
+    "tags": [
+      "จานเดียว",
+      "ย่าง",
+      "ประหยัด",
+      "ไม่เผ็ด",
+      "สตรีทฟู้ด"
+    ],
+    "pair_id": "BEV-001",
+    "dessert_pair_id": "BEV-001",
+    "image_url": "images/TH-E30.webp",
+    "recipe_hint": "หมูปิ้งหมักนมสดรากผักชีกระเทียมพริกไทย ย่างเตาถ่านหอมฉ่ำ กินคู่ข้าวเหนียวร้อนๆ",
+    "wiki_query": "ข้าวเหนียวหมูปิ้งนมสด",
+    "ingredients": [
+      "หมู",
+      "ข้าว"
+    ],
+    "is_halal": false,
+    "is_exotic": false
+  },
+  {
+    "id": "TH-C72",
+    "name": "ต้มยำปลากะพงน้ำใส",
+    "mode": "main",
+    "category": "อาหารไทย 4 ภาค",
+    "region": "ภาคกลาง",
+    "protein": "ปลา",
+    "budget": 95,
+    "budget_tier": "พรีเมียม",
+    "prep_time": 20,
+    "is_spicy": true,
+    "tags": [
+      "กับข้าว",
+      "ต้ม",
+      "เผ็ด",
+      "สุขภาพ",
+      "สายคลีน"
+    ],
+    "pair_id": "TH-C03",
+    "dessert_pair_id": "BEV-005",
+    "image_url": "images/TH-C72.webp",
+    "recipe_hint": "ต้มน้ำซุปข่าตะไคร้ใบมะกรูด ใส่เนื้อปลากะพงสด เห็ดฟาง ปรุงรสแซ่บเปรี้ยวเผ็ดด้วยพริกขี้หนูมะนาว",
+    "wiki_query": "ต้มยำปลากะพงน้ำใส",
+    "ingredients": [
+      "ปลากะพง",
+      "ปลา",
+      "พริก",
+      "มะนาว"
+    ],
+    "is_halal": true,
+    "is_exotic": false
+  },
+  {
+    "id": "TH-E31",
+    "name": "ยำเนื้อย่างแตงกวาสด",
+    "mode": "main",
+    "category": "อาหารไทย 4 ภาค",
+    "region": "ภาคอีสาน",
+    "protein": "เนื้อ",
+    "budget": 90,
+    "budget_tier": "ปานกลาง",
+    "prep_time": 15,
+    "is_spicy": true,
+    "tags": [
+      "กับข้าว",
+      "ยำ/ตำ",
+      "เผ็ด",
+      "สายคลีน"
+    ],
+    "pair_id": "TH-E05",
+    "dessert_pair_id": "BEV-005",
+    "image_url": "images/TH-E31.webp",
+    "recipe_hint": "หั่นเนื้อย่างติดมันคลุกน้ำยำพริกมะนาว ใส่แตงกวา มะเขือเทศ หอมแดง และขึ้นฉ่าย",
+    "wiki_query": "ยำเนื้อย่างแตงกวาสด",
+    "ingredients": [
+      "เนื้อ",
+      "แตงกวา",
+      "พริก",
+      "มะนาว"
+    ],
+    "is_halal": true,
+    "is_exotic": false
+  },
+  {
+    "id": "TH-C73",
+    "name": "พล่ากุ้งสมุนไพรตะไคร้",
+    "mode": "main",
+    "category": "อาหารไทย 4 ภาค",
+    "region": "ภาคกลาง",
+    "protein": "ทะเล",
+    "budget": 95,
+    "budget_tier": "พรีเมียม",
+    "prep_time": 15,
+    "is_spicy": true,
+    "tags": [
+      "กับข้าว",
+      "ยำ/ตำ",
+      "เผ็ด",
+      "สุขภาพ",
+      "สายคลีน"
+    ],
+    "pair_id": "TH-C03",
+    "dessert_pair_id": "BEV-005",
+    "image_url": "images/TH-C73.webp",
+    "recipe_hint": "กุ้งสดลวกพอสะดุ้ง คลุกน้ำพริกเผา มะนาว ตะไคร้ซอย หอมแดง ใบมะกรูด และสะระแหน่",
+    "wiki_query": "พล่ากุ้งสมุนไพรตะไคร้",
+    "ingredients": [
+      "กุ้ง",
+      "พริก",
+      "มะนาว"
+    ],
+    "is_halal": true,
+    "is_exotic": false
+  },
+  {
+    "id": "TH-C74",
+    "name": "ผัดฉ่าทะเลกระทะร้อน",
+    "mode": "main",
+    "category": "อาหารไทย 4 ภาค",
+    "region": "ภาคกลาง",
+    "protein": "ทะเล",
+    "budget": 110,
+    "budget_tier": "พรีเมียม",
+    "prep_time": 15,
+    "is_spicy": true,
+    "tags": [
+      "กับข้าว",
+      "ผัด",
+      "เผ็ด"
+    ],
+    "pair_id": "TH-C06",
+    "dessert_pair_id": "BEV-005",
+    "image_url": "images/TH-C74.webp",
+    "recipe_hint": "ผัดกุ้ง ปลาหมึก และเนื้อปลากับพริกกระเทียม กระชายซอย พริกไทยอ่อน และใบกะเพรารสจัดจ้าน",
+    "wiki_query": "ผัดฉ่าทะเลกระทะร้อน",
+    "ingredients": [
+      "กุ้ง",
+      "ปลาหมึก",
+      "ปลา",
+      "พริก",
+      "ใบกะเพรา"
+    ],
+    "is_halal": true,
+    "is_exotic": false
+  },
+  {
+    "id": "TH-C75",
+    "name": "ไก่ผัดพริกไทยดำ",
+    "mode": "main",
+    "category": "อาหารไทย 4 ภาค",
+    "region": "ภาคกลาง",
+    "protein": "ไก่",
+    "budget": 65,
+    "budget_tier": "ปานกลาง",
+    "prep_time": 15,
+    "is_spicy": false,
+    "tags": [
+      "กับข้าว",
+      "ผัด",
+      "ไม่เผ็ด"
+    ],
+    "pair_id": "TH-C06",
+    "dessert_pair_id": "BEV-004",
+    "image_url": "images/TH-C75.webp",
+    "recipe_hint": "ผัดเนื้อไก่กับพริกไทยดำโขลกหยาบ หอมใหญ่ พริกหวานสามสี และซอสหอยนางรมหอมเผ็ดร้อนนิดๆ",
+    "wiki_query": "ไก่ผัดพริกไทยดำ",
+    "ingredients": [
+      "ไก่",
+      "พริก",
+      "กระเทียม"
+    ],
+    "is_halal": true,
+    "is_exotic": false
+  },
+  {
+    "id": "TH-C76",
+    "name": "หอยลายผัดพริกเผาใบโหระพา",
+    "mode": "main",
+    "category": "อาหารไทย 4 ภาค",
+    "region": "ภาคกลาง",
+    "protein": "หอย",
+    "budget": 85,
+    "budget_tier": "ปานกลาง",
+    "prep_time": 12,
+    "is_spicy": true,
+    "tags": [
+      "กับข้าว",
+      "ผัด",
+      "สตรีทฟู้ด"
+    ],
+    "pair_id": "TH-C03",
+    "dessert_pair_id": "BEV-004",
+    "image_url": "images/TH-C76.webp",
+    "recipe_hint": "ผัดหอยลายสดกับกระเทียม พริกขี้หนู น้ำพริกเผา นมข้นจืด และใบโหระพาหอมกรุ่น",
+    "wiki_query": "หอยลายผัดพริกเผาใบโหระพา",
+    "ingredients": [
+      "หอย",
+      "พริก",
+      "กระเทียม"
+    ],
+    "is_halal": true,
+    "is_exotic": false
+  },
+  {
+    "id": "TH-C77",
+    "name": "ก๋วยเตี๋ยวคั่วไก่กระทะเหล็ก",
+    "mode": "main",
+    "category": "อาหารไทย 4 ภาค",
+    "region": "ภาคกลาง",
+    "protein": "ไก่",
+    "budget": 60,
+    "budget_tier": "ปานกลาง",
+    "prep_time": 12,
+    "is_spicy": false,
+    "tags": [
+      "จานเดียว",
+      "เส้น",
+      "ผัด",
+      "ไม่เผ็ด",
+      "สตรีทฟู้ด"
+    ],
+    "pair_id": "BEV-004",
+    "dessert_pair_id": "BEV-004",
+    "image_url": "images/TH-C77.webp",
+    "recipe_hint": "คั่วเส้นใหญ่กับไก่หมักนุ่ม ไข่ไก่ และปลาหมึกกรอบไฟแรงจนหอมกระทะ เสิร์ฟคู่ผักกาดหอมและซอสพริก",
+    "wiki_query": "ก๋วยเตี๋ยวคั่วไก่กระทะเหล็ก",
+    "ingredients": [
+      "เส้นใหญ่",
+      "ไก่",
+      "ไข่"
+    ],
+    "is_halal": true,
+    "is_exotic": false
+  },
+  {
+    "id": "TH-C78",
+    "name": "ผัดเปรี้ยวหวานไก่สับปะรด",
+    "mode": "main",
+    "category": "อาหารไทย 4 ภาค",
+    "region": "ภาคกลาง",
+    "protein": "ไก่",
+    "budget": 65,
+    "budget_tier": "ปานกลาง",
+    "prep_time": 15,
+    "is_spicy": false,
+    "tags": [
+      "กับข้าว",
+      "ผัด",
+      "ไม่เผ็ด"
+    ],
+    "pair_id": "TH-C06",
+    "dessert_pair_id": "BEV-004",
+    "image_url": "images/TH-C78.webp",
+    "recipe_hint": "ผัดเนื้อไก่กับแตงกวา มะเขือเทศ หอมใหญ่ พริกหวาน และสับปะรดในซอสเปรี้ยวหวานกลมกล่อม",
+    "wiki_query": "ผัดเปรี้ยวหวานไก่สับปะรด",
+    "ingredients": [
+      "ไก่",
+      "แตงกวา",
+      "สับปะรด"
+    ],
+    "is_halal": true,
+    "is_exotic": false
   }
 ]
